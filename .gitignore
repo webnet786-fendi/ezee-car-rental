@@ -3,3 +3,6 @@ img/Customer Photo/
 img/VF *.jpeg
 tools/
 preview-*
+
+# Bookings backend: local copies carry the real admin token
+gas/*.local.*

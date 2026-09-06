@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Booking control: every WhatsApp tap in the price box is logged as **Waiting Confirmation** with a reference (`Ref: EZ-yymmdd-XXX`, also placed in the WhatsApp message). Backend = Google Apps Script + Google Sheet under the owner's personal Gmail (`gas/Code.gs`, setup in `gas/README.md`). New private `ledger.html` (status Waiting → Confirmed → Completed / Cancelled / No-show, customer, phone, deposit, notes, history, manual bookings, tiles for waiting / upcoming / this month). Admin gets a Bookings tab for the web-app URL (`settings.bookingsUrl`; empty = logging off). Public `?action=busy` endpoint prepared for the calendar hold.
 - Language switcher (EN default / BM / 中文) in the header of the landing page and the rate card. Choice is remembered in the browser (`ezee-lang`) and can be forced with `?lang=ms` / `?lang=zh`. Translations live in `i18n.js`: static text by `data-i18n` key, fleet data (services, notes, inclusions, zones) by exact English string with English fallback, so new cars or services added in admin appear in English until a translation is added. WhatsApp messages stay in English for the owner.
 
 ## v1.0.0 — 2026-09-07

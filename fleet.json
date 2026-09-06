@@ -331,6 +331,7 @@
  "settings": {
   "whatsapp": "60127119814",
   "nightSurcharge": 30,
-  "depositPct": 50
+  "depositPct": 50,
+  "bookingsUrl": ""
  }
 }

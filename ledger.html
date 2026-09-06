@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>EzEe Bookings Ledger</title>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  :root{--ground:#14110b;--surface:#1c1810;--raised:#241f15;--line:#352d1d;--text:#f1ead9;--muted:#a99e85;--faint:#7a715c;--gold:#d2a95e;--gold-soft:#e8cf9d;--ok:#25a45e;--bad:#c9503f;--wait:#e0b64a;--done:#7f8fa6}
+  *{box-sizing:border-box}
+  html{color-scheme:dark}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:'Jost',"Segoe UI",system-ui,sans-serif;font-weight:300;line-height:1.5;font-size:15px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  header h1{font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:22px;margin:0}
+  header h1 span{color:var(--gold)}
+  header .who{font-size:13px;color:var(--muted)}
+  header a{color:var(--gold-soft);font-size:13px}
+  .eyebrow{font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  .card{background:var(--surface);border:1px solid var(--line);padding:20px}
+  label{display:block;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 5px}
+  input,select,textarea{width:100%;background:var(--raised);color:var(--text);border:1px solid var(--line);font-family:inherit;font-size:15px;font-weight:400;padding:10px 12px;border-radius:4px;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+  textarea{min-height:70px;resize:vertical}
+  .f{margin-bottom:12px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn{display:inline-block;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--gold-soft);font-family:inherit;font-size:14px;letter-spacing:.04em;padding:9px 16px;border-radius:999px;text-decoration:none}
+  .btn:hover{border-color:var(--gold)}
+  .btn.primary{background:var(--gold);color:var(--ground);border-color:var(--gold);font-weight:600}
+  .btn.danger{color:var(--bad);border-color:rgba(201,80,63,.4)}
+  .btn.wa{background:var(--ok);border-color:var(--ok);color:#fff}
+  .btn[disabled]{opacity:.5;pointer-events:none}
+  .btn.small{font-size:13px;padding:6px 12px}
+  .hint{font-size:13px;color:var(--faint);margin:6px 0 0}
+  .signin{max-width:560px;margin:40px auto}
+  .signin ol{color:var(--muted);font-size:14px;padding-left:20px}
+  /* tiles */
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+  .tile{background:var(--surface);border:1px solid var(--line);padding:14px 16px;cursor:pointer}
+  .tile.sel{border-color:var(--gold)}
+  .tile .n{font-family:'Marcellus',Georgia,serif;font-size:30px;line-height:1.1;color:var(--gold)}
+  .tile .l{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+  .tile .s{font-size:13px;color:var(--muted);margin-top:4px}
+  @media (max-width:760px){.tiles{grid-template-columns:1fr 1fr}}
+  /* toolbar */
+  .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+  .toolbar input{max-width:280px}
+  .pills{display:flex;gap:6px;flex-wrap:wrap}
+  .pills button{font-family:inherit;font-size:13px;letter-spacing:.04em;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line);padding:7px 13px;border-radius:999px}
+  .pills button[aria-selected="true"]{background:var(--gold);color:var(--ground);border-color:var(--gold);font-weight:500}
+  .status{font-size:13.5px;color:var(--muted);margin-left:auto}
+  /* layout */
+  .main{display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start}
+  .main:has(.editor[hidden]){grid-template-columns:1fr}
+  td.trip{min-width:230px}
+  td.stat{white-space:nowrap}
+  @media (max-width:980px){.main{grid-template-columns:1fr}.editor{position:static!important}}
+  .editor{position:sticky;top:12px}
+  .editor[hidden]{display:none}
+  /* table */
+  .tbl{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:720px}
+  th{text-align:left;font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding:0 10px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+  td small{display:block;color:var(--faint);font-size:12.5px}
+  tr.row{cursor:pointer}
+  tr.row:hover td{background:rgba(210,169,94,.05)}
+  tr.row.sel td{background:rgba(210,169,94,.1)}
+  td.ref{font-family:Consolas,monospace;font-size:13px;white-space:nowrap;color:var(--gold-soft)}
+  td.price{font-family:'Marcellus',Georgia,serif;font-size:16px;color:var(--gold);white-space:nowrap;text-align:right}
+  .badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap;border:1px solid}
+  .b-wait{color:var(--wait);border-color:var(--wait)}
+  .b-conf{color:var(--ok);border-color:var(--ok)}
+  .b-done{color:var(--done);border-color:var(--done)}
+  .b-canc{color:var(--bad);border-color:var(--bad)}
+  .empty{padding:36px 0;text-align:center;color:var(--faint)}
+  .hist{font-size:12.5px;color:var(--faint);white-space:pre-wrap;max-height:160px;overflow:auto;background:var(--raised);padding:10px;border:1px solid var(--line);border-radius:4px}
+  .editor h2{font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:20px;margin:0 0 4px}
+  .editor .sub{font-size:13px;color:var(--faint);margin:0 0 16px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--gold);color:var(--ground);font-weight:500;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:50}
+  .toast.bad{background:var(--bad);color:#fff}
+  .toast[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>EzEe <span>Bookings ledger</span></h1>
+    <div class="who" id="who">Not connected</div>
+    <div><a href="admin.html">Fleet admin</a> &nbsp;·&nbsp; <a href="index.html">Site</a> &nbsp;·&nbsp; <a href="#" id="forget" hidden>Disconnect</a></div>
+  </header>
+
+  <div class="signin card" id="signin">
+    <p class="eyebrow">Connect to your booking sheet</p>
+    <div class="f"><label for="api">Web app URL (Apps Script, ends in /exec)</label><input id="api" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></div>
+    <div class="f"><label for="token">Admin token</label><input id="token" type="password" placeholder="the ADMIN_TOKEN from Code.gs" autocomplete="off"></div>
+    <button class="btn primary" id="connect">Connect</button>
+    <p class="hint" id="signin-msg">Both values are kept in this browser only.</p>
+    <ol style="margin-top:18px">
+      <li>Google Sheet <b>EzEe Bookings</b> → Extensions → Apps Script → paste <code>Code.gs</code> → Deploy as Web app (Execute as Me, Anyone).</li>
+      <li>Copy the Web app URL here and into <a href="admin.html">admin → Bookings</a> so the site starts logging requests.</li>
+    </ol>
+  </div>
+
+  <div id="app" hidden>
+    <div class="tiles">
+      <div class="tile" data-f="wait"><div class="n" id="t-wait">0</div><div class="l">Waiting confirmation</div><div class="s" id="t-wait-s"></div></div>
+      <div class="tile" data-f="conf"><div class="n" id="t-conf">0</div><div class="l">Confirmed, upcoming</div><div class="s" id="t-conf-s"></div></div>
+      <div class="tile" data-f="month"><div class="n" id="t-rev">—</div><div class="l">This month, confirmed + done</div><div class="s" id="t-rev-s"></div></div>
+      <div class="tile" data-f="all"><div class="n" id="t-all">0</div><div class="l">All requests</div><div class="s" id="t-all-s"></div></div>
+    </div>
+    <div class="toolbar">
+      <div class="pills" id="pills">
+        <button data-f="wait">Waiting</button><button data-f="conf">Confirmed</button><button data-f="done">Completed</button><button data-f="canc">Cancelled / No-show</button><button data-f="all" aria-selected="true">All</button>
+      </div>
+      <input id="q" placeholder="Search ref, name, phone, place…">
+      <button class="btn small" id="refresh">Refresh</button>
+      <button class="btn small primary" id="add">+ Add booking</button>
+      <span class="status" id="status"></span>
+    </div>
+    <div class="main">
+      <div class="card tbl"><table id="tbl"></table><div class="empty" id="empty" hidden>Nothing here yet.</div></div>
+      <div class="card editor" id="editor" hidden></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="fleet-data.js"></script>
+<script src="fleet-helpers.js"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var KEY='ezee-ledger', cfg=null, rows=[], statuses=['Waiting Confirmation','Confirmed','Completed','Cancelled','No-show'], filter='all', sel=null, creating=false;
+  var CLS={'Waiting Confirmation':'b-wait','Confirmed':'b-conf','Completed':'b-done','Cancelled':'b-canc','No-show':'b-canc'};
+  function toast(m,bad){var t=$('toast');t.textContent=m;t.className='toast'+(bad?' bad':'');t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(function(){t.hidden=true},bad?5000:2500)}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function pad(n){return (n<10?'0':'')+n}
+  function today(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function fmtD(v){if(!v)return '';var p=v.split('-');if(p.length<3)return v;var d=new Date(p[0],p[1]-1,p[2]);return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
+  function fmtDT(v){if(!v)return '';return v.replace('T',' ').slice(0,16)}
+  function money(cur,n){return (cur||'')+Number(n).toLocaleString('en-MY')}
+
+  /* ---- api ---- */
+  function get(params){var u=cfg.url+(cfg.url.indexOf('?')>-1?'&':'?')+Object.keys(params).map(function(k){return k+'='+encodeURIComponent(params[k])}).join('&');return fetch(u,{method:'GET'}).then(function(r){return r.json()})}
+  function post(body){body.token=cfg.token;return fetch(cfg.url,{method:'POST',body:JSON.stringify(body)}).then(function(r){return r.json()})}
+
+  /* ---- connect ---- */
+  function connect(url,token){
+    cfg={url:url.trim(),token:token.trim()};
+    $('signin-msg').textContent='Connecting…';
+    return get({action:'list',token:cfg.token}).then(function(j){
+      if(!j.ok)throw new Error(j.error||'failed');
+      try{localStorage.setItem(KEY,JSON.stringify(cfg))}catch(e){}
+      statuses=j.statuses||statuses;rows=j.rows||[];
+      $('signin').hidden=true;$('app').hidden=false;$('forget').hidden=false;
+      $('who').textContent='Connected · '+rows.length+' requests · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      render();
+    }).catch(function(e){cfg=null;$('signin-msg').textContent='Could not connect: '+(e.message||e)+'. Check the URL (…/exec) and the token.';$('signin-msg').style.color='var(--bad)'});
+  }
+  function reload(){$('status').textContent='Loading…';return get({action:'list',token:cfg.token}).then(function(j){if(!j.ok)throw new Error(j.error);rows=j.rows||[];$('status').textContent='';$('who').textContent='Connected · '+rows.length+' requests · '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});render()}).catch(function(e){$('status').textContent='';toast('Reload failed: '+(e.message||e),true)})}
+  $('connect').addEventListener('click',function(){if(!$('api').value||!$('token').value){$('signin-msg').textContent='Both fields are needed.';return}connect($('api').value,$('token').value)});
+  $('token').addEventListener('keydown',function(e){if(e.key==='Enter')$('connect').click()});
+  $('forget').addEventListener('click',function(e){e.preventDefault();try{localStorage.removeItem(KEY)}catch(x){}location.reload()});
+  $('refresh').addEventListener('click',reload);
+
+  /* ---- filters & tiles ---- */
+  function bucket(r){var s=r.status;if(s==='Waiting Confirmation')return 'wait';if(s==='Confirmed')return 'conf';if(s==='Completed')return 'done';return 'canc'}
+  function endDate(r){if(!r.start)return '';var p=r.start.split('-');var d=new Date(p[0],p[1]-1,+p[2]+(Math.max(1,parseInt(r.days,10)||1)-1));return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function tiles(){
+    var t=today(),ym=t.slice(0,7);
+    var wait=rows.filter(function(r){return bucket(r)==='wait'});
+    var conf=rows.filter(function(r){return bucket(r)==='conf'&&(!r.start||endDate(r)>=t)});
+    var rev={};rows.forEach(function(r){if((r.status==='Confirmed'||r.status==='Completed')&&r.start&&r.start.slice(0,7)===ym&&r.price){rev[r.currency||'']=(rev[r.currency||'']||0)+Number(r.price)}});
+    var revS=Object.keys(rev).map(function(c){return money(c,rev[c])});
+    $('t-wait').textContent=wait.length;$('t-wait-s').textContent=wait.length?('oldest '+fmtDT(wait.map(function(r){return r.created}).sort()[0])):'inbox clear';
+    $('t-conf').textContent=conf.length;$('t-conf-s').textContent=conf.length?('next '+fmtD(conf.map(function(r){return r.start}).filter(Boolean).sort()[0])):'';
+    $('t-rev').textContent=revS.length?revS.join(' + '):'—';$('t-rev-s').textContent=new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+    $('t-all').textContent=rows.length;$('t-all-s').textContent=rows.filter(function(r){return r.source==='website'}).length+' from the website';
+    document.querySelectorAll('.tile').forEach(function(x){x.classList.toggle('sel',x.dataset.f===filter)});
+  }
+  document.querySelectorAll('.tile').forEach(function(x){x.addEventListener('click',function(){filter=x.dataset.f==='month'?'month':x.dataset.f;render()})});
+  $('pills').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;filter=b.dataset.f;render()});
+  $('q').addEventListener('input',render);
+
+  function visible(){
+    var q=$('q').value.trim().toLowerCase(),t=today(),ym=t.slice(0,7);
+    return rows.filter(function(r){
+      if(filter==='month'){if(!((r.status==='Confirmed'||r.status==='Completed')&&r.start&&r.start.slice(0,7)===ym))return false}
+      else if(filter!=='all'&&bucket(r)!==filter)return false;
+      if(!q)return true;
+      return [r.ref,r.customer,r.phone,r.car,r.route,r.service,r.destination,r.deliverTo,r.dropoff,r.notes].join(' ').toLowerCase().indexOf(q)>-1;
+    }).sort(function(a,b){
+      var wa=bucket(a)==='wait',wb=bucket(b)==='wait';if(wa!==wb)return wa?-1:1;
+      if(wa)return (b.created||'').localeCompare(a.created||'');
+      var sa=a.start||'9999',sb=b.start||'9999';if(sa!==sb)return sa.localeCompare(sb);
+      return (b.created||'').localeCompare(a.created||'');
+    });
+  }
+  function tripCell(r){
+    var l=[];
+    if(r.start)l.push(fmtD(r.start)+(r.time?' · '+r.time:'')+(r.days&&parseInt(r.days,10)>0?' · '+r.days+' day'+(r.days>1?'s':''):'')+(r.pax?' · '+r.pax+' pax':''));
+    if(r.destination)l.push('Driving to: '+r.destination);
+    if(r.deliverTo)l.push('Deliver to: '+r.deliverTo);
+    if(r.dropoff)l.push('Drop-off: '+r.dropoff);
+    return l.map(esc).join('<br>')||'<small>no date given</small>';
+  }
+  function render(){
+    tiles();
+    document.querySelectorAll('#pills button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.f===filter?'true':'false')});
+    var v=visible(),t=$('tbl');
+    $('empty').hidden=v.length>0;
+    var h='<thead><tr><th>Ref</th><th>Status</th><th>Car · service</th><th>Trip</th><th>Customer</th><th style="text-align:right">Price</th></tr></thead><tbody>';
+    v.forEach(function(r){
+      h+='<tr class="row'+(sel&&sel.ref===r.ref?' sel':'')+'" data-ref="'+esc(r.ref)+'"><td class="ref">'+esc(r.ref)+'<small>'+esc(fmtDT(r.created))+(r.source&&r.source!=='website'?' · '+esc(r.source):'')+'</small></td>'
+        +'<td class="stat"><span class="badge '+(CLS[r.status]||'b-done')+'">'+esc(r.status)+'</span>'+(r.deposit?'<small>Deposit: '+esc(r.deposit)+'</small>':'')+'</td>'
+        +'<td>'+esc(r.car||'—')+'<small>'+esc(r.route||r.service||'')+'</small></td>'
+        +'<td class="trip">'+tripCell(r)+'</td>'
+        +'<td>'+(r.customer?esc(r.customer):'<small>not yet known</small>')+(r.phone?'<small>'+esc(r.phone)+'</small>':'')+(r.notes?'<small>'+esc(r.notes.length>60?r.notes.slice(0,60)+'…':r.notes)+'</small>':'')+'</td>'
+        +'<td class="price">'+(r.price!==''&&r.price!=null?esc(money(r.currency,r.price)):'—')+'</td></tr>';
+    });
+    t.innerHTML=h+'</tbody>';
+    t.querySelectorAll('tr.row').forEach(function(tr){tr.addEventListener('click',function(){var r=rows.filter(function(x){return x.ref===tr.dataset.ref})[0];creating=false;openEditor(r)})});
+  }
+
+  /* ---- editor ---- */
+  function opt(list,val){return list.map(function(s){return '<option'+(s===val?' selected':'')+'>'+esc(s)+'</option>'}).join('')}
+  function openEditor(r){
+    sel=r;var e=$('editor');e.hidden=false;
+    var cars=CARS.map(function(c){return c.name}),svcs=ROUTES.map(function(x){return x.label});
+    if(r.car&&cars.indexOf(r.car)<0)cars.push(r.car);if(r.route&&svcs.indexOf(r.route)<0)svcs.push(r.route);
+    e.innerHTML='<h2>'+(creating?'New booking':esc(r.ref))+'</h2><p class="sub">'+(creating?'Entered by you (WhatsApp, phone, walk-in)':'Requested '+esc(fmtDT(r.created))+(r.lang?' · site language '+esc(r.lang):''))+'</p>'
+      +'<div class="f"><label>Status</label><select id="e-status">'+opt(statuses,r.status||'Waiting Confirmation')+'</select></div>'
+      +'<div class="two"><div class="f"><label>Customer</label><input id="e-customer" value="'+esc(r.customer)+'" placeholder="Name"></div><div class="f"><label>Phone</label><input id="e-phone" value="'+esc(r.phone)+'" placeholder="+65 … / +60 …"></div></div>'
+      +'<div class="f"><label>Deposit</label><input id="e-deposit" value="'+esc(r.deposit)+'" placeholder="e.g. RM275 PayNow 8 Sep"></div>'
+      +'<div class="two"><div class="f"><label>Car</label><select id="e-car"><option value="">—</option>'+opt(cars,r.car)+'</select></div><div class="f"><label>Service</label><select id="e-route"><option value="">—</option>'+opt(svcs,r.route)+'</select></div></div>'
+      +'<div class="two"><div class="f"><label>Start date</label><input id="e-start" type="date" value="'+esc(r.start)+'"></div><div class="f"><label>Time</label><input id="e-time" type="time" value="'+esc(r.time)+'"></div></div>'
+      +'<div class="two"><div class="f"><label>Days</label><input id="e-days" type="number" min="0" value="'+esc(r.days)+'"></div><div class="f"><label>Passengers</label><input id="e-pax" type="number" min="0" value="'+esc(r.pax)+'"></div></div>'
+      +'<div class="two"><div class="f"><label>Currency</label><select id="e-currency">'+opt(['RM','S$'],r.currency||'RM')+'</select></div><div class="f"><label>Price</label><input id="e-price" type="number" min="0" step="1" value="'+esc(r.price)+'"></div></div>'
+      +'<div class="f"><label>Driving to / destination</label><input id="e-destination" value="'+esc(r.destination)+'"></div>'
+      +'<div class="two"><div class="f"><label>Deliver car to</label><input id="e-deliverTo" value="'+esc(r.deliverTo)+'"></div><div class="f"><label>Drop-off</label><input id="e-dropoff" value="'+esc(r.dropoff)+'"></div></div>'
+      +'<div class="f"><label>Notes</label><textarea id="e-notes">'+esc(r.notes)+'</textarea></div>'
+      +(creating?'':'<div class="f"><label>History</label><div class="hist">'+esc(r.history||'')+'</div></div>')
+      +'<div class="actions"><button class="btn primary" id="e-save">'+(creating?'Create':'Save')+'</button>'
+      +(r.phone?'<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/'+esc(String(r.phone).replace(/[^0-9]/g,''))+'?text='+encodeURIComponent('Hi '+(r.customer||'')+', EzEe Car Rental here about your booking '+r.ref+'.')+'">WhatsApp</a>':'')
+      +'<button class="btn" id="e-close">Close</button>'+(creating?'':'<button class="btn danger" id="e-del">Delete</button>')+'</div>';
+    $('e-close').addEventListener('click',function(){e.hidden=true;sel=null;render()});
+    $('e-save').addEventListener('click',save);
+    if(!creating)$('e-del').addEventListener('click',function(){if(!confirm('Delete '+r.ref+' permanently? Usually better to mark it Cancelled.'))return;post({action:'delete',ref:r.ref}).then(function(j){if(!j.ok)throw new Error(j.error);toast('Deleted '+r.ref);e.hidden=true;sel=null;return reload()}).catch(function(x){toast('Delete failed: '+(x.message||x),true)})});
+    render();
+    if(window.innerWidth<980)e.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function fields(){var f={};['status','customer','phone','deposit','car','route','start','time','days','pax','currency','price','destination','deliverTo','dropoff','notes'].forEach(function(k){f[k]=$('e-'+k).value.trim()});return f}
+  function save(){
+    var f=fields(),b=$('e-save');b.disabled=true;b.textContent='Saving…';
+    var p=creating?Object.assign({action:'create',source:'manual',service:(ROUTES.filter(function(x){return x.label===f.route})[0]||{}).id||''},f):{action:'update',ref:sel.ref,fields:f};
+    post(p).then(function(j){
+      if(!j.ok)throw new Error(j.error||'failed');
+      toast(creating?'Created '+j.ref:'Saved '+sel.ref+(j.changed?'':' (no changes)'));
+      creating=false;$('editor').hidden=true;sel=null;return reload();
+    }).catch(function(x){toast('Save failed: '+(x.message||x),true);b.disabled=false;b.textContent=creating?'Create':'Save'});
+  }
+  $('add').addEventListener('click',function(){creating=true;openEditor({ref:'',status:'Waiting Confirmation',customer:'',phone:'',deposit:'',car:(activeCars()[0]||{}).name||'',route:'',start:today(),time:'',days:'',pax:'',currency:'RM',price:'',destination:'',deliverTo:'',dropoff:'',notes:''})});
+
+  /* ---- boot: saved connection or ?api=&token= ---- */
+  var qs=location.search.match(/[?&]api=([^&]+)/),qt=location.search.match(/[?&]token=([^&]+)/);
+  if(qs&&qt){connect(decodeURIComponent(qs[1]),decodeURIComponent(qt[1]));history.replaceState(null,'',location.pathname)}
+  else{try{var saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&saved.url){$('api').value=saved.url;$('token').value=saved.token;connect(saved.url,saved.token)}}catch(e){}}
+})();
+</script>
+</body>
+</html>

@@ -749,6 +749,7 @@
   var route=$('q-route'),dir=$('q-dir'),date=$('q-date'),time=$('q-time'),days=$('q-days'),pax=$('q-pax');
   var fDir=$('f-dir'),fTime=$('f-time'),fDays=$('f-days'),fPax=$('f-pax');
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
+  var lastMsg='',lastTotal=null;
 
   function fillRoutes(){
     var car=currentCar(),keep=route.value,groups={};route.innerHTML='';
@@ -837,7 +838,7 @@
     whenIn.classList.toggle('missing',needTime);
     var z=currentZone();
     if(r.type==='selfdrive')fillDays(z?z.min:1);
-    var lines=[];var noteText='';var where='';
+    var lines=[];var noteText='';var where='';lastTotal=null;
     if(r.type==='transfer'){
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
       where=pair[0]+' → '+pair[1];
@@ -873,6 +874,7 @@
       else if(r.type==='selfdrive'){ noteText=(z&&z.min>1?t('j.minfor',{n:z.min,z:td(z.label)},'Minimum {n} days for {z}. '):(z?'':t('j.mindep',null,'Minimum days depend on destination. ')))+t('j.refund',null,'Refundable deposit applies') }
       else if(r.type==='charter'){ noteText=t('j.charter',null,'Car, driver and fuel included') }
       else { noteText=t('q.note',null,'Fuel, tolls, VEP & checkpoint fees included') }
+      lastTotal=total;
       lines.push('Your site shows '+r.cur+total+' all-in.');
     }
     if(self&&currentCar().singapore===false&&mentionsSingapore(zone.value)){noteText=t('j.nosg',null,'This car cannot enter Singapore. Choose the Vellfire, or a Malaysian destination.');lines.push('Note: this car is Malaysia-only.')}
@@ -880,6 +882,7 @@
     renderRates();
     if(typeof pushToBar==='function')pushToBar();
     var msg='Hi EzEe, I’d like to book:\n'+lines.join('\n')+'\nPlease confirm.';
+    lastMsg=msg;
     send.href=WA+encodeURIComponent(msg);
     var needCar=!carChosen();
     carSel.classList.toggle('blink',needCar);
@@ -930,6 +933,24 @@
   function toggleBar(){var rct=quoteBox.getBoundingClientRect();sbar.classList.toggle('on',rct.bottom<0)}
   window.addEventListener('scroll',toggleBar,{passive:true});window.addEventListener('resize',toggleBar);toggleBar();
   refreshDir();update();pushToBar();
+  /* ---- booking log: every WhatsApp tap is saved as "Waiting Confirmation" in the ledger (Apps Script → Google Sheet).
+     The reference goes into the WhatsApp message so the owner can match the chat to the ledger row. ---- */
+  function newRef(){var d=new Date(),s='',A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<3;i++)s+=A[Math.floor(Math.random()*A.length)];return 'EZ-'+String(d.getFullYear()).slice(2)+pad(d.getMonth()+1)+pad(d.getDate())+'-'+s}
+  function logBooking(a){
+    if(a.classList.contains('inert'))return;
+    var url=SETTINGS.bookingsUrl;
+    var r=current(),self=(r.type==='selfdrive'||r.type==='monthly'),car=currentCar(),ref=newRef();
+    a.href=WA+encodeURIComponent(lastMsg+'\nRef: '+ref);
+    if(!url)return;
+    var payload={action:'create',ref:ref,source:'website',car:car.name,service:r.id,
+      route:r.type==='transfer'?(dir.value==='1'?r.b+' → '+r.a:r.a+' → '+r.b):r.label,
+      destination:self?zone.value.trim():'',deliverTo:self?deliver.value.trim():'',dropoff:self?'':whereIn.value.trim(),
+      start:date.value,time:time.value,days:r.type==='selfdrive'?days.value:'',pax:self?'':pax.value,
+      price:lastTotal==null?'':String(lastTotal),currency:r.cur||'',lang:typeof getLang==='function'?getLang():'en',ua:navigator.userAgent.slice(0,120)};
+    try{fetch(url,{method:'POST',mode:'no-cors',keepalive:true,body:JSON.stringify(payload)})}catch(e){}
+  }
+  send.addEventListener('click',function(){logBooking(send)});
+  sGo.addEventListener('click',function(){logBooking(sGo)});
   /* language switch: relabel everything the script generated */
   document.addEventListener('langchange',function(){
     var o0=carSel.querySelector('option[value=""]');if(o0)o0.textContent=t('j.choosecar',null,'Choose your car…');

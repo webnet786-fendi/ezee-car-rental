@@ -113,6 +113,7 @@
       <button aria-selected="true" data-pane="cars">Cars</button>
       <button data-pane="services">Services &amp; prices list</button>
       <button data-pane="zones">Minimum days</button>
+      <button data-pane="bookings">Bookings</button>
       <button data-pane="json">Raw data</button>
     </div>
 
@@ -138,6 +139,17 @@
       <p class="eyebrow">Self-drive minimum days by destination</p>
       <p style="color:var(--muted);margin:0 0 14px">The price box reads what the customer types and matches it against the keywords. List keywords in lowercase, separated by commas. Zones are checked top to bottom, so keep the far zones first.</p>
       <div class="card" style="overflow-x:auto"><table id="zones"></table></div>
+    </div>
+
+    <div class="pane" id="pane-bookings" hidden>
+      <p class="eyebrow">Booking log</p>
+      <p style="color:var(--muted);margin:0 0 14px">Every tap on the WhatsApp button in the price box is saved to your Google Sheet as <b>Waiting Confirmation</b>, with a reference number that also appears in the customer's WhatsApp message. You manage them in the <a href="ledger.html">bookings ledger</a>. Setup steps are in <code>gas/README.md</code>.</p>
+      <div class="card">
+        <label for="bookingsUrl">Booking log URL (Apps Script web app, ends in /exec)</label>
+        <input id="bookingsUrl" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off">
+        <p class="hint">Leave empty to switch logging off; the site then works exactly as before. Save &amp; publish after changing.</p>
+        <button class="btn small" id="testBookings" style="margin-top:10px">Test connection</button> <span class="hint" id="bookingsTest" style="display:inline"></span>
+      </div>
     </div>
 
     <div class="pane" id="pane-json" hidden>
@@ -223,7 +235,13 @@
     if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
   })});
 
-  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones()}
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||''}
+  $('bookingsUrl').addEventListener('input',function(){fleet.settings.bookingsUrl=$('bookingsUrl').value.trim();markDirty()});
+  $('testBookings').addEventListener('click',function(){
+    var u=$('bookingsUrl').value.trim(),o=$('bookingsTest');if(!u){o.textContent='Enter the URL first.';return}
+    o.textContent='Testing…';
+    fetch(u+(u.indexOf('?')>-1?'&':'?')+'action=ping').then(function(r){return r.json()}).then(function(j){o.textContent=j.ok?'OK — the script answered ('+(j.service||'')+').':'Answered, but not the booking script.'}).catch(function(e){o.textContent='No answer. Check the URL and that the deployment allows "Anyone".'});
+  });
 
   /* ---------- cars ---------- */
   function renderCarList(){
