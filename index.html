@@ -132,6 +132,9 @@
     background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;
   }
   .field select:focus,.field input:focus{outline:none;border-color:var(--gold)}
+  @keyframes carblink{0%,100%{border-color:#ffd21f;box-shadow:0 0 0 0 rgba(255,210,31,0)}50%{border-color:#ffd21f;box-shadow:0 0 0 5px rgba(255,210,31,.45);background:rgba(255,210,31,.12)}}
+  .field select.blink,.sf select.blink{border:1px solid #ffd21f;animation:carblink 1s ease-in-out infinite;color:#ffd21f}
+  .sf select.blink{border-radius:4px;padding:2px 6px}
   .field input::-webkit-calendar-picker-indicator{filter:invert(.8) sepia(.6) saturate(2) hue-rotate(5deg)}
   .two{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
   .two>.field{min-width:0}
@@ -451,7 +454,7 @@
         <p class="qsub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
 
         <div class="field" id="f-car" hidden>
-          <label for="q-car">Car</label>
+          <label for="q-car">Choose your car please</label>
           <select id="q-car"></select>
         </div>
         <div class="field">
@@ -720,7 +723,9 @@
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal()});
   var carSel=$('q-car'),fCar=$('f-car'),multi=activeCars().length>1;
+  var ph=document.createElement('option');ph.value='';ph.textContent='Choose your car…';ph.disabled=true;ph.selected=true;carSel.appendChild(ph);
   activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabel(c);carSel.appendChild(o)});
+  function carChosen(){return !multi||!!carSel.value}
   fCar.hidden=!multi;
   function currentCar(){return activeCars().filter(function(c){return c.id===carSel.value})[0]||activeCars()[0]}
   var route=$('q-route'),dir=$('q-dir'),date=$('q-date'),time=$('q-time'),days=$('q-days'),pax=$('q-pax');
@@ -850,9 +855,12 @@
     if(typeof pushToBar==='function')pushToBar();
     var msg='Hi EzEe, I’d like to book:\n'+lines.join('\n')+'\nPlease confirm.';
     send.href=WA+encodeURIComponent(msg);
-    send.classList.toggle('inert',needTime);
-    send.textContent=needTime?'Pick a start date & time first':'Click to negotiate on WhatsApp?';
-    if(needTime)note.textContent='Choose your start date and time. '+noteText;
+    var needCar=!carChosen();
+    carSel.classList.toggle('blink',needCar);
+    send.classList.toggle('inert',needTime||needCar);
+    send.textContent=needCar?'Choose your car first':(needTime?'Pick a start date & time first':'Click to negotiate on WhatsApp?');
+    if(needCar){note.textContent='Please choose your car first.';amt.innerHTML='&mdash;'}
+    else if(needTime)note.textContent='Choose your start date and time. '+noteText;
   }
 
   carSel.addEventListener('change',function(){fillRoutes();refreshDir();update()});
@@ -863,7 +871,7 @@
   /* ---- sticky compact bar: mirrors the price box, appears once the box scrolls out of view ---- */
   var sbar=$('sbar'),sCar=$('s-car'),sWhere=$('s-where'),sWhen=$('s-when'),sUntil=$('s-until'),sfUntil=$('sf-until'),sGo=$('s-go'),sPrice=$('s-price');
   sbar.hidden=false;
-  if(multi){$('sf-car').hidden=false;activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.short;sCar.appendChild(o)})}
+  if(multi){$('sf-car').hidden=false;var sph=document.createElement('option');sph.value='';sph.textContent='Choose…';sph.disabled=true;sph.selected=true;sCar.appendChild(sph);activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.short;sCar.appendChild(o)})}
   sWhen.min=date.min+'T00:00';
   function addDays(v,n){if(!v)return '';var p=v.split('-');var d=new Date(p[0],p[1]-1,+p[2]+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
   function diffDays(a,b){if(!a||!b)return null;var x=a.split('-'),y=b.split('-');return Math.round((new Date(y[0],y[1]-1,y[2])-new Date(x[0],x[1]-1,x[2]))/864e5)}
@@ -871,7 +879,7 @@
   function pushToBar(){
     if(syncing)return;syncing=true;
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly');
-    if(multi)sCar.value=carSel.value;
+    if(multi){sCar.value=carSel.value;sCar.classList.toggle('blink',!carSel.value)}
     sWhere.value=self?zone.value:whereIn.value;
     sWhen.value=(date.value&&time.value)?date.value+'T'+time.value:'';
     sfUntil.hidden=(r.type!=='selfdrive');
@@ -882,7 +890,7 @@
   }
   function pullFromBar(){
     if(syncing)return;syncing=true;
-    if(multi&&sCar.value!==carSel.value){carSel.value=sCar.value;fillRoutes();refreshDir()}
+    if(multi&&sCar.value&&sCar.value!==carSel.value){carSel.value=sCar.value;fillRoutes();refreshDir()}
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly');
     if(self)zone.value=sWhere.value;else whereIn.value=sWhere.value;
     splitWhen(sWhen.value);whenIn.value=sWhen.value;
