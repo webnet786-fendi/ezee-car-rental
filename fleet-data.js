@@ -10,7 +10,7 @@ var CARS=[
    extras:['Night pickup 11 pm &ndash; 7 am: <b>+S$30</b>','Extra waiting: S$20 per 30 min','Charter overrun: RM70 per hour'],
    cardIncludes:['2022 Toyota Vellfire ZG, 7 seats, reclining pilot seats','English / Malay / Mandarin-speaking driver','Bottled water & on-board Wi-Fi','Child seat on request, free','All tolls, VEP & checkpoint fees'],
    terms:['Luggage: comfortably 4 passengers + 4 large cases, or 6 passengers with cabin bags. Waiting time beyond 15 minutes (60 minutes at Changi) is charged at S$20 per 30 minutes. Charter hours are counted from pickup to drop-off.']},
-  {id:'bezza',active:false,short:'Bezza',name:'Perodua Bezza 2023',hot:false,
+  {id:'bezza',active:true,short:'Bezza',name:'Perodua Bezza 2023',hot:false,
    meta:'5 seats · auto · self-drive only',
    photo:'',
    prices:{selfdrive:120,weekly:700,monthly:null,other:null},
