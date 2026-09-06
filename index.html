@@ -242,6 +242,8 @@
   .incl-photo{margin:-24px -24px 22px;aspect-ratio:16/10;overflow:hidden;background:var(--raised);border-bottom:1px solid var(--gold)}
   .incl-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .incl-photo[hidden]{display:none}
+  .sgchip{display:inline-block;margin:0 0 16px;font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--line);color:var(--muted)}
+  .sgchip.ok{color:var(--gold);border-color:var(--gold)}
   .incl h3{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--gold);margin:0 0 12px}
   .incl h3.not{color:var(--faint);margin-top:22px}
   .incl ul{list-style:none;padding:0;margin:0}
@@ -501,6 +503,7 @@
       </div>
       <aside class="incl">
         <figure class="incl-photo" id="incl-photo"><img id="incl-img" src="img/car/front.jpg" alt="" loading="lazy"></figure>
+        <p class="sgchip" id="sg-chip"></p>
         <h3 id="incl-title">Included in every fare</h3>
         <ul id="incl-list"></ul>
         <h3 class="not">Only ever added</h3>
@@ -667,6 +670,7 @@
 </div>
 
 <script src="fleet-data.js"></script>
+<script src="fleet-helpers.js"></script>
 <script>
 (function(){
   var WA='https://wa.me/60127119814?text=';
@@ -718,6 +722,7 @@
       rows.appendChild(tr);
     });
     var ph=$('incl-photo');if(car.photo){ph.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name}else{ph.hidden=true}
+    var chip=$('sg-chip');chip.textContent=car.singapore===false?'Malaysia use only':'Singapore entry OK';chip.className='sgchip'+(car.singapore===false?'':' ok');
     $('incl-title').textContent=car.inclTitle;
     $('incl-list').innerHTML=car.includes.map(function(t){return '<li>'+t+'</li>'}).join('');
     $('incl-extras').innerHTML=car.extras.map(function(t){return '<li>'+t+'</li>'}).join('');
@@ -799,6 +804,7 @@
       else { noteText='Fuel, tolls, VEP & checkpoint fees included' }
       lines.push('Your site shows '+r.cur+total+' all-in.');
     }
+    if(self&&currentCar().singapore===false&&mentionsSingapore(zone.value)){noteText='This car cannot enter Singapore. Choose the Vellfire, or a Malaysian destination.';lines.push('Note: this car is Malaysia-only.')}
     note.textContent=noteText;
     renderRates();
     if(typeof pushToBar==='function')pushToBar();

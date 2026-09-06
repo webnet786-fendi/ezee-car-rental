@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<title>EzEe Fleet Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  :root{--ground:#14110b;--surface:#1c1810;--raised:#241f15;--line:#352d1d;--text:#f1ead9;--muted:#a99e85;--faint:#7a715c;--gold:#d2a95e;--gold-soft:#e8cf9d;--ok:#25a45e;--bad:#c9503f}
+  html{color-scheme:dark}
+  [hidden]{display:none!important}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:'Jost',"Segoe UI",system-ui,sans-serif;font-weight:300;line-height:1.5;font-size:15px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px 120px}
+  h1,h2,h3{font-family:'Marcellus',Georgia,serif;font-weight:400;margin:0}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  header img{height:46px}
+  header .who{font-size:13px;color:var(--muted)}
+  .eyebrow{font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+  section{padding:28px 0;border-bottom:1px solid var(--line)}
+  .card{background:var(--surface);border:1px solid var(--line);padding:20px}
+  label{display:block;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 5px}
+  input[type=text],input[type=number],input[type=password],select,textarea{
+    width:100%;box-sizing:border-box;background:var(--raised);color:var(--text);border:1px solid var(--line);
+    font-family:inherit;font-size:15px;font-weight:400;padding:10px 12px;border-radius:4px;outline:none;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+  textarea{min-height:88px;resize:vertical}
+  .row{display:grid;gap:14px;margin-bottom:14px}
+  .row.c2{grid-template-columns:1fr 1fr}.row.c3{grid-template-columns:1fr 1fr 1fr}.row.c4{grid-template-columns:2fr 1fr 1fr 1fr}
+  @media (max-width:700px){.row.c2,.row.c3,.row.c4{grid-template-columns:1fr}}
+  .check{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);padding:10px 0;text-transform:none;letter-spacing:0}
+  .check input{width:18px;height:18px;accent-color:var(--gold)}
+  .btn{display:inline-block;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--gold-soft);font-family:inherit;font-size:14px;letter-spacing:.04em;padding:10px 18px;border-radius:999px}
+  .btn:hover{border-color:var(--gold)}
+  .btn.primary{background:var(--gold);color:var(--ground);border-color:var(--gold);font-weight:600}
+  .btn.danger{color:#f0a49a;border-color:#5a2a24}
+  .btn.small{padding:6px 12px;font-size:13px}
+  .btn[disabled]{opacity:.4;cursor:not-allowed}
+  .cars{display:grid;grid-template-columns:260px 1fr;gap:20px}
+  @media (max-width:800px){.cars{grid-template-columns:1fr}}
+  .carlist{display:grid;gap:8px;align-content:start}
+  .caritem{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;border-radius:4px}
+  .caritem.sel{border-color:var(--gold)}
+  .caritem img,.caritem .noimg{width:56px;height:38px;object-fit:cover;background:var(--raised);border-radius:3px;flex:none}
+  .caritem .n{font-size:14.5px}.caritem .s{font-size:12px;color:var(--faint)}
+  .caritem .off{color:var(--bad)}
+  .prices{display:grid;grid-template-columns:1fr 130px;gap:8px 12px;align-items:center}
+  .prices .lbl{font-size:14px}.prices .lbl small{display:block;color:var(--faint);font-size:12px}
+  .prices .grp{grid-column:1/3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:10px}
+  .hint{font-size:13px;color:var(--faint);margin:6px 0 0}
+  .photo{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .photo img{width:220px;aspect-ratio:16/10;object-fit:cover;background:var(--raised);border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:left;font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);padding:0 8px 8px 0}
+  td{padding:4px 8px 4px 0;vertical-align:top}
+  td input,td select{padding:7px 9px;font-size:14px}
+  .savebar{position:fixed;left:0;right:0;bottom:0;background:rgba(20,17,11,.96);border-top:1px solid var(--line);backdrop-filter:blur(8px);z-index:50}
+  .savebar .in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .status{font-size:13.5px;color:var(--muted);flex:1;min-width:200px}
+  .status.ok{color:#7ad39a}.status.bad{color:#f0a49a}
+  .dirty{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gold);margin-right:8px;vertical-align:middle}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+  .tabs button{font-family:inherit;font-size:13.5px;letter-spacing:.06em;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line);padding:9px 16px;border-radius:999px}
+  .tabs button[aria-selected=true]{background:var(--gold);color:var(--ground);border-color:var(--gold);font-weight:500}
+  .pane[hidden]{display:none}
+  code{font-size:13px;background:var(--raised);padding:2px 6px;border-radius:3px}
+  ol.steps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
+  ol.steps li{margin:4px 0}
+  .gate{padding:28px 0}
+  .gate[hidden],.app[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="img/logo.png" alt="EzEe Car Rental">
+    <div><h1 style="font-size:22px">Fleet admin</h1><div class="who" id="who">Not connected</div></div>
+    <div><a class="btn small" href="index.html" target="_blank" rel="noopener">Open live site</a> <button class="btn small" id="forget" hidden>Forget token</button></div>
+  </header>
+
+  <div class="gate" id="gate">
+    <p class="eyebrow">Sign in</p>
+    <div class="card">
+      <h2 style="font-size:20px;margin-bottom:8px">Paste your GitHub token</h2>
+      <p style="color:var(--muted);margin:0 0 14px">This page saves straight into the website's GitHub repository. It needs a token that can write to that one repository and nothing else. The token stays in this browser only.</p>
+      <div class="row c2" style="align-items:end">
+        <div><label for="token">Token</label><input type="password" id="token" placeholder="github_pat_…" autocomplete="off"></div>
+        <div><button class="btn primary" id="connect">Connect</button></div>
+      </div>
+      <p class="hint" id="gate-msg"></p>
+      <details style="margin-top:14px"><summary style="cursor:pointer;color:var(--gold-soft)">How to create the token (once)</summary>
+        <ol class="steps">
+          <li>GitHub &rarr; your profile picture &rarr; <b>Settings</b> &rarr; <b>Developer settings</b> &rarr; <b>Personal access tokens</b> &rarr; <b>Fine-grained tokens</b> &rarr; <b>Generate new token</b>.</li>
+          <li>Name it <code>ezee-admin</code>. Expiration: up to 1 year.</li>
+          <li>Repository access: <b>Only select repositories</b> &rarr; <code>ezee-car-rental</code>.</li>
+          <li>Permissions &rarr; Repository permissions &rarr; <b>Contents: Read and write</b>. Nothing else.</li>
+          <li>Generate, copy the token, paste it above.</li>
+        </ol>
+      </details>
+    </div>
+  </div>
+
+  <div class="app" id="app" hidden>
+    <div class="tabs" role="tablist">
+      <button aria-selected="true" data-pane="cars">Cars</button>
+      <button data-pane="services">Services &amp; prices list</button>
+      <button data-pane="zones">Minimum days</button>
+      <button data-pane="json">Raw data</button>
+    </div>
+
+    <div class="pane" id="pane-cars">
+      <div class="cars">
+        <div>
+          <p class="eyebrow">Cars</p>
+          <div class="carlist" id="carlist"></div>
+          <button class="btn" id="addcar" style="margin-top:12px">+ Add a car</button>
+          <p class="hint">Drag order is not supported yet. The first active car is the default in the price box.</p>
+        </div>
+        <div class="card" id="careditor"></div>
+      </div>
+    </div>
+
+    <div class="pane" id="pane-services" hidden>
+      <p class="eyebrow">Services</p>
+      <p style="color:var(--muted);margin:0 0 14px">These are the rows in the pricing table. Each car sets its own price for each service on the Cars tab. Leave a car's price blank to hide that row for that car.</p>
+      <div class="card" style="overflow-x:auto"><table id="svc"></table><button class="btn small" id="addsvc" style="margin-top:12px">+ Add a service</button></div>
+    </div>
+
+    <div class="pane" id="pane-zones" hidden>
+      <p class="eyebrow">Self-drive minimum days by destination</p>
+      <p style="color:var(--muted);margin:0 0 14px">The price box reads what the customer types and matches it against the keywords. List keywords in lowercase, separated by commas. Zones are checked top to bottom, so keep the far zones first.</p>
+      <div class="card" style="overflow-x:auto"><table id="zones"></table></div>
+    </div>
+
+    <div class="pane" id="pane-json" hidden>
+      <p class="eyebrow">Raw data</p>
+      <div class="card"><textarea id="raw" style="min-height:360px;font-family:Consolas,monospace;font-size:12.5px"></textarea><button class="btn small" id="applyraw" style="margin-top:10px">Apply edits</button><p class="hint">For emergencies only. Apply, then Save &amp; publish.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="savebar" id="savebar" hidden>
+  <div class="in">
+    <div class="status" id="status">Loaded.</div>
+    <button class="btn" id="reload">Reload from site</button>
+    <button class="btn primary" id="save">Save &amp; publish</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var OWNER='webnet786-fendi',REPO='ezee-car-rental',BRANCH='main';
+  var API='https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/';
+  var $=function(id){return document.getElementById(id)};
+  var token=null,fleet=null,shas={},sel=0,dirty=false;
+
+  /* ---------- GitHub API ---------- */
+  function hdr(){return {'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}}
+  function b64(str){var bytes=new TextEncoder().encode(str);var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b)});return btoa(bin)}
+  function unb64(b){var bin=atob(b.replace(/\n/g,''));var bytes=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes)}
+  function getFile(path){
+    return fetch(API+path+'?ref='+BRANCH+'&t='+Date.now(),{headers:hdr()}).then(function(r){
+      if(r.status===404)return null;
+      if(!r.ok)throw new Error('GitHub '+r.status+' reading '+path);
+      return r.json();
+    });
+  }
+  function putFile(path,contentB64,message){
+    return getFile(path).then(function(cur){
+      var body={message:message,content:contentB64,branch:BRANCH};
+      if(cur&&cur.sha)body.sha=cur.sha;
+      return fetch(API+path,{method:'PUT',headers:hdr(),body:JSON.stringify(body)});
+    }).then(function(r){
+      if(!r.ok)return r.json().then(function(j){throw new Error('GitHub '+r.status+' writing '+path+': '+(j.message||''))});
+      return r.json();
+    });
+  }
+
+  /* ---------- connect ---------- */
+  function setStatus(msg,cls){var s=$('status');s.textContent=msg;s.className='status'+(cls?' '+cls:'')}
+  function connect(t){
+    token=t;$('gate-msg').textContent='Checking…';
+    fetch('https://api.github.com/user',{headers:hdr()}).then(function(r){if(!r.ok)throw new Error('Token rejected ('+r.status+')');return r.json()})
+    .then(function(u){$('who').textContent='Connected as '+(u.login||'?')+' · '+OWNER+'/'+REPO;try{localStorage.setItem('ezee-admin-token',t)}catch(e){};$('forget').hidden=false;return load()})
+    .then(function(){$('gate').hidden=true;$('app').hidden=false;$('savebar').hidden=false})
+    .catch(function(e){$('gate-msg').textContent=e.message;token=null});
+  }
+  function load(){
+    setStatus('Loading fleet.json from GitHub…');
+    return getFile('fleet.json').then(function(f){
+      if(!f)throw new Error('fleet.json not found in the repository');
+      shas['fleet.json']=f.sha;fleet=JSON.parse(unb64(f.content));
+      fleet.cars=fleet.cars||[];fleet.routes=fleet.routes||[];fleet.zones=fleet.zones||[];fleet.settings=fleet.settings||{};
+      sel=0;dirty=false;renderAll();setStatus('Loaded. '+fleet.cars.length+' cars, '+fleet.routes.length+' services.','ok');
+    });
+  }
+  $('connect').addEventListener('click',function(){var t=$('token').value.trim();if(t)connect(t)});
+  $('token').addEventListener('keydown',function(e){if(e.key==='Enter')$('connect').click()});
+  $('forget').addEventListener('click',function(){try{localStorage.removeItem('ezee-admin-token')}catch(e){};location.reload()});
+  $('reload').addEventListener('click',function(){if(!dirty||confirm('Discard unsaved changes and reload?'))load()});
+  try{var saved=localStorage.getItem('ezee-admin-token');if(saved){$('token').value=saved;connect(saved)}}catch(e){}
+
+  /* ---------- helpers ---------- */
+  function markDirty(){dirty=true;setStatus('Unsaved changes. Click Save & publish when ready.');$('status').innerHTML='<span class="dirty"></span>Unsaved changes. Click Save &amp; publish when ready.'}
+  function slug(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'car'}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+  function lines(t){return String(t||'').split('\n').map(function(x){return x.trim()}).filter(Boolean)}
+  function priceStr(p){return p===undefined?'':(p===null?'talk':String(p))}
+  function parsePrice(v){v=String(v||'').trim().toLowerCase();if(v==='')return undefined;if(v==='talk'||v==="let's talk"||v==='lets talk'||v==='-')return null;var n=Number(v.replace(/[^0-9.]/g,''));return isNaN(n)?undefined:n}
+
+  /* ---------- tabs ---------- */
+  document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b?'true':'false')});
+    document.querySelectorAll('.pane').forEach(function(p){p.hidden=(p.id!=='pane-'+b.dataset.pane)});
+    if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
+  })});
+
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones()}
+
+  /* ---------- cars ---------- */
+  function renderCarList(){
+    var l=$('carlist');l.innerHTML='';
+    fleet.cars.forEach(function(c,i){
+      var d=document.createElement('div');d.className='caritem'+(i===sel?' sel':'');
+      d.innerHTML=(c.photo?'<img src="'+esc(c.photo)+'?v='+Date.now()+'" alt="">':'<div class="noimg"></div>')+'<div><div class="n">'+esc(c.name||'(no name)')+'</div><div class="s">'+(c.active?'Active':'<span class="off">Hidden</span>')+(c.hot?' · Hot item':'')+(c.singapore===false?' · Malaysia only':' · SG ok')+'</div></div>';
+      d.addEventListener('click',function(){sel=i;renderCarList();renderCarEditor()});
+      l.appendChild(d);
+    });
+  }
+  $('addcar').addEventListener('click',function(){
+    fleet.cars.push({id:'',active:false,short:'',name:'',hot:false,singapore:true,meta:'',photo:'',prices:{selfdrive:100,monthly:null,other:null},inclTitle:'Included with this car',includes:['Comprehensive insurance'],extras:[],cardIncludes:[],terms:[]});
+    sel=fleet.cars.length-1;markDirty();renderCarList();renderCarEditor();
+  });
+  function renderCarEditor(){
+    var e=$('careditor');var c=fleet.cars[sel];
+    if(!c){e.innerHTML='<p style="color:var(--muted)">No cars yet. Click “Add a car”.</p>';return}
+    var groups=[];fleet.routes.forEach(function(r){if(r.type==='other')return;if(groups.indexOf(r.group)<0)groups.push(r.group)});
+    var ph='';groups.forEach(function(g){ph+='<div class="grp">'+esc(g)+'</div>';fleet.routes.forEach(function(r){if(r.group!==g||r.type==='other')return;ph+='<div class="lbl">'+esc(r.label)+'<small>'+esc(r.note||'')+'</small></div><input type="text" data-price="'+esc(r.id)+'" value="'+esc(priceStr(c.prices?c.prices[r.id]:undefined))+'" placeholder="blank = not offered">'})});
+    e.innerHTML=''
+      +'<div class="row c2"><div><label>Car name (shown to customers)</label><input type="text" id="f-name" value="'+esc(c.name)+'" placeholder="Toyota Vellfire ZG 2022"></div><div><label>Short name (used in table rows)</label><input type="text" id="f-short" value="'+esc(c.short)+'" placeholder="Vellfire"></div></div>'
+      +'<div class="row c3"><label class="check"><input type="checkbox" id="f-active"'+(c.active?' checked':'')+'> Show on the website</label><label class="check"><input type="checkbox" id="f-hot"'+(c.hot?' checked':'')+'> Hot item badge</label><label class="check"><input type="checkbox" id="f-sg"'+(c.singapore!==false?' checked':'')+'> Allowed into Singapore</label></div>'
+      +'<div class="row"><div><label>One-line description</label><input type="text" id="f-meta" value="'+esc(c.meta)+'" placeholder="7 seats · pilot seats · auto · self-drive or chauffeured"></div></div>'
+      +'<div class="row"><div><label>Photo (shown next to the pricing table)</label><div class="photo"><img id="f-photo-prev" src="'+(c.photo?esc(c.photo)+'?v='+Date.now():'')+'" alt=""><div><input type="file" id="f-photo" accept="image/*"><p class="hint">Any JPG or phone photo. It is resized to 1400 px and uploaded when you save. Black out the number plate before uploading if you want it hidden.</p></div></div></div></div>'
+      +'<p class="eyebrow" style="margin-top:10px">Prices for this car</p><div class="prices">'+ph+'</div><p class="hint">Type a number, or <code>talk</code> to show “Let’s talk”. Leave blank to hide that row for this car. Self-drive is per day.</p>'
+      +'<div class="row c2" style="margin-top:18px"><div><label>Included panel title</label><input type="text" id="f-incltitle" value="'+esc(c.inclTitle)+'"></div><div></div></div>'
+      +'<div class="row c2"><div><label>Included (one per line)</label><textarea id="f-includes">'+esc((c.includes||[]).join('\n'))+'</textarea></div><div><label>Only ever added (one per line)</label><textarea id="f-extras">'+esc((c.extras||[]).join('\n'))+'</textarea></div></div>'
+      +'<div class="row c2"><div><label>Rate card: every rental includes (one per line)</label><textarea id="f-cardinc">'+esc((c.cardIncludes||[]).join('\n'))+'</textarea></div><div><label>Rate card: terms (one paragraph per line)</label><textarea id="f-terms">'+esc((c.terms||[]).join('\n'))+'</textarea></div></div>'
+      +'<div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap"><span class="hint">ID: <code>'+esc(c.id||'(set from name)')+'</code></span><button class="btn danger small" id="delcar">Delete this car</button></div>';
+    var bind=function(id,fn){$(id).addEventListener('input',function(){fn(this);markDirty();renderCarList()});$(id).addEventListener('change',function(){fn(this);markDirty();renderCarList()})};
+    bind('f-name',function(el){c.name=el.value;if(!c.id||c.id===slug(c.name.slice(0,-1)))c.id=slug(c.name)});
+    bind('f-short',function(el){c.short=el.value});
+    bind('f-active',function(el){c.active=el.checked});
+    bind('f-hot',function(el){c.hot=el.checked});
+    bind('f-sg',function(el){c.singapore=el.checked});
+    bind('f-meta',function(el){c.meta=el.value});
+    bind('f-incltitle',function(el){c.inclTitle=el.value});
+    bind('f-includes',function(el){c.includes=lines(el.value)});
+    bind('f-extras',function(el){c.extras=lines(el.value)});
+    bind('f-cardinc',function(el){c.cardIncludes=lines(el.value)});
+    bind('f-terms',function(el){c.terms=lines(el.value)});
+    e.querySelectorAll('[data-price]').forEach(function(inp){inp.addEventListener('input',function(){c.prices=c.prices||{};var v=parsePrice(inp.value);if(v===undefined)delete c.prices[inp.dataset.price];else c.prices[inp.dataset.price]=v;if(!('other' in c.prices))c.prices.other=null;markDirty()})});
+    $('f-photo').addEventListener('change',function(){var f=this.files[0];if(!f)return;resizeImage(f,1400,0.82).then(function(dataUrl){c._photoData=dataUrl;$('f-photo-prev').src=dataUrl;if(!c.id)c.id=slug(c.name);c.photo='img/car/'+(c.id||'car')+'.jpg';markDirty();renderCarList()})});
+    $('delcar').addEventListener('click',function(){if(confirm('Delete “'+(c.name||'this car')+'” from the website data? The photo file stays in the repository.')){fleet.cars.splice(sel,1);sel=Math.max(0,sel-1);markDirty();renderCarList();renderCarEditor()}});
+  }
+  function resizeImage(file,max,q){
+    return new Promise(function(res,rej){
+      var img=new Image();img.onload=function(){var w=img.width,h=img.height,s=Math.min(1,max/Math.max(w,h));var cv=document.createElement('canvas');cv.width=Math.round(w*s);cv.height=Math.round(h*s);cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);res(cv.toDataURL('image/jpeg',q))};
+      img.onerror=function(){rej(new Error('Could not read that image'))};img.src=URL.createObjectURL(file);
+    });
+  }
+
+  /* ---------- services ---------- */
+  function renderServices(){
+    var t=$('svc');var h='<thead><tr><th>ID</th><th>Group</th><th>Label</th><th>Note</th><th>Currency</th><th>Type</th><th>From</th><th>To</th><th></th></tr></thead><tbody>';
+    fleet.routes.forEach(function(r,i){
+      h+='<tr data-i="'+i+'"><td><input type="text" data-k="id" value="'+esc(r.id)+'" style="width:95px"></td><td><input type="text" data-k="group" value="'+esc(r.group)+'" style="width:150px"></td><td><input type="text" data-k="label" value="'+esc(r.label)+'" style="width:210px"></td><td><input type="text" data-k="note" value="'+esc(r.note||'')+'" style="width:220px"></td><td><select data-k="cur"><option'+(r.cur==='RM'?' selected':'')+'>RM</option><option'+(r.cur==='S$'?' selected':'')+'>S$</option></select></td><td><select data-k="type">'+['selfdrive','monthly','transfer','charter','other'].map(function(x){return '<option'+(r.type===x?' selected':'')+'>'+x+'</option>'}).join('')+'</select></td><td><input type="text" data-k="a" value="'+esc(r.a||'')+'" style="width:110px"></td><td><input type="text" data-k="b" value="'+esc(r.b||'')+'" style="width:110px"></td><td><button class="btn small danger" data-del="'+i+'">×</button></td></tr>';
+    });
+    t.innerHTML=h+'</tbody>';
+    t.querySelectorAll('[data-k]').forEach(function(inp){inp.addEventListener('input',function(){var r=fleet.routes[+inp.closest('tr').dataset.i];var k=inp.dataset.k;r[k]=inp.value;if(k==='type')r.table=(inp.value==='charter'&&r.id==='weekly')||r.table;markDirty()})});
+    t.querySelectorAll('[data-del]').forEach(function(b){b.addEventListener('click',function(){if(confirm('Remove this service from the pricing table?')){fleet.routes.splice(+b.dataset.del,1);markDirty();renderServices();renderCarEditor()}})});
+  }
+  $('addsvc').addEventListener('click',function(){fleet.routes.splice(fleet.routes.length-1,0,{id:'new'+Date.now().toString(36),group:'Charters & events',label:'New service',note:'',cur:'RM',type:'charter'});markDirty();renderServices();renderCarEditor()});
+
+  /* ---------- zones ---------- */
+  function renderZones(){
+    var t=$('zones');var h='<thead><tr><th>Zone label</th><th>Min days</th><th>Keywords (comma separated)</th></tr></thead><tbody>';
+    fleet.zones.forEach(function(z,i){h+='<tr data-i="'+i+'"><td><input type="text" data-k="label" value="'+esc(z.label)+'" style="width:240px"></td><td><input type="number" data-k="min" value="'+esc(z.min)+'" min="1" max="30" style="width:80px"></td><td><input type="text" data-k="keys" value="'+esc((z.keys||[]).join(', '))+'" style="width:100%"></td></tr>'});
+    t.innerHTML=h+'</tbody>';
+    t.querySelectorAll('[data-k]').forEach(function(inp){inp.addEventListener('input',function(){var z=fleet.zones[+inp.closest('tr').dataset.i];var k=inp.dataset.k;if(k==='min')z.min=Math.max(1,parseInt(inp.value,10)||1);else if(k==='keys')z.keys=inp.value.split(',').map(function(x){return x.trim().toLowerCase()}).filter(Boolean);else z[k]=inp.value;markDirty()})});
+  }
+  $('applyraw').addEventListener('click',function(){try{var j=JSON.parse($('raw').value);if(!j.cars||!j.routes||!j.zones)throw new Error('needs cars, routes and zones');fleet=j;sel=0;markDirty();renderAll();setStatus('Raw data applied. Save & publish to go live.')}catch(e){setStatus('Not valid JSON: '+e.message,'bad')}});
+
+  /* ---------- save ---------- */
+  function validate(){
+    var ids={};
+    for(var i=0;i<fleet.cars.length;i++){var c=fleet.cars[i];if(!c.name)return 'Car #'+(i+1)+' has no name.';c.id=c.id||slug(c.name);if(ids[c.id])return 'Two cars share the id “'+c.id+'”.';ids[c.id]=1;c.prices=c.prices||{};if(!('other' in c.prices))c.prices.other=null;c.short=c.short||c.name.split(' ')[1]||c.name;c.inclTitle=c.inclTitle||('Included with the '+c.short);c.includes=c.includes||[];c.extras=c.extras||[];c.cardIncludes=c.cardIncludes||[];c.terms=c.terms||[]}
+    if(!fleet.cars.some(function(c){return c.active}))return 'At least one car must be shown on the website.';
+    if(!fleet.routes.some(function(r){return r.type==='other'}))fleet.routes.push({id:'other',group:'Anything else',label:'Something else / multi-stop',type:'other'});
+    return null;
+  }
+  $('save').addEventListener('click',function(){
+    var err=validate();if(err){setStatus(err,'bad');return}
+    var btn=$('save');btn.disabled=true;
+    var photos=fleet.cars.filter(function(c){return c._photoData});
+    var chain=Promise.resolve();
+    photos.forEach(function(c){chain=chain.then(function(){setStatus('Uploading photo for '+c.name+'…');return putFile(c.photo,c._photoData.split(',')[1],'Admin: photo for '+c.name)}).then(function(){delete c._photoData})});
+    chain.then(function(){
+      setStatus('Saving fleet.json…');
+      var clean=JSON.parse(JSON.stringify(fleet,function(k,v){return k==='_photoData'?undefined:v}));
+      var json=JSON.stringify(clean,null,1);
+      return putFile('fleet.json',b64(json),'Admin: update fleet data').then(function(){
+        setStatus('Publishing to the website…');
+        return putFile('fleet-data.js',b64('// GENERATED from fleet.json by admin.html — do not edit by hand\nvar FLEET='+JSON.stringify(clean)+';\n'),'Admin: publish fleet data');
+      });
+    }).then(function(r){
+      dirty=false;btn.disabled=false;
+      setStatus('Saved. The website updates in about a minute. Commit '+(r.commit&&r.commit.sha?r.commit.sha.slice(0,7):''),'ok');
+      renderCarList();
+    }).catch(function(e){btn.disabled=false;setStatus('Save failed: '+e.message,'bad')});
+  });
+  window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=''}});
+})();
+</script>
+</body>
+</html>
