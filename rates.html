@@ -231,87 +231,72 @@
     @page{margin:14mm}
   }
 </style>
+<style>
+  .car-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+  .car-tabs[hidden]{display:none}
+  .car-tabs button{font-family:inherit;font-size:13px;letter-spacing:.06em;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line2);padding:8px 16px;border-radius:999px}
+  .car-tabs button[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:500}
+  .hotrow td:first-child::before{content:"HOT ITEM";display:inline-block;font-size:9px;font-weight:600;letter-spacing:.18em;background:var(--gold);color:#fff;padding:2px 6px;border-radius:2px;margin-right:8px;vertical-align:2px}
+  .minrent{margin-top:14px;font-size:13px;color:var(--muted)}
+  .minrent b{color:var(--ink);font-weight:600}
+  @media print{ .car-tabs{display:none} }
+</style>
 </head>
 <body>
-
 <div class="printbar"><a href="index.html" style="float:left;font-size:13px;letter-spacing:.06em;color:var(--muted);text-decoration:none">&larr; ezeecarrental home</a><button onclick="window.print()">Print / Save as PDF</button></div>
 
 <div class="sheet">
   <header>
     <div class="brand">
       <div class="mark">EzEe <span>Car Rental</span></div>
-      <div class="tag">Toyota Vellfire ZG 2022 &middot; Chauffeured &middot; JB &ndash; Singapore</div>
+      <div class="tag" id="rc-tag"></div>
     </div>
     <div class="effective">Rate card<strong>Effective September 2026</strong></div>
   </header>
-
-  <section>
-    <h2>Cross-Border Transfers</h2>
-    <p class="sub">One-way, door to door. Price is all-in &mdash; tolls, checkpoint fees and fuel included. Up to 6 passengers.</p>
-    <table>
-      <thead><tr><th>Route</th><th class="num">One-way</th></tr></thead>
-      <tbody>
-        <tr><td>Singapore (any address) &harr; Johor Bahru<span class="note">Hotels, Mid Valley Southkey, R&amp;F, city area</span></td><td class="num">S$140</td></tr>
-        <tr><td>Changi Airport &harr; Johor Bahru<span class="note">Meet &amp; greet at arrival hall</span></td><td class="num">S$160</td></tr>
-        <tr><td>Singapore (any address) &harr; Senai Airport<span class="note">Flight tracked both ways; drop at departures, meet at arrivals</span></td><td class="num">S$150</td></tr>
-        <tr><td>Singapore &harr; Legoland / Medini / Puteri Harbour</td><td class="num">S$150</td></tr>
-        <tr><td>Singapore &harr; Desaru Coast<span class="note">Hard Rock, Anantara, One&amp;Only, Westin</span></td><td class="num">S$240</td></tr>
-        <tr><td>Night surcharge, 11 pm &ndash; 7 am pickup</td><td class="num">+S$30</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Chauffeured Charters</h2>
-    <p class="sub">Car, professional driver and petrol included. Driver waits with the vehicle throughout.</p>
-    <table>
-      <thead><tr><th>Package</th><th class="num">Rate</th></tr></thead>
-      <tbody>
-        <tr><td>Johor day charter &mdash; 10 hours<span class="note">Extra hour RM70</span></td><td class="num">RM750</td></tr>
-        <tr><td>Cross-border day charter &mdash; 10 hours<span class="note">Singapore pickup; golf trips, day tours, business visits</span></td><td class="num">S$480</td></tr>
-        <tr><td>Wedding package &mdash; 8 hours<span class="note">Ribbon d&eacute;cor, standby driver, bridal &amp; family runs</span></td><td class="num">RM900</td></tr>
-        <tr><td>Self-drive rental &mdash; per day<span class="note">Refundable security deposit applies. Minimum rental: JB 1 day; Singapore, Melaka, Seremban, KL 2 days; Pahang 3 days; Perak, Ipoh, Cameron, East Coast, North 4 days; Perlis, Langkawi 5 days</span></td><td class="num">RM550</td></tr>
-        <tr><td>Monthly self-drive rental<span class="note">Long-term rate, quoted on WhatsApp</span></td><td class="num">On request</td></tr>
-      </tbody>
-    </table>
-  </section>
-
+  <div class="car-tabs" id="car-tabs" role="tablist" hidden></div>
+  <div id="rc-sections"></div>
   <section class="cols">
-    <div class="panel">
-      <h3>Every ride includes</h3>
-      <ul>
-        <li>2022 Toyota Vellfire ZG, 7 seats, reclining pilot seats</li>
-        <li>English / Malay / Mandarin-speaking driver</li>
-        <li>Bottled water &amp; on-board Wi-Fi</li>
-        <li>Child seat on request, free</li>
-        <li>All tolls, VEP &amp; checkpoint fees</li>
-      </ul>
-    </div>
-    <div class="panel">
-      <h3>Booking &amp; payment</h3>
-      <ul>
-        <li>Book by WhatsApp &mdash; reply within minutes</li>
-        <li>50% deposit confirms your slot</li>
-        <li>PayNow, DuitNow, bank transfer, cash</li>
-        <li>Free cancellation up to 48 h before</li>
-        <li>Flight tracking for airport pickups</li>
-      </ul>
-    </div>
+    <div class="panel"><h3 id="rc-incl-h">Every ride includes</h3><ul id="rc-incl"></ul></div>
+    <div class="panel"><h3>Booking &amp; payment</h3><ul>
+      <li>Book by WhatsApp &mdash; reply within minutes</li><li>50% deposit confirms your slot</li><li>PayNow, DuitNow, bank transfer, cash</li><li>Free cancellation up to 48 h before</li><li>Flight tracking for airport pickups</li></ul></div>
   </section>
-
-  <div class="terms">
-    <p>Luggage: comfortably 4 passengers + 4 large cases, or 6 passengers with cabin bags. Waiting time beyond 15 minutes (60 minutes at Changi) is charged at S$20 per 30 minutes. Charter hours are counted from pickup to drop-off.</p>
-    <p>Rates are subject to change for public holidays and event dates &mdash; your WhatsApp quote is final and fixed.</p>
-  </div>
-
+  <div class="terms" id="rc-terms"></div>
   <div class="contact">
-    <div class="cta">
-      +60 12-711 9814
-      <small>WhatsApp &middot; bookings daily 8 am &ndash; 11 pm</small>
-    </div>
+    <div class="cta">+60 12-711 9814<small>WhatsApp &middot; bookings daily 8 am &ndash; 11 pm</small></div>
     <a class="wa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20to%20book%20a%20transfer">WhatsApp us</a>
   </div>
 </div>
-
+<script src="fleet-data.js"></script>
+<script>
+(function(){
+  var cars=activeCars(),multi=cars.length>1;
+  var sel=(location.hash||'#'+cars[0].id).slice(1);
+  var tabs=document.getElementById('car-tabs');tabs.hidden=!multi;
+  if(multi)cars.forEach(function(c){var b=document.createElement('button');b.type='button';b.dataset.car=c.id;b.textContent=c.name;b.addEventListener('click',function(){sel=c.id;location.hash=c.id;render()});tabs.appendChild(b)});
+  function strip(t){return t.replace(/<[^>]+>/g,'')}
+  function render(){
+    var car=cars.filter(function(c){return c.id===sel})[0]||cars[0];sel=car.id;
+    tabs.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.car===car.id?'true':'false')});
+    document.getElementById('rc-tag').textContent=car.name+' · '+(car.prices.sgjb?'Chauffeured & self-drive · JB – SG':'Self-drive · Johor & Malaysia');
+    var groups=[];ROUTES.forEach(function(r){if(!(r.id in car.prices)||r.type==='other')return;var g=groups.filter(function(x){return x.name===r.group})[0];if(!g){g={name:r.group,rows:[]};groups.push(g)}g.rows.push(r)});
+    var html='';
+    groups.forEach(function(g){
+      var title={'Hot item':'Self-drive '+car.short,'Chauffeured transfers':'Cross-Border Transfers','Charters & events':'Chauffeured Charters'}[g.name]||g.name;
+      var sub={'Hot item':'Refundable security deposit applies. Minimum rental depends on destination (see below).','Chauffeured transfers':'One-way, door to door. Price is all-in — tolls, checkpoint fees and fuel included. Up to 6 passengers.','Charters & events':'Car, professional driver and petrol included. Driver waits with the vehicle throughout.'}[g.name]||'';
+      html+='<section><h2>'+title+'</h2><p class="sub">'+sub+'</p><table><thead><tr><th>'+(g.name==='Hot item'?'Package':'Route')+'</th><th class="num">Rate</th></tr></thead><tbody>';
+      g.rows.forEach(function(r){html+='<tr'+(g.name==='Hot item'?' class="hotrow"':'')+'><td>'+rowLabel(r,car)+(r.note?'<span class="note">'+r.note+'</span>':'')+'</td><td class="num">'+fmtPrice(r,car.prices[r.id])+'</td></tr>'});
+      if(g.name==='Chauffeured transfers')html+='<tr><td>Night surcharge, 11 pm – 7 am pickup</td><td class="num">+S$30</td></tr>';
+      html+='</tbody></table>';
+      if(g.name==='Hot item')html+='<p class="minrent">Minimum rental by destination: '+ZONES.slice().reverse().map(function(z){return '<b>'+z.label+'</b> '+z.min+' day'+(z.min>1?'s':'')}).join(' · ')+'.</p>';
+      html+='</section>';
+    });
+    document.getElementById('rc-sections').innerHTML=html;
+    document.getElementById('rc-incl-h').textContent='Every '+car.short+' rental includes';
+    document.getElementById('rc-incl').innerHTML=car.cardIncludes.map(function(t){return '<li>'+t+'</li>'}).join('');
+    document.getElementById('rc-terms').innerHTML=car.terms.map(function(t){return '<p>'+t+'</p>'}).join('')+(car.extras.length?'<p>'+car.extras.map(strip).join('. ')+'.</p>':'')+'<p>Rates are subject to change for public holidays and event dates &mdash; your WhatsApp quote is final and fixed.</p>';
+  }
+  render();
+})();
+</script>
 </body>
 </html>
