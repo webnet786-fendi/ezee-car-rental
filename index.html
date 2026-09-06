@@ -214,6 +214,13 @@
     color:var(--ground);background:var(--gold);padding:3px 8px;border-radius:3px;margin:0 10px 4px 0;vertical-align:2px;
   }
   .after{margin-top:22px;font-size:14.5px;color:var(--muted)}
+  .minrent{margin-top:28px;border:1px solid var(--line);padding:18px 20px 8px}
+  .minrent h3{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+  .minrent ol{list-style:none;margin:0;padding:0;counter-reset:z}
+  .minrent li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+  .minrent li:first-child{border-top:0}
+  .minrent li span::before{counter-increment:z;content:counter(z);display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:11px;margin-right:10px;font-family:'Marcellus',serif}
+  .minrent li b{font-weight:500;color:var(--text);white-space:nowrap}
   .incl{background:var(--surface);border:1px solid var(--line);padding:24px}
   .incl h3{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--gold);margin:0 0 12px}
   .incl h3.not{color:var(--faint);margin-top:22px}
@@ -320,6 +327,14 @@
           <label for="q-dir">Direction</label>
           <select id="q-dir"></select>
         </div>
+        <div class="field" id="f-zone" hidden>
+          <label for="q-zone">Where will you drive to?</label>
+          <select id="q-zone"></select>
+        </div>
+        <div class="field" id="f-where">
+          <label for="q-where">Drop-off address, hotel or place</label>
+          <input type="text" id="q-where" placeholder="e.g. Hard Rock Hotel Desaru, Mid Valley Southkey" autocomplete="off">
+        </div>
         <div class="two">
           <div class="field">
             <label for="q-date">Date</label>
@@ -331,7 +346,7 @@
           </div>
           <div class="field" id="f-days" hidden>
             <label for="q-days">Days</label>
-            <select id="q-days"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
+            <select id="q-days"></select>
           </div>
         </div>
         <div class="field" id="f-pax">
@@ -402,7 +417,7 @@
           <table>
             <thead><tr><th>Route</th><th class="num">All-in</th></tr></thead>
             <tbody>
-              <tr class="hot"><td><span class="tag">Hot item</span>Self-drive Vellfire, per day <small>Malaysia only, refundable deposit</small></td><td class="num">RM550</td></tr>
+              <tr class="hot"><td><span class="tag">Hot item</span>Self-drive Vellfire, per day <small>refundable deposit; minimum days depend on destination, see below</small></td><td class="num">RM550</td></tr>
               <tr class="hot"><td><span class="tag">Hot item</span>Monthly rental, self-drive <small>long-term rate, negotiate on WhatsApp</small></td><td class="num">Let&rsquo;s talk</td></tr>
               <tr><td>Singapore &harr; Johor Bahru <small>one-way, any SG address</small></td><td class="num">S$140</td></tr>
               <tr><td>Changi Airport &harr; JB <small>meet &amp; greet, flight tracked</small></td><td class="num">S$160</td></tr>
@@ -414,6 +429,17 @@
               <tr><td>Wedding package <small>8 hours, d&eacute;cor included</small></td><td class="num">RM900</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="minrent">
+          <h3>Self-drive: minimum rental by destination</h3>
+          <ol>
+            <li><span>JB area</span><b>1 day</b></li>
+            <li><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
+            <li><span>Pahang</span><b>3 days</b></li>
+            <li><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
+            <li><span>East Coast, Northern states</span><b>4 days</b></li>
+            <li><span>Perlis, Langkawi</span><b>5 days</b></li>
+          </ol>
         </div>
         <p class="after">Full terms and a printable version: <a href="rates.html">see the complete rate card</a>.</p>
       </div>
@@ -522,6 +548,10 @@
     <h2>Before you ask</h2>
     <div style="margin-top:28px">
       <details>
+        <summary>Can I take the self-drive car outside JB, or to Singapore?</summary>
+        <p>Yes. The minimum rental depends on how far you go: 1 day within JB, 2 days for Singapore, Melaka, Seremban or KL, 3 days for Pahang, 4 days for Perak, Ipoh, Cameron Highlands, the East Coast or the northern states, and 5 days for Perlis or Langkawi. Pick your destination in the price box and the days adjust automatically.</p>
+      </details>
+      <details>
         <summary>Can you pick up from any address in Singapore?</summary>
         <p>Yes &mdash; homes, offices, hotels and Changi Airport, island-wide. The same price applies to most SG addresses; we confirm your exact quote on WhatsApp.</p>
       </details>
@@ -589,7 +619,18 @@
     {id:'wedding',group:'Charters & events',label:'Wedding package, 8 h',cur:'RM',price:900,type:'charter'},
     {id:'other',group:'Anything else',label:'Something else / multi-stop',type:'other'}
   ];
+  var ZONES=[
+    {id:'jb',label:'JB area',min:1},
+    {id:'sg',label:'Outside JB · Singapore · Melaka · Seremban · KL',min:2},
+    {id:'pahang',label:'Pahang',min:3},
+    {id:'perak',label:'Perak · Ipoh · Cameron Highlands',min:4},
+    {id:'east',label:'East Coast · Northern states',min:4},
+    {id:'perlis',label:'Perlis · Langkawi',min:5}
+  ];
   var $=function(id){return document.getElementById(id)};
+  var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where');
+  ZONES.forEach(function(z){var o=document.createElement('option');o.value=z.id;o.textContent=z.label+' · min '+z.min+' day'+(z.min>1?'s':'');zone.appendChild(o)});
+  function currentZone(){return ZONES.filter(function(z){return z.id===zone.value})[0]}
   var route=$('q-route'),dir=$('q-dir'),date=$('q-date'),time=$('q-time'),days=$('q-days'),pax=$('q-pax');
   var fDir=$('f-dir'),fTime=$('f-time'),fDays=$('f-days'),fPax=$('f-pax');
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
@@ -599,6 +640,12 @@
     if(!groups[r.group]){groups[r.group]=document.createElement('optgroup');groups[r.group].label=r.group;route.appendChild(groups[r.group])}
     var o=document.createElement('option');o.value=r.id;o.textContent=r.label;groups[r.group].appendChild(o);
   });
+  function fillDays(min){
+    var keep=parseInt(days.value,10)||1;days.innerHTML='';
+    for(var i=1;i<=14;i++){var o=document.createElement('option');o.value=i;o.textContent=i;if(i<min)o.disabled=true;days.appendChild(o)}
+    days.value=Math.max(keep,min);
+  }
+  fillDays(1);
   var t=new Date();var pad=function(n){return (n<10?'0':'')+n};
   date.min=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
 
@@ -628,12 +675,18 @@
     fTime.hidden=(self||r.type==='other');
     fDays.hidden=(r.type!=='selfdrive');
     fPax.hidden=self;
+    fZone.hidden=!self;
+    fWhere.hidden=self;
+    var z=currentZone();
+    if(r.type==='selfdrive')fillDays(z.min);
     var lines=[];var noteText='';var where='';
     if(r.type==='transfer'){
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
       where=pair[0]+' → '+pair[1];
     }else{ where=r.label }
     lines.push('• '+where);
+    if(self){ lines.push('• Driving to: '+z.label) }
+    else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
     if(r.type==='transfer'||r.type==='charter'){ when+=time.value?(', '+time.value):'' }
     if(r.type==='selfdrive'){ when+=', '+days.value+' day'+(days.value>1?'s':'') }
@@ -657,7 +710,7 @@
       lbl.textContent=r.type==='selfdrive'?'Rental total':'All-in fare';
       amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+r.cur+r.price+' / day</small>':'');
       if(night){ noteText='Includes S$30 night pickup surcharge (11 pm – 7 am)' }
-      else if(r.type==='selfdrive'){ noteText='Refundable deposit applies. Malaysia use only' }
+      else if(r.type==='selfdrive'){ noteText=(z.min>1?'Minimum '+z.min+' days for '+z.label.split(' · ')[0]+' trips. ':'')+'Refundable deposit applies' }
       else if(r.type==='charter'){ noteText='Car, driver and fuel included' }
       else { noteText='Fuel, tolls, VEP & checkpoint fees included' }
       lines.push('Your site shows '+r.cur+total+' all-in.');
@@ -668,7 +721,7 @@
   }
 
   route.addEventListener('change',function(){refreshDir();update()});
-  [dir,date,time,days,pax].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
+  [dir,date,time,days,pax,zone,whereIn].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
   refreshDir();update();
 })();
 </script>
