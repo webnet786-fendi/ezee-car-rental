@@ -75,7 +75,16 @@
     font-size:13px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);
     margin:18px 0 26px;padding-left:14px;border-left:2px solid var(--gold);
   }
-  .hero-photo{margin:26px 0 0;border:1px solid var(--line);overflow:hidden;background:var(--raised)}
+  .hero h1.plain{
+    font-family:'Jost',"Segoe UI",system-ui,sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:clamp(22px,2.6vw,30px);letter-spacing:.02em;line-height:1.2;max-width:none;margin:0 0 22px;color:#fff;
+  }
+  .hero-photo{position:relative;margin:26px 0 0;border:1px solid var(--line);overflow:hidden;background:var(--raised)}
+  .hero-photo .promo{
+    position:absolute;left:0;right:0;top:14px;text-align:center;padding:0 12px;
+    font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,28px);line-height:1.15;color:#ffd21f;
+    text-shadow:0 0 2px #000,0 0 6px #000,1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000;
+  }
   .hero-photo img{display:block;width:100%;height:auto}
   .pillars{list-style:none;padding:0;margin:0;display:grid;gap:14px}
   .pillars li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--muted)}
@@ -377,7 +386,6 @@
   <nav>
     <a class="logo" href="#"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
     <div class="navlinks">
-      <a href="#car">Fleet</a>
       <a href="#rates">Rates</a>
       <a href="#services">Services</a>
       <a href="#customers">Customers</a>
@@ -392,13 +400,12 @@
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Singapore &middot; Johor Bahru &middot; Senai Airport &middot; Desaru Coast</p>
-        <h1>Rent &ndash; Drive &ndash; <em>Pay Economy</em></h1>
-        <p class="flag">Our flagship car &middot; Vellfire ZG Pilot Seat</p>
+        <h1 class="plain">Rent &amp; Drive Our Economy Vehicle</h1>
         <ul class="pillars">
           <li><span class="mark">&#10003;</span><div><b>Exceptional Service</b>Rent the exact car you want, exactly where you need it, for days, weeks, or months.</div></li>
           <li><span class="mark">&#10003;</span><div><b>Best Price</b>Rent with the best price in town.</div></li>
         </ul>
-        <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"></figure>
+        <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo">Our Flagship Car Promo This Month</figcaption></figure>
       </div>
 
       <form class="quote" id="quote" onsubmit="return false">
@@ -459,34 +466,6 @@
 </div>
 
 
-<section class="car" id="car">
-  <div class="wrap">
-    <div class="car-grid">
-      <div>
-        <div class="gallery">
-          <figure><img src="img/car/front.jpg" alt="EzEe's black 2022 Toyota Vellfire ZG, front three-quarter view"></figure>
-          <figure><img src="img/car/pilot-seats.jpg" alt="Second-row pilot seats with armrests and ottoman" loading="lazy"></figure>
-          <figure><img src="img/car/rear.jpg" alt="Rear three-quarter view with Vellfire badge" loading="lazy"></figure>
-          <figure><img src="img/car/pilot-seats-2.jpg" alt="Pilot seats seen from the third row" loading="lazy"></figure>
-          <figure><img src="img/car/front-portrait.jpg" alt="The Vellfire parked under trees in daylight" loading="lazy"></figure>
-        </div>
-      </div>
-      <div>
-        <p class="eyebrow">Our fleet &middot; Flagship</p>
-        <h2>Toyota Vellfire ZG, 2022</h2>
-        <ul class="specs">
-          <li><b>Pilot seats</b>Second-row captain seats, full recline, ottoman</li>
-          <li><b>7 seats</b>Up to 6 passengers with a driver</li>
-          <li><b>Luggage</b>4 large cases with 4 pax, or cabin bags with 6</li>
-          <li><b>On board</b>Cold water, Wi-Fi, USB charging, child seat on request</li>
-          <li><b>Cross-border ready</b>VEP registered, insured both sides</li>
-          <li><b>Driver</b>English, Malay and Mandarin</li>
-        </ul>
-        <p class="promise">What you see is what you ride in.<small>Every car on this page is one we own and photograph ourselves. No fleet substitution, no &ldquo;or similar&rdquo;.</small></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="rates">
   <div class="wrap">
