@@ -147,6 +147,8 @@
     font-weight:500;font-size:16px;letter-spacing:.04em;padding:15px 20px;border-radius:999px;
   }
   .qbtn:hover{background:#2db96c}
+  .qbtn.inert{background:var(--raised);color:var(--faint);pointer-events:none;border:1px solid var(--line)}
+  .field input.missing{border-color:var(--gold);box-shadow:0 0 0 2px rgba(210,169,94,.18)}
   .qbtn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
   .qfine{font-size:12.5px;color:var(--faint);margin:12px 0 0;text-align:center}
 
@@ -308,12 +310,15 @@
   }
   .fab{
     position:fixed;right:18px;bottom:18px;z-index:50;
-    background:var(--whatsapp);color:#fff;text-decoration:none;
-    font-weight:500;font-size:15px;letter-spacing:.03em;
-    padding:14px 22px;border-radius:999px;
-    box-shadow:0 8px 24px rgba(0,0,0,.45);
+    width:84px;height:84px;border-radius:50%;
+    background:var(--surface);border:2px solid var(--gold);
+    display:grid;place-items:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.55);
+    transition:transform .15s ease;
   }
-  .fab:hover{background:#2db96c}
+  .fab img{width:68px;height:auto;display:block}
+  .fab:hover{transform:scale(1.06);background:var(--raised)}
+  @media (max-width:700px){ .fab{width:70px;height:70px;right:14px;bottom:14px} .fab img{width:56px} }
 
   /* ---------- Sticky compact search bar ---------- */
   .sbar{position:fixed;left:0;right:0;top:0;z-index:90;background:rgba(20,17,11,.96);border-bottom:1px solid var(--line);
@@ -444,23 +449,27 @@
           <label for="q-zone">Where will you drive to?</label>
           <input type="text" id="q-zone" placeholder="e.g. Kuala Lumpur, Cameron Highlands, Langkawi" autocomplete="off">
         </div>
+        <div class="field" id="f-deliver" hidden>
+          <label for="q-deliver">Where we need to send this car?</label>
+          <input type="text" id="q-deliver" placeholder="Your address, hotel, Senai Airport, JB CIQ…" autocomplete="off">
+        </div>
         <div class="field" id="f-where">
           <label for="q-where">Drop-off address, hotel or place</label>
           <input type="text" id="q-where" placeholder="e.g. Hard Rock Hotel Desaru, Mid Valley Southkey" autocomplete="off">
         </div>
         <div class="two">
           <div class="field">
-            <label for="q-date">Date</label>
+            <label for="q-date" id="l-date">Date</label>
             <input type="date" id="q-date">
           </div>
           <div class="field" id="f-time">
-            <label for="q-time">Pickup time</label>
+            <label for="q-time" id="l-time">Pickup time</label>
             <input type="time" id="q-time" value="09:00">
           </div>
-          <div class="field" id="f-days" hidden>
-            <label for="q-days">Days</label>
-            <select id="q-days"></select>
-          </div>
+        </div>
+        <div class="field" id="f-days" hidden>
+          <label for="q-days">Days</label>
+          <select id="q-days"></select>
         </div>
         <div class="field" id="f-pax">
           <label for="q-pax">Passengers</label>
@@ -660,7 +669,7 @@
   </footer>
 </div>
 
-<a class="fab" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp us</a>
+<a class="fab" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer" title="WhatsApp EzEe" aria-label="WhatsApp EzEe"><img src="img/logo.png" alt="EzEe Car Rental"></a>
 
 <div class="modal" id="min-modal" hidden role="dialog" aria-modal="true" aria-labelledby="min-title">
   <div class="modal-box">
@@ -685,7 +694,8 @@
 (function(){
   var WA='https://wa.me/60127119814?text=';
   var $=function(id){return document.getElementById(id)};
-  var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where');
+  var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where'),deliver=$('q-deliver'),fDeliver=$('f-deliver'),lDate=$('l-date'),lTime=$('l-time');
+  var lastSelf=null;
   function currentZone(){return zoneFor(zone.value)}
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
   var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
@@ -769,11 +779,17 @@
   function update(){
     var r=current();
     var self=(r.type==='selfdrive'||r.type==='monthly');
-    fTime.hidden=(self||r.type==='other');
+    fTime.hidden=(r.type==='other');
     fDays.hidden=(r.type!=='selfdrive');
     fPax.hidden=self;
     fZone.hidden=!self;
+    fDeliver.hidden=!self;
     fWhere.hidden=self;
+    lDate.textContent=self?'Start date':'Date';
+    lTime.textContent=self?'Start time':'Pickup time';
+    if(lastSelf!==self){ if(self)time.value=''; else if(!time.value)time.value='09:00'; lastSelf=self }
+    var needTime=self&&!time.value;
+    time.classList.toggle('missing',needTime);
     var z=currentZone();
     if(r.type==='selfdrive')fillDays(z?z.min:1);
     var lines=[];var noteText='';var where='';
@@ -783,12 +799,12 @@
     }else{ where=r.label }
     if(multi)lines.push('• '+currentCar().name);
     lines.push('• '+where);
-    if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')) }
+    if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')); lines.push('• Deliver car to: '+(deliver.value.trim()||'to confirm')) }
     else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
-    if(r.type==='transfer'||r.type==='charter'){ when+=time.value?(', '+time.value):'' }
+    if(r.type!=='other'){ when+=time.value?(', '+time.value):(self?', start time to confirm':'') }
     if(r.type==='selfdrive'){ when+=', '+days.value+' day'+(days.value>1?'s':'') }
-    if(r.type==='monthly'){ when='starting '+when }
+    if(self){ when='Start: '+when }
     lines.push('• '+when);
     if(!self){ lines.push('• '+pax.value+' passenger'+(pax.value>1?'s':'')) }
 
@@ -820,12 +836,15 @@
     if(typeof pushToBar==='function')pushToBar();
     var msg='Hi EzEe, I’d like to book:\n'+lines.join('\n')+'\nPlease confirm.';
     send.href=WA+encodeURIComponent(msg);
+    send.classList.toggle('inert',needTime);
+    send.textContent=needTime?'Pick a start date & time first':'Click to negotiate on WhatsApp?';
+    if(needTime)note.textContent='Choose your start date and time. '+noteText;
   }
 
   carSel.addEventListener('change',function(){fillRoutes();refreshDir();update()});
   route.addEventListener('change',function(){refreshDir();update()});
   document.querySelectorAll('[data-car]').forEach(function(a){a.addEventListener('click',function(){carSel.value=a.getAttribute('data-car');fillRoutes();refreshDir();update()})});
-  [dir,date,time,days,pax,zone,whereIn].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
+  [dir,date,time,days,pax,zone,whereIn,deliver].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
 
   /* ---- sticky compact bar: mirrors the price box, appears once the box scrolls out of view ---- */
   var sbar=$('sbar'),sCar=$('s-car'),sWhere=$('s-where'),sFrom=$('s-from'),sTime=$('s-time'),sUntil=$('s-until'),sfUntil=$('sf-until'),sGo=$('s-go'),sPrice=$('s-price');
@@ -841,7 +860,7 @@
     if(multi)sCar.value=carSel.value;
     sWhere.value=self?zone.value:whereIn.value;
     sFrom.value=date.value;sTime.value=time.value;
-    sTime.style.display=self?'none':'';
+    sTime.style.display='';
     sfUntil.hidden=(r.type!=='selfdrive');
     sUntil.min=date.value||date.min;
     sUntil.value=(r.type==='selfdrive'&&date.value)?addDays(date.value,parseInt(days.value,10)):'';
