@@ -49,7 +49,10 @@
   }
   .logo{display:block;line-height:0}
   .logo img{height:56px;width:auto;display:block}
-  @media (max-width:700px){ .logo img{height:48px} }
+  @media (max-width:900px){
+    nav{flex-direction:column;gap:12px;padding:16px 0 14px}
+    .logo img{height:76px}
+  }
   .navlinks{display:flex;gap:26px;font-size:14px;letter-spacing:.06em;align-items:center}
   .navlinks a{color:var(--muted);text-decoration:none}
   .navlinks a:hover{color:var(--gold-soft)}
@@ -79,13 +82,14 @@
     font-family:'Jost',"Segoe UI",system-ui,sans-serif;font-weight:600;text-transform:uppercase;
     font-size:clamp(22px,2.6vw,30px);letter-spacing:.02em;line-height:1.2;max-width:none;margin:0 0 22px;color:#fff;
   }
-  .hero-photo{position:relative;margin:26px 0 0;border:1px solid var(--line);overflow:hidden;background:var(--raised)}
+  .hero-photo{position:relative;margin:26px 0 0;border:1px solid var(--line);overflow:hidden;background:var(--raised);container-type:inline-size}
   .hero-photo .promo{
     position:absolute;left:0;right:0;top:14px;text-align:center;padding:0 12px;
-    font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,28px);line-height:1.15;color:#ffd21f;
+    font-family:'Jost',sans-serif;font-weight:700;font-size:5.1cqw;line-height:1.15;color:#ffd21f;white-space:nowrap;
     text-shadow:0 0 2px #000,0 0 6px #000,1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000;
   }
-  .hero-photo .promo a{display:block;margin-top:2px;font-size:.82em;color:inherit;text-decoration:none}
+  .hero-photo .promo a{display:block;margin-top:.1em;font-size:.82em;color:inherit;text-decoration:none;white-space:nowrap}
+  @supports not (font-size:1cqw){ .hero-photo .promo{font-size:clamp(16px,5.1vw,28px)} }
   .hero-photo .promo a:hover{color:#fff}
   .hero-photo img{display:block;width:100%;height:auto}
   .pillars{list-style:none;padding:0;margin:0;display:grid;gap:14px}
@@ -242,6 +246,11 @@
   .incl-photo{margin:-24px -24px 22px;aspect-ratio:16/10;overflow:hidden;background:var(--raised);border-bottom:1px solid var(--gold)}
   .incl-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .incl-photo[hidden]{display:none}
+  .incl-photo-m{display:none;margin:0 0 22px;border:1px solid var(--line);border-bottom:1px solid var(--gold)}
+  @media (max-width:860px){
+    .incl-photo-m:not([hidden]){display:block}
+    .incl .incl-photo{display:none}
+  }
   .sgchip{display:inline-block;margin:0 0 16px;font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--line);color:var(--muted)}
   .sgchip.ok{color:var(--gold);border-color:var(--gold)}
   .incl h3{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--gold);margin:0 0 12px}
@@ -480,6 +489,7 @@
     <h2>Every price on this page is the final price.</h2>
     <p class="section-sub">No booking fees, no fuel top-ups, no checkpoint surprises. What we quote on WhatsApp is what you pay.</p>
     <div class="car-tabs" id="car-tabs" role="tablist" hidden></div>
+    <figure class="incl-photo incl-photo-m" id="incl-photo-m" hidden><img id="incl-img-m" src="img/car/front.jpg" alt="" loading="lazy"></figure>
     <div class="rates-grid">
       <div>
         <div class="ratetable">
@@ -721,7 +731,7 @@
       tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">Hot item</span>':'')+rowLabel(r,car)+(r.note?' <small>'+r.note+'</small>':'')+'</td><td class="num">'+fmtPrice(r,car.prices[r.id])+'</td>';
       rows.appendChild(tr);
     });
-    var ph=$('incl-photo');if(car.photo){ph.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name}else{ph.hidden=true}
+    var ph=$('incl-photo'),phm=$('incl-photo-m');if(car.photo){ph.hidden=false;phm.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name;$('incl-img-m').src=car.photo;$('incl-img-m').alt=car.name}else{ph.hidden=true;phm.hidden=true}
     var chip=$('sg-chip');chip.textContent=car.singapore===false?'Malaysia use only':'Singapore entry OK';chip.className='sgchip'+(car.singapore===false?'':' ok');
     $('incl-title').textContent=car.inclTitle;
     $('incl-list').innerHTML=car.includes.map(function(t){return '<li>'+t+'</li>'}).join('');
