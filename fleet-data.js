@@ -12,7 +12,7 @@ var CARS=[
    terms:['Luggage: comfortably 4 passengers + 4 large cases, or 6 passengers with cabin bags. Waiting time beyond 15 minutes (60 minutes at Changi) is charged at S$20 per 30 minutes. Charter hours are counted from pickup to drop-off.']},
   {id:'bezza',active:true,short:'Bezza',name:'Perodua Bezza 2023',hot:false,
    meta:'5 seats · auto · self-drive only',
-   photo:'',
+   photo:'img/car/bezza.jpg',
    prices:{selfdrive:120,weekly:700,monthly:null,other:null},
    inclTitle:'Included with the Bezza',
    includes:['Comprehensive insurance','Full tank on handover, return full','Unlimited mileage within Malaysia'],

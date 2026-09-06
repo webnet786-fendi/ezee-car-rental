@@ -237,6 +237,9 @@
   .minrent li span::before{counter-increment:z;content:counter(z);display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:11px;margin-right:10px;font-family:'Marcellus',serif}
   .minrent li b{font-weight:500;color:var(--text);white-space:nowrap}
   .incl{background:var(--surface);border:1px solid var(--line);padding:24px}
+  .incl-photo{margin:-24px -24px 22px;aspect-ratio:16/10;overflow:hidden;background:var(--raised);border-bottom:1px solid var(--gold)}
+  .incl-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .incl-photo[hidden]{display:none}
   .incl h3{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--gold);margin:0 0 12px}
   .incl h3.not{color:var(--faint);margin-top:22px}
   .incl ul{list-style:none;padding:0;margin:0}
@@ -495,6 +498,7 @@
         <p class="after">Full terms and a printable version: <a href="rates.html">see the complete rate card</a>.</p>
       </div>
       <aside class="incl">
+        <figure class="incl-photo" id="incl-photo"><img id="incl-img" src="img/car/front.jpg" alt="" loading="lazy"></figure>
         <h3 id="incl-title">Included in every fare</h3>
         <ul id="incl-list"></ul>
         <h3 class="not">Only ever added</h3>
@@ -711,6 +715,7 @@
       tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">Hot item</span>':'')+rowLabel(r,car)+(r.note?' <small>'+r.note+'</small>':'')+'</td><td class="num">'+fmtPrice(r,car.prices[r.id])+'</td>';
       rows.appendChild(tr);
     });
+    var ph=$('incl-photo');if(car.photo){ph.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name}else{ph.hidden=true}
     $('incl-title').textContent=car.inclTitle;
     $('incl-list').innerHTML=car.includes.map(function(t){return '<li>'+t+'</li>'}).join('');
     $('incl-extras').innerHTML=car.extras.map(function(t){return '<li>'+t+'</li>'}).join('');
