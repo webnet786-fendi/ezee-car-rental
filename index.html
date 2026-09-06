@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://webnet786-fendi.github.io/ezee-car-rental/img/car/front.jpg">
 <meta name="theme-color" content="#14110b">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%2314110b%27/%3E%3Ctext x=%2732%27 y=%2743%27 font-family=%27Georgia,serif%27 font-size=%2730%27 fill=%27%23d2a95e%27 text-anchor=%27middle%27%3EEz%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="img/favicon.png">
 <title>EzEe Car Rental</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
@@ -47,8 +47,9 @@
     display:flex;align-items:center;justify-content:space-between;gap:16px;
     padding:22px 0;
   }
-  .logo{font-family:'Marcellus',Georgia,serif;font-size:21px;letter-spacing:.04em}
-  .logo span{color:var(--gold)}
+  .logo{display:block;line-height:0}
+  .logo img{height:56px;width:auto;display:block}
+  @media (max-width:700px){ .logo img{height:48px} }
   .navlinks{display:flex;gap:26px;font-size:14px;letter-spacing:.06em;align-items:center}
   .navlinks a{color:var(--muted);text-decoration:none}
   .navlinks a:hover{color:var(--gold-soft)}
@@ -207,6 +208,11 @@
     font-family:'Marcellus',Georgia,serif;font-size:19px;color:var(--gold);
     font-variant-numeric:tabular-nums;
   }
+  tr.hot td{background:linear-gradient(90deg,rgba(210,169,94,.08),transparent 70%)}
+  .tag{
+    display:inline-block;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ground);background:var(--gold);padding:3px 8px;border-radius:3px;margin:0 10px 4px 0;vertical-align:2px;
+  }
   .after{margin-top:22px;font-size:14.5px;color:var(--muted)}
   .incl{background:var(--surface);border:1px solid var(--line);padding:24px}
   .incl h3{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-family:'Jost',sans-serif;color:var(--gold);margin:0 0 12px}
@@ -276,7 +282,7 @@
 
 <div class="wrap">
   <nav>
-    <div class="logo">EzEe <span>Car Rental</span></div>
+    <a class="logo" href="#"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
     <div class="navlinks">
       <a href="#car">The car</a>
       <a href="#rates">Rates</a>
@@ -340,7 +346,7 @@
           </div>
           <div class="note" id="q-note">Fuel, tolls, VEP &amp; checkpoint fees included</div>
         </div>
-        <a class="qbtn" id="q-send" href="https://wa.me/60127119814" target="_blank" rel="noopener">Book this on WhatsApp</a>
+        <a class="qbtn" id="q-send" href="https://wa.me/60127119814" target="_blank" rel="noopener">Click to negotiate on WhatsApp?</a>
         <p class="qfine">No account, no card. 50% deposit by PayNow confirms your slot. Free cancellation up to 48 h before.</p>
       </form>
     </div>
@@ -396,6 +402,8 @@
           <table>
             <thead><tr><th>Route</th><th class="num">All-in</th></tr></thead>
             <tbody>
+              <tr class="hot"><td><span class="tag">Hot item</span>Self-drive Vellfire, per day <small>Malaysia only, refundable deposit</small></td><td class="num">RM550</td></tr>
+              <tr class="hot"><td><span class="tag">Hot item</span>Monthly rental, self-drive <small>long-term rate, negotiate on WhatsApp</small></td><td class="num">Let&rsquo;s talk</td></tr>
               <tr><td>Singapore &harr; Johor Bahru <small>one-way, any SG address</small></td><td class="num">S$140</td></tr>
               <tr><td>Changi Airport &harr; JB <small>meet &amp; greet, flight tracked</small></td><td class="num">S$160</td></tr>
               <tr><td>Singapore &harr; Senai Airport <small>any SG address, flight tracked</small></td><td class="num">S$150</td></tr>
@@ -404,7 +412,6 @@
               <tr><td>Cross-border day charter <small>10 hours, SG pickup</small></td><td class="num">S$480</td></tr>
               <tr><td>Johor day charter <small>10 hours with driver</small></td><td class="num">RM750</td></tr>
               <tr><td>Wedding package <small>8 hours, d&eacute;cor included</small></td><td class="num">RM900</td></tr>
-              <tr><td>Self-drive, per day <small>Malaysia only, deposit applies</small></td><td class="num">RM500</td></tr>
             </tbody>
           </table>
         </div>
@@ -570,23 +577,28 @@
 (function(){
   var WA='https://wa.me/60127119814?text=';
   var ROUTES=[
-    {id:'sgjb',label:'Singapore ↔ Johor Bahru',cur:'S$',price:140,type:'transfer',a:'Singapore',b:'Johor Bahru'},
-    {id:'changi',label:'Changi Airport ↔ Johor Bahru',cur:'S$',price:160,type:'transfer',a:'Changi Airport',b:'Johor Bahru'},
-    {id:'senai',label:'Singapore ↔ Senai Airport',cur:'S$',price:150,type:'transfer',a:'Singapore',b:'Senai Airport'},
-    {id:'legoland',label:'Singapore ↔ Legoland / Medini',cur:'S$',price:150,type:'transfer',a:'Singapore',b:'Legoland / Medini'},
-    {id:'desaru',label:'Singapore ↔ Desaru Coast',cur:'S$',price:240,type:'transfer',a:'Singapore',b:'Desaru Coast'},
-    {id:'xcharter',label:'Cross-border day charter, 10 h',cur:'S$',price:480,type:'charter'},
-    {id:'jbcharter',label:'Johor day charter, 10 h',cur:'RM',price:750,type:'charter'},
-    {id:'wedding',label:'Wedding package, 8 h',cur:'RM',price:900,type:'charter'},
-    {id:'selfdrive',label:'Self-drive Vellfire, per day',cur:'RM',price:500,type:'selfdrive'},
-    {id:'other',label:'Something else / multi-stop',type:'other'}
+    {id:'selfdrive',group:'Hot item',label:'Self-drive Vellfire, per day',cur:'RM',price:550,type:'selfdrive'},
+    {id:'monthly',group:'Hot item',label:'Monthly rental, self-drive',cur:'RM',type:'monthly'},
+    {id:'sgjb',group:'Chauffeured transfers',label:'Singapore ↔ Johor Bahru',cur:'S$',price:140,type:'transfer',a:'Singapore',b:'Johor Bahru'},
+    {id:'changi',group:'Chauffeured transfers',label:'Changi Airport ↔ Johor Bahru',cur:'S$',price:160,type:'transfer',a:'Changi Airport',b:'Johor Bahru'},
+    {id:'senai',group:'Chauffeured transfers',label:'Singapore ↔ Senai Airport',cur:'S$',price:150,type:'transfer',a:'Singapore',b:'Senai Airport'},
+    {id:'legoland',group:'Chauffeured transfers',label:'Singapore ↔ Legoland / Medini',cur:'S$',price:150,type:'transfer',a:'Singapore',b:'Legoland / Medini'},
+    {id:'desaru',group:'Chauffeured transfers',label:'Singapore ↔ Desaru Coast',cur:'S$',price:240,type:'transfer',a:'Singapore',b:'Desaru Coast'},
+    {id:'xcharter',group:'Charters & events',label:'Cross-border day charter, 10 h',cur:'S$',price:480,type:'charter'},
+    {id:'jbcharter',group:'Charters & events',label:'Johor day charter, 10 h',cur:'RM',price:750,type:'charter'},
+    {id:'wedding',group:'Charters & events',label:'Wedding package, 8 h',cur:'RM',price:900,type:'charter'},
+    {id:'other',group:'Anything else',label:'Something else / multi-stop',type:'other'}
   ];
   var $=function(id){return document.getElementById(id)};
   var route=$('q-route'),dir=$('q-dir'),date=$('q-date'),time=$('q-time'),days=$('q-days'),pax=$('q-pax');
   var fDir=$('f-dir'),fTime=$('f-time'),fDays=$('f-days'),fPax=$('f-pax');
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
 
-  ROUTES.forEach(function(r){var o=document.createElement('option');o.value=r.id;o.textContent=r.label;route.appendChild(o)});
+  var groups={};
+  ROUTES.forEach(function(r){
+    if(!groups[r.group]){groups[r.group]=document.createElement('optgroup');groups[r.group].label=r.group;route.appendChild(groups[r.group])}
+    var o=document.createElement('option');o.value=r.id;o.textContent=r.label;groups[r.group].appendChild(o);
+  });
   var t=new Date();var pad=function(n){return (n<10?'0':'')+n};
   date.min=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
 
@@ -612,9 +624,10 @@
 
   function update(){
     var r=current();
-    fTime.hidden=(r.type==='selfdrive'||r.type==='other');
+    var self=(r.type==='selfdrive'||r.type==='monthly');
+    fTime.hidden=(self||r.type==='other');
     fDays.hidden=(r.type!=='selfdrive');
-    fPax.hidden=(r.type==='selfdrive');
+    fPax.hidden=self;
     var lines=[];var noteText='';var where='';
     if(r.type==='transfer'){
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
@@ -624,13 +637,18 @@
     var when=fmtDate(date.value)||'date to confirm';
     if(r.type==='transfer'||r.type==='charter'){ when+=time.value?(', '+time.value):'' }
     if(r.type==='selfdrive'){ when+=', '+days.value+' day'+(days.value>1?'s':'') }
+    if(r.type==='monthly'){ when='starting '+when }
     lines.push('• '+when);
-    if(r.type!=='selfdrive'){ lines.push('• '+pax.value+' passenger'+(pax.value>1?'s':'')) }
+    if(!self){ lines.push('• '+pax.value+' passenger'+(pax.value>1?'s':'')) }
 
     if(r.type==='other'){
       lbl.textContent='Your price';
       amt.innerHTML='On request';
       noteText='Tell us the trip and we quote within minutes';
+    }else if(r.type==='monthly'){
+      lbl.textContent='Monthly rate';
+      amt.innerHTML='Let’s talk';
+      noteText='Long-term self-drive at a special monthly rate. Tell us how many months';
     }else{
       var total=r.price;
       if(r.type==='selfdrive'){ total=r.price*parseInt(days.value,10) }
