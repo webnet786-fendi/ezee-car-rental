@@ -283,6 +283,28 @@
     box-shadow:0 8px 24px rgba(0,0,0,.45);
   }
   .fab:hover{background:#2db96c}
+
+  /* ---------- Minimum-days popup ---------- */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(10,8,4,.78);display:grid;place-items:center;padding:20px}
+  .modal[hidden]{display:none}
+  .modal-box{
+    background:var(--surface);border:1px solid var(--gold);max-width:460px;width:100%;
+    padding:28px 26px 24px;box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative;
+  }
+  .modal-box::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold)}
+  .modal-box h3{font-size:24px;margin:0 0 8px}
+  .modal-sub{font-size:14px;color:var(--muted);margin:0 0 16px}
+  .modal-list{list-style:none;margin:0;padding:0;counter-reset:m}
+  .modal-list li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+  .modal-list li span::before{counter-increment:m;content:counter(m);display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:11px;margin-right:10px;font-family:'Marcellus',serif}
+  .modal-list li b{font-weight:500;color:var(--text);white-space:nowrap}
+  .modal-ok{
+    display:block;width:100%;margin-top:20px;cursor:pointer;
+    background:var(--gold);color:var(--ground);border:0;font-family:inherit;font-weight:600;font-size:15px;
+    letter-spacing:.06em;padding:14px 20px;border-radius:999px;
+  }
+  .modal-ok:hover{background:var(--gold-soft)}
+  .modal-ok:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
 </style>
 </head>
 <body>
@@ -329,7 +351,7 @@
         </div>
         <div class="field" id="f-zone" hidden>
           <label for="q-zone">Where will you drive to?</label>
-          <select id="q-zone"></select>
+          <input type="text" id="q-zone" placeholder="e.g. Kuala Lumpur, Cameron Highlands, Langkawi" autocomplete="off">
         </div>
         <div class="field" id="f-where">
           <label for="q-where">Drop-off address, hotel or place</label>
@@ -603,6 +625,23 @@
 
 <a class="fab" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp us</a>
 
+<div class="modal" id="min-modal" hidden role="dialog" aria-modal="true" aria-labelledby="min-title">
+  <div class="modal-box">
+    <p class="eyebrow">Before you type your destination</p>
+    <h3 id="min-title">Self-drive minimum rental</h3>
+    <p class="modal-sub">The further you drive, the longer the minimum booking. Days adjust automatically once you type where you&rsquo;re going.</p>
+    <ol class="modal-list">
+      <li><span>JB area</span><b>1 day</b></li>
+      <li><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
+      <li><span>Pahang</span><b>3 days</b></li>
+      <li><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
+      <li><span>East Coast, Northern states</span><b>4 days</b></li>
+      <li><span>Perlis, Langkawi</span><b>5 days</b></li>
+    </ol>
+    <button type="button" class="modal-ok" id="min-ok">OK, got it</button>
+  </div>
+</div>
+
 <script>
 (function(){
   var WA='https://wa.me/60127119814?text=';
@@ -620,17 +659,32 @@
     {id:'other',group:'Anything else',label:'Something else / multi-stop',type:'other'}
   ];
   var ZONES=[
-    {id:'jb',label:'JB area',min:1},
-    {id:'sg',label:'Outside JB · Singapore · Melaka · Seremban · KL',min:2},
-    {id:'pahang',label:'Pahang',min:3},
-    {id:'perak',label:'Perak · Ipoh · Cameron Highlands',min:4},
-    {id:'east',label:'East Coast · Northern states',min:4},
-    {id:'perlis',label:'Perlis · Langkawi',min:5}
+    {id:'perlis',label:'Perlis / Langkawi',min:5,keys:['perlis','langkawi','kangar','kuala perlis']},
+    {id:'east',label:'East Coast / Northern states',min:4,keys:['kelantan','kota bharu','terengganu','kuala terengganu','redang','perhentian','kedah','alor setar','alor star','penang','pulau pinang','georgetown','george town','butterworth','sungai petani','east coast','pantai timur','utara']},
+    {id:'perak',label:'Perak / Ipoh / Cameron Highlands',min:4,keys:['perak','ipoh','cameron','tanah rata','brinchang','taiping','lumut','pangkor','teluk intan']},
+    {id:'pahang',label:'Pahang',min:3,keys:['pahang','kuantan','genting','taman negara','cherating','fraser','bentong','temerloh','raub','kuala lipis','pekan']},
+    {id:'sg',label:'Singapore / KL / Melaka / Seremban / outside JB',min:2,keys:['singapore','singapura','sg','changi','woodlands','kuala lumpur','kl','klia','petaling','pj','shah alam','selangor','putrajaya','cyberjaya','melaka','malacca','seremban','port dickson','negeri sembilan','muar','batu pahat','segamat','mersing','kluang','tioman','desaru','kota tinggi','pontian','tangkak','yong peng']},
+    {id:'jb',label:'JB area',min:1,keys:['jb','johor bahru','skudai','kulai','senai','pasir gudang','nusajaya','iskandar','tebrau','larkin','permas','masai','gelang patah','tampoi','bukit indah','austin','mount austin','setia tropika','legoland','medini','puteri harbour','ulu tiram','kempas','perling']}
   ];
+  function zoneFor(text){
+    var t=' '+text.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ')+' ';
+    for(var i=0;i<ZONES.length;i++){var z=ZONES[i];for(var k=0;k<z.keys.length;k++){if(t.indexOf(' '+z.keys[k]+' ')>-1)return z}}
+    return null;
+  }
   var $=function(id){return document.getElementById(id)};
   var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where');
-  ZONES.forEach(function(z){var o=document.createElement('option');o.value=z.id;o.textContent=z.label+' · min '+z.min+' day'+(z.min>1?'s':'');zone.appendChild(o)});
-  function currentZone(){return ZONES.filter(function(z){return z.id===zone.value})[0]}
+  function currentZone(){return zoneFor(zone.value)}
+  /* minimum-days popup, shown once per visit when the self-drive destination box is first focused */
+  var modal=$('min-modal'),modalOk=$('min-ok');
+  function seen(){try{return sessionStorage.getItem('ezee-min-seen')==='1'}catch(e){return false}}
+  function markSeen(){try{sessionStorage.setItem('ezee-min-seen','1')}catch(e){}}
+  function openModal(){modal.hidden=false;document.body.style.overflow='hidden';modalOk.focus()}
+  function closeModal(){modal.hidden=true;document.body.style.overflow='';markSeen();zone.focus()}
+  zone.addEventListener('focus',function(){if(!seen()&&modal.hidden){zone.blur();openModal()}});
+  zone.addEventListener('mousedown',function(e){if(!seen()&&modal.hidden){e.preventDefault();openModal()}});
+  modalOk.addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal()});
   var route=$('q-route'),dir=$('q-dir'),date=$('q-date'),time=$('q-time'),days=$('q-days'),pax=$('q-pax');
   var fDir=$('f-dir'),fTime=$('f-time'),fDays=$('f-days'),fPax=$('f-pax');
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
@@ -678,14 +732,14 @@
     fZone.hidden=!self;
     fWhere.hidden=self;
     var z=currentZone();
-    if(r.type==='selfdrive')fillDays(z.min);
+    if(r.type==='selfdrive')fillDays(z?z.min:1);
     var lines=[];var noteText='';var where='';
     if(r.type==='transfer'){
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
       where=pair[0]+' → '+pair[1];
     }else{ where=r.label }
     lines.push('• '+where);
-    if(self){ lines.push('• Driving to: '+z.label) }
+    if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')) }
     else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
     if(r.type==='transfer'||r.type==='charter'){ when+=time.value?(', '+time.value):'' }
@@ -710,7 +764,7 @@
       lbl.textContent=r.type==='selfdrive'?'Rental total':'All-in fare';
       amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+r.cur+r.price+' / day</small>':'');
       if(night){ noteText='Includes S$30 night pickup surcharge (11 pm – 7 am)' }
-      else if(r.type==='selfdrive'){ noteText=(z.min>1?'Minimum '+z.min+' days for '+z.label.split(' · ')[0]+' trips. ':'')+'Refundable deposit applies' }
+      else if(r.type==='selfdrive'){ noteText=(z&&z.min>1?'Minimum '+z.min+' days for '+z.label+'. ':(z?'':'Minimum days depend on destination. '))+'Refundable deposit applies' }
       else if(r.type==='charter'){ noteText='Car, driver and fuel included' }
       else { noteText='Fuel, tolls, VEP & checkpoint fees included' }
       lines.push('Your site shows '+r.cur+total+' all-in.');
