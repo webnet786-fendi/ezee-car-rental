@@ -120,13 +120,13 @@ table.g td.v::before{content:": "}
 .empty-doc{font-size:8pt;color:#777;text-align:center;padding:6mm;border:1px dashed #bbb;width:104mm;margin:0 auto 4mm}
 .preview-scale{transform-origin:top center}
 @media print{
-  @page{size:A4;margin:0}
+  @page{size:A4;margin:8mm 10mm 7mm}
   body{background:#fff}
   .app{display:block;height:auto}
   .pane-form,.mobile-toggle,.toast,.top{display:none !important}
   .pane-preview{display:block !important;padding:0;background:#fff;overflow:visible}
   .preview-scale{transform:none !important}
-  .sheet{box-shadow:none;margin:0;page-break-after:always;break-after:page;height:297mm;min-height:0;overflow:hidden}
+  .sheet{box-shadow:none;margin:0;padding:0;width:190mm;page-break-after:always;break-after:page;height:282mm;min-height:0;overflow:hidden}
   .sheet:last-child{page-break-after:auto;break-after:auto}
   .docs .ph{page-break-inside:avoid;break-inside:avoid}
 }
