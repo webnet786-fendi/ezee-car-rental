@@ -7,6 +7,7 @@
 <meta property="og:title" content="EzEe Car Rental">
 <meta property="og:description" content="Chauffeured 2022 Toyota Vellfire between Singapore, Johor Bahru, Senai Airport and Desaru. Fixed all-in prices from S$140. Instant quote, book on WhatsApp.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://webnet786-fendi.github.io/ezee-car-rental/img/car/front.jpg">
 <meta name="theme-color" content="#14110b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%2314110b%27/%3E%3Ctext x=%2732%27 y=%2743%27 font-family=%27Georgia,serif%27 font-size=%2730%27 fill=%27%23d2a95e%27 text-anchor=%27middle%27%3EEz%3C/text%3E%3C/svg%3E">
 <title>EzEe Car Rental</title>
@@ -162,16 +163,24 @@
   .car{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .car-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
   @media (max-width:860px){ .car-grid{grid-template-columns:1fr} }
-  .gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
+  .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:10px}
   .gallery figure{margin:0;overflow:hidden;background:var(--raised);border:1px solid var(--line);aspect-ratio:4/3}
-  .gallery figure:first-child{grid-row:1/3;aspect-ratio:auto;min-height:280px}
+  .gallery figure:first-child{grid-row:1/3;grid-column:1;aspect-ratio:auto}
   .gallery img{width:100%;height:100%;object-fit:cover;display:block}
-  .gallery[hidden]{display:none}
-  .car-fallback{
-    border:1px dashed var(--line);padding:40px 24px;text-align:center;color:var(--faint);font-size:14px;
+  @media (max-width:520px){
+    .gallery{grid-template-columns:1fr 1fr}
+    .gallery figure:first-child{grid-column:1/3;grid-row:1;aspect-ratio:4/3}
   }
-  .car-fallback[hidden]{display:none}
-  .car-fallback svg{width:min(100%,380px);height:auto;display:block;margin:0 auto 18px}
+  .gallery figcaption{display:none}
+
+  /* ---------- Customers ---------- */
+  .customers .masonry{columns:4 220px;column-gap:12px}
+  .customers figure{margin:0 0 12px;break-inside:avoid;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+  .customers img{width:100%;height:auto;display:block}
+  .customers .privacy{
+    margin:22px 0 0;font-size:13.5px;color:var(--faint);display:flex;gap:10px;align-items:center;
+  }
+  .customers .privacy::before{content:"";width:22px;height:1px;background:var(--gold);flex:none}
   .specs{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
   @media (max-width:460px){ .specs{grid-template-columns:1fr} }
   .specs li{font-size:14.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
@@ -272,6 +281,7 @@
       <a href="#car">The car</a>
       <a href="#rates">Rates</a>
       <a href="#services">Services</a>
+      <a href="#customers">Customers</a>
       <a href="#faq">FAQ</a>
       <a class="navwa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp</a>
     </div>
@@ -350,20 +360,12 @@
   <div class="wrap">
     <div class="car-grid">
       <div>
-        <div class="gallery" id="gallery">
-          <figure><img src="img/vellfire-1.jpg" alt="EzEe's 2022 Toyota Vellfire ZG, exterior" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-          <figure><img src="img/vellfire-2.jpg" alt="Pilot seats in the second row" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-          <figure><img src="img/vellfire-3.jpg" alt="Cabin and luggage space" loading="lazy" onerror="this.closest('figure').remove()"></figure>
-        </div>
-        <div class="car-fallback" id="car-fallback" hidden>
-          <svg viewBox="0 0 380 140" aria-hidden="true">
-            <path d="M28 96 L48 58 Q56 44 72 44 L236 44 Q256 44 272 56 L318 90 L352 96 Q364 98 364 110 L364 116 L16 116 L16 108 Q16 98 28 96 Z" fill="#241f15" stroke="#d2a95e" stroke-width="1.5"/>
-            <path d="M80 48 L64 90 L300 90 L262 52 Z" fill="#14110b" stroke="#352d1d"/>
-            <line x1="160" y1="48" x2="160" y2="90" stroke="#352d1d"/>
-            <circle cx="88" cy="116" r="16" fill="#14110b" stroke="#d2a95e" stroke-width="1.5"/>
-            <circle cx="292" cy="116" r="16" fill="#14110b" stroke="#d2a95e" stroke-width="1.5"/>
-          </svg>
-          Photos of the actual car coming soon. Ask on WhatsApp and we&rsquo;ll send them straight away.
+        <div class="gallery">
+          <figure><img src="img/car/front.jpg" alt="EzEe's black 2022 Toyota Vellfire ZG, front three-quarter view"></figure>
+          <figure><img src="img/car/pilot-seats.jpg" alt="Second-row pilot seats with armrests and ottoman" loading="lazy"></figure>
+          <figure><img src="img/car/rear.jpg" alt="Rear three-quarter view with Vellfire badge" loading="lazy"></figure>
+          <figure><img src="img/car/pilot-seats-2.jpg" alt="Pilot seats seen from the third row" loading="lazy"></figure>
+          <figure><img src="img/car/front-portrait.jpg" alt="The Vellfire parked under trees in daylight" loading="lazy"></figure>
         </div>
       </div>
       <div>
@@ -471,6 +473,28 @@
       <div class="step"><h3>Confirm with deposit</h3><p>50% by PayNow, DuitNow or bank transfer locks in your slot. Free cancellation up to 48 hours before.</p></div>
       <div class="step"><h3>We arrive early</h3><p>Your driver messages you when en route and waits at the door. Airport pickups are flight-tracked.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="customers" id="customers">
+  <div class="wrap">
+    <p class="eyebrow">Happy customers</p>
+    <h2>Real handovers, real people.</h2>
+    <p class="section-sub">Every one of these is a genuine EzEe customer collecting the same Vellfire you see above. Faces are blurred because we don&rsquo;t publish our customers&rsquo; identities.</p>
+    <div class="masonry">
+      <figure><img src="img/customers/cust-08.jpg" alt="Customer standing beside the Vellfire at a kampung house" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-07.jpg" alt="Customer giving a thumbs up next to the Vellfire at night" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-03.jpg" alt="Customer collecting the Vellfire at an airport car park" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-09.jpg" alt="Customer in the driver's seat at a hotel entrance" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-05.jpg" alt="Customer in front of the Vellfire at a hotel driveway" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-04.jpg" alt="Customer with the Vellfire in a home porch" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-11.jpg" alt="Customer inspecting the Vellfire at a car park" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-10.jpg" alt="Customer beside the Vellfire outside her home at night" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-01.jpg" alt="Customer with the Vellfire at an apartment car park" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-06.jpg" alt="Customer beside the rear of the Vellfire at night" loading="lazy"></figure>
+      <figure><img src="img/customers/cust-02.jpg" alt="Customer holding the keys beside the Vellfire" loading="lazy"></figure>
+    </div>
+    <p class="privacy">Photos shared with customers&rsquo; permission. Faces pixelated for privacy.</p>
   </div>
 </section>
 
@@ -628,11 +652,6 @@
   route.addEventListener('change',function(){refreshDir();update()});
   [dir,date,time,days,pax].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
   refreshDir();update();
-
-  window.addEventListener('load',function(){
-    var g=$('gallery');
-    if(!g.querySelector('figure')){g.hidden=true;$('car-fallback').hidden=false}
-  });
 })();
 </script>
 

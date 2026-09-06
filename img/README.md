@@ -1,7 +1,7 @@
-# Drop real photos of the Vellfire here
+# Photos
 
-vellfire-1.jpg  exterior (main, landscape)
-vellfire-2.jpg  pilot seats
-vellfire-3.jpg  cabin / boot
+img/car/        web copies of the Vellfire (used on index.html)
+img/customers/  customer handover photos, faces pixelated, web size
 
-Any JPG works; keep each under ~400 KB. The page hides the gallery until at least one file exists.
+Originals (img/VF *.jpeg and img/Customer Photo/) are git-ignored and never published.
+To add a new customer photo: drop it in img/Customer Photo/ and ask Claude to re-run the blur script.
