@@ -674,14 +674,12 @@
   var $=function(id){return document.getElementById(id)};
   var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where');
   function currentZone(){return zoneFor(zone.value)}
-  /* minimum-days popup, shown once per visit when the self-drive destination box is first focused */
-  var modal=$('min-modal'),modalOk=$('min-ok');
-  function seen(){try{return sessionStorage.getItem('ezee-min-seen')==='1'}catch(e){return false}}
-  function markSeen(){try{sessionStorage.setItem('ezee-min-seen','1')}catch(e){}}
+  /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
+  var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false;
   function openModal(){modal.hidden=false;document.body.style.overflow='hidden';modalOk.focus()}
-  function closeModal(){modal.hidden=true;document.body.style.overflow='';markSeen();zone.focus()}
-  zone.addEventListener('focus',function(){if(!seen()&&modal.hidden){zone.blur();openModal()}});
-  zone.addEventListener('mousedown',function(e){if(!seen()&&modal.hidden){e.preventDefault();openModal()}});
+  function closeModal(){modal.hidden=true;document.body.style.overflow='';justClosed=true;zone.focus();setTimeout(function(){justClosed=false},300)}
+  zone.addEventListener('focus',function(){if(!justClosed&&modal.hidden){zone.blur();openModal()}});
+  zone.addEventListener('mousedown',function(e){if(!justClosed&&modal.hidden){e.preventDefault();openModal()}});
   modalOk.addEventListener('click',closeModal);
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal()});
