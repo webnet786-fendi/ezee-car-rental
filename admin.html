@@ -47,10 +47,15 @@
   .caritem img,.caritem .noimg{width:56px;height:38px;object-fit:cover;background:var(--raised);border-radius:3px;flex:none}
   .caritem .n{font-size:14.5px}.caritem .s{font-size:12px;color:var(--faint)}
   .caritem .off{color:var(--bad)}
+  .caritem .copybtn{flex:none;padding:4px 10px;font-size:12px}
   .prices{display:grid;grid-template-columns:1fr 130px;gap:8px 12px;align-items:center}
   .prices .lbl{font-size:14px}.prices .lbl small{display:block;color:var(--faint);font-size:12px}
   .prices .grp{grid-column:1/3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:10px}
   .hint{font-size:13px;color:var(--faint);margin:6px 0 0}
+  .toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 18px;padding:0 0 14px;border-bottom:1px solid var(--line)}
+  .copyfrom{display:flex;gap:8px;align-items:center;margin-left:auto}
+  .copyfrom label{margin:0;white-space:nowrap}
+  .copyfrom select{width:auto;min-width:180px;padding:6px 30px 6px 10px;font-size:14px}
   .photo{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
   .photo img{width:220px;aspect-ratio:16/10;object-fit:cover;background:var(--raised);border:1px solid var(--line)}
   table{width:100%;border-collapse:collapse}
@@ -225,10 +230,18 @@
     var l=$('carlist');l.innerHTML='';
     fleet.cars.forEach(function(c,i){
       var d=document.createElement('div');d.className='caritem'+(i===sel?' sel':'');
-      d.innerHTML=(c.photo?'<img src="'+esc(c.photo)+'?v='+Date.now()+'" alt="">':'<div class="noimg"></div>')+'<div><div class="n">'+esc(c.name||'(no name)')+'</div><div class="s">'+(c.active?'Active':'<span class="off">Hidden</span>')+(c.hot?' · Hot item':'')+(c.singapore===false?' · Malaysia only':' · SG ok')+'</div></div>';
+      d.innerHTML=(c.photo?'<img src="'+esc(c.photo)+'?v='+Date.now()+'" alt="">':'<div class="noimg"></div>')+'<div style="flex:1;min-width:0"><div class="n">'+esc(c.name||'(no name)')+'</div><div class="s">'+(c.active?'Active':'<span class="off">Hidden</span>')+(c.hot?' · Hot item':'')+(c.singapore===false?' · Malaysia only':' · SG ok')+'</div></div><button class="btn small copybtn" type="button" title="Duplicate this car">Copy</button>';
       d.addEventListener('click',function(){sel=i;renderCarList();renderCarEditor()});
+      d.querySelector('.copybtn').addEventListener('click',function(ev){ev.stopPropagation();duplicateCar(i)});
       l.appendChild(d);
     });
+  }
+  function duplicateCar(i){
+    var c=fleet.cars[i];var copy=JSON.parse(JSON.stringify(c,function(k,v){return k==='_photoData'?undefined:v}));
+    copy.name=(c.name||'Car')+' (copy)';copy.id=slug(copy.name);var n=2;while(fleet.cars.some(function(o){return o.id===copy.id})){copy.id=slug(c.name)+'-'+n;n++}
+    copy.active=false;copy.hot=false;
+    fleet.cars.splice(i+1,0,copy);sel=i+1;markDirty();renderCarList();renderCarEditor();
+    setStatus('Duplicated “'+c.name+'”. The copy is hidden from the website until you tick “Show on the website” and save.');
   }
   $('addcar').addEventListener('click',function(){
     fleet.cars.push({id:'',active:false,short:'',name:'',hot:false,singapore:true,meta:'',photo:'',prices:{selfdrive:100,monthly:null,other:null},inclTitle:'Included with this car',includes:['Comprehensive insurance'],extras:[],cardIncludes:[],terms:[]});
@@ -239,7 +252,11 @@
     if(!c){e.innerHTML='<p style="color:var(--muted)">No cars yet. Click “Add a car”.</p>';return}
     var groups=[];fleet.routes.forEach(function(r){if(r.type==='other')return;if(groups.indexOf(r.group)<0)groups.push(r.group)});
     var ph='';groups.forEach(function(g){ph+='<div class="grp">'+esc(g)+'</div>';fleet.routes.forEach(function(r){if(r.group!==g||r.type==='other')return;ph+='<div class="lbl">'+esc(r.label)+'<small>'+esc(r.note||'')+'</small></div><input type="text" data-price="'+esc(r.id)+'" value="'+esc(priceStr(c.prices?c.prices[r.id]:undefined))+'" placeholder="blank = not offered">'})});
+    var others=fleet.cars.map(function(o,i){return i===sel?'':'<option value="'+i+'">'+esc(o.name||'(no name)')+'</option>'}).join('');
     e.innerHTML=''
+      +'<div class="toolbar"><button class="btn small" id="dupcar" type="button">Duplicate this car</button>'
+      +(fleet.cars.length>1?'<span class="copyfrom"><label for="copyfrom">Copy prices &amp; lists from</label><select id="copyfrom"><option value="">choose a car…</option>'+others+'</select><button class="btn small" id="docopy" type="button" disabled>Copy</button></span>':'')
+      +'</div>'
       +'<div class="row c2"><div><label>Car name (shown to customers)</label><input type="text" id="f-name" value="'+esc(c.name)+'" placeholder="Toyota Vellfire ZG 2022"></div><div><label>Short name (used in table rows)</label><input type="text" id="f-short" value="'+esc(c.short)+'" placeholder="Vellfire"></div></div>'
       +'<div class="row c3"><label class="check"><input type="checkbox" id="f-active"'+(c.active?' checked':'')+'> Show on the website</label><label class="check"><input type="checkbox" id="f-hot"'+(c.hot?' checked':'')+'> Hot item badge</label><label class="check"><input type="checkbox" id="f-sg"'+(c.singapore!==false?' checked':'')+'> Allowed into Singapore</label></div>'
       +'<div class="row"><div><label>One-line description</label><input type="text" id="f-meta" value="'+esc(c.meta)+'" placeholder="7 seats · pilot seats · auto · self-drive or chauffeured"></div></div>'
@@ -263,6 +280,14 @@
     bind('f-terms',function(el){c.terms=lines(el.value)});
     e.querySelectorAll('[data-price]').forEach(function(inp){inp.addEventListener('input',function(){c.prices=c.prices||{};var v=parsePrice(inp.value);if(v===undefined)delete c.prices[inp.dataset.price];else c.prices[inp.dataset.price]=v;if(!('other' in c.prices))c.prices.other=null;markDirty()})});
     $('f-photo').addEventListener('change',function(){var f=this.files[0];if(!f)return;resizeImage(f,1400,0.82).then(function(dataUrl){c._photoData=dataUrl;$('f-photo-prev').src=dataUrl;if(!c.id)c.id=slug(c.name);c.photo='img/car/'+(c.id||'car')+'.jpg';markDirty();renderCarList()})});
+    $('dupcar').addEventListener('click',function(){duplicateCar(sel)});
+    var cf=$('copyfrom');if(cf){cf.addEventListener('change',function(){$('docopy').disabled=!cf.value});
+      $('docopy').addEventListener('click',function(){
+        var src=fleet.cars[+cf.value];if(!src)return;
+        if(!confirm('Replace this car’s prices, included lists, extras and terms with the ones from “'+src.name+'”? Name, photo and flags stay.'))return;
+        c.prices=JSON.parse(JSON.stringify(src.prices||{}));c.inclTitle=src.inclTitle;c.includes=(src.includes||[]).slice();c.extras=(src.extras||[]).slice();c.cardIncludes=(src.cardIncludes||[]).slice();c.terms=(src.terms||[]).slice();
+        markDirty();renderCarEditor();setStatus('Copied from “'+src.name+'”. Adjust anything, then Save & publish.');
+      });}
     $('delcar').addEventListener('click',function(){if(confirm('Delete “'+(c.name||'this car')+'” from the website data? The photo file stays in the repository.')){fleet.cars.splice(sel,1);sel=Math.max(0,sel-1);markDirty();renderCarList();renderCarEditor()}});
   }
   function resizeImage(file,max,q){
