@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <title>EzEe Car Rental</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
 <style>
   :root{
     --ground:#14110b;
@@ -47,6 +47,14 @@
     display:flex;align-items:center;justify-content:space-between;gap:16px;
     padding:22px 0;
   }
+  .brand{display:flex;align-items:center;gap:18px}
+  .site-title{
+    display:inline-block;font-family:'Anton',Impact,'Arial Narrow Bold',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:22px;letter-spacing:.06em;line-height:1;color:var(--gold-soft);text-decoration:none;
+    border:2px solid var(--gold);border-radius:0;padding:10px 14px 8px;
+  }
+  .site-title:hover{background:var(--gold);color:var(--ground)}
+  @media (max-width:900px){ .brand{flex-direction:column;gap:12px} .site-title{font-size:19px;padding:9px 12px 7px} }
   .logo{display:block;line-height:0}
   .logo img{height:56px;width:auto;display:block}
   @media (max-width:900px){
@@ -403,9 +411,12 @@
   </form>
 </div>
 
-<div class="wrap">
+<div class="wrap" id="top">
   <nav>
-    <a class="logo" href="#"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
+    <div class="brand">
+      <a class="logo" href="#top"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
+      <a class="site-title" href="#top">EzEe Car Rental Official Page</a>
+    </div>
     <div class="navlinks">
       <a href="#rates">Rates</a>
       <a href="#services">Services</a>
@@ -669,7 +680,7 @@
   </footer>
 </div>
 
-<a class="fab" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer" title="WhatsApp EzEe" aria-label="WhatsApp EzEe"><img src="img/logo.png" alt="EzEe Car Rental"></a>
+<a class="fab" href="#top" title="Back to top" aria-label="Back to top"><img src="img/logo.png" alt="EzEe Car Rental"></a>
 
 <div class="modal" id="min-modal" hidden role="dialog" aria-modal="true" aria-labelledby="min-title">
   <div class="modal-box">
