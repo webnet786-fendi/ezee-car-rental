@@ -71,6 +71,12 @@
   .hero p.lede{
     max-width:48ch;font-size:17.5px;color:var(--muted);margin:20px 0 28px;
   }
+  .flag{
+    font-size:13px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);
+    margin:18px 0 26px;padding-left:14px;border-left:2px solid var(--gold);
+  }
+  .hero-photo{margin:26px 0 0;border:1px solid var(--line);overflow:hidden;background:var(--raised)}
+  .hero-photo img{display:block;width:100%;height:auto}
   .pillars{list-style:none;padding:0;margin:0;display:grid;gap:14px}
   .pillars li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--muted)}
   .pillars li b{display:block;color:var(--text);font-weight:500;font-size:16px}
@@ -284,6 +290,42 @@
   }
   .fab:hover{background:#2db96c}
 
+  /* ---------- Sticky compact search bar ---------- */
+  .sbar{position:fixed;left:0;right:0;top:0;z-index:90;background:rgba(20,17,11,.96);border-bottom:1px solid var(--line);
+    box-shadow:0 10px 30px rgba(0,0,0,.45);backdrop-filter:blur(8px);transform:translateY(-110%);transition:transform .25s ease}
+  .sbar.on{transform:none}
+  .sbar[hidden]{display:none}
+  .sbar-in{max-width:1080px;margin:0 auto;padding:10px 24px;display:flex;align-items:stretch;gap:0;color-scheme:dark}
+  .sf{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:6px 14px;border-right:1px solid var(--line);min-width:0}
+  .sf>span:first-child{font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+  .sf input,.sf select{background:transparent;border:0;color:var(--text);font-family:inherit;font-size:15px;font-weight:400;padding:2px 0;min-width:0;outline:none;appearance:none;-webkit-appearance:none}
+  .sf input::placeholder{color:var(--faint)}
+  .sf .row{display:flex;gap:10px}
+  .sf-car{flex:0 0 200px}
+  .sf-where{flex:1 1 220px}
+  .sf-from{flex:0 0 250px}
+  .sf-until{flex:0 0 150px}
+  .sf[hidden]{display:none}
+  .sbtn{flex:none;align-self:center;margin-left:14px;width:46px;height:46px;border-radius:50%;background:var(--whatsapp);color:#fff;display:grid;place-items:center;text-decoration:none}
+  .sbtn:hover{background:#2db96c}
+  .sprice{align-self:center;margin-left:14px;font-family:'Marcellus',Georgia,serif;font-size:20px;color:var(--gold);white-space:nowrap}
+  @media (max-width:900px){
+    .sbar-in{display:grid;grid-template-columns:2fr 3fr;padding:6px 12px 8px;gap:0}
+    .sf{box-sizing:border-box;border-right:0;border-bottom:1px solid var(--line);padding:5px 6px;gap:0;min-width:0}
+    .sf>span:first-child{font-size:9.5px}
+    .sf input,.sf select{font-size:14px;padding:1px 0;width:100%;min-width:0}
+    .sf .row{display:flex;gap:6px}
+    .sf .row input{flex:1 1 0}
+    .sf-car{grid-column:1;grid-row:1;border-right:1px solid var(--line)}
+    .sf-where{grid-column:2;grid-row:1}
+    .sf-car[hidden]+.sf-where{grid-column:1/3}
+    .sf-from{grid-column:1;grid-row:2;border-right:1px solid var(--line)}
+    .sf-until{grid-column:2;grid-row:2}
+    .sf-from:has(+ .sf-until[hidden]){grid-column:1/3;border-right:0}
+    .sprice{grid-column:1;grid-row:3;font-size:17px;margin:8px 0 0 6px;align-self:center}
+    .sbtn{grid-column:2;grid-row:3;justify-self:end;margin:6px 0 0;width:40px;height:40px}
+  }
+
   /* ---------- Minimum-days popup ---------- */
   .modal{position:fixed;inset:0;z-index:100;background:rgba(10,8,4,.78);display:grid;place-items:center;padding:20px}
   .modal[hidden]{display:none}
@@ -306,29 +348,7 @@
   .modal-ok:hover{background:var(--gold-soft)}
   .modal-ok:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
 
-  /* ---------- Fleet (shown automatically when 2+ cars are active) ---------- */
-  .fleet-more{margin-top:44px;padding-top:36px;border-top:1px solid var(--line)}
-  .fleet-more[hidden]{display:none}
-  .fleet-more .eyebrow{margin-bottom:8px}
-  .fleet-more h3{font-size:24px;margin-bottom:6px}
-  .fleet-more .lead{color:var(--muted);font-size:15px;margin:0 0 24px;max-width:60ch}
-  .fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media (max-width:860px){ .fleet-grid{grid-template-columns:1fr 1fr} }
-  @media (max-width:540px){ .fleet-grid{grid-template-columns:1fr} }
-  .fleet-card{position:relative;background:var(--ground);border:1px solid var(--line);display:flex;flex-direction:column}
-  .fleet-card .ph{aspect-ratio:4/3;background:var(--raised);display:grid;place-items:center;color:var(--faint);font-size:13px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--line);overflow:hidden}
-  .fleet-card .ph svg{width:60%;height:auto;opacity:.6}
-  .fleet-card .ph img{width:100%;height:100%;object-fit:cover;display:block}
-  .fleet-card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .fleet-card h4{font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:19px;margin:0;color:var(--gold-soft)}
-  .fleet-card .meta{font-size:13.5px;color:var(--muted);margin:0}
-  .fleet-card .from{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;padding-top:12px;border-top:1px solid var(--line)}
-  .fleet-card .from .p{font-family:'Marcellus',Georgia,serif;font-size:22px;color:var(--gold)}
-  .fleet-card .from .p small{font-family:'Jost',sans-serif;font-size:12.5px;color:var(--muted);margin-left:4px}
-  .fleet-card .from a{font-size:13.5px;text-decoration:none;border:1px solid var(--line);padding:8px 14px;border-radius:999px;color:var(--gold-soft)}
-  .fleet-card .from a:hover{border-color:var(--gold)}
-  .fleet-card.featured{border-color:var(--gold)}
-  .fleet-card .badge{position:absolute;z-index:1;margin:10px;background:var(--gold);color:var(--ground);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+  /* ---------- Car tabs (shown automatically when 2+ cars are active) ---------- */
   .car-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 26px}
   .car-tabs[hidden]{display:none}
   .car-tabs button{
@@ -340,6 +360,18 @@
 </style>
 </head>
 <body>
+<div class="sbar" id="sbar" hidden>
+  <form class="sbar-in" onsubmit="return false">
+    <label class="sf sf-car" id="sf-car" hidden><span>Car</span><select id="s-car"></select></label>
+    <label class="sf sf-where"><span>Where</span><input type="text" id="s-where" placeholder="Airport, hotel, address, city" autocomplete="off"></label>
+    <label class="sf sf-from"><span>From</span><span class="row"><input type="date" id="s-from"><input type="time" id="s-time" value="09:00"></span></label>
+    <label class="sf sf-until" id="sf-until"><span>Until</span><input type="date" id="s-until"></label>
+    <a class="sbtn" id="s-go" href="https://wa.me/60127119814" target="_blank" rel="noopener" title="Get your price on WhatsApp" aria-label="Get your price on WhatsApp">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </a>
+    <span class="sprice" id="s-price"></span>
+  </form>
+</div>
 
 <div class="wrap">
   <nav>
@@ -360,13 +392,13 @@
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Singapore &middot; Johor Bahru &middot; Senai Airport &middot; Desaru Coast</p>
-        <h1>Cross the Causeway <em>in comfort.</em></h1>
-        <p class="lede">A 2022 Toyota Vellfire ZG with pilot seats and a professional chauffeur, door to door between Singapore and Johor. One fixed price. No VEP paperwork, no driving through the jam.</p>
+        <h1>Rent &ndash; Drive &ndash; <em>Pay Economy</em></h1>
+        <p class="flag">Our flagship car &middot; Vellfire ZG Pilot Seat</p>
         <ul class="pillars">
-          <li><span class="mark">1</span><div><b>Door to door, both sides of the Causeway</b>Any Singapore address, Changi, Senai, JB, Desaru. We clear the checkpoint while you rest.</div></li>
-          <li><span class="mark">2</span><div><b>Fixed all-in price, confirmed on WhatsApp in minutes</b>Fuel, tolls, VEP and checkpoint fees included. The quote is the bill.</div></li>
-          <li><span class="mark">3</span><div><b>Book the exact car you see, no &ldquo;or similar&rdquo;</b>Our flagship Vellfire for chauffeured trips, plus a budget self-drive option. The car in the photo is the car you get.</div></li>
+          <li><span class="mark">&#10003;</span><div><b>Exceptional Service</b>Rent the exact car you want, exactly where you need it, for days, weeks, or months.</div></li>
+          <li><span class="mark">&#10003;</span><div><b>Best Price</b>Rent with the best price in town.</div></li>
         </ul>
+        <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"></figure>
       </div>
 
       <form class="quote" id="quote" onsubmit="return false">
@@ -426,15 +458,6 @@
   </div>
 </div>
 
-<div class="wrap">
-  <div class="strip">
-    <div><b>Vellfire ZG 2022</b> flagship</div>
-    <div><b>Bezza 2023</b> budget self-drive</div>
-    <div><b>Pilot seats</b> &middot; 7 seats</div>
-    <div><b>English &middot; Malay &middot; Mandarin</b> driver</div>
-    <div><b>Based in Kulai</b> &middot; 10 min from Senai</div>
-  </div>
-</div>
 
 <section class="car" id="car">
   <div class="wrap">
@@ -461,12 +484,6 @@
         </ul>
         <p class="promise">What you see is what you ride in.<small>Every car on this page is one we own and photograph ourselves. No fleet substitution, no &ldquo;or similar&rdquo;.</small></p>
       </div>
-    </div>
-    <div class="fleet-more" id="fleet-more" hidden>
-      <p class="eyebrow">Our fleet &middot; Self-drive</p>
-      <h3>More ways to drive with EzEe</h3>
-      <p class="lead">The Vellfire is our headline car. For everyday self-drive around Johor we also keep a budget option. Pick a car in the price box above, or tap a card.</p>
-      <div class="fleet-grid" id="fleet-grid"></div>
     </div>
   </div>
 </section>
@@ -672,9 +689,9 @@
   var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where');
   function currentZone(){return zoneFor(zone.value)}
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
-  var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false;
+  var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
   function openModal(){modal.hidden=false;document.body.style.overflow='hidden';modalOk.focus()}
-  function closeModal(){modal.hidden=true;document.body.style.overflow='';justClosed=true;zone.focus();setTimeout(function(){justClosed=false},300)}
+  function closeModal(){modal.hidden=true;document.body.style.overflow='';justClosed=true;(popupTarget||zone).focus();popupTarget=null;setTimeout(function(){justClosed=false},300)}
   zone.addEventListener('focus',function(){if(!justClosed&&modal.hidden){zone.blur();openModal()}});
   zone.addEventListener('mousedown',function(e){if(!justClosed&&modal.hidden){e.preventDefault();openModal()}});
   modalOk.addEventListener('click',closeModal);
@@ -698,19 +715,13 @@
     if(keep&&(keep in car.prices))route.value=keep;
   }
   fillRoutes();
-  var tabs=$('car-tabs'),rows=$('rate-rows'),grid=$('fleet-grid');
-  tabs.hidden=!multi;$('fleet-more').hidden=!multi;
+  var tabs=$('car-tabs'),rows=$('rate-rows');
+  tabs.hidden=!multi;
   if(multi)activeCars().forEach(function(c){
     var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.dataset.car=c.id;
     b.innerHTML=c.name+(c.hot?'<span class="hot">Hot item</span>':'');
     b.addEventListener('click',function(){carSel.value=c.id;fillRoutes();refreshDir();update()});
     tabs.appendChild(b);
-    var d=document.createElement('div');d.className='fleet-card'+(c.hot?' featured':'');
-    d.innerHTML=(c.hot?'<span class="badge">Hot item</span>':'')
-      +'<div class="ph">'+(c.photo?'<img src="'+c.photo+'" alt="">':'<svg viewBox="0 0 200 80" aria-hidden="true"><path d="M18 58 L34 34 Q38 28 46 28 L120 28 Q130 28 138 36 L156 52 L178 56 Q186 58 186 64 L186 68 L14 68 L14 64 Q14 59 18 58Z" fill="none" stroke="#d2a95e" stroke-width="1.5"/><circle cx="52" cy="68" r="9" fill="#14110b" stroke="#d2a95e" stroke-width="1.5"/><circle cx="150" cy="68" r="9" fill="#14110b" stroke="#d2a95e" stroke-width="1.5"/></svg>')+'</div>'
-      +'<div class="body"><h4>'+c.name+'</h4><p class="meta">'+c.meta+'</p>'
-      +'<div class="from"><div class="p">RM'+c.prices.selfdrive+'<small>/ day</small></div><a href="#quote" data-car="'+c.id+'">Get price</a></div></div>';
-    grid.appendChild(d);
   });
   function renderRates(){
     var car=currentCar();rows.innerHTML='';
@@ -804,6 +815,7 @@
     }
     note.textContent=noteText;
     renderRates();
+    if(typeof pushToBar==='function')pushToBar();
     var msg='Hi EzEe, I’d like to book:\n'+lines.join('\n')+'\nPlease confirm.';
     send.href=WA+encodeURIComponent(msg);
   }
@@ -812,7 +824,44 @@
   route.addEventListener('change',function(){refreshDir();update()});
   document.querySelectorAll('[data-car]').forEach(function(a){a.addEventListener('click',function(){carSel.value=a.getAttribute('data-car');fillRoutes();refreshDir();update()})});
   [dir,date,time,days,pax,zone,whereIn].forEach(function(el){el.addEventListener('change',update);el.addEventListener('input',update)});
-  refreshDir();update();
+
+  /* ---- sticky compact bar: mirrors the price box, appears once the box scrolls out of view ---- */
+  var sbar=$('sbar'),sCar=$('s-car'),sWhere=$('s-where'),sFrom=$('s-from'),sTime=$('s-time'),sUntil=$('s-until'),sfUntil=$('sf-until'),sGo=$('s-go'),sPrice=$('s-price');
+  sbar.hidden=false;
+  if(multi){$('sf-car').hidden=false;activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.short;sCar.appendChild(o)})}
+  sFrom.min=date.min;
+  function addDays(v,n){if(!v)return '';var p=v.split('-');var d=new Date(p[0],p[1]-1,+p[2]+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function diffDays(a,b){if(!a||!b)return null;var x=a.split('-'),y=b.split('-');return Math.round((new Date(y[0],y[1]-1,y[2])-new Date(x[0],x[1]-1,x[2]))/864e5)}
+  var syncing=false;
+  function pushToBar(){
+    if(syncing)return;syncing=true;
+    var r=current(),self=(r.type==='selfdrive'||r.type==='monthly');
+    if(multi)sCar.value=carSel.value;
+    sWhere.value=self?zone.value:whereIn.value;
+    sFrom.value=date.value;sTime.value=time.value;
+    sTime.style.display=self?'none':'';
+    sfUntil.hidden=(r.type!=='selfdrive');
+    sUntil.min=date.value||date.min;
+    sUntil.value=(r.type==='selfdrive'&&date.value)?addDays(date.value,parseInt(days.value,10)):'';
+    sGo.href=send.href;sPrice.textContent=amt.childNodes.length?amt.childNodes[0].textContent:amt.textContent;
+    syncing=false;
+  }
+  function pullFromBar(){
+    if(syncing)return;syncing=true;
+    if(multi&&sCar.value!==carSel.value){carSel.value=sCar.value;fillRoutes();refreshDir()}
+    var r=current(),self=(r.type==='selfdrive'||r.type==='monthly');
+    if(self)zone.value=sWhere.value;else whereIn.value=sWhere.value;
+    date.value=sFrom.value;time.value=sTime.value||time.value;
+    if(r.type==='selfdrive'){var n=diffDays(sFrom.value,sUntil.value);if(n!=null&&n>=1)days.value=Math.min(14,n)}
+    syncing=false;update();
+  }
+  [sCar,sWhere,sFrom,sTime,sUntil].forEach(function(el){el.addEventListener('change',pullFromBar);el.addEventListener('input',pullFromBar)});
+  sWhere.addEventListener('mousedown',function(e){if(current().type==='selfdrive'||current().type==='monthly'){if(!justClosed&&modal.hidden){e.preventDefault();popupTarget=sWhere;openModal()}}});
+  sWhere.addEventListener('focus',function(){if(current().type==='selfdrive'||current().type==='monthly'){if(!justClosed&&modal.hidden){sWhere.blur();popupTarget=sWhere;openModal()}}});
+  var quoteBox=$('quote');
+  function toggleBar(){var rct=quoteBox.getBoundingClientRect();sbar.classList.toggle('on',rct.bottom<0)}
+  window.addEventListener('scroll',toggleBar,{passive:true});window.addEventListener('resize',toggleBar);toggleBar();
+  refreshDir();update();pushToBar();
 })();
 </script>
 
