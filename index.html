@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <title>EzEe Car Rental</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Marcellus&family=Jost:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
 <style>
   :root{
     --ground:#14110b;
@@ -50,7 +50,7 @@
   .brand{display:flex;align-items:center;gap:18px}
   .site-title{
     display:inline-block;font-family:'Anton',Impact,'Arial Narrow Bold',sans-serif;font-weight:700;text-transform:uppercase;
-    font-size:22px;letter-spacing:.06em;line-height:1;color:var(--gold-soft);text-decoration:none;
+    font-size:22px;letter-spacing:.06em;line-height:1;color:var(--gold-soft);text-decoration:none;white-space:nowrap;
     border:2px solid var(--gold);border-radius:0;padding:10px 14px 8px;
   }
   .site-title:hover{background:var(--gold);color:var(--ground)}
@@ -66,6 +66,17 @@
   .navlinks a:hover{color:var(--gold-soft)}
   .navlinks a.navwa{color:var(--gold-soft);border:1px solid var(--line);padding:8px 16px;border-radius:999px}
   @media (max-width:700px){ .navlinks{display:none} }
+  .navright{display:flex;align-items:center;gap:18px}
+  /* ---------- Language switcher ---------- */
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+  .lang button{font-family:'Jost',"Segoe UI",system-ui,sans-serif;font-size:12.5px;letter-spacing:.08em;background:transparent;color:var(--muted);border:0;padding:8px 13px;cursor:pointer;line-height:1}
+  .lang button+button{border-left:1px solid var(--line)}
+  .lang button:hover{color:var(--gold-soft)}
+  .lang button[aria-pressed="true"]{background:var(--gold);color:var(--ground);font-weight:500}
+  html[lang="zh-Hans"] body{font-family:'Jost','Noto Sans SC',"Segoe UI",system-ui,sans-serif}
+  html[lang="zh-Hans"] h1,html[lang="zh-Hans"] h2,html[lang="zh-Hans"] h3{font-family:'Marcellus','Noto Sans SC',Georgia,serif}
+  html[lang="zh-Hans"] .hero h1.plain{font-family:'Noto Sans SC','Jost',sans-serif}
+  html[lang="zh-Hans"] .eyebrow,html[lang="zh-Hans"] .field label,html[lang="zh-Hans"] th,html[lang="zh-Hans"] .qprice .lbl{letter-spacing:.1em}
 
   /* ---------- Hero with quote builder ---------- */
   .hero{padding:44px 0 52px;border-bottom:1px solid var(--line)}
@@ -412,11 +423,11 @@
 <body>
 <div class="sbar" id="sbar" hidden>
   <form class="sbar-in" onsubmit="return false">
-    <label class="sf sf-car" id="sf-car" hidden><span>Car</span><select id="s-car"></select></label>
-    <label class="sf sf-where"><span>Where</span><input type="text" id="s-where" placeholder="Airport, hotel, address, city" autocomplete="off"></label>
-    <label class="sf sf-from"><span>From</span><input type="datetime-local" id="s-when" step="900"></label>
-    <label class="sf sf-until" id="sf-until"><span>Until</span><input type="date" id="s-until"></label>
-    <a class="sbtn" id="s-go" href="https://wa.me/60127119814" target="_blank" rel="noopener" title="Get your price on WhatsApp" aria-label="Get your price on WhatsApp">
+    <label class="sf sf-car" id="sf-car" hidden><span data-i18n="sbar.car">Car</span><select id="s-car"></select></label>
+    <label class="sf sf-where"><span data-i18n="sbar.where">Where</span><input type="text" id="s-where" placeholder="Airport, hotel, address, city" data-i18n-ph="sbar.ph" autocomplete="off"></label>
+    <label class="sf sf-from"><span data-i18n="sbar.from">From</span><input type="datetime-local" id="s-when" step="900"></label>
+    <label class="sf sf-until" id="sf-until"><span data-i18n="sbar.until">Until</span><input type="date" id="s-until"></label>
+    <a class="sbtn" id="s-go" href="https://wa.me/60127119814" target="_blank" rel="noopener" title="Get your price on WhatsApp" data-i18n-title="sbar.go" aria-label="Get your price on WhatsApp">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
     </a>
     <span class="sprice" id="s-price"></span>
@@ -427,14 +438,17 @@
   <nav>
     <div class="brand">
       <a class="logo" href="#top"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
-      <a class="site-title" href="#top">EzEe Car Rental Official Page</a>
+      <a class="site-title" href="#top" data-i18n="site.title">EzEe Car Rental Official Page</a>
     </div>
-    <div class="navlinks">
-      <a href="#rates">Rates</a>
-      <a href="#services">Services</a>
-      <a href="#customers">Customers</a>
-      <a href="#faq">FAQ</a>
-      <a class="navwa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp</a>
+    <div class="navright">
+      <div class="navlinks">
+        <a href="#rates" data-i18n="nav.rates">Rates</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#customers" data-i18n="nav.customers">Customers</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a class="navwa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp</a>
+      </div>
+      <div class="lang"></div>
     </div>
   </nav>
 </div>
@@ -443,42 +457,42 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">Singapore &middot; Johor Bahru &middot; Senai Airport &middot; Desaru Coast</p>
-        <h1 class="plain">Rent &amp; Drive Our Economy Vehicle</h1>
+        <p class="eyebrow" data-i18n="hero.eyebrow">Singapore &middot; Johor Bahru &middot; Senai Airport &middot; Desaru Coast</p>
+        <h1 class="plain" data-i18n="hero.h1">Rent &amp; Drive Our Economy Vehicle</h1>
         <ul class="pillars">
-          <li><span class="mark">&#10003;</span><div><b>Exceptional Service</b>Rent the exact car you want, exactly where you need it, for days, weeks, or months.</div></li>
-          <li><span class="mark">&#10003;</span><div><b>Best Price</b>Rent with the best price in town.</div></li>
+          <li><span class="mark">&#10003;</span><div data-i18n="pillar.1"><b>Exceptional Service</b>Rent the exact car you want, exactly where you need it, for days, weeks, or months.</div></li>
+          <li><span class="mark">&#10003;</span><div data-i18n="pillar.2"><b>Best Price</b>Rent with the best price in town.</div></li>
         </ul>
-        <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo">Our Flagship Car Promo This Month<a href="#quote">Toyota Vellfire ZG &middot; Book now!</a></figcaption></figure>
+        <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo" data-i18n="promo">Our Flagship Car Promo This Month<a href="#quote">Toyota Vellfire ZG &middot; Book now!</a></figcaption></figure>
       </div>
 
       <form class="quote" id="quote" onsubmit="return false">
-        <h2>Get your price</h2>
-        <p class="qsub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
+        <h2 data-i18n="q.title">Get your price</h2>
+        <p class="qsub" data-i18n="q.sub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
 
         <div class="field" id="f-car" hidden>
-          <label for="q-car">Choose your car please</label>
+          <label for="q-car" data-i18n="q.car">Choose your car please</label>
           <select id="q-car"></select>
         </div>
         <div class="field">
-          <label for="q-route">Route or service</label>
+          <label for="q-route" data-i18n="q.route">Route or service</label>
           <select id="q-route"></select>
         </div>
         <div class="field" id="f-dir">
-          <label for="q-dir">Direction</label>
+          <label for="q-dir" data-i18n="q.dir">Direction</label>
           <select id="q-dir"></select>
         </div>
         <div class="field" id="f-zone" hidden>
-          <label for="q-zone">Where will you drive to?</label>
-          <input type="text" id="q-zone" placeholder="e.g. Kuala Lumpur, Cameron Highlands, Langkawi" autocomplete="off">
+          <label for="q-zone" data-i18n="q.zone">Where will you drive to?</label>
+          <input type="text" id="q-zone" placeholder="e.g. Kuala Lumpur, Cameron Highlands, Langkawi" data-i18n-ph="q.zone.ph" autocomplete="off">
         </div>
         <div class="field" id="f-deliver" hidden>
-          <label for="q-deliver">Where we need to send this car?</label>
-          <input type="text" id="q-deliver" placeholder="Your address, hotel, Senai Airport, JB CIQ…" autocomplete="off">
+          <label for="q-deliver" data-i18n="q.deliver">Where we need to send this car?</label>
+          <input type="text" id="q-deliver" placeholder="Your address, hotel, Senai Airport, JB CIQ…" data-i18n-ph="q.deliver.ph" autocomplete="off">
         </div>
         <div class="field" id="f-where">
-          <label for="q-where">Drop-off address, hotel or place</label>
-          <input type="text" id="q-where" placeholder="e.g. Hard Rock Hotel Desaru, Mid Valley Southkey" autocomplete="off">
+          <label for="q-where" data-i18n="q.where">Drop-off address, hotel or place</label>
+          <input type="text" id="q-where" placeholder="e.g. Hard Rock Hotel Desaru, Mid Valley Southkey" data-i18n-ph="q.where.ph" autocomplete="off">
         </div>
         <div class="two">
           <div class="field" id="f-time">
@@ -487,11 +501,11 @@
             <input type="hidden" id="q-date"><input type="hidden" id="q-time">
           </div>
           <div class="field" id="f-days" hidden>
-            <label for="q-days">Days</label>
+            <label for="q-days" data-i18n="q.days">Days</label>
             <select id="q-days"></select>
           </div>
           <div class="field" id="f-pax">
-            <label for="q-pax">Passengers</label>
+            <label for="q-pax" data-i18n="q.pax">Passengers</label>
             <select id="q-pax"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
           </div>
         </div>
@@ -504,7 +518,7 @@
           <div class="note" id="q-note">Fuel, tolls, VEP &amp; checkpoint fees included</div>
         </div>
         <a class="qbtn" id="q-send" href="https://wa.me/60127119814" target="_blank" rel="noopener">Click to negotiate on WhatsApp?</a>
-        <p class="qfine">No account, no card. 50% deposit by PayNow confirms your slot. Free cancellation up to 48 h before.</p>
+        <p class="qfine" data-i18n="q.fine">No account, no card. 50% deposit by PayNow confirms your slot. Free cancellation up to 48 h before.</p>
       </form>
     </div>
   </div>
@@ -514,40 +528,40 @@
 
 <section id="rates">
   <div class="wrap">
-    <p class="eyebrow">Transparent pricing</p>
-    <h2>Every price on this page is the final price.</h2>
-    <p class="section-sub">No booking fees, no fuel top-ups, no checkpoint surprises. What we quote on WhatsApp is what you pay.</p>
+    <p class="eyebrow" data-i18n="r.eyebrow">Transparent pricing</p>
+    <h2 data-i18n="r.h2">Every price on this page is the final price.</h2>
+    <p class="section-sub" data-i18n="r.sub">No booking fees, no fuel top-ups, no checkpoint surprises. What we quote on WhatsApp is what you pay.</p>
     <div class="car-tabs" id="car-tabs" role="tablist" hidden></div>
     <figure class="incl-photo incl-photo-m" id="incl-photo-m" hidden><img id="incl-img-m" src="img/car/front.jpg" alt="" loading="lazy"></figure>
     <div class="rates-grid">
       <div>
         <div class="ratetable">
           <table>
-            <thead><tr><th>Route</th><th class="num">All-in</th></tr></thead>
+            <thead><tr><th data-i18n="r.th.route">Route</th><th class="num" data-i18n="r.th.allin">All-in</th></tr></thead>
             <tbody id="rate-rows"></tbody>
           </table>
         </div>
         <div class="minrent">
-          <h3>Self-drive: minimum rental by destination</h3>
+          <h3 data-i18n="r.min.h3">Self-drive: minimum rental by destination</h3>
           <ol>
-            <li><span>JB area</span><b>1 day</b></li>
-            <li><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
-            <li><span>Pahang</span><b>3 days</b></li>
-            <li><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
-            <li><span>East Coast, Northern states</span><b>4 days</b></li>
-            <li><span>Perlis, Langkawi</span><b>5 days</b></li>
+            <li data-i18n="z.jb"><span>JB area</span><b>1 day</b></li>
+            <li data-i18n="z.sg"><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
+            <li data-i18n="z.pahang"><span>Pahang</span><b>3 days</b></li>
+            <li data-i18n="z.perak"><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
+            <li data-i18n="z.east"><span>East Coast, Northern states</span><b>4 days</b></li>
+            <li data-i18n="z.perlis"><span>Perlis, Langkawi</span><b>5 days</b></li>
           </ol>
         </div>
-        <p class="after">Full terms and a printable version: <a href="rates.html">see the complete rate card</a>.</p>
+        <p class="after" data-i18n="r.after">Full terms and a printable version: <a href="rates.html">see the complete rate card</a>.</p>
       </div>
       <aside class="incl">
         <figure class="incl-photo" id="incl-photo"><img id="incl-img" src="img/car/front.jpg" alt="" loading="lazy"></figure>
         <p class="sgchip" id="sg-chip"></p>
         <h3 id="incl-title">Included in every fare</h3>
         <ul id="incl-list"></ul>
-        <h3 class="not">Only ever added</h3>
+        <h3 class="not" data-i18n="r.not">Only ever added</h3>
         <ul class="not" id="incl-extras"></ul>
-        <p class="deposit">50% deposit by PayNow, DuitNow or transfer confirms the booking. Free cancellation up to 48 hours before pickup.</p>
+        <p class="deposit" data-i18n="r.deposit">50% deposit by PayNow, DuitNow or transfer confirms the booking. Free cancellation up to 48 hours before pickup.</p>
       </aside>
     </div>
   </div>
@@ -555,53 +569,53 @@
 
 <section class="why">
   <div class="wrap">
-    <p class="eyebrow">Why be driven</p>
-    <h2>Skip the hassle, keep the comfort.</h2>
-    <p class="section-sub">Driving into Malaysia now means VEP registration, checkpoint queues at the wheel, and parking worries. Or you could be driven.</p>
+    <p class="eyebrow" data-i18n="w.eyebrow">Why be driven</p>
+    <h2 data-i18n="w.h2">Skip the hassle, keep the comfort.</h2>
+    <p class="section-sub" data-i18n="w.sub">Driving into Malaysia now means VEP registration, checkpoint queues at the wheel, and parking worries. Or you could be driven.</p>
     <div class="grid">
-      <div class="card"><span class="num-mark">No paperwork</span><h3>We handle VEP &amp; fees</h3><p>Our vehicle is fully registered for cross-border runs. You bring your passport; we bring everything else.</p></div>
-      <div class="card"><span class="num-mark">No surprises</span><h3>Fixed all-in price</h3><p>Quoted once on WhatsApp, fixed forever. Tolls, fuel and checkpoint fees are our problem, not yours.</p></div>
-      <div class="card"><span class="num-mark">No stress</span><h3>Rest through the jam</h3><p>Reclining pilot seats, cold water, Wi-Fi, and a driver who knows exactly which checkpoint lane moves.</p></div>
+      <div class="card"><span class="num-mark" data-i18n="w1.k">No paperwork</span><h3 data-i18n="w1.h">We handle VEP &amp; fees</h3><p data-i18n="w1.p">Our vehicle is fully registered for cross-border runs. You bring your passport; we bring everything else.</p></div>
+      <div class="card"><span class="num-mark" data-i18n="w2.k">No surprises</span><h3 data-i18n="w2.h">Fixed all-in price</h3><p data-i18n="w2.p">Quoted once on WhatsApp, fixed forever. Tolls, fuel and checkpoint fees are our problem, not yours.</p></div>
+      <div class="card"><span class="num-mark" data-i18n="w3.k">No stress</span><h3 data-i18n="w3.h">Rest through the jam</h3><p data-i18n="w3.p">Reclining pilot seats, cold water, Wi-Fi, and a driver who knows exactly which checkpoint lane moves.</p></div>
     </div>
   </div>
 </section>
 
 <section id="services">
   <div class="wrap">
-    <p class="eyebrow">What we do</p>
-    <h2>Done properly, whichever car.</h2>
-    <p class="section-sub">Chauffeured trips are always in the Vellfire. Self-drive customers choose the car that fits the trip and the budget.</p>
+    <p class="eyebrow" data-i18n="s.eyebrow">What we do</p>
+    <h2 data-i18n="s.h2">Done properly, whichever car.</h2>
+    <p class="section-sub" data-i18n="s.sub">Chauffeured trips are always in the Vellfire. Self-drive customers choose the car that fits the trip and the budget.</p>
     <div class="grid services">
-      <div class="card"><h3>SG &harr; JB transfers</h3><p>Door to door from any Singapore address or Changi Airport to anywhere in Johor Bahru. We clear the checkpoint while you relax in the back.</p></div>
-      <div class="card"><h3>Senai Airport</h3><p>Flying AirAsia or Batik Air from Senai instead of Changi? We collect you in Singapore and drop you at departures, flight-tracked both ways. Our base is ten minutes from the terminal.</p></div>
-      <div class="card"><h3>Desaru Coast</h3><p>Direct transfers to Hard Rock, Anantara, One&amp;Only and Westin Desaru &mdash; the comfortable alternative to the shuttle.</p></div>
-      <div class="card"><h3>Golf &amp; day trips</h3><p>Singapore pickup, clubs in the boot, driver on standby at the course. Horizon Hills, Palm Resort, Ponderosa and beyond.</p></div>
-      <div class="card"><h3>Medical visits</h3><p>Gentle, patient-friendly rides to Gleneagles Medini, KPJ and Regency &mdash; with room for family and a driver who waits.</p></div>
-      <div class="card"><h3>Weddings &amp; events</h3><p>A ribboned Vellfire for the bridal party, with a standby chauffeur for the whole day&rsquo;s runs.</p></div>
-      <div class="card"><h3>Full-day charter</h3><p>Ten hours, your itinerary. Legoland with the kids, caf&eacute; hopping, factory visits &mdash; the car and driver stay with you.</p></div>
-      <div class="card"><h3>Corporate retainers</h3><p>For Singapore companies with a plant in Senai, Nusajaya or Pasir Gudang: fixed monthly rates, SGD invoicing, one driver who knows the route.</p></div>
+      <div class="card"><h3 data-i18n="s1.h">SG &harr; JB transfers</h3><p data-i18n="s1.p">Door to door from any Singapore address or Changi Airport to anywhere in Johor Bahru. We clear the checkpoint while you relax in the back.</p></div>
+      <div class="card"><h3 data-i18n="s2.h">Senai Airport</h3><p data-i18n="s2.p">Flying AirAsia or Batik Air from Senai instead of Changi? We collect you in Singapore and drop you at departures, flight-tracked both ways. Our base is ten minutes from the terminal.</p></div>
+      <div class="card"><h3 data-i18n="s3.h">Desaru Coast</h3><p data-i18n="s3.p">Direct transfers to Hard Rock, Anantara, One&amp;Only and Westin Desaru &mdash; the comfortable alternative to the shuttle.</p></div>
+      <div class="card"><h3 data-i18n="s4.h">Golf &amp; day trips</h3><p data-i18n="s4.p">Singapore pickup, clubs in the boot, driver on standby at the course. Horizon Hills, Palm Resort, Ponderosa and beyond.</p></div>
+      <div class="card"><h3 data-i18n="s5.h">Medical visits</h3><p data-i18n="s5.p">Gentle, patient-friendly rides to Gleneagles Medini, KPJ and Regency &mdash; with room for family and a driver who waits.</p></div>
+      <div class="card"><h3 data-i18n="s6.h">Weddings &amp; events</h3><p data-i18n="s6.p">A ribboned Vellfire for the bridal party, with a standby chauffeur for the whole day&rsquo;s runs.</p></div>
+      <div class="card"><h3 data-i18n="s7.h">Full-day charter</h3><p data-i18n="s7.p">Ten hours, your itinerary. Legoland with the kids, caf&eacute; hopping, factory visits &mdash; the car and driver stay with you.</p></div>
+      <div class="card"><h3 data-i18n="s8.h">Corporate retainers</h3><p data-i18n="s8.p">For Singapore companies with a plant in Senai, Nusajaya or Pasir Gudang: fixed monthly rates, SGD invoicing, one driver who knows the route.</p></div>
     </div>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
-    <p class="eyebrow">Booking</p>
-    <h2>Three messages to a confirmed ride</h2>
-    <p class="section-sub">No apps, no accounts. Everything happens on WhatsApp.</p>
+    <p class="eyebrow" data-i18n="h.eyebrow">Booking</p>
+    <h2 data-i18n="h.h2">Three messages to a confirmed ride</h2>
+    <p class="section-sub" data-i18n="h.sub">No apps, no accounts. Everything happens on WhatsApp.</p>
     <div class="steps">
-      <div class="step"><h3>Tell us the trip</h3><p>Use the price box above or just message your date, pickup and destination. We reply with a fixed all-in quote, usually within minutes.</p></div>
-      <div class="step"><h3>Confirm with deposit</h3><p>50% by PayNow, DuitNow or bank transfer locks in your slot. Free cancellation up to 48 hours before.</p></div>
-      <div class="step"><h3>We arrive early</h3><p>Your driver messages you when en route and waits at the door. Airport pickups are flight-tracked.</p></div>
+      <div class="step"><h3 data-i18n="h1.h">Tell us the trip</h3><p data-i18n="h1.p">Use the price box above or just message your date, pickup and destination. We reply with a fixed all-in quote, usually within minutes.</p></div>
+      <div class="step"><h3 data-i18n="h2.h">Confirm with deposit</h3><p data-i18n="h2.p">50% by PayNow, DuitNow or bank transfer locks in your slot. Free cancellation up to 48 hours before.</p></div>
+      <div class="step"><h3 data-i18n="h3.h">We arrive early</h3><p data-i18n="h3.p">Your driver messages you when en route and waits at the door. Airport pickups are flight-tracked.</p></div>
     </div>
   </div>
 </section>
 
 <section class="customers" id="customers">
   <div class="wrap">
-    <p class="eyebrow">Happy customers</p>
-    <h2>Real handovers, real people.</h2>
-    <p class="section-sub">Every one of these is a genuine EzEe customer collecting the same Vellfire you see above. Faces are blurred because we don&rsquo;t publish our customers&rsquo; identities.</p>
+    <p class="eyebrow" data-i18n="c.eyebrow">Happy customers</p>
+    <h2 data-i18n="c.h2">Real handovers, real people.</h2>
+    <p class="section-sub" data-i18n="c.sub">Every one of these is a genuine EzEe customer collecting the same Vellfire you see above. Faces are blurred because we don&rsquo;t publish our customers&rsquo; identities.</p>
     <div class="masonry">
       <figure><img src="img/customers/cust-08.jpg" alt="Customer standing beside the Vellfire at a kampung house" loading="lazy"></figure>
       <figure><img src="img/customers/cust-07.jpg" alt="Customer giving a thumbs up next to the Vellfire at night" loading="lazy"></figure>
@@ -615,57 +629,57 @@
       <figure><img src="img/customers/cust-06.jpg" alt="Customer beside the rear of the Vellfire at night" loading="lazy"></figure>
       <figure><img src="img/customers/cust-02.jpg" alt="Customer holding the keys beside the Vellfire" loading="lazy"></figure>
     </div>
-    <p class="privacy">Photos shared with customers&rsquo; permission. Faces pixelated for privacy.</p>
+    <p class="privacy" data-i18n="c.privacy">Photos shared with customers&rsquo; permission. Faces pixelated for privacy.</p>
   </div>
 </section>
 
 <div class="trust">
   <div class="wrap">
     <div class="trust-grid">
-      <div class="trust-item"><div class="big">Kulai, Johor</div><p>Owner-driven, ten minutes from Senai Airport. You deal with the person who drives you.</p></div>
-      <div class="trust-item"><div class="big">8 am &ndash; 11 pm</div><p>Bookings answered daily. Late and early pickups run on request.</p></div>
-      <div class="trust-item"><div class="big">3 languages</div><p>English, Malay and Mandarin spoken in the car.</p></div>
-      <div class="trust-item"><div class="big">On Facebook</div><p><a href="https://www.facebook.com/people/JB-EZee-RentalCar/61558969903665/" target="_blank" rel="noopener">See our page and customer posts</a></p></div>
+      <div class="trust-item"><div class="big">Kulai, Johor</div><p data-i18n="t1.p">Owner-driven, ten minutes from Senai Airport. You deal with the person who drives you.</p></div>
+      <div class="trust-item"><div class="big" data-i18n="t2.big">8 am &ndash; 11 pm</div><p data-i18n="t2.p">Bookings answered daily. Late and early pickups run on request.</p></div>
+      <div class="trust-item"><div class="big" data-i18n="t3.big">3 languages</div><p data-i18n="t3.p">English, Malay and Mandarin spoken in the car.</p></div>
+      <div class="trust-item"><div class="big" data-i18n="t4.big">On Facebook</div><p><a href="https://www.facebook.com/people/JB-EZee-RentalCar/61558969903665/" target="_blank" rel="noopener" data-i18n="t4.a">See our page and customer posts</a></p></div>
     </div>
   </div>
 </div>
 
 <section id="faq">
   <div class="wrap">
-    <p class="eyebrow">Questions</p>
-    <h2>Before you ask</h2>
+    <p class="eyebrow" data-i18n="f.eyebrow">Questions</p>
+    <h2 data-i18n="f.h2">Before you ask</h2>
     <div style="margin-top:28px">
       <details>
-        <summary>Can I take the self-drive car outside JB, or to Singapore?</summary>
-        <p>Yes. The minimum rental depends on how far you go: 1 day within JB, 2 days for Singapore, Melaka, Seremban or KL, 3 days for Pahang, 4 days for Perak, Ipoh, Cameron Highlands, the East Coast or the northern states, and 5 days for Perlis or Langkawi. Pick your destination in the price box and the days adjust automatically.</p>
+        <summary data-i18n="f1.q">Can I take the self-drive car outside JB, or to Singapore?</summary>
+        <p data-i18n="f1.a">Yes. The minimum rental depends on how far you go: 1 day within JB, 2 days for Singapore, Melaka, Seremban or KL, 3 days for Pahang, 4 days for Perak, Ipoh, Cameron Highlands, the East Coast or the northern states, and 5 days for Perlis or Langkawi. Pick your destination in the price box and the days adjust automatically.</p>
       </details>
       <details>
-        <summary>Can you pick up from any address in Singapore?</summary>
-        <p>Yes &mdash; homes, offices, hotels and Changi Airport, island-wide. The same price applies to most SG addresses; we confirm your exact quote on WhatsApp.</p>
+        <summary data-i18n="f2.q">Can you pick up from any address in Singapore?</summary>
+        <p data-i18n="f2.a">Yes &mdash; homes, offices, hotels and Changi Airport, island-wide. The same price applies to most SG addresses; we confirm your exact quote on WhatsApp.</p>
       </details>
       <details>
-        <summary>How much luggage fits?</summary>
-        <p>Comfortably four passengers with four large suitcases, or six passengers with cabin bags. Golf bags and strollers are no problem &mdash; just mention them when booking.</p>
+        <summary data-i18n="f3.q">How much luggage fits?</summary>
+        <p data-i18n="f3.a">Comfortably four passengers with four large suitcases, or six passengers with cabin bags. Golf bags and strollers are no problem &mdash; just mention them when booking.</p>
       </details>
       <details>
-        <summary>Do you do late-night or early-morning rides?</summary>
-        <p>Yes. Pickups between 11 pm and 7 am carry a small S$30 surcharge, and red-eye flight pickups are flight-tracked so we&rsquo;re there even when you land early.</p>
+        <summary data-i18n="f4.q">Do you do late-night or early-morning rides?</summary>
+        <p data-i18n="f4.a">Yes. Pickups between 11 pm and 7 am carry a small S$30 surcharge, and red-eye flight pickups are flight-tracked so we&rsquo;re there even when you land early.</p>
       </details>
       <details>
-        <summary>Can you get me to Senai Airport for a cheap AirAsia flight?</summary>
-        <p>Yes, and it is one of our most popular runs. Pickup from your Singapore address, drop at Senai departures, S$150 all-in. We track your flight, so for an early departure we advise the pickup time and for the return we are waiting at arrivals even if you land late.</p>
+        <summary data-i18n="f5.q">Can you get me to Senai Airport for a cheap AirAsia flight?</summary>
+        <p data-i18n="f5.a">Yes, and it is one of our most popular runs. Pickup from your Singapore address, drop at Senai departures, S$150 all-in. We track your flight, so for an early departure we advise the pickup time and for the return we are waiting at arrivals even if you land late.</p>
       </details>
       <details>
-        <summary>How do I pay from Singapore?</summary>
-        <p>PayNow for the deposit and balance &mdash; no bank transfer fees, no currency hassle. DuitNow, Malaysian bank transfer and cash work too.</p>
+        <summary data-i18n="f6.q">How do I pay from Singapore?</summary>
+        <p data-i18n="f6.a">PayNow for the deposit and balance &mdash; no bank transfer fees, no currency hassle. DuitNow, Malaysian bank transfer and cash work too.</p>
       </details>
       <details>
-        <summary>Is the crossing time included in a charter?</summary>
-        <p>Charter hours run from pickup to drop-off. We schedule around peak causeway hours where possible and advise the best departure time when you book.</p>
+        <summary data-i18n="f7.q">Is the crossing time included in a charter?</summary>
+        <p data-i18n="f7.a">Charter hours run from pickup to drop-off. We schedule around peak causeway hours where possible and advise the best departure time when you book.</p>
       </details>
       <details>
-        <summary>Will it really be the same car?</summary>
-        <p>Yes. Every car on this page is one we own. You book a specific car and that car is what you get. There is no fleet substitution and no &ldquo;or similar&rdquo;. If it is ever unavailable we tell you before you pay a deposit.</p>
+        <summary data-i18n="f8.q">Will it really be the same car?</summary>
+        <p data-i18n="f8.a">Yes. Every car on this page is one we own. You book a specific car and that car is what you get. There is no fleet substitution and no &ldquo;or similar&rdquo;. If it is ever unavailable we tell you before you pay a deposit.</p>
       </details>
     </div>
   </div>
@@ -673,43 +687,44 @@
 
 <section class="final">
   <div class="wrap">
-    <h2>Your next JB trip, without the driving.</h2>
-    <p>Send us your dates &mdash; we&rsquo;ll reply with a fixed quote in minutes.</p>
+    <h2 data-i18n="fin.h2">Your next JB trip, without the driving.</h2>
+    <p data-i18n="fin.p">Send us your dates &mdash; we&rsquo;ll reply with a fixed quote in minutes.</p>
     <div class="cta-row">
       <a class="btn btn-wa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote%20for%20a%20transfer">WhatsApp +60 12-711 9814</a>
-      <a class="btn btn-ghost" href="#quote">Get a price above</a>
+      <a class="btn btn-ghost" href="#quote" data-i18n="fin.up">Get a price above</a>
     </div>
   </div>
 </section>
 
 <div class="wrap">
   <footer>
-    <div>EzEe Car Rental &middot; Kulai, Johor, Malaysia &middot; <span style="color:var(--faint)">v1.0.0</span></div>
-    <div>Bookings daily 8 am &ndash; 11 pm &middot; WhatsApp +60 12-711 9814</div>
+    <div><span data-i18n="ft.1">EzEe Car Rental &middot; Kulai, Johor, Malaysia</span> &middot; <span style="color:var(--faint)">v1.0.0</span></div>
+    <div data-i18n="ft.2">Bookings daily 8 am &ndash; 11 pm &middot; WhatsApp +60 12-711 9814</div>
   </footer>
 </div>
 
-<a class="fab" href="#top" title="Back to top" aria-label="Back to top"><img src="img/logo.png" alt="EzEe Car Rental"></a>
+<a class="fab" href="#top" title="Back to top" data-i18n-title="fab" aria-label="Back to top"><img src="img/logo.png" alt="EzEe Car Rental"></a>
 
 <div class="modal" id="min-modal" hidden role="dialog" aria-modal="true" aria-labelledby="min-title">
   <div class="modal-box">
-    <p class="eyebrow">Before you type your destination</p>
-    <h3 id="min-title">Self-drive minimum rental</h3>
-    <p class="modal-sub">The further you drive, the longer the minimum booking. Days adjust automatically once you type where you&rsquo;re going.</p>
+    <p class="eyebrow" data-i18n="m.eyebrow">Before you type your destination</p>
+    <h3 id="min-title" data-i18n="m.h3">Self-drive minimum rental</h3>
+    <p class="modal-sub" data-i18n="m.sub">The further you drive, the longer the minimum booking. Days adjust automatically once you type where you&rsquo;re going.</p>
     <ol class="modal-list">
-      <li><span>JB area</span><b>1 day</b></li>
-      <li><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
-      <li><span>Pahang</span><b>3 days</b></li>
-      <li><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
-      <li><span>East Coast, Northern states</span><b>4 days</b></li>
-      <li><span>Perlis, Langkawi</span><b>5 days</b></li>
+      <li data-i18n="z.jb"><span>JB area</span><b>1 day</b></li>
+      <li data-i18n="z.sg"><span>Outside JB, Singapore, Melaka, Seremban, KL</span><b>2 days</b></li>
+      <li data-i18n="z.pahang"><span>Pahang</span><b>3 days</b></li>
+      <li data-i18n="z.perak"><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
+      <li data-i18n="z.east"><span>East Coast, Northern states</span><b>4 days</b></li>
+      <li data-i18n="z.perlis"><span>Perlis, Langkawi</span><b>5 days</b></li>
     </ol>
-    <button type="button" class="modal-ok" id="min-ok">OK, got it</button>
+    <button type="button" class="modal-ok" id="min-ok" data-i18n="m.ok">OK, got it</button>
   </div>
 </div>
 
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
+<script src="i18n.js"></script>
 <script>
 (function(){
   var WA='https://wa.me/60127119814?text=';
@@ -726,8 +741,8 @@
   modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal()});
   var carSel=$('q-car'),fCar=$('f-car'),multi=activeCars().length>1;
-  var ph=document.createElement('option');ph.value='';ph.textContent='Choose your car…';ph.disabled=true;ph.selected=true;carSel.appendChild(ph);
-  activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabel(c);carSel.appendChild(o)});
+  var ph=document.createElement('option');ph.value='';ph.textContent=t('j.choosecar',null,'Choose your car…');ph.disabled=true;ph.selected=true;carSel.appendChild(ph);
+  activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabelT(c);carSel.appendChild(o)});
   function carChosen(){return !multi||!!carSel.value}
   fCar.hidden=!multi;
   function currentCar(){return activeCars().filter(function(c){return c.id===carSel.value})[0]||activeCars()[0]}
@@ -739,8 +754,8 @@
     var car=currentCar(),keep=route.value,groups={};route.innerHTML='';
     ROUTES.forEach(function(r){
       if(!(r.id in car.prices)||r.table)return;
-      if(!groups[r.group]){groups[r.group]=document.createElement('optgroup');groups[r.group].label=r.group;route.appendChild(groups[r.group])}
-      var o=document.createElement('option');o.value=r.id;o.textContent=multi?r.label:rowLabel(r,car);groups[r.group].appendChild(o);
+      if(!groups[r.group]){groups[r.group]=document.createElement('optgroup');groups[r.group].label=td(r.group);route.appendChild(groups[r.group])}
+      var o=document.createElement('option');o.value=r.id;o.textContent=multi?td(r.label):rowLabelT(r,car);groups[r.group].appendChild(o);
     });
     if(keep&&(keep in car.prices))route.value=keep;
   }
@@ -749,24 +764,25 @@
   tabs.hidden=!multi;
   if(multi)activeCars().forEach(function(c){
     var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.dataset.car=c.id;
-    b.innerHTML=c.name+(c.hot?'<span class="hot">Hot item</span>':'');
+    b.innerHTML=tabHTML(c);
     b.addEventListener('click',function(){carSel.value=c.id;fillRoutes();refreshDir();update()});
     tabs.appendChild(b);
   });
+  function tabHTML(c){return c.name+(c.hot?'<span class="hot">'+t('j.hot',null,'Hot item')+'</span>':'')}
   function renderRates(){
     var car=currentCar();rows.innerHTML='';
     tabs.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.car===car.id?'true':'false')});
     ROUTES.forEach(function(r){
       if(!(r.id in car.prices)||r.type==='other')return;
       var tr=document.createElement('tr');if(r.group==='Hot item')tr.className='hot';
-      tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">Hot item</span>':'')+rowLabel(r,car)+(r.note?' <small>'+r.note+'</small>':'')+'</td><td class="num">'+fmtPrice(r,car.prices[r.id])+'</td>';
+      tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>':'')+rowLabelT(r,car)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+'</td>';
       rows.appendChild(tr);
     });
     var ph=$('incl-photo'),phm=$('incl-photo-m');if(car.photo){ph.hidden=false;phm.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name;$('incl-img-m').src=car.photo;$('incl-img-m').alt=car.name}else{ph.hidden=true;phm.hidden=true}
-    var chip=$('sg-chip');chip.textContent=car.singapore===false?'Malaysia use only':'Singapore entry OK';chip.className='sgchip'+(car.singapore===false?'':' ok');
-    $('incl-title').textContent=car.inclTitle;
-    $('incl-list').innerHTML=car.includes.map(function(t){return '<li>'+t+'</li>'}).join('');
-    $('incl-extras').innerHTML=car.extras.map(function(t){return '<li>'+t+'</li>'}).join('');
+    var chip=$('sg-chip');chip.textContent=car.singapore===false?t('j.myonly',null,'Malaysia use only'):t('j.sgok',null,'Singapore entry OK');chip.className='sgchip'+(car.singapore===false?'':' ok');
+    $('incl-title').textContent=td(car.inclTitle);
+    $('incl-list').innerHTML=car.includes.map(function(x){return '<li>'+td(x)+'</li>'}).join('');
+    $('incl-extras').innerHTML=car.extras.map(function(x){return '<li>'+td(x)+'</li>'}).join('');
   }
   function fillDays(min){
     var keep=parseInt(days.value,10)||1;days.innerHTML='';
@@ -774,8 +790,8 @@
     days.value=Math.max(keep,min);
   }
   fillDays(1);
-  var t=new Date();var pad=function(n){return (n<10?'0':'')+n};
-  date.min=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+  var now=new Date();var pad=function(n){return (n<10?"0":"")+n};
+  date.min=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
   whenIn.min=date.min+'T00:00';
   function splitWhen(v){date.value=v?v.slice(0,10):'';time.value=v&&v.length>=16?v.slice(11,16):''}
   /* tap anywhere on a date/time box to open the native picker (not just the small icon) */
@@ -791,7 +807,7 @@
   function fmtDate(v){
     if(!v)return '';
     var p=v.split('-');var d=new Date(p[0],p[1]-1,p[2]);
-    return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    return d.toLocaleDateString(dateLocale(),{weekday:'short',day:'numeric',month:'short',year:'numeric'});
   }
   function isNight(v){ if(!v)return false; var h=parseInt(v.split(':')[0],10); return h>=23||h<7 }
 
@@ -802,7 +818,7 @@
     var keep=dir.value;
     dir.innerHTML='';
     [[r.a,r.b],[r.b,r.a]].forEach(function(pair,i){
-      var o=document.createElement('option');o.value=i;o.textContent='From '+pair[0]+' to '+pair[1];dir.appendChild(o);
+      var o=document.createElement('option');o.value=i;o.textContent=t('j.fromto',{a:td(pair[0]),b:td(pair[1])},'From {a} to {b}');dir.appendChild(o);
     });
     if(keep==='1')dir.value='1';
   }
@@ -816,7 +832,7 @@
     fZone.hidden=!self;
     fDeliver.hidden=!self;
     fWhere.hidden=self;
-    lDate.textContent=self?'Start date & time':'Date & pickup time';
+    lDate.innerHTML=self?t('j.startdt',null,'Start date &amp; time'):t('j.pickdt',null,'Date &amp; pickup time');
     var needTime=self&&!(date.value&&time.value);
     whenIn.classList.toggle('missing',needTime);
     var z=currentZone();
@@ -838,28 +854,28 @@
     if(!self){ lines.push('• '+pax.value+' passenger'+(pax.value>1?'s':'')) }
 
     if(r.type==='other'){
-      lbl.textContent='Your price';
-      amt.innerHTML='On request';
-      noteText='Tell us the trip and we quote within minutes';
+      lbl.textContent=t('j.yourprice',null,'Your price');
+      amt.innerHTML=t('j.onreq',null,'On request');
+      noteText=t('j.tellus',null,'Tell us the trip and we quote within minutes');
     }else if(r.type==='monthly'){
-      lbl.textContent='Monthly rate';
-      amt.innerHTML='Let’s talk';
-      noteText='Long-term self-drive at a special monthly rate. Tell us how many months';
+      lbl.textContent=t('j.monthly',null,'Monthly rate');
+      amt.innerHTML=t('j.letstalk',null,'Let’s talk');
+      noteText=t('j.monthlynote',null,'Long-term self-drive at a special monthly rate. Tell us how many months');
     }else{
       var price=currentCar().prices[r.id];
       var total=price;
       if(r.type==='selfdrive'){ total=price*parseInt(days.value,10) }
       var night=(r.type==='transfer'&&isNight(time.value));
       if(night)total+=30;
-      lbl.textContent=r.type==='selfdrive'?'Rental total':'All-in fare';
-      amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+r.cur+price+' / day</small>':'');
-      if(night){ noteText='Includes S$30 night pickup surcharge (11 pm – 7 am)' }
-      else if(r.type==='selfdrive'){ noteText=(z&&z.min>1?'Minimum '+z.min+' days for '+z.label+'. ':(z?'':'Minimum days depend on destination. '))+'Refundable deposit applies' }
-      else if(r.type==='charter'){ noteText='Car, driver and fuel included' }
-      else { noteText='Fuel, tolls, VEP & checkpoint fees included' }
+      lbl.textContent=r.type==='selfdrive'?t('j.total',null,'Rental total'):t('q.lbl',null,'All-in fare');
+      amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+r.cur+price+t('j.perday',null,' / day')+'</small>':'');
+      if(night){ noteText=t('j.night',null,'Includes S$30 night pickup surcharge (11 pm – 7 am)') }
+      else if(r.type==='selfdrive'){ noteText=(z&&z.min>1?t('j.minfor',{n:z.min,z:td(z.label)},'Minimum {n} days for {z}. '):(z?'':t('j.mindep',null,'Minimum days depend on destination. ')))+t('j.refund',null,'Refundable deposit applies') }
+      else if(r.type==='charter'){ noteText=t('j.charter',null,'Car, driver and fuel included') }
+      else { noteText=t('q.note',null,'Fuel, tolls, VEP & checkpoint fees included') }
       lines.push('Your site shows '+r.cur+total+' all-in.');
     }
-    if(self&&currentCar().singapore===false&&mentionsSingapore(zone.value)){noteText='This car cannot enter Singapore. Choose the Vellfire, or a Malaysian destination.';lines.push('Note: this car is Malaysia-only.')}
+    if(self&&currentCar().singapore===false&&mentionsSingapore(zone.value)){noteText=t('j.nosg',null,'This car cannot enter Singapore. Choose the Vellfire, or a Malaysian destination.');lines.push('Note: this car is Malaysia-only.')}
     note.textContent=noteText;
     renderRates();
     if(typeof pushToBar==='function')pushToBar();
@@ -868,9 +884,9 @@
     var needCar=!carChosen();
     carSel.classList.toggle('blink',needCar);
     send.classList.toggle('inert',needTime||needCar);
-    send.textContent=needCar?'Choose your car first':(needTime?'Pick a start date & time first':'Click to negotiate on WhatsApp?');
-    if(needCar){note.textContent='Please choose your car first.';amt.innerHTML='&mdash;'}
-    else if(needTime)note.textContent='Choose your start date and time. '+noteText;
+    send.textContent=needCar?t('j.needcar',null,'Choose your car first'):(needTime?t('j.needtime',null,'Pick a start date & time first'):t('q.send',null,'Click to negotiate on WhatsApp?'));
+    if(needCar){note.textContent=t('j.needcarnote',null,'Please choose your car first.');amt.innerHTML='&mdash;'}
+    else if(needTime)note.textContent=t('j.needtimenote',null,'Choose your start date and time. ')+noteText;
   }
 
   carSel.addEventListener('change',function(){fillRoutes();refreshDir();update()});
@@ -881,7 +897,7 @@
   /* ---- sticky compact bar: mirrors the price box, appears once the box scrolls out of view ---- */
   var sbar=$('sbar'),sCar=$('s-car'),sWhere=$('s-where'),sWhen=$('s-when'),sUntil=$('s-until'),sfUntil=$('sf-until'),sGo=$('s-go'),sPrice=$('s-price');
   sbar.hidden=false;
-  if(multi){$('sf-car').hidden=false;var sph=document.createElement('option');sph.value='';sph.textContent='Choose…';sph.disabled=true;sph.selected=true;sCar.appendChild(sph);activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.short;sCar.appendChild(o)})}
+  if(multi){$('sf-car').hidden=false;var sph=document.createElement('option');sph.value='';sph.textContent=t('j.choose',null,'Choose…');sph.disabled=true;sph.selected=true;sCar.appendChild(sph);activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.short;sCar.appendChild(o)})}
   sWhen.min=date.min+'T00:00';pickerOnClick(sWhen);pickerOnClick(sUntil);
   function addDays(v,n){if(!v)return '';var p=v.split('-');var d=new Date(p[0],p[1]-1,+p[2]+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
   function diffDays(a,b){if(!a||!b)return null;var x=a.split('-'),y=b.split('-');return Math.round((new Date(y[0],y[1]-1,y[2])-new Date(x[0],x[1]-1,x[2]))/864e5)}
@@ -914,6 +930,14 @@
   function toggleBar(){var rct=quoteBox.getBoundingClientRect();sbar.classList.toggle('on',rct.bottom<0)}
   window.addEventListener('scroll',toggleBar,{passive:true});window.addEventListener('resize',toggleBar);toggleBar();
   refreshDir();update();pushToBar();
+  /* language switch: relabel everything the script generated */
+  document.addEventListener('langchange',function(){
+    var o0=carSel.querySelector('option[value=""]');if(o0)o0.textContent=t('j.choosecar',null,'Choose your car…');
+    carSel.querySelectorAll('option').forEach(function(o){if(!o.value)return;var c=CARS.filter(function(x){return x.id===o.value})[0];if(c)o.textContent=carLabelT(c)});
+    var s0=sCar.querySelector('option[value=""]');if(s0)s0.textContent=t('j.choose',null,'Choose…');
+    tabs.querySelectorAll('button').forEach(function(b){var c=CARS.filter(function(x){return x.id===b.dataset.car})[0];if(c)b.innerHTML=tabHTML(c)});
+    fillRoutes();refreshDir();update();
+  });
 })();
 </script>
 

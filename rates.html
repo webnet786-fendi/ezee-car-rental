@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <title>EzEe Car Rental Rates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
 <style>
   :root{
     --paper:#ffffff;
@@ -222,6 +222,14 @@
     cursor:pointer;
   }
   .printbar button:hover{border-color:var(--gold);color:var(--gold-deep)}
+  .lang{display:inline-flex;vertical-align:middle;margin-right:14px;border:1px solid var(--hairline);border-radius:999px;overflow:hidden}
+  .lang button{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.08em;background:none;border:0;color:var(--muted);padding:8px 12px;cursor:pointer;line-height:1}
+  .lang button+button{border-left:1px solid var(--hairline)}
+  .lang button[aria-pressed="true"]{background:var(--ink);color:#fff;font-weight:500}
+  html[lang="zh-Hans"] body{font-family:'Jost','Noto Sans SC',"Segoe UI",system-ui,sans-serif}
+  html[lang="zh-Hans"] h2,html[lang="zh-Hans"] h3,html[lang="zh-Hans"] .brand{font-family:'Marcellus','Noto Sans SC',Georgia,serif}
+  html[lang="ms"] .hotrow td:first-child::before{content:"ITEM HANGAT"}
+  html[lang="zh-Hans"] .hotrow td:first-child::before{content:"8ED\95E8"}
   @media print{
     .printbar{display:none}
     .sheet{padding:0;max-width:none}
@@ -243,7 +251,7 @@
 </style>
 </head>
 <body>
-<div class="printbar"><a href="index.html" style="float:left;font-size:13px;letter-spacing:.06em;color:var(--muted);text-decoration:none">&larr; ezeecarrental home</a><button onclick="window.print()">Print / Save as PDF</button></div>
+<div class="printbar"><a href="index.html" style="float:left;font-size:13px;letter-spacing:.06em;color:var(--muted);text-decoration:none"><span data-i18n="rc.home">&larr; ezeecarrental home</span></a><span class="lang"></span><button onclick="window.print()" data-i18n="rc.print">Print / Save as PDF</button></div>
 
 <div class="sheet">
   <header>
@@ -251,23 +259,24 @@
       <div class="mark">EzEe <span>Car Rental</span></div>
       <div class="tag" id="rc-tag"></div>
     </div>
-    <div class="effective">Rate card<strong>Effective September 2026</strong></div>
+    <div class="effective" data-i18n="rc.ratecard">Rate card<strong>Effective September 2026</strong></div>
   </header>
   <div class="car-tabs" id="car-tabs" role="tablist" hidden></div>
   <div id="rc-sections"></div>
   <section class="cols">
     <div class="panel"><h3 id="rc-incl-h">Every ride includes</h3><ul id="rc-incl"></ul></div>
-    <div class="panel"><h3>Booking &amp; payment</h3><ul>
-      <li>Book by WhatsApp &mdash; reply within minutes</li><li>50% deposit confirms your slot</li><li>PayNow, DuitNow, bank transfer, cash</li><li>Free cancellation up to 48 h before</li><li>Flight tracking for airport pickups</li></ul></div>
+    <div class="panel"><h3 data-i18n="rc.pay.h">Booking &amp; payment</h3><ul>
+      <li data-i18n="rc.pay.1">Book by WhatsApp &mdash; reply within minutes</li><li data-i18n="rc.pay.2">50% deposit confirms your slot</li><li data-i18n="rc.pay.3">PayNow, DuitNow, bank transfer, cash</li><li data-i18n="rc.pay.4">Free cancellation up to 48 h before</li><li data-i18n="rc.pay.5">Flight tracking for airport pickups</li></ul></div>
   </section>
   <div class="terms" id="rc-terms"></div>
   <div class="contact">
-    <div class="cta">+60 12-711 9814<small>WhatsApp &middot; bookings daily 8 am &ndash; 11 pm</small></div>
-    <a class="wa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20to%20book%20a%20transfer">WhatsApp us</a>
+    <div class="cta">+60 12-711 9814<small data-i18n="rc.contact">WhatsApp &middot; bookings daily 8 am &ndash; 11 pm</small></div>
+    <a class="wa" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20to%20book%20a%20transfer" data-i18n="rc.waus">WhatsApp us</a>
   </div>
 </div>
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
+<script src="i18n.js"></script>
 <script>
 (function(){
   var cars=activeCars(),multi=cars.length>1;
@@ -278,25 +287,26 @@
   function render(){
     var car=cars.filter(function(c){return c.id===sel})[0]||cars[0];sel=car.id;
     tabs.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.car===car.id?'true':'false')});
-    document.getElementById('rc-tag').textContent=car.name+' · '+(car.prices.sgjb?'Chauffeured & self-drive':'Self-drive')+' · '+(car.singapore===false?'Malaysia use only':'Singapore entry OK');
+    document.getElementById('rc-tag').textContent=car.name+' · '+(car.prices.sgjb?t('rc.both',null,'Chauffeured & self-drive'):t('rc.self',null,'Self-drive'))+' · '+(car.singapore===false?t('j.myonly',null,'Malaysia use only'):t('j.sgok',null,'Singapore entry OK'));
     var groups=[];ROUTES.forEach(function(r){if(!(r.id in car.prices)||r.type==='other')return;var g=groups.filter(function(x){return x.name===r.group})[0];if(!g){g={name:r.group,rows:[]};groups.push(g)}g.rows.push(r)});
     var html='';
     groups.forEach(function(g){
-      var title={'Hot item':'Self-drive '+car.short,'Chauffeured transfers':'Cross-Border Transfers','Charters & events':'Chauffeured Charters'}[g.name]||g.name;
-      var sub={'Hot item':'Refundable security deposit applies. Minimum rental depends on destination (see below).','Chauffeured transfers':'One-way, door to door. Price is all-in — tolls, checkpoint fees and fuel included. Up to 6 passengers.','Charters & events':'Car, professional driver and petrol included. Driver waits with the vehicle throughout.'}[g.name]||'';
-      html+='<section><h2>'+title+'</h2><p class="sub">'+sub+'</p><table><thead><tr><th>'+(g.name==='Hot item'?'Package':'Route')+'</th><th class="num">Rate</th></tr></thead><tbody>';
-      g.rows.forEach(function(r){html+='<tr'+(g.name==='Hot item'?' class="hotrow"':'')+'><td>'+rowLabel(r,car)+(r.note?'<span class="note">'+r.note+'</span>':'')+'</td><td class="num">'+fmtPrice(r,car.prices[r.id])+'</td></tr>'});
-      if(g.name==='Chauffeured transfers')html+='<tr><td>Night surcharge, 11 pm – 7 am pickup</td><td class="num">+S$30</td></tr>';
+      var title={'Hot item':t('rc.t.hot',{car:car.short},'Self-drive {car}'),'Chauffeured transfers':t('rc.t.transfers',null,'Cross-Border Transfers'),'Charters & events':t('rc.t.charters',null,'Chauffeured Charters')}[g.name]||td(g.name);
+      var sub={'Hot item':t('rc.s.hot',null,'Refundable security deposit applies. Minimum rental depends on destination (see below).'),'Chauffeured transfers':t('rc.s.transfers',null,'One-way, door to door. Price is all-in — tolls, checkpoint fees and fuel included. Up to 6 passengers.'),'Charters & events':t('rc.s.charters',null,'Car, professional driver and petrol included. Driver waits with the vehicle throughout.')}[g.name]||'';
+      html+='<section><h2>'+title+'</h2><p class="sub">'+sub+'</p><table><thead><tr><th>'+(g.name==='Hot item'?t('rc.th.pkg',null,'Package'):t('rc.th.route',null,'Route'))+'</th><th class="num">'+t('rc.th.rate',null,'Rate')+'</th></tr></thead><tbody>';
+      g.rows.forEach(function(r){html+='<tr'+(g.name==='Hot item'?' class="hotrow"':'')+'><td>'+rowLabelT(r,car)+(r.note?'<span class="note">'+td(r.note)+'</span>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+'</td></tr>'});
+      if(g.name==='Chauffeured transfers')html+='<tr><td>'+t('rc.night',null,'Night surcharge, 11 pm – 7 am pickup')+'</td><td class="num">+S$30</td></tr>';
       html+='</tbody></table>';
-      if(g.name==='Hot item')html+='<p class="minrent">Minimum rental by destination: '+ZONES.slice().reverse().map(function(z){return '<b>'+z.label+'</b> '+z.min+' day'+(z.min>1?'s':'')}).join(' · ')+'.</p>';
+      if(g.name==='Hot item')html+='<p class="minrent">'+t('rc.minrent',null,'Minimum rental by destination: ')+ZONES.slice().reverse().map(function(z){return '<b>'+td(z.label)+'</b> '+daysT(z.min)}).join(' · ')+'.</p>';
       html+='</section>';
     });
     document.getElementById('rc-sections').innerHTML=html;
-    document.getElementById('rc-incl-h').textContent='Every '+car.short+' rental includes';
-    document.getElementById('rc-incl').innerHTML=car.cardIncludes.map(function(t){return '<li>'+t+'</li>'}).join('');
-    document.getElementById('rc-terms').innerHTML=car.terms.map(function(t){return '<p>'+t+'</p>'}).join('')+(car.extras.length?'<p>'+car.extras.map(strip).join('. ')+'.</p>':'')+'<p>Rates are subject to change for public holidays and event dates &mdash; your WhatsApp quote is final and fixed.</p>';
+    document.getElementById('rc-incl-h').textContent=t('rc.every',{car:car.short},'Every {car} rental includes');
+    document.getElementById('rc-incl').innerHTML=car.cardIncludes.map(function(x){return '<li>'+td(x)+'</li>'}).join('');
+    document.getElementById('rc-terms').innerHTML=car.terms.map(function(x){return '<p>'+td(x)+'</p>'}).join('')+(car.extras.length?'<p>'+car.extras.map(function(x){return strip(td(x))}).join('. ')+'.</p>':'')+'<p>'+t('rc.change',null,'Rates are subject to change for public holidays and event dates &mdash; your WhatsApp quote is final and fixed.')+'</p>';
   }
   render();
+  document.addEventListener('langchange',render);
 })();
 </script>
 </body>
