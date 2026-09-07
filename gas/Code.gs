@@ -11,7 +11,8 @@
 // Change ADMIN_TOKEN to a long random secret before deploying; ledger.html asks for the same token.
 
 var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_SECRET';
-var VERSION = 3;
+var VERSION = 4;
+var PLACEHOLDER = 'REPLACE_WITH_' + 'YOUR_SECRET'; // split so a find-and-replace of the token never touches this
 var SHEET = 'Bookings';
 var TZ = 'Asia/Kuala_Lumpur';
 var COLS = ['ref','created','status','source','car','service','route','destination','deliverTo','dropoff','start','time','days','pax','price','currency','lang','customer','phone','deposit','notes','updated','history','ua'];
@@ -32,7 +33,7 @@ function sheet_() {
 }
 function out_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 function str_(v, max) { v = (v == null ? '' : String(v)); return v.length > max ? v.slice(0, max) : v; }
-function auth_(p) { return !!(p && p.token && ADMIN_TOKEN && ADMIN_TOKEN !== 'REPLACE_WITH_YOUR_SECRET' && String(p.token).trim() === String(ADMIN_TOKEN).trim()); }
+function auth_(p) { return !!(p && p.token && ADMIN_TOKEN && ADMIN_TOKEN !== PLACEHOLDER && String(p.token).trim() === String(ADMIN_TOKEN).trim()); }
 function iso_(d) { return Utilities.formatDate(d, TZ, "yyyy-MM-dd'T'HH:mm"); }
 function norm_(k, v) {
   if (v instanceof Date) {
@@ -59,7 +60,7 @@ function doGet(e) {
   var p = (e && e.parameter) || {};
   if (p.action === 'ping') {
     var tk = String(ADMIN_TOKEN), got = p.token == null ? null : String(p.token);
-    return out_({ ok: true, service: 'ezee-bookings', version: VERSION, tokenSet: tk !== 'REPLACE_WITH_YOUR_SECRET',
+    return out_({ ok: true, service: 'ezee-bookings', version: VERSION, tokenSet: tk !== PLACEHOLDER,
       tokenLen: tk.length, tokenHead: tk.slice(0, 4), tokenTail: tk.slice(-4),
       gotLen: got == null ? null : got.length, gotHead: got == null ? null : got.slice(0, 4), match: got == null ? null : auth_(p),
       time: new Date().toISOString() });
