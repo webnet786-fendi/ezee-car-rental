@@ -11,7 +11,7 @@
 // Change ADMIN_TOKEN to a long random secret before deploying; ledger.html asks for the same token.
 
 var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_SECRET';
-var VERSION = 2;
+var VERSION = 3;
 var SHEET = 'Bookings';
 var TZ = 'Asia/Kuala_Lumpur';
 var COLS = ['ref','created','status','source','car','service','route','destination','deliverTo','dropoff','start','time','days','pax','price','currency','lang','customer','phone','deposit','notes','updated','history','ua'];
@@ -57,7 +57,13 @@ function newRef_(d) {
 
 function doGet(e) {
   var p = (e && e.parameter) || {};
-  if (p.action === 'ping') return out_({ ok: true, service: 'ezee-bookings', version: VERSION, tokenSet: ADMIN_TOKEN !== 'REPLACE_WITH_YOUR_SECRET', time: new Date().toISOString() });
+  if (p.action === 'ping') {
+    var tk = String(ADMIN_TOKEN), got = p.token == null ? null : String(p.token);
+    return out_({ ok: true, service: 'ezee-bookings', version: VERSION, tokenSet: tk !== 'REPLACE_WITH_YOUR_SECRET',
+      tokenLen: tk.length, tokenHead: tk.slice(0, 4), tokenTail: tk.slice(-4),
+      gotLen: got == null ? null : got.length, gotHead: got == null ? null : got.slice(0, 4), match: got == null ? null : auth_(p),
+      time: new Date().toISOString() });
+  }
   if (p.action === 'list') {
     if (!auth_(p)) return out_({ ok: false, error: 'unauthorised' });
     return out_({ ok: true, statuses: STATUSES, rows: rows_(sheet_()).map(function (r) { delete r._row; return r; }) });
