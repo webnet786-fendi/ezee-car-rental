@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Custom domain **https://ezee.my** (GitHub Pages CNAME, HTTPS enforced; github.io and www redirect). Share image and the ledger link in alert emails point at the domain.
 - Booking script v5: email alert to the owner for every website request (Ref, trip, price, ledger link); duplicate taps within 2 minutes reuse the same Ref; more than 40 website requests in 10 minutes are dropped; honeypot field on the price box.
 - Ledger: Attention filter and flags (Needs reply after 24 h, Today / Tomorrow for confirmed bookings, Ended for confirmed bookings past their end); "Prepare agreement" opens the rental agreement form prefilled from the booking.
 - Agreement form accepts prefill parameters (ref, name, phone, car, start, time, days, rate, dest, loc, deposit) and starts a fresh form from them.

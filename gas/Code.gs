@@ -14,9 +14,9 @@
 // Change ADMIN_TOKEN to a long random secret before deploying; ledger.html asks for the same token.
 
 var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_SECRET';
-var VERSION = 6;
+var VERSION = 7;
 var ALERT_EMAIL = ''; // empty = the Google account that deployed the script
-var LEDGER_URL = 'https://webnet786-fendi.github.io/ezee-car-rental/ledger.html';
+var LEDGER_URL = 'https://ezee.my/ledger.html';
 var RATE_LIMIT = 40; // website requests per 10 minutes, above that new ones are silently dropped
 var PLACEHOLDER = 'REPLACE_WITH_' + 'YOUR_SECRET'; // split so a find-and-replace of the token never touches this
 var SHEET = 'Bookings';
