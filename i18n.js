@@ -99,6 +99,8 @@ var I18N = {
       'j.needcar': 'Pilih kereta anda dahulu', 'j.needtime': 'Pilih tarikh & masa mula dahulu',
       'j.needcarnote': 'Sila pilih kereta anda dahulu.', 'j.needtimenote': 'Pilih tarikh dan masa mula anda. ',
       'j.fromto': 'Dari {a} ke {b}', 'j.day': 'hari', 'j.days': 'hari',
+      'j.heldlbl': 'Ketersediaan', 'j.heldbtn': 'Tanya tentang tarikh ini di WhatsApp',
+      'j.held': 'Sudah ditempah {from} – {to}. Hantar permintaan ini dan kami cadangkan tarikh kosong terdekat, atau pilih kereta lain.',
       // rate card
       'rc.home': '&larr; laman utama ezeecarrental', 'rc.print': 'Cetak / Simpan sebagai PDF',
       'rc.ratecard': 'Kad kadar<strong>Berkuat kuasa September 2026</strong>',
@@ -209,6 +211,8 @@ var I18N = {
       'j.needcar': '请先选择您的车', 'j.needtime': '请先选择开始日期与时间',
       'j.needcarnote': '请先选择您的车。', 'j.needtimenote': '请选择开始日期和时间。',
       'j.fromto': '从 {a} 到 {b}', 'j.day': '天', 'j.days': '天',
+      'j.heldlbl': '可用情况', 'j.heldbtn': '在 WhatsApp 询问这些日期',
+      'j.held': '{from} – {to} 已被预订。仍可发送请求，我们会提供最近的空档，或请选择另一辆车。',
       'rc.home': '&larr; ezeecarrental 首页', 'rc.print': '打印 / 保存为 PDF',
       'rc.ratecard': '价目表<strong>2026 年 9 月起生效</strong>',
       'rc.pay.h': '预订与付款',

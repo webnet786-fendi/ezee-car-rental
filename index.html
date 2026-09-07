@@ -180,6 +180,7 @@
   .qbtn:hover{background:#2db96c}
   .qbtn.inert{background:var(--raised);color:var(--faint);pointer-events:none;border:1px solid var(--line)}
   .field input.missing{border-color:var(--gold);box-shadow:0 0 0 2px rgba(210,169,94,.18)}
+  .field input.held{border-color:var(--bad,#c9503f);box-shadow:0 0 0 2px rgba(201,80,63,.2)}
   .qbtn:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
   .qfine{font-size:12.5px;color:var(--faint);margin:12px 0 0;text-align:center}
 
@@ -750,6 +751,24 @@
   var fDir=$('f-dir'),fTime=$('f-time'),fDays=$('f-days'),fPax=$('f-pax');
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
   var lastMsg='',lastTotal=null;
+  /* ---- calendar hold: confirmed bookings from the ledger make a car "on request" for those dates ---- */
+  var BUSY=[];
+  (function loadBusy(){
+    var u=SETTINGS.bookingsUrl;if(!u)return;
+    try{fetch(u+(u.indexOf('?')>-1?'&':'?')+'action=busy').then(function(r){return r.json()}).then(function(j){if(j&&j.ok&&j.busy){BUSY=j.busy;update()}}).catch(function(){})}catch(e){}
+  })();
+  function heldRange(car,startStr,r){
+    if(!startStr||!BUSY.length)return null;
+    var self=(r.type==='selfdrive'||r.type==='monthly');
+    var reqDays=r.type==='selfdrive'?Math.max(1,parseInt(days.value,10)||1):1,reqEnd=addDays(startStr,reqDays-1);
+    for(var i=0;i<BUSY.length;i++){
+      var b=BUSY[i];if(b.car!==car.name||!b.start)continue;
+      var bd=Math.max(1,Number(b.days)||1),bEnd=addDays(b.start,bd-1);
+      if(!self&&bd<=1)continue; /* a confirmed one-day chauffeured trip does not block another chauffeured trip; the owner decides */
+      if(b.start<=reqEnd&&bEnd>=startStr)return {start:b.start,end:bEnd};
+    }
+    return null;
+  }
 
   function fillRoutes(){
     var car=currentCar(),keep=route.value,groups={};route.innerHTML='';
@@ -877,6 +896,13 @@
       lastTotal=total;
       lines.push('Your site shows '+r.cur+total+' all-in.');
     }
+    var held=(r.type!=='other'&&r.type!=='monthly')?heldRange(currentCar(),date.value,r):null;
+    if(held){
+      lbl.textContent=t('j.heldlbl',null,'Availability');
+      amt.innerHTML=t('j.onreq',null,'On request');
+      noteText=t('j.held',{from:fmtDate(held.start),to:fmtDate(held.end)},'Already booked {from} – {to}. Send the request anyway and we’ll offer the nearest free date, or choose another car.');
+      lines.push('Note: your site shows this car as booked on these dates.');
+    }
     if(self&&currentCar().singapore===false&&mentionsSingapore(zone.value)){noteText=t('j.nosg',null,'This car cannot enter Singapore. Choose the Vellfire, or a Malaysian destination.');lines.push('Note: this car is Malaysia-only.')}
     note.textContent=noteText;
     renderRates();
@@ -887,7 +913,8 @@
     var needCar=!carChosen();
     carSel.classList.toggle('blink',needCar);
     send.classList.toggle('inert',needTime||needCar);
-    send.textContent=needCar?t('j.needcar',null,'Choose your car first'):(needTime?t('j.needtime',null,'Pick a start date & time first'):t('q.send',null,'Click to negotiate on WhatsApp?'));
+    send.textContent=needCar?t('j.needcar',null,'Choose your car first'):(needTime?t('j.needtime',null,'Pick a start date & time first'):(held?t('j.heldbtn',null,'Ask about these dates on WhatsApp'):t('q.send',null,'Click to negotiate on WhatsApp?')));
+    whenIn.classList.toggle('held',!!held&&!needTime);
     if(needCar){note.textContent=t('j.needcarnote',null,'Please choose your car first.');amt.innerHTML='&mdash;'}
     else if(needTime)note.textContent=t('j.needtimenote',null,'Choose your start date and time. ')+noteText;
   }

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Calendar hold: the price box reads confirmed bookings from the ledger (`?action=busy`) and shows a car as **On request** when the requested dates overlap a confirmed booking of that car (self-drive requests are blocked by any confirmed booking; chauffeured requests only by multi-day ones). The WhatsApp button stays active ("Ask about these dates on WhatsApp") and the message carries a note.
 - Booking control: every WhatsApp tap in the price box is logged as **Waiting Confirmation** with a reference (`Ref: EZ-yymmdd-XXX`, also placed in the WhatsApp message). Backend = Google Apps Script + Google Sheet under the owner's personal Gmail (`gas/Code.gs`, setup in `gas/README.md`). New private `ledger.html` (status Waiting → Confirmed → Completed / Cancelled / No-show, customer, phone, deposit, notes, history, manual bookings, tiles for waiting / upcoming / this month). Admin gets a Bookings tab for the web-app URL (`settings.bookingsUrl`; empty = logging off). Public `?action=busy` endpoint prepared for the calendar hold.
 - Language switcher (EN default / BM / 中文) in the header of the landing page and the rate card. Choice is remembered in the browser (`ezee-lang`) and can be forced with `?lang=ms` / `?lang=zh`. Translations live in `i18n.js`: static text by `data-i18n` key, fleet data (services, notes, inclusions, zones) by exact English string with English fallback, so new cars or services added in admin appear in English until a translation is added. WhatsApp messages stay in English for the owner.
 
