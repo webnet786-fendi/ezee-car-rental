@@ -14,7 +14,7 @@
 // Change ADMIN_TOKEN to a long random secret before deploying; ledger.html asks for the same token.
 
 var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_SECRET';
-var VERSION = 5;
+var VERSION = 6;
 var ALERT_EMAIL = ''; // empty = the Google account that deployed the script
 var LEDGER_URL = 'https://webnet786-fendi.github.io/ezee-car-rental/ledger.html';
 var RATE_LIMIT = 40; // website requests per 10 minutes, above that new ones are silently dropped
@@ -76,7 +76,14 @@ function alert_(r) {
       lines.map(function (x) { return '<tr><td style="padding:4px 14px 4px 0;color:#777">' + x[0] + '</td><td style="padding:4px 0"><b>' + String(x[1]).replace(/</g, '&lt;') + '</b></td></tr>'; }).join('') +
       '</table><p style="margin:16px 0 0">The customer is on WhatsApp with the same Ref. <a href="' + LEDGER_URL + '">Open the ledger</a> to confirm once the deposit is in.</p></div>';
     MailApp.sendEmail({ to: to, subject: 'EzEe booking request ' + r.ref + ' · ' + (r.car || '') + ' · ' + (r.start || 'date to confirm'), htmlBody: html, body: lines.map(function (x) { return x[0] + ': ' + x[1]; }).join('\n') + '\n' + LEDGER_URL });
-  } catch (e) { }
+    return 'sent to ' + to;
+  } catch (e) { return 'error: ' + (e && e.message ? e.message : e); }
+}
+/* Run this once from the editor (Run > authorizeMail) to grant the send-mail permission; it emails you a test line. */
+function authorizeMail() {
+  var to = ALERT_EMAIL || Session.getEffectiveUser().getEmail();
+  MailApp.sendEmail(to, 'EzEe bookings: mail permission OK', 'Alerts will be sent to this address. ' + LEDGER_URL);
+  Logger.log('sent to ' + to);
 }
 
 function doGet(e) {
@@ -131,8 +138,9 @@ function doPost(e) {
         updated: iso_(now), history: iso_(now) + ' created (' + source + ')', ua: str_(p.ua, 120)
       };
       sh.appendRow(toRow_(rec));
-      if (source !== 'manual') { try { CacheService.getScriptCache().put(dupKey, ref, 120); } catch (x) { } alert_(rec); }
-      return out_({ ok: true, ref: ref, row: rec });
+      var alert = null;
+      if (source !== 'manual') { try { CacheService.getScriptCache().put(dupKey, ref, 120); } catch (x) { } alert = alert_(rec); }
+      return out_({ ok: true, ref: ref, row: rec, alert: alert });
     }
     if (p.action === 'update') {
       if (!auth_(p)) return out_({ ok: false, error: 'unauthorised' });
