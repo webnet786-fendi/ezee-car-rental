@@ -753,6 +753,8 @@
   var amt=$('q-amt'),note=$('q-note'),lbl=$('q-lbl'),send=$('q-send');
   var lastMsg='',lastTotal=null;
   /* ---- calendar hold: confirmed bookings from the ledger make a car "on request" for those dates ---- */
+  /* where did this visitor come from? ezee.my/?from=fb (or utm_source=…) is remembered for the visit and logged with the request */
+  var FROM='';try{var mm=location.search.match(/[?&](?:from|utm_source)=([^&]+)/);if(mm){FROM=decodeURIComponent(mm[1]).slice(0,14);sessionStorage.setItem('ezee-from',FROM)}else{FROM=sessionStorage.getItem('ezee-from')||''}}catch(e){}
   var BUSY=[];
   (function loadBusy(){
     var u=SETTINGS.bookingsUrl;if(!u)return;
@@ -970,7 +972,7 @@
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly'),car=currentCar(),ref=newRef();
     a.href=WA+encodeURIComponent(lastMsg+'\nRef: '+ref);
     if(!url)return;
-    var payload={action:'create',ref:ref,source:'website',car:car.name,service:r.id,
+    var payload={action:'create',ref:ref,source:FROM?'web:'+FROM:'website',car:car.name,service:r.id,
       route:r.type==='transfer'?(dir.value==='1'?r.b+' → '+r.a:r.a+' → '+r.b):r.label,
       destination:self?zone.value.trim():'',deliverTo:self?deliver.value.trim():'',dropoff:self?'':whereIn.value.trim(),
       start:date.value,time:time.value,days:r.type==='selfdrive'?days.value:'',pax:self?'':pax.value,
