@@ -311,6 +311,26 @@ const LS_S="ezee-agreement-draft-v2", LS_B="ezee-agreement-biz-v2";
 function load(){
   try{ const b=JSON.parse(localStorage.getItem(LS_B)||"null"); if(b) B={...DEFAULT_BIZ,...b}; }catch(e){}
   try{ const s=JSON.parse(localStorage.getItem(LS_S)||"null"); if(s) S={...blank(),...s}; }catch(e){}
+  prefill();
+}
+// ---------- prefill from the bookings ledger (agreement.html?ref=&name=&phone=&car=&start=&time=&days=&rate=&dest=&loc=&deposit=) ----------
+function prefill(){
+  const q=new URLSearchParams(location.search);
+  if(!q.has("ref")&&!q.has("name")&&!q.has("start")) return;
+  S=blank();
+  const v=k=>(q.get(k)||"").trim();
+  if(v("name")) S.r.name=v("name").toUpperCase();
+  if(v("phone")) S.r.phone=v("phone");
+  const car=v("car").toUpperCase(); if(car){ const fl=fleet(); const hit=fl.find(c=>car.split(/\s+/).some(w=>w.length>3&&c.model.toUpperCase().indexOf(w)>=0)); if(hit){ S.v.model=hit.model; S.v.plate=hit.plate; S.v.group=hit.group; S.p.rate=hit.rate; S.p.sec=hit.sec; } else S.v.model=car; }
+  if(v("start")) S.a.date=v("start");
+  if(v("time")) { S.a.time=v("time"); S.p.time=v("time"); }
+  const days=+v("days")||0; if(days>0){ S.p.days=days; if(S.a.date){ const d=new Date(S.a.date+"T00:00:00"); d.setDate(d.getDate()+days); S.p.date=d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); } }
+  if(+v("rate")>0) S.p.rate=+v("rate");
+  if(v("loc")) S.a.loc=v("loc").toUpperCase();
+  if(v("dest")) S.n.dest=v("dest").toUpperCase();
+  const extra=[]; if(v("ref")) extra.push("RUJUKAN TEMPAHAN: "+v("ref")); if(v("deposit")) extra.push("DEPOSIT DITERIMA: "+v("deposit").toUpperCase());
+  if(extra.length) S.n.extra=extra.join("\n");
+  try{ history.replaceState(null,"",location.pathname); }catch(e){}
 }
 let saveT; function save(){ clearTimeout(saveT); saveT=setTimeout(()=>{ try{ localStorage.setItem(LS_S,JSON.stringify(S)); localStorage.setItem(LS_B,JSON.stringify(B)); }catch(e){} },250); }
 function get(k){ const [a,b]=k.split("."); return S[a][b]; }

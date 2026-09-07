@@ -76,6 +76,10 @@
   .b-conf{color:var(--ok);border-color:var(--ok)}
   .b-done{color:var(--done);border-color:var(--done)}
   .b-canc{color:var(--bad);border-color:var(--bad)}
+  .flag{display:inline-block;margin-top:5px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px}
+  .flag.reply{background:rgba(201,80,63,.18);color:#ff8a78}
+  .flag.soon{background:rgba(210,169,94,.18);color:var(--gold-soft)}
+  .flag.late{background:rgba(127,143,166,.2);color:#b7c2d4}
   .empty{padding:36px 0;text-align:center;color:var(--faint)}
   .hist{font-size:12.5px;color:var(--faint);white-space:pre-wrap;max-height:160px;overflow:auto;background:var(--raised);padding:10px;border:1px solid var(--line);border-radius:4px}
   .editor h2{font-family:'Marcellus',Georgia,serif;font-weight:400;font-size:20px;margin:0 0 4px}
@@ -115,7 +119,7 @@
     </div>
     <div class="toolbar">
       <div class="pills" id="pills">
-        <button data-f="wait">Waiting</button><button data-f="conf">Confirmed</button><button data-f="done">Completed</button><button data-f="canc">Cancelled / No-show</button><button data-f="all" aria-selected="true">All</button>
+        <button data-f="att">Attention</button><button data-f="wait">Waiting</button><button data-f="conf">Confirmed</button><button data-f="done">Completed</button><button data-f="canc">Cancelled / No-show</button><button data-f="all" aria-selected="true">All</button>
       </div>
       <input id="q" placeholder="Search ref, name, phone, place…">
       <button class="btn small" id="refresh">Refresh</button>
@@ -170,6 +174,17 @@
 
   /* ---- filters & tiles ---- */
   function bucket(r){var s=r.status;if(s==='Waiting Confirmation')return 'wait';if(s==='Confirmed')return 'conf';if(s==='Completed')return 'done';return 'canc'}
+  /* attention flags: waiting > 24 h without reply, confirmed starting today / tomorrow, confirmed already past its end without being closed */
+  function ageH(iso){if(!iso)return 0;var d=new Date(iso.replace(' ','T'));return isNaN(d)?0:(Date.now()-d.getTime())/36e5}
+  function flags(r){
+    var f=[],t=today(),tm=addD(t,1);
+    if(bucket(r)==='wait'&&ageH(r.created)>=24)f.push({c:'reply',l:'Needs reply · '+Math.floor(ageH(r.created)/24)+' day'+(ageH(r.created)>=48?'s':'')});
+    if(bucket(r)==='conf'&&r.start===t)f.push({c:'soon',l:'Today'+(r.time?' '+r.time:'')});
+    else if(bucket(r)==='conf'&&r.start===tm)f.push({c:'soon',l:'Tomorrow'+(r.time?' '+r.time:'')});
+    if(bucket(r)==='conf'&&r.start&&endDate(r)<t)f.push({c:'late',l:'Ended, close it'});
+    return f;
+  }
+  function addD(v,n){var p=v.split('-');var d=new Date(p[0],p[1]-1,+p[2]+n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
   function endDate(r){if(!r.start)return '';var p=r.start.split('-');var d=new Date(p[0],p[1]-1,+p[2]+(Math.max(1,parseInt(r.days,10)||1)-1));return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
   function tiles(){
     var t=today(),ym=t.slice(0,7);
@@ -177,7 +192,8 @@
     var conf=rows.filter(function(r){return bucket(r)==='conf'&&(!r.start||endDate(r)>=t)});
     var rev={};rows.forEach(function(r){if((r.status==='Confirmed'||r.status==='Completed')&&r.start&&r.start.slice(0,7)===ym&&r.price){rev[r.currency||'']=(rev[r.currency||'']||0)+Number(r.price)}});
     var revS=Object.keys(rev).map(function(c){return money(c,rev[c])});
-    $('t-wait').textContent=wait.length;$('t-wait-s').textContent=wait.length?('oldest '+fmtDT(wait.map(function(r){return r.created}).sort()[0])):'inbox clear';
+    var att=rows.filter(function(r){return flags(r).length});
+    $('t-wait').textContent=wait.length;$('t-wait-s').textContent=att.length?(att.length+' need attention'):(wait.length?('oldest '+fmtDT(wait.map(function(r){return r.created}).sort()[0])):'inbox clear');
     $('t-conf').textContent=conf.length;$('t-conf-s').textContent=conf.length?('next '+fmtD(conf.map(function(r){return r.start}).filter(Boolean).sort()[0])):'';
     $('t-rev').textContent=revS.length?revS.join(' + '):'—';$('t-rev-s').textContent=new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'});
     $('t-all').textContent=rows.length;$('t-all-s').textContent=rows.filter(function(r){return r.source==='website'}).length+' from the website';
@@ -191,6 +207,7 @@
     var q=$('q').value.trim().toLowerCase(),t=today(),ym=t.slice(0,7);
     return rows.filter(function(r){
       if(filter==='month'){if(!((r.status==='Confirmed'||r.status==='Completed')&&r.start&&r.start.slice(0,7)===ym))return false}
+      else if(filter==='att'){if(!flags(r).length)return false}
       else if(filter!=='all'&&bucket(r)!==filter)return false;
       if(!q)return true;
       return [r.ref,r.customer,r.phone,r.car,r.route,r.service,r.destination,r.deliverTo,r.dropoff,r.notes].join(' ').toLowerCase().indexOf(q)>-1;
@@ -217,7 +234,7 @@
     var h='<thead><tr><th>Ref</th><th>Status</th><th>Car · service</th><th>Trip</th><th>Customer</th><th style="text-align:right">Price</th></tr></thead><tbody>';
     v.forEach(function(r){
       h+='<tr class="row'+(sel&&sel.ref===r.ref?' sel':'')+'" data-ref="'+esc(r.ref)+'"><td class="ref">'+esc(r.ref)+'<small>'+esc(fmtDT(r.created))+(r.source&&r.source!=='website'?' · '+esc(r.source):'')+'</small></td>'
-        +'<td class="stat"><span class="badge '+(CLS[r.status]||'b-done')+'">'+esc(r.status)+'</span>'+(r.deposit?'<small>Deposit: '+esc(r.deposit)+'</small>':'')+'</td>'
+        +'<td class="stat"><span class="badge '+(CLS[r.status]||'b-done')+'">'+esc(r.status)+'</span>'+flags(r).map(function(f){return '<br><span class="flag '+f.c+'">'+esc(f.l)+'</span>'}).join('')+(r.deposit?'<small>Deposit: '+esc(r.deposit)+'</small>':'')+'</td>'
         +'<td>'+esc(r.car||'—')+'<small>'+esc(r.route||r.service||'')+'</small></td>'
         +'<td class="trip">'+tripCell(r)+'</td>'
         +'<td>'+(r.customer?esc(r.customer):'<small>not yet known</small>')+(r.phone?'<small>'+esc(r.phone)+'</small>':'')+(r.notes?'<small>'+esc(r.notes.length>60?r.notes.slice(0,60)+'…':r.notes)+'</small>':'')+'</td>'
@@ -247,12 +264,19 @@
       +(creating?'':'<div class="f"><label>History</label><div class="hist">'+esc(r.history||'')+'</div></div>')
       +'<div class="actions"><button class="btn primary" id="e-save">'+(creating?'Create':'Save')+'</button>'
       +(r.phone?'<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/'+esc(String(r.phone).replace(/[^0-9]/g,''))+'?text='+encodeURIComponent('Hi '+(r.customer||'')+', EzEe Car Rental here about your booking '+r.ref+'.')+'">WhatsApp</a>':'')
+      +(!creating&&r.car&&r.start?'<a class="btn" target="_blank" rel="noopener" href="'+agreementUrl(r)+'">Prepare agreement</a>':'')
       +'<button class="btn" id="e-close">Close</button>'+(creating?'':'<button class="btn danger" id="e-del">Delete</button>')+'</div>';
     $('e-close').addEventListener('click',function(){e.hidden=true;sel=null;render()});
     $('e-save').addEventListener('click',save);
     if(!creating)$('e-del').addEventListener('click',function(){if(!confirm('Delete '+r.ref+' permanently? Usually better to mark it Cancelled.'))return;post({action:'delete',ref:r.ref}).then(function(j){if(!j.ok)throw new Error(j.error);toast('Deleted '+r.ref);e.hidden=true;sel=null;return reload()}).catch(function(x){toast('Delete failed: '+(x.message||x),true)})});
     render();
     if(window.innerWidth<980)e.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  /* opens the rental agreement form with the booking already filled in */
+  function agreementUrl(r){
+    var days=parseInt(r.days,10)||0,price=Number(r.price)||0,selfdrive=/selfdrive|weekly|monthly/.test(r.service||'')||/self-drive|pandu sendiri|自驾/i.test(r.route||'');
+    var q={ref:r.ref,name:r.customer,phone:r.phone,car:r.car,start:r.start,time:r.time,days:selfdrive?(days||1):'',rate:price?(selfdrive&&days?Math.round(price/days):price):'',dest:r.destination||r.dropoff,loc:r.deliverTo,deposit:r.deposit};
+    return 'agreement.html?'+Object.keys(q).filter(function(k){return q[k]!==''&&q[k]!=null}).map(function(k){return k+'='+encodeURIComponent(q[k])}).join('&');
   }
   function fields(){var f={};['status','customer','phone','deposit','car','route','start','time','days','pax','currency','price','destination','deliverTo','dropoff','notes'].forEach(function(k){f[k]=$('e-'+k).value.trim()});return f}
   function save(){

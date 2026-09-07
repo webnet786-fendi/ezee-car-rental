@@ -471,6 +471,7 @@
         <h2 data-i18n="q.title">Get your price</h2>
         <p class="qsub" data-i18n="q.sub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
 
+        <input type="text" id="q-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0">
         <div class="field" id="f-car" hidden>
           <label for="q-car" data-i18n="q.car">Choose your car please</label>
           <select id="q-car"></select>
@@ -973,7 +974,7 @@
       route:r.type==='transfer'?(dir.value==='1'?r.b+' → '+r.a:r.a+' → '+r.b):r.label,
       destination:self?zone.value.trim():'',deliverTo:self?deliver.value.trim():'',dropoff:self?'':whereIn.value.trim(),
       start:date.value,time:time.value,days:r.type==='selfdrive'?days.value:'',pax:self?'':pax.value,
-      price:lastTotal==null?'':String(lastTotal),currency:r.cur||'',lang:typeof getLang==='function'?getLang():'en',ua:navigator.userAgent.slice(0,120)};
+      price:lastTotal==null?'':String(lastTotal),currency:r.cur||'',lang:typeof getLang==='function'?getLang():'en',ua:navigator.userAgent.slice(0,120),hp:($('q-hp')||{}).value||''};
     try{fetch(url,{method:'POST',mode:'no-cors',keepalive:true,body:JSON.stringify(payload)})}catch(e){}
   }
   send.addEventListener('click',function(){logBooking(send)});

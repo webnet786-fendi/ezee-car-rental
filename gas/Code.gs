@@ -8,10 +8,16 @@
 //   GET  ?action=busy                      public  — confirmed bookings per car (for the calendar hold on the site)
 //   GET  ?action=ping                      public  — health check
 //
+// Every website request also emails ALERT_EMAIL (default: the deploying account). Duplicate taps within 2 minutes reuse
+// the same reference; more than RATE_LIMIT website requests in 10 minutes are dropped; a filled honeypot (hp) is ignored.
+//
 // Change ADMIN_TOKEN to a long random secret before deploying; ledger.html asks for the same token.
 
 var ADMIN_TOKEN = 'REPLACE_WITH_YOUR_SECRET';
-var VERSION = 4;
+var VERSION = 5;
+var ALERT_EMAIL = ''; // empty = the Google account that deployed the script
+var LEDGER_URL = 'https://webnet786-fendi.github.io/ezee-car-rental/ledger.html';
+var RATE_LIMIT = 40; // website requests per 10 minutes, above that new ones are silently dropped
 var PLACEHOLDER = 'REPLACE_WITH_' + 'YOUR_SECRET'; // split so a find-and-replace of the token never touches this
 var SHEET = 'Bookings';
 var TZ = 'Asia/Kuala_Lumpur';
@@ -56,6 +62,23 @@ function newRef_(d) {
   return 'EZ-' + ymd + '-' + ('00' + n).slice(-3);
 }
 
+function alert_(r) {
+  try {
+    var to = ALERT_EMAIL || Session.getEffectiveUser().getEmail();
+    if (!to) return;
+    var trip = [r.start ? r.start + (r.time ? ' ' + r.time : '') : 'date to confirm', r.days ? r.days + ' day' + (r.days > 1 ? 's' : '') : '', r.pax ? r.pax + ' pax' : ''].filter(String).join(' · ');
+    var lines = [
+      ['Ref', r.ref], ['Car', r.car], ['Service', r.route || r.service], ['When', trip],
+      ['Driving to', r.destination], ['Deliver car to', r.deliverTo], ['Drop-off', r.dropoff],
+      ['Price shown', r.price ? (r.currency || '') + r.price : 'on request'], ['Site language', r.lang], ['Source', r.source]
+    ].filter(function (x) { return x[1]; });
+    var html = '<div style="font:15px/1.5 Arial,sans-serif;color:#222"><h2 style="margin:0 0 12px;font-size:18px">New booking request ' + r.ref + '</h2><table style="border-collapse:collapse">' +
+      lines.map(function (x) { return '<tr><td style="padding:4px 14px 4px 0;color:#777">' + x[0] + '</td><td style="padding:4px 0"><b>' + String(x[1]).replace(/</g, '&lt;') + '</b></td></tr>'; }).join('') +
+      '</table><p style="margin:16px 0 0">The customer is on WhatsApp with the same Ref. <a href="' + LEDGER_URL + '">Open the ledger</a> to confirm once the deposit is in.</p></div>';
+    MailApp.sendEmail({ to: to, subject: 'EzEe booking request ' + r.ref + ' · ' + (r.car || '') + ' · ' + (r.start || 'date to confirm'), htmlBody: html, body: lines.map(function (x) { return x[0] + ': ' + x[1]; }).join('\n') + '\n' + LEDGER_URL });
+  } catch (e) { }
+}
+
 function doGet(e) {
   var p = (e && e.parameter) || {};
   if (p.action === 'ping') {
@@ -87,6 +110,15 @@ function doPost(e) {
     if (p.action === 'create') {
       if (p.hp) return out_({ ok: true }); // honeypot field filled → silently ignore
       var source = str_(p.source, 20) || 'website';
+      if (source !== 'manual') {
+        var cache = CacheService.getScriptCache();
+        var dupKey = 'dd:' + [p.car, p.service, p.start, p.time, p.days, p.ua].join('|').slice(0, 200);
+        var dupRef = cache.get(dupKey);
+        if (dupRef) return out_({ ok: true, ref: dupRef, duplicate: true }); // same tap within 2 minutes
+        var bucket = 'rl:' + Math.floor(now.getTime() / 600000), n = Number(cache.get(bucket) || 0) + 1;
+        cache.put(bucket, String(n), 700);
+        if (n > RATE_LIMIT) return out_({ ok: true, dropped: true });
+      }
       var ref = str_(p.ref, 24) || newRef_(now);
       if (rows_(sh).some(function (r) { return r.ref === ref; })) ref = newRef_(now);
       var rec = {
@@ -99,6 +131,7 @@ function doPost(e) {
         updated: iso_(now), history: iso_(now) + ' created (' + source + ')', ua: str_(p.ua, 120)
       };
       sh.appendRow(toRow_(rec));
+      if (source !== 'manual') { try { CacheService.getScriptCache().put(dupKey, ref, 120); } catch (x) { } alert_(rec); }
       return out_({ ok: true, ref: ref, row: rec });
     }
     if (p.action === 'update') {
