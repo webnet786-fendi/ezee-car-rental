@@ -971,6 +971,7 @@
     var url=SETTINGS.bookingsUrl;
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly'),car=currentCar(),ref=newRef();
     a.href=WA+encodeURIComponent(lastMsg+'\nRef: '+ref);
+    if(typeof track==='function')track('whatsapp_tap',{service:r.id,car:car.short||car.name,source:FROM||'website',price:lastTotal==null?'':String(lastTotal)});
     if(!url)return;
     var payload={action:'create',ref:ref,source:FROM?'web:'+FROM:'website',car:car.name,service:r.id,
       route:r.type==='transfer'?(dir.value==='1'?r.b+' → '+r.a:r.a+' → '+r.b):r.label,

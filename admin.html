@@ -150,6 +150,14 @@
         <p class="hint">Leave empty to switch logging off; the site then works exactly as before. Save &amp; publish after changing.</p>
         <button class="btn small" id="testBookings" style="margin-top:10px">Test connection</button> <span class="hint" id="bookingsTest" style="display:inline"></span>
       </div>
+      <p class="eyebrow" style="margin-top:22px">Website visitors</p>
+      <p style="color:var(--muted);margin:0 0 14px">Google Analytics counts who visits ezee.my and which taps on the WhatsApp button follow. Create the property at <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a> (web stream for https://ezee.my), then paste its Measurement ID here.</p>
+      <div class="card">
+        <label for="gaId">Google Analytics Measurement ID (starts with G-)</label>
+        <input id="gaId" placeholder="G-XXXXXXXXXX" autocomplete="off" spellcheck="false">
+        <p class="hint">Leave empty to switch tracking off. Only the public pages (landing, rate card) load the tag; admin, ledger and the agreement never do. Save &amp; publish after changing, then check Realtime in Analytics.</p>
+        <span class="hint" id="gaCheck"></span>
+      </div>
     </div>
 
     <div class="pane" id="pane-json" hidden>
@@ -235,8 +243,10 @@
     if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
   })});
 
-  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||''}
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck()}
   $('bookingsUrl').addEventListener('input',function(){fleet.settings.bookingsUrl=$('bookingsUrl').value.trim();markDirty()});
+  function gaCheck(){var v=$('gaId').value.trim(),o=$('gaCheck');o.textContent=!v?'':(/^G-[A-Z0-9]{6,}$/.test(v)?'Looks right.':'A Measurement ID looks like G-ABC123XYZ (capital letters and digits).')}
+  $('gaId').addEventListener('input',function(){var v=$('gaId').value.trim().toUpperCase();fleet.settings.gaId=v;gaCheck();markDirty()});
   $('testBookings').addEventListener('click',function(){
     var u=$('bookingsUrl').value.trim(),o=$('bookingsTest');if(!u){o.textContent='Enter the URL first.';return}
     o.textContent='Testing…';

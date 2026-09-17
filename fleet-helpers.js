@@ -14,3 +14,17 @@ function mentionsSingapore(text){
   var t=' '+String(text||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ')+' ';
   return SG_KEYS.some(function(k){return t.indexOf(' '+k+' ')>-1});
 }
+
+/* Google Analytics (GA4). Measurement ID lives in fleet.json settings.gaId (admin → Bookings tab); empty = off.
+   Private pages (noindex) never load it. Sends page views; index.html also sends a whatsapp_tap event. */
+(function(){
+  var id=String(SETTINGS.gaId||'').trim();
+  if(!/^G-[A-Z0-9]{6,}$/.test(id))return;
+  if(document.querySelector('meta[name="robots"][content*="noindex"]'))return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config',id,{send_page_view:true});
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(id);
+  document.head.appendChild(s);
+})();
+function track(name,params){try{if(window.gtag&&SETTINGS.gaId)gtag('event',name,params||{})}catch(e){}}
