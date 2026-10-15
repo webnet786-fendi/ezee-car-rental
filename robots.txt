@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /ledger.html
+Disallow: /agreement.html
+Sitemap: https://ezee.my/sitemap.xml

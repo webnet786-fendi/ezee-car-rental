@@ -3,14 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Chauffeured 2022 Toyota Vellfire between Singapore, Johor Bahru, Senai Airport and Desaru. Fixed all-in prices from S$140. Instant quote, book on WhatsApp.">
+<meta name="description" content="Self-drive cars in Johor Bahru from RM90 a day and chauffeured Toyota Vellfire transfers between Singapore, JB, Senai Airport and Desaru from S$140. Fixed all-in prices, deposit shown up front, book on WhatsApp.">
 <meta property="og:title" content="EzEe Car Rental">
-<meta property="og:description" content="Chauffeured 2022 Toyota Vellfire between Singapore, Johor Bahru, Senai Airport and Desaru. Fixed all-in prices from S$140. Instant quote, book on WhatsApp.">
+<meta property="og:description" content="Self-drive cars in Johor Bahru from RM90 a day and chauffeured Toyota Vellfire transfers between Singapore, JB, Senai Airport and Desaru from S$140. Fixed all-in prices, deposit shown up front, book on WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ezee.my/img/car/front.jpg">
 <meta name="theme-color" content="#14110b">
 <link rel="icon" type="image/png" href="img/favicon.png">
-<title>EzEe Car Rental</title>
+<title>EzEe Car Rental — car rental Johor Bahru from RM90/day, chauffeured Vellfire SG–JB</title>
+<link rel="canonical" href="https://ezee.my/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AutoRental","name":"EzEe Car Rental","url":"https://ezee.my/","image":"https://ezee.my/img/car/front.jpg","telephone":"+60127119814","foundingDate":"2021","priceRange":"RM90 - RM900","currenciesAccepted":"MYR, SGD","paymentAccepted":"PayNow, DuitNow, bank transfer, cash","areaServed":["Johor Bahru","Kulai","Senai Airport","Iskandar Puteri","Desaru","Singapore"],"address":{"@type":"PostalAddress","addressLocality":"Kulai","addressRegion":"Johor","addressCountry":"MY"},"openingHours":"Mo-Su 08:00-23:00","sameAs":["https://wa.me/60127119814"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Marcellus&family=Jost:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap">
 <style>
@@ -342,15 +346,19 @@
   }
   .fab{
     position:fixed;right:18px;bottom:18px;z-index:50;
-    width:84px;height:84px;border-radius:50%;
-    background:var(--surface);border:2px solid var(--gold);
-    display:grid;place-items:center;
+    display:flex;align-items:center;gap:10px;padding:12px 20px 12px 14px;border-radius:999px;
+    background:var(--whatsapp);color:#fff;font-weight:600;font-size:15px;text-decoration:none;letter-spacing:.01em;
     box-shadow:0 8px 24px rgba(0,0,0,.55);
-    transition:transform .15s ease;
+    transition:transform .15s ease,background .15s ease;
   }
-  .fab img{width:68px;height:auto;display:block}
-  .fab:hover{transform:scale(1.06);background:var(--raised)}
-  @media (max-width:700px){ .fab{width:70px;height:70px;right:14px;bottom:14px} .fab img{width:56px} }
+  .fab svg{width:26px;height:26px;fill:#fff;flex:none}
+  .fab:hover{transform:scale(1.04);background:#2db96c}
+  @media (max-width:700px){ .fab{right:14px;bottom:14px;padding:11px 16px 11px 12px;font-size:14px} .fab svg{width:24px;height:24px} }
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .btn-gold{background:var(--gold);color:#14110b}
+  .btn-gold:hover{background:var(--gold-soft)}
+  .approx{display:block;font-size:11px;color:var(--faint);font-weight:400;letter-spacing:0}
+  .fdep{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
 
   /* ---------- Sticky compact search bar ---------- */
   .sbar{position:fixed;left:0;right:0;top:0;z-index:90;background:rgba(20,17,11,.96);border-bottom:1px solid var(--line);
@@ -535,7 +543,6 @@
   <nav>
     <div class="brand">
       <a class="logo" href="#top"><img src="img/logo.png" alt="EzEe Car Rental" width="336" height="200"></a>
-      <a class="site-title" href="#top" data-i18n="site.title">EzEe Car Rental Official Page</a>
     </div>
     <div class="navright">
       <div class="navlinks">
@@ -556,11 +563,12 @@
     <div class="hero-grid">
       <div>
         <p class="eyebrow" data-i18n="hero.eyebrow">Singapore &middot; Johor Bahru &middot; Senai Airport &middot; Desaru Coast</p>
-        <h1 class="plain" data-i18n="hero.h1">Rent &amp; Drive Our Economy Vehicle</h1>
+        <h1 class="plain" data-i18n="hero.h1">Car rental in Johor Bahru from RM90 a day</h1>
         <ul class="pillars">
           <li><span class="mark">&#10003;</span><div data-i18n="pillar.1"><b>Exceptional Service</b>Rent the exact car you want, exactly where you need it, for days, weeks, or months.</div></li>
-          <li><span class="mark">&#10003;</span><div data-i18n="pillar.2"><b>Best Price</b>Rent with the best price in town.</div></li>
+          <li><span class="mark">&#10003;</span><div data-i18n="pillar.2"><b>Price match</b>Found the same car cheaper in JB for the same dates? Send us the link and we match it.</div></li>
         </ul>
+        <div class="hero-cta"><a class="btn btn-gold" href="#fleet" data-i18n="hero.cta1">Self-drive cars</a><a class="btn btn-ghost" href="#car-vellfire" data-i18n="hero.cta2">Chauffeured Vellfire</a></div>
         <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo" data-i18n="promo">Our Flagship Car Promo This Month<a href="#quote">Toyota Vellfire ZG &middot; Book now!</a></figcaption></figure>
       </div>
 
@@ -815,13 +823,13 @@
 
 <div class="wrap">
   <footer>
-    <div><span data-i18n="ft.1">EzEe Car Rental &middot; Kulai, Johor, Malaysia</span> &middot; <span style="color:var(--faint)">v1.0.0</span></div>
+    <div><span data-i18n="ft.1">EzEe Car Rental &middot; Kulai, Johor, Malaysia &middot; Since 2021</span> &middot; <span style="color:var(--faint)">v1.0.0</span></div>
     <div data-i18n="ft.2">Bookings daily 8 am &ndash; 11 pm &middot; WhatsApp +60 12-711 9814</div>
     <div class="credits" data-i18n="ft.credits">Some car photos are by Wikimedia Commons contributors under Creative Commons licences. The credit and licence are shown with each car.</div>
   </footer>
 </div>
 
-<a class="fab" href="#top" title="Back to top" data-i18n-title="fab" aria-label="Back to top"><img src="img/logo.png" alt="EzEe Car Rental"></a>
+<a class="fab" href="https://wa.me/60127119814?text=Hi%20EzEe%2C%20I%27d%20like%20a%20quote" target="_blank" rel="noopener" title="Chat on WhatsApp" data-i18n-title="fab" aria-label="Chat on WhatsApp" onclick="try{track('whatsapp_tap',{service:'fab',car:'',source:FROM||'website',price:''})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span data-i18n="fab.label">WhatsApp</span></a>
 
 <div class="modal" id="min-modal" hidden role="dialog" aria-modal="true" aria-labelledby="min-title">
   <div class="modal-box">
@@ -935,7 +943,7 @@
         return;
       }
       var tr=document.createElement('tr');if(r.group==='Hot item')tr.className='hot';
-      tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>':'')+rowLabelT(r,car)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+'</td>';
+      tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>':'')+rowLabelT(r,car)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+approxRM(r,car.prices[r.id])+'</td>';
       rows.appendChild(tr);
     });
     (car.hourly||[]).forEach(function(x){
@@ -1150,6 +1158,7 @@
     var best=null;ROUTES.forEach(function(r){var p=c.prices[r.id];if(p==null||r.type==='other'||r.table)return;if(!best||p<best.amt)best={cur:r.cur,amt:p,per:false}});
     return best;
   }
+  function depHTML(c){return c.prices.selfdrive!=null&&c.deposit?'<span class="fdep">'+t('fl.deposit',{n:c.deposit},'Refundable deposit RM{n}')+'</span>':''}
   function fromHTML(c,big){
     var fp=fromPrice(c);
     if(!fp)return '<'+(big?'div':'span')+' class="amt">'+t('j.letstalk',null,'Let’s talk')+'</'+(big?'div':'span')+'>';
@@ -1181,7 +1190,7 @@
       var a=document.createElement('article');a.className='fcard';
       a.innerHTML='<figure>'+(c.photo?'<img src="'+esc(c.photo)+'" alt="'+esc(c.name)+'" loading="lazy">':'<div class="noimg">'+t('fl.nophoto',null,'Photo coming')+'</div>')+'</figure>'
         +'<div class="fbody"><div class="fchips">'+chips(c)+'</div><h3>'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p>'
-        +'<div class="ffrom">'+fromHTML(c,false)+'</div>'
+        +'<div class="ffrom">'+fromHTML(c,false)+'</div>'+depHTML(c)
         +'<button type="button" class="fsel">'+t('fl.select',null,'Select vehicle')+'</button></div>';
       a.querySelector('.fsel').addEventListener('click',function(){openCar(c.id)});
       a.querySelector('figure').addEventListener('click',function(){openCar(c.id)});
@@ -1199,7 +1208,7 @@
   function tierLabel(x){
     if(x.label)return td(x.label);
     var d=x.to==null?x.from+'+':(x.from===x.to?String(x.from):x.from+'–'+x.to);
-    return d+' '+t('v.days',null,'days');
+    return d+' '+(x.from===1&&x.to===1?t('v.day1',null,'day'):t('v.days',null,'days'));
   }
   function selfHTML(c){
     var rows='';
@@ -1218,7 +1227,7 @@
     ROUTES.forEach(function(r){
       if(r.type!=='transfer'&&r.type!=='charter')return;
       if(r.table||r.id==='weekly'||!(r.id in c.prices))return;
-      rows+='<tr><td>'+td(r.label)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,c.prices[r.id])+'</td></tr>';
+      rows+='<tr><td>'+td(r.label)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,c.prices[r.id])+approxRM(r,c.prices[r.id])+'</td></tr>';
     });
     return rows;
   }
@@ -1231,7 +1240,7 @@
       +(gal.length?'<div class="vgal"><div class="vmain"><img id="v-main" src="'+esc(gal[0].src)+'" alt="'+esc(gal[0].alt||c.name)+'"></div>'
         +(gal.length>1?'<div class="vthumbs">'+gal.map(function(g,i){return '<button type="button" data-i="'+i+'" aria-selected="'+(i?'false':'true')+'"><img src="'+esc(g.src)+'" alt="" loading="lazy"></button>'}).join('')+'</div>':'')+'</div>':'')
       +(c.credit?'<p class="vcredit">'+c.credit+'</p>':'')
-      +'<div class="vhead"><div><div class="fchips">'+chips(c)+'</div><h3 id="v-title">'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p></div><div class="vfrom">'+fromHTML(c,true)+'</div></div>'
+      +'<div class="vhead"><div><div class="fchips">'+chips(c)+'</div><h3 id="v-title">'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p></div><div class="vfrom">'+fromHTML(c,true)+depHTML(c)+'</div></div>'
       +'<div class="vgrid"><div class="vcol">'
       +(c.specs&&c.specs.length?'<p class="vh">'+t('v.specs',null,'At a glance')+'</p><ul class="vspecs">'+c.specs.map(function(s){return '<li>'+esc(td(s.k))+'<b>'+esc(td(s.v))+'</b></li>'}).join('')+'</ul>':'')
       +(self?'<p class="vh">'+t('v.self',null,'Self-drive rates')+'</p><div class="ratetable"><table class="vtable"><tbody>'+self+'</tbody></table></div>':'')

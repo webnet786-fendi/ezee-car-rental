@@ -4,6 +4,8 @@ function activeCars(){return CARS.filter(function(c){return c.active})}
 function carLabel(c){return c.name+(c.hot?' — Hot item':'')}
 function rowLabel(r,c){return r.label.replace('Self-drive,','Self-drive '+c.short+',').replace('Monthly rental, self-drive','Monthly rental, '+c.short)}
 function fmtPrice(r,p){return (p==null||p==='')?'Let’s talk':r.cur+p}
+/* S$ prices get an approximate RM figure (settings.sgdRate); shown as a small line, never in WhatsApp text. */
+function approxRM(r,p){var k=Number(SETTINGS.sgdRate||0);if(!k||p==null||p===''||r.cur!=='S$')return '';return '<small class="approx">\u2248 RM'+Math.round(p*k/10)*10+'</small>'}
 function zoneFor(text){
   var t=' '+String(text||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ')+' ';
   for(var i=0;i<ZONES.length;i++){var z=ZONES[i];for(var k=0;k<z.keys.length;k++){if(t.indexOf(' '+z.keys[k]+' ')>-1)return z}}
