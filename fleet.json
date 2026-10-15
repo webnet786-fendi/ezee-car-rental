@@ -45,7 +45,78 @@
    "terms": [
     "Luggage: comfortably 4 passengers + 4 large cases, or 6 passengers with cabin bags. Waiting time beyond 15 minutes (60 minutes at Changi) is charged at S$20 per 30 minutes. Charter hours are counted from pickup to drop-off."
    ],
-   "singapore": true
+   "singapore": true,
+   "category": "MPV / Van",
+   "gallery": [
+    "img/car/front.jpg",
+    "img/car/front-portrait.jpg",
+    "img/car/pilot-seats.jpg",
+    "img/car/pilot-seats-2.jpg",
+    "img/car/cockpit.jpg",
+    "img/car/rear.jpg",
+    "img/car/rear-2.jpg"
+   ],
+   "specs": [
+    {
+     "k": "Year",
+     "v": "2022"
+    },
+    {
+     "k": "Engine",
+     "v": "2.5 L petrol"
+    },
+    {
+     "k": "Transmission",
+     "v": "Automatic"
+    },
+    {
+     "k": "Seats",
+     "v": "7 (2 + 2 + 3)"
+    },
+    {
+     "k": "Doors",
+     "v": "Twin power sliding"
+    },
+    {
+     "k": "Luggage",
+     "v": "4 large cases"
+    }
+   ],
+   "features": [
+    "Reclining ottoman pilot seats in the second row",
+    "Twin power sliding doors",
+    "Rear air-conditioning with roof vents",
+    "Keyless entry and push start",
+    "Reverse camera and parking sensors",
+    "ISOFIX child-seat anchors",
+    "On-board Wi-Fi and bottled water on chauffeured trips"
+   ],
+   "policies": [
+    {
+     "k": "Documents",
+     "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
+    },
+    {
+     "k": "Deposit",
+     "v": "50% of the fare confirms the booking. Self-drive carries a refundable RM500 security deposit, returned within 10 to 14 working days after the car is checked."
+    },
+    {
+     "k": "Cancellation",
+     "v": "Free up to 48 hours before pickup."
+    },
+    {
+     "k": "Fuel",
+     "v": "Self-drive: full tank on handover, return full. Chauffeured trips include fuel, tolls and checkpoint fees."
+    },
+    {
+     "k": "Delivery",
+     "v": "We deliver to your address, hotel, Senai Airport or JB CIQ. Tell us where in the price box."
+    },
+    {
+     "k": "Singapore",
+     "v": "Singapore entry OK, VEP registered. Self-drive into Singapore has a 2-day minimum."
+    }
+   ]
   },
   {
    "id": "bezza",
@@ -78,7 +149,70 @@
     "Unlimited mileage within Malaysia"
    ],
    "terms": [],
-   "singapore": false
+   "singapore": false,
+   "category": "Sedan",
+   "gallery": [
+    "img/car/bezza.jpg"
+   ],
+   "specs": [
+    {
+     "k": "Year",
+     "v": "2023"
+    },
+    {
+     "k": "Engine",
+     "v": "1.3 L petrol"
+    },
+    {
+     "k": "Transmission",
+     "v": "Automatic"
+    },
+    {
+     "k": "Seats",
+     "v": "5"
+    },
+    {
+     "k": "Doors",
+     "v": "4"
+    },
+    {
+     "k": "Luggage",
+     "v": "2 large cases"
+    }
+   ],
+   "features": [
+    "Keyless entry and push start",
+    "Touchscreen with reverse camera",
+    "Fuel-efficient 1.3 L engine",
+    "Eco idle stop-start",
+    "USB charging front and rear"
+   ],
+   "policies": [
+    {
+     "k": "Documents",
+     "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
+    },
+    {
+     "k": "Deposit",
+     "v": "Refundable RM100 security deposit, returned within 10 to 14 working days after the car is checked."
+    },
+    {
+     "k": "Cancellation",
+     "v": "Free up to 48 hours before pickup."
+    },
+    {
+     "k": "Fuel",
+     "v": "Full tank on handover, return full."
+    },
+    {
+     "k": "Mileage",
+     "v": "Unlimited within Malaysia."
+    },
+    {
+     "k": "Singapore",
+     "v": "Malaysia use only. This car cannot enter Singapore."
+    }
+   ]
   }
  ],
  "routes": [

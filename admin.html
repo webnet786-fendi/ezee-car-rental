@@ -234,6 +234,10 @@
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
   function lines(t){return String(t||'').split('\n').map(function(x){return x.trim()}).filter(Boolean)}
   function priceStr(p){return p===undefined?'':(p===null?'talk':String(p))}
+  function kvStr(a){return (a||[]).map(function(x){return x.k+': '+x.v}).join('\n')}
+  function parseKV(t){return lines(t).map(function(l){var i=l.indexOf(':');return i<0?{k:l,v:''}:{k:l.slice(0,i).trim(),v:l.slice(i+1).trim()}})}
+  function tiersStr(a){return (a||[]).map(function(x){return (x.to==null?x.from+'+':x.from+'-'+x.to)+': '+(x.total!=null?x.total+' total':x.perDay)}).join('\n')}
+  function parseTiers(t){return lines(t).map(function(l){var m=l.match(/^(\d+)\s*(?:-\s*(\d+)|\+)?\s*:\s*(\d+(?:\.\d+)?)\s*(total)?/i);if(!m)return null;var x={from:+m[1],to:m[2]?+m[2]:null};if(m[4])x.total=+m[3];else x.perDay=+m[3];return x}).filter(Boolean)}
   function parsePrice(v){v=String(v||'').trim().toLowerCase();if(v==='')return undefined;if(v==='talk'||v==="let's talk"||v==='lets talk'||v==='-')return null;var n=Number(v.replace(/[^0-9.]/g,''));return isNaN(n)?undefined:n}
 
   /* ---------- tabs ---------- */
@@ -272,7 +276,7 @@
     setStatus('Duplicated “'+c.name+'”. The copy is hidden from the website until you tick “Show on the website” and save.');
   }
   $('addcar').addEventListener('click',function(){
-    fleet.cars.push({id:'',active:false,short:'',name:'',hot:false,singapore:true,meta:'',photo:'',prices:{selfdrive:100,monthly:null,other:null},inclTitle:'Included with this car',includes:['Comprehensive insurance'],extras:[],cardIncludes:[],terms:[]});
+    fleet.cars.push({id:'',active:false,short:'',name:'',hot:false,singapore:true,meta:'',photo:'',prices:{selfdrive:100,monthly:null,other:null},inclTitle:'Included with this car',includes:['Comprehensive insurance'],extras:[],cardIncludes:[],terms:[],category:'',gallery:[],specs:[],features:[],policies:[]});
     sel=fleet.cars.length-1;markDirty();renderCarList();renderCarEditor();
   });
   function renderCarEditor(){
@@ -281,6 +285,7 @@
     var groups=[];fleet.routes.forEach(function(r){if(r.type==='other')return;if(groups.indexOf(r.group)<0)groups.push(r.group)});
     var ph='';groups.forEach(function(g){ph+='<div class="grp">'+esc(g)+'</div>';fleet.routes.forEach(function(r){if(r.group!==g||r.type==='other')return;ph+='<div class="lbl">'+esc(r.label)+'<small>'+esc(r.note||'')+'</small></div><input type="text" data-price="'+esc(r.id)+'" value="'+esc(priceStr(c.prices?c.prices[r.id]:undefined))+'" placeholder="blank = not offered">'})});
     var others=fleet.cars.map(function(o,i){return i===sel?'':'<option value="'+i+'">'+esc(o.name||'(no name)')+'</option>'}).join('');
+    var catl=[];fleet.cars.forEach(function(o){if(o.category&&catl.indexOf(o.category)<0)catl.push(o.category)});['MPV / Van','Sedan','Compact','SUV','Premium'].forEach(function(k){if(catl.indexOf(k)<0)catl.push(k)});var cats=catl.map(function(k){return '<option value="'+esc(k)+'">'}).join('');
     e.innerHTML=''
       +'<div class="toolbar"><button class="btn small" id="dupcar" type="button">Duplicate this car</button>'
       +(fleet.cars.length>1?'<span class="copyfrom"><label for="copyfrom">Copy prices &amp; lists from</label><select id="copyfrom"><option value="">choose a car…</option>'+others+'</select><button class="btn small" id="docopy" type="button" disabled>Copy</button></span>':'')
@@ -288,11 +293,15 @@
       +'<div class="row c2"><div><label>Car name (shown to customers)</label><input type="text" id="f-name" value="'+esc(c.name)+'" placeholder="Toyota Vellfire ZG 2022"></div><div><label>Short name (used in table rows)</label><input type="text" id="f-short" value="'+esc(c.short)+'" placeholder="Vellfire"></div></div>'
       +'<div class="row c3"><label class="check"><input type="checkbox" id="f-active"'+(c.active?' checked':'')+'> Show on the website</label><label class="check"><input type="checkbox" id="f-hot"'+(c.hot?' checked':'')+'> Hot item badge</label><label class="check"><input type="checkbox" id="f-sg"'+(c.singapore!==false?' checked':'')+'> Allowed into Singapore</label></div>'
       +'<div class="row"><div><label>One-line description</label><input type="text" id="f-meta" value="'+esc(c.meta)+'" placeholder="7 seats · pilot seats · auto · self-drive or chauffeured"></div></div>'
-      +'<div class="row"><div><label>Photo (shown next to the pricing table)</label><div class="photo"><img id="f-photo-prev" src="'+(c.photo?esc(c.photo)+'?v='+Date.now():'')+'" alt=""><div><input type="file" id="f-photo" accept="image/*"><p class="hint">Any JPG or phone photo. It is resized to 1400 px and uploaded when you save. Black out the number plate before uploading if you want it hidden.</p></div></div></div></div>'
+      +'<div class="row"><div><label>Main photo (fleet card and next to the pricing table)</label><div class="photo"><img id="f-photo-prev" src="'+(c.photo?esc(c.photo)+'?v='+Date.now():'')+'" alt=""><div><input type="file" id="f-photo" accept="image/*"><p class="hint">Any JPG or phone photo. It is resized to 1400 px and uploaded when you save. Black out the number plate before uploading if you want it hidden.</p></div></div></div></div>'
       +'<p class="eyebrow" style="margin-top:10px">Prices for this car</p><div class="prices">'+ph+'</div><p class="hint">Type a number, or <code>talk</code> to show “Let’s talk”. Leave blank to hide that row for this car. Self-drive is per day.</p>'
       +'<div class="row c2" style="margin-top:18px"><div><label>Included panel title</label><input type="text" id="f-incltitle" value="'+esc(c.inclTitle)+'"></div><div></div></div>'
       +'<div class="row c2"><div><label>Included (one per line)</label><textarea id="f-includes">'+esc((c.includes||[]).join('\n'))+'</textarea></div><div><label>Only ever added (one per line)</label><textarea id="f-extras">'+esc((c.extras||[]).join('\n'))+'</textarea></div></div>'
       +'<div class="row c2"><div><label>Rate card: every rental includes (one per line)</label><textarea id="f-cardinc">'+esc((c.cardIncludes||[]).join('\n'))+'</textarea></div><div><label>Rate card: terms (one paragraph per line)</label><textarea id="f-terms">'+esc((c.terms||[]).join('\n'))+'</textarea></div></div>'
+      +'<p class="eyebrow" style="margin-top:18px">Fleet section &amp; vehicle details (the "Select vehicle" page)</p>'
+      +'<div class="row c2"><div><label>Category (tab on the fleet section)</label><input type="text" id="f-cat" list="catlist" value="'+esc(c.category||'')+'" placeholder="MPV / Van"><datalist id="catlist">'+cats+'</datalist></div><div><label>Self-drive day tiers (one per line: 1-6: 550 &middot; 7-13: 520 &middot; 14+: 490)</label><textarea id="f-tiers" placeholder="Leave empty to show the single per-day price">'+esc(tiersStr(c.tiers))+'</textarea></div></div>'
+      +'<div class="row c2"><div><label>Gallery photos (one path per line, e.g. img/car/front.jpg)</label><textarea id="f-gallery">'+esc((c.gallery||[]).map(function(g){return typeof g==='string'?g:g.src}).join('\n'))+'</textarea><p class="hint">First photo is the big one. Leave empty to use the main photo only.</p></div><div><label>At a glance (one per line: Label: value)</label><textarea id="f-specs">'+esc(kvStr(c.specs))+'</textarea></div></div>'
+      +'<div class="row c2"><div><label>Features (one per line)</label><textarea id="f-features">'+esc((c.features||[]).join('\n'))+'</textarea></div><div><label>Good to know (one per line: Title: text)</label><textarea id="f-policies">'+esc(kvStr(c.policies))+'</textarea></div></div>'
       +'<div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap"><span class="hint">ID: <code>'+esc(c.id||'(set from name)')+'</code></span><button class="btn danger small" id="delcar">Delete this car</button></div>';
     var bind=function(id,fn){$(id).addEventListener('input',function(){fn(this);markDirty();renderCarList()});$(id).addEventListener('change',function(){fn(this);markDirty();renderCarList()})};
     bind('f-name',function(el){c.name=el.value;if(!c.id||c.id===slug(c.name.slice(0,-1)))c.id=slug(c.name)});
@@ -306,14 +315,20 @@
     bind('f-extras',function(el){c.extras=lines(el.value)});
     bind('f-cardinc',function(el){c.cardIncludes=lines(el.value)});
     bind('f-terms',function(el){c.terms=lines(el.value)});
+    bind('f-cat',function(el){c.category=el.value.trim()});
+    bind('f-tiers',function(el){c.tiers=parseTiers(el.value)});
+    bind('f-gallery',function(el){c.gallery=lines(el.value)});
+    bind('f-specs',function(el){c.specs=parseKV(el.value)});
+    bind('f-features',function(el){c.features=lines(el.value)});
+    bind('f-policies',function(el){c.policies=parseKV(el.value)});
     e.querySelectorAll('[data-price]').forEach(function(inp){inp.addEventListener('input',function(){c.prices=c.prices||{};var v=parsePrice(inp.value);if(v===undefined)delete c.prices[inp.dataset.price];else c.prices[inp.dataset.price]=v;if(!('other' in c.prices))c.prices.other=null;markDirty()})});
     $('f-photo').addEventListener('change',function(){var f=this.files[0];if(!f)return;resizeImage(f,1400,0.82).then(function(dataUrl){c._photoData=dataUrl;$('f-photo-prev').src=dataUrl;if(!c.id)c.id=slug(c.name);c.photo='img/car/'+(c.id||'car')+'.jpg';markDirty();renderCarList()})});
     $('dupcar').addEventListener('click',function(){duplicateCar(sel)});
     var cf=$('copyfrom');if(cf){cf.addEventListener('change',function(){$('docopy').disabled=!cf.value});
       $('docopy').addEventListener('click',function(){
         var src=fleet.cars[+cf.value];if(!src)return;
-        if(!confirm('Replace this car’s prices, included lists, extras and terms with the ones from “'+src.name+'”? Name, photo and flags stay.'))return;
-        c.prices=JSON.parse(JSON.stringify(src.prices||{}));c.inclTitle=src.inclTitle;c.includes=(src.includes||[]).slice();c.extras=(src.extras||[]).slice();c.cardIncludes=(src.cardIncludes||[]).slice();c.terms=(src.terms||[]).slice();
+        if(!confirm('Replace this car’s prices, included lists, extras, terms, day tiers, specs, features and good-to-know with the ones from “'+src.name+'”? Name, photo and flags stay.'))return;
+        c.prices=JSON.parse(JSON.stringify(src.prices||{}));c.inclTitle=src.inclTitle;c.includes=(src.includes||[]).slice();c.extras=(src.extras||[]).slice();c.cardIncludes=(src.cardIncludes||[]).slice();c.terms=(src.terms||[]).slice();c.tiers=JSON.parse(JSON.stringify(src.tiers||[]));c.specs=JSON.parse(JSON.stringify(src.specs||[]));c.features=(src.features||[]).slice();c.policies=JSON.parse(JSON.stringify(src.policies||[]));
         markDirty();renderCarEditor();setStatus('Copied from “'+src.name+'”. Adjust anything, then Save & publish.');
       });}
     $('delcar').addEventListener('click',function(){if(confirm('Delete “'+(c.name||'this car')+'” from the website data? The photo file stays in the repository.')){fleet.cars.splice(sel,1);sel=Math.max(0,sel-1);markDirty();renderCarList();renderCarEditor()}});
