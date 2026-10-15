@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Google Analytics switched on: Measurement ID G-KND9JYYGL4 (stream "EzEe Car Rental JB", https://ezee.my).
 - **Peak season pricing**: `settings.peaks` (admin → Bookings → Peak season, one window per line) adds a percentage to every self-drive day inside a window; the price box shows the surcharge in the total, the note and the WhatsApp message, and the car overlay lists the window. Default window: 20 Nov 2026 – 3 Jan 2027, +15% ("Year-end school holidays"). Chauffeured fares unchanged.
 - **Partner cars**: the 46 imported cars carry `partner: true`, a "Partner car" chip and an "Availability" policy line ("we confirm the exact car and dates on WhatsApp before you pay the deposit").
 - **Business registration** in the footer, rate card and JSON-LD: EZEE WEBNET RENTAL & TRADING, SSM IP0615901-D (`settings.ssm`, `settings.legalName`).
