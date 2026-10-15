@@ -237,6 +237,8 @@
   function kvStr(a){return (a||[]).map(function(x){return x.k+': '+x.v}).join('\n')}
   function parseKV(t){return lines(t).map(function(l){var i=l.indexOf(':');return i<0?{k:l,v:''}:{k:l.slice(0,i).trim(),v:l.slice(i+1).trim()}})}
   function tiersStr(a){return (a||[]).map(function(x){return (x.to==null?x.from+'+':x.from+'-'+x.to)+': '+(x.total!=null?x.total+' total':x.perDay)}).join('\n')}
+  function hourlyStr(a){return (a||[]).map(function(x){return (x.to==null?x.from+'+':x.from+'-'+x.to)+': '+(x.total!=null?x.total+' total':x.perHour)}).join('\n')}
+  function parseHourly(t){return parseTiers(t).map(function(x){if(x.perDay!=null){x.perHour=x.perDay;delete x.perDay}return x})}
   function parseTiers(t){return lines(t).map(function(l){var m=l.match(/^(\d+)\s*(?:-\s*(\d+)|\+)?\s*:\s*(\d+(?:\.\d+)?)\s*(total)?/i);if(!m)return null;var x={from:+m[1],to:m[2]?+m[2]:null};if(m[4])x.total=+m[3];else x.perDay=+m[3];return x}).filter(Boolean)}
   function parsePrice(v){v=String(v||'').trim().toLowerCase();if(v==='')return undefined;if(v==='talk'||v==="let's talk"||v==='lets talk'||v==='-')return null;var n=Number(v.replace(/[^0-9.]/g,''));return isNaN(n)?undefined:n}
 
@@ -300,6 +302,7 @@
       +'<div class="row c2"><div><label>Rate card: every rental includes (one per line)</label><textarea id="f-cardinc">'+esc((c.cardIncludes||[]).join('\n'))+'</textarea></div><div><label>Rate card: terms (one paragraph per line)</label><textarea id="f-terms">'+esc((c.terms||[]).join('\n'))+'</textarea></div></div>'
       +'<p class="eyebrow" style="margin-top:18px">Fleet section &amp; vehicle details (the "Select vehicle" page)</p>'
       +'<div class="row c2"><div><label>Category (tab on the fleet section)</label><input type="text" id="f-cat" list="catlist" value="'+esc(c.category||'')+'" placeholder="MPV / Van"><datalist id="catlist">'+cats+'</datalist></div><div><label>Self-drive day tiers (one per line: 1-6: 550 &middot; 7-13: 520 &middot; 14+: 490)</label><textarea id="f-tiers" placeholder="Leave empty to show the single per-day price">'+esc(tiersStr(c.tiers))+'</textarea></div></div>'
+      +'<div class="row c2"><div><label>Hourly rates (one per line: 1-5: 45 &middot; 6-24: 450 total)</label><textarea id="f-hourly" placeholder="Leave empty to hide hourly rates">'+esc(hourlyStr(c.hourly))+'</textarea></div><div><label>Photo credit (shown under the gallery, HTML links allowed)</label><input type="text" id="f-credit" value="'+esc(c.credit||'')+'"><p class="hint">Required for Wikimedia Commons photos. Leave empty for your own photos.</p></div></div>'
       +'<div class="row c2"><div><label>Gallery photos (one path per line, e.g. img/car/front.jpg)</label><textarea id="f-gallery">'+esc((c.gallery||[]).map(function(g){return typeof g==='string'?g:g.src}).join('\n'))+'</textarea><p class="hint">First photo is the big one. Leave empty to use the main photo only.</p></div><div><label>At a glance (one per line: Label: value)</label><textarea id="f-specs">'+esc(kvStr(c.specs))+'</textarea></div></div>'
       +'<div class="row c2"><div><label>Features (one per line)</label><textarea id="f-features">'+esc((c.features||[]).join('\n'))+'</textarea></div><div><label>Good to know (one per line: Title: text)</label><textarea id="f-policies">'+esc(kvStr(c.policies))+'</textarea></div></div>'
       +'<div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap"><span class="hint">ID: <code>'+esc(c.id||'(set from name)')+'</code></span><button class="btn danger small" id="delcar">Delete this car</button></div>';
@@ -317,6 +320,8 @@
     bind('f-terms',function(el){c.terms=lines(el.value)});
     bind('f-cat',function(el){c.category=el.value.trim()});
     bind('f-tiers',function(el){c.tiers=parseTiers(el.value)});
+    bind('f-hourly',function(el){c.hourly=parseHourly(el.value)});
+    bind('f-credit',function(el){c.credit=el.value.trim()});
     bind('f-gallery',function(el){c.gallery=lines(el.value)});
     bind('f-specs',function(el){c.specs=parseKV(el.value)});
     bind('f-features',function(el){c.features=lines(el.value)});
@@ -327,8 +332,8 @@
     var cf=$('copyfrom');if(cf){cf.addEventListener('change',function(){$('docopy').disabled=!cf.value});
       $('docopy').addEventListener('click',function(){
         var src=fleet.cars[+cf.value];if(!src)return;
-        if(!confirm('Replace this car’s prices, included lists, extras, terms, day tiers, specs, features and good-to-know with the ones from “'+src.name+'”? Name, photo and flags stay.'))return;
-        c.prices=JSON.parse(JSON.stringify(src.prices||{}));c.inclTitle=src.inclTitle;c.includes=(src.includes||[]).slice();c.extras=(src.extras||[]).slice();c.cardIncludes=(src.cardIncludes||[]).slice();c.terms=(src.terms||[]).slice();c.tiers=JSON.parse(JSON.stringify(src.tiers||[]));c.specs=JSON.parse(JSON.stringify(src.specs||[]));c.features=(src.features||[]).slice();c.policies=JSON.parse(JSON.stringify(src.policies||[]));
+        if(!confirm('Replace this car’s prices, included lists, extras, terms, day tiers, hourly rates, specs, features and good-to-know with the ones from “'+src.name+'”? Name, photo and flags stay.'))return;
+        c.prices=JSON.parse(JSON.stringify(src.prices||{}));c.inclTitle=src.inclTitle;c.includes=(src.includes||[]).slice();c.extras=(src.extras||[]).slice();c.cardIncludes=(src.cardIncludes||[]).slice();c.terms=(src.terms||[]).slice();c.tiers=JSON.parse(JSON.stringify(src.tiers||[]));c.hourly=JSON.parse(JSON.stringify(src.hourly||[]));c.specs=JSON.parse(JSON.stringify(src.specs||[]));c.features=(src.features||[]).slice();c.policies=JSON.parse(JSON.stringify(src.policies||[]));
         markDirty();renderCarEditor();setStatus('Copied from “'+src.name+'”. Adjust anything, then Save & publish.');
       });}
     $('delcar').addEventListener('click',function(){if(confirm('Delete “'+(c.name||'this car')+'” from the website data? The photo file stays in the repository.')){fleet.cars.splice(sel,1);sel=Math.max(0,sel-1);markDirty();renderCarList();renderCarEditor()}});

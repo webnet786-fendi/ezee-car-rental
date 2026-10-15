@@ -419,6 +419,12 @@
   }
   .car-tabs button[aria-selected="true"]{background:var(--gold);color:var(--ground);border-color:var(--gold);font-weight:500}
   .car-tabs button .hot{font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-left:8px;opacity:.8}
+  .car-tabs.many{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;-webkit-overflow-scrolling:touch}
+  .car-tabs.many::-webkit-scrollbar{display:none}
+  .car-tabs.many button{flex:0 0 auto;white-space:nowrap}
+  .vcredit{font-size:11px;color:var(--muted);margin:8px 0 0;opacity:.85}
+  .vcredit a{color:inherit}
+  footer .credits{font-size:11px;color:var(--faint);margin-top:8px}
   /* ---------- Meet the fleet ---------- */
   .fleet{background:var(--surface);border-bottom:1px solid var(--line);padding:64px 0 60px}
   .fpills{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 26px}
@@ -623,7 +629,7 @@
   <div class="wrap">
     <p class="eyebrow" data-i18n="fl.eyebrow">Our cars</p>
     <h2 data-i18n="fl.h2">Meet the fleet.</h2>
-    <p class="section-sub" data-i18n="fl.sub">Browse the EzEe range you can rent in Johor Bahru, Kulai and Senai Airport. Every car on this page is one we own, so the car you pick is the car you get.</p>
+    <p class="section-sub" data-i18n="fl.sub">Browse the range you can rent through EzEe in Johor Bahru, Kulai and Senai Airport. Pick a car, open its details and book it in the price box below. Every price is final.</p>
     <div class="fpills" id="fleet-pills" role="tablist" hidden></div>
     <div class="fwrap">
       <button type="button" class="farrow prev" id="fleet-prev" aria-label="Previous cars" data-i18n-title="fl.prev" title="Previous cars" hidden>&#8249;</button>
@@ -811,6 +817,7 @@
   <footer>
     <div><span data-i18n="ft.1">EzEe Car Rental &middot; Kulai, Johor, Malaysia</span> &middot; <span style="color:var(--faint)">v1.0.0</span></div>
     <div data-i18n="ft.2">Bookings daily 8 am &ndash; 11 pm &middot; WhatsApp +60 12-711 9814</div>
+    <div class="credits" data-i18n="ft.credits">Some car photos are by Wikimedia Commons contributors under Creative Commons licences. The credit and licence are shown with each car.</div>
   </footer>
 </div>
 
@@ -894,20 +901,46 @@
   fillRoutes();
   var tabs=$('car-tabs'),rows=$('rate-rows');
   tabs.hidden=!multi;
+  var manyCars=activeCars().length>5;tabs.classList.toggle('many',manyCars);
   if(multi)activeCars().forEach(function(c){
     var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.dataset.car=c.id;
     b.innerHTML=tabHTML(c);
     b.addEventListener('click',function(){carSel.value=c.id;fillRoutes();refreshDir();update()});
     tabs.appendChild(b);
   });
-  function tabHTML(c){return c.name+(c.hot?'<span class="hot">'+t('j.hot',null,'Hot item')+'</span>':'')}
+  function tabHTML(c){return (manyCars?(c.short||c.name):c.name)+(c.hot?'<span class="hot">'+t('j.hot',null,'Hot item')+'</span>':'')}
+  /* day tiers (car.tiers) and hourly rates (car.hourly) from the admin: "1-6: 450", "17-20: 6100 total" */
+  function tierSpan(x){return x.to==null?x.from+'+':(x.from===x.to?String(x.from):x.from+'\u2013'+x.to)}
+  function tierPriceHTML(x){return x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perDay+'<small>'+t('j.perday',null,' / day')+'</small>'}
+  function hourPriceHTML(x){return x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perHour+'<small>'+t('j.perhour',null,' / hour')+'</small>'}
+  function selfTotal(car,n){
+    var ts=car.tiers||[];
+    for(var i=0;i<ts.length;i++){var x=ts[i];if(n>=x.from&&(x.to==null||n<=x.to))return x.total!=null?{total:x.total,per:null}:{total:x.perDay*n,per:x.perDay}}
+    if(ts.length){var l=ts[ts.length-1];var per=l.perDay!=null?l.perDay:Math.round(l.total/(l.to||l.from));return {total:per*n,per:per}}
+    return {total:car.prices.selfdrive*n,per:car.prices.selfdrive};
+  }
+  function maxDays(){var c=currentCar(),m=14;(c.tiers||[]).forEach(function(x){if(x.to&&x.to>m)m=x.to;if(x.to==null&&x.from>m)m=x.from});return Math.min(m,60)}
   function renderRates(){
     var car=currentCar();rows.innerHTML='';
     tabs.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.car===car.id?'true':'false')});
+    var selTab=tabs.querySelector('button[aria-selected="true"]');if(selTab&&manyCars)tabs.scrollLeft=selTab.offsetLeft-tabs.clientWidth/2+selTab.offsetWidth/2;
     ROUTES.forEach(function(r){
       if(!(r.id in car.prices)||r.type==='other')return;
+      if(r.id==='selfdrive'&&car.tiers&&car.tiers.length){
+        car.tiers.forEach(function(x,i){
+          var tr2=document.createElement('tr');tr2.className='hot';
+          tr2.innerHTML='<td>'+(i?'':'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>')+t('v.selfdays',{d:tierSpan(x)},'Self-drive, {d} days')+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+tierPriceHTML(x)+'</td>';
+          rows.appendChild(tr2);
+        });
+        return;
+      }
       var tr=document.createElement('tr');if(r.group==='Hot item')tr.className='hot';
       tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>':'')+rowLabelT(r,car)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+'</td>';
+      rows.appendChild(tr);
+    });
+    (car.hourly||[]).forEach(function(x){
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+t('v.hourly',{d:tierSpan(x)},'Hourly, {d} hours')+' <small>'+t('v.hourlynote',null,'ask on WhatsApp')+'</small></td><td class="num">'+hourPriceHTML(x)+'</td>';
       rows.appendChild(tr);
     });
     var ph=$('incl-photo'),phm=$('incl-photo-m');if(car.photo){ph.hidden=false;phm.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name;$('incl-img-m').src=car.photo;$('incl-img-m').alt=car.name}else{ph.hidden=true;phm.hidden=true}
@@ -918,7 +951,7 @@
   }
   function fillDays(min){
     var keep=parseInt(days.value,10)||1;days.innerHTML='';
-    for(var i=1;i<=14;i++){var o=document.createElement('option');o.value=i;o.textContent=i;if(i<min)o.disabled=true;days.appendChild(o)}
+    for(var i=1,mx=maxDays();i<=mx;i++){var o=document.createElement('option');o.value=i;o.textContent=i;if(i<min)o.disabled=true;days.appendChild(o)}
     days.value=Math.max(keep,min);
   }
   fillDays(1);
@@ -996,11 +1029,11 @@
     }else{
       var price=currentCar().prices[r.id];
       var total=price;
-      if(r.type==='selfdrive'){ total=price*parseInt(days.value,10) }
+      if(r.type==='selfdrive'){ var st=selfTotal(currentCar(),parseInt(days.value,10)||1);total=st.total;price=st.per }
       var night=(r.type==='transfer'&&isNight(time.value));
       if(night)total+=30;
       lbl.textContent=r.type==='selfdrive'?t('j.total',null,'Rental total'):t('q.lbl',null,'All-in fare');
-      amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+r.cur+price+t('j.perday',null,' / day')+'</small>':'');
+      amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+(price!=null?r.cur+price+t('j.perday',null,' / day'):t('v.fixed',null,' fixed'))+'</small>':'');
       if(night){ noteText=t('j.night',null,'Includes S$30 night pickup surcharge (11 pm – 7 am)') }
       else if(r.type==='selfdrive'){ noteText=(z&&z.min>1?t('j.minfor',{n:z.min,z:td(z.label)},'Minimum {n} days for {z}. '):(z?'':t('j.mindep',null,'Minimum days depend on destination. ')))+t('j.refund',null,'Refundable deposit applies') }
       else if(r.type==='charter'){ noteText=t('j.charter',null,'Car, driver and fuel included') }
@@ -1064,7 +1097,7 @@
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly');
     if(self)zone.value=sWhere.value;else whereIn.value=sWhere.value;
     splitWhen(sWhen.value);whenIn.value=sWhen.value;
-    if(r.type==='selfdrive'){var n=diffDays(date.value,sUntil.value);if(n!=null&&n>=1)days.value=Math.min(14,n)}
+    if(r.type==='selfdrive'){var n=diffDays(date.value,sUntil.value);if(n!=null&&n>=1)days.value=Math.min(maxDays(),n)}
     syncing=false;update();
   }
   [sCar,sWhere,sWhen,sUntil].forEach(function(el){el.addEventListener('change',pullFromBar);el.addEventListener('input',pullFromBar)});
@@ -1171,10 +1204,11 @@
   function selfHTML(c){
     var rows='';
     if(c.tiers&&c.tiers.length){
-      c.tiers.forEach(function(x){rows+='<tr><td>'+esc(tierLabel(x))+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+(x.total!=null?'RM'+x.total:'RM'+x.perDay+'<small>'+t('j.perday',null,' / day')+'</small>')+'</td></tr>'});
+      c.tiers.forEach(function(x){rows+='<tr><td>'+esc(tierLabel(x))+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+(x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perDay+'<small>'+t('j.perday',null,' / day')+'</small>')+'</td></tr>'});
     }else if(c.prices.selfdrive!=null){
       rows+='<tr><td>'+t('v.perday',null,'Per day')+' <small>'+t('v.mindays',null,'minimum days depend on destination')+'</small></td><td class="num">RM'+c.prices.selfdrive+'</td></tr>';
     }
+    (c.hourly||[]).forEach(function(x){rows+='<tr><td>'+t('v.hourly',{d:(x.to==null?x.from+'+':x.from+'\u2013'+x.to)},'Hourly, {d} hours')+' <small>'+t('v.hourlynote',null,'ask on WhatsApp')+'</small></td><td class="num">'+(x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perHour+'<small>'+t('j.perhour',null,' / hour')+'</small>')+'</td></tr>'});
     if(c.prices.weekly!=null)rows+='<tr><td>'+t('v.week',null,'7 days')+' <small>'+t('v.weeknote',null,'one week, one price')+'</small></td><td class="num">RM'+c.prices.weekly+'</td></tr>';
     if('monthly' in c.prices)rows+='<tr><td>'+t('v.month',null,'Monthly')+' <small>'+t('v.monthnote',null,'long-term rate, tell us how many months')+'</small></td><td class="num">'+(c.prices.monthly==null?t('j.letstalk',null,'Let’s talk'):'RM'+c.prices.monthly)+'</td></tr>';
     return rows;
@@ -1196,6 +1230,7 @@
     box.innerHTML='<button type="button" class="vclose" id="v-close" aria-label="'+t('v.close',null,'Close')+'" title="'+t('v.close',null,'Close')+'">&times;</button>'
       +(gal.length?'<div class="vgal"><div class="vmain"><img id="v-main" src="'+esc(gal[0].src)+'" alt="'+esc(gal[0].alt||c.name)+'"></div>'
         +(gal.length>1?'<div class="vthumbs">'+gal.map(function(g,i){return '<button type="button" data-i="'+i+'" aria-selected="'+(i?'false':'true')+'"><img src="'+esc(g.src)+'" alt="" loading="lazy"></button>'}).join('')+'</div>':'')+'</div>':'')
+      +(c.credit?'<p class="vcredit">'+c.credit+'</p>':'')
       +'<div class="vhead"><div><div class="fchips">'+chips(c)+'</div><h3 id="v-title">'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p></div><div class="vfrom">'+fromHTML(c,true)+'</div></div>'
       +'<div class="vgrid"><div class="vcol">'
       +(c.specs&&c.specs.length?'<p class="vh">'+t('v.specs',null,'At a glance')+'</p><ul class="vspecs">'+c.specs.map(function(s){return '<li>'+esc(td(s.k))+'<b>'+esc(td(s.v))+'</b></li>'}).join('')+'</ul>':'')
