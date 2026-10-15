@@ -150,6 +150,13 @@
         <p class="hint">Leave empty to switch logging off; the site then works exactly as before. Save &amp; publish after changing.</p>
         <button class="btn small" id="testBookings" style="margin-top:10px">Test connection</button> <span class="hint" id="bookingsTest" style="display:inline"></span>
       </div>
+      <p class="eyebrow" style="margin-top:22px">Peak season</p>
+      <p style="color:var(--muted);margin:0 0 14px">Self-drive days inside a peak window are charged the base rate plus this percentage. The price box shows the surcharge in the total and in the WhatsApp message; the car overlay lists the window. Chauffeured fares are not affected.</p>
+      <div class="card">
+        <label for="peaks">Peak windows, one per line: <code>2026-11-20 to 2027-01-03 +15% Year-end school holidays</code></label>
+        <textarea id="peaks" style="min-height:80px;font-family:Consolas,monospace;font-size:13px" spellcheck="false"></textarea>
+        <p class="hint" id="peaksCheck"></p>
+      </div>
       <p class="eyebrow" style="margin-top:22px">Website visitors</p>
       <p style="color:var(--muted);margin:0 0 14px">Google Analytics counts who visits ezee.my and which taps on the WhatsApp button follow. Create the property at <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a> (web stream for https://ezee.my), then paste its Measurement ID here.</p>
       <div class="card">
@@ -249,8 +256,11 @@
     if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
   })});
 
-  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck()}
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck();$('peaks').value=peaksText()}
   $('bookingsUrl').addEventListener('input',function(){fleet.settings.bookingsUrl=$('bookingsUrl').value.trim();markDirty()});
+  function peaksText(){return (fleet.settings.peaks||[]).map(function(p){return p.from+' to '+p.to+' +'+p.pct+'%'+(p.label?' '+p.label:'')}).join('\n')}
+  function parsePeaks(txt){var out=[],bad=[];txt.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var m=l.match(/^(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})\s+\+?(\d+(?:\.\d+)?)%?\s*(.*)$/);if(!m){bad.push(l);return}out.push({from:m[1],to:m[2],pct:Number(m[3]),label:m[4]||''})});return {peaks:out,bad:bad}}
+  $('peaks').addEventListener('input',function(){var r=parsePeaks($('peaks').value);fleet.settings.peaks=r.peaks;$('peaksCheck').textContent=r.bad.length?'Not understood: '+r.bad.join(' | '):(r.peaks.length?r.peaks.length+' window(s).':'No peak pricing.');markDirty()});
   function gaCheck(){var v=$('gaId').value.trim(),o=$('gaCheck');o.textContent=!v?'':(/^G-[A-Z0-9]{6,}$/.test(v)?'Looks right.':'A Measurement ID looks like G-ABC123XYZ (capital letters and digits).')}
   $('gaId').addEventListener('input',function(){var v=$('gaId').value.trim().toUpperCase();fleet.settings.gaId=v;gaCheck();markDirty()});
   $('testBookings').addEventListener('click',function(){

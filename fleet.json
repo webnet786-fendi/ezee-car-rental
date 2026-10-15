@@ -309,6 +309,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -379,7 +383,8 @@
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Perodua_Axia_base_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "perodua-axia-2nd-gen",
@@ -447,6 +452,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -518,7 +527,8 @@
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Perodua_Axia_1.0_X_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "perodua-bezza-1-0-new",
@@ -562,6 +572,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -638,7 +652,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Bezza_1.3_Dual_VVT-i_X_(Facelift)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "perodua-bezza-1-0",
@@ -706,6 +721,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -787,7 +806,8 @@
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Perodua_Bezza_X_VVTi_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "perodua-bezza",
@@ -847,6 +867,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -928,7 +952,8 @@
    ],
    "credit": "Photo: PAULTAN.ORG, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Bezza_Advance.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "alza-1st-gen",
@@ -988,6 +1013,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1064,7 +1093,8 @@
    ],
    "credit": "Photo: Bindydad123, <a href=\"https://commons.wikimedia.org/wiki/File:2014_Perodua_Alza_Standard_in_Penang,_Malaysia_(01).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "proton-persona",
@@ -1124,6 +1154,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1205,7 +1239,8 @@
    ],
    "credit": "Photo: DRIVEN COMMUNICATIONS SDN BHD, <a href=\"https://commons.wikimedia.org/wiki/File:Proton-Persona-Red.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "proton-saga",
@@ -1265,6 +1300,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1346,7 +1385,8 @@
    ],
    "credit": "Photo: Fyc09913, <a href=\"https://commons.wikimedia.org/wiki/File:Proton_Saga_2019.jpg\" target=\"_blank\" rel=\"noopener\">CC0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "myvi-3rd-gen",
@@ -1406,6 +1446,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1487,7 +1531,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Myvi_1.5_VVT-i_AV_(III,_Facelift)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "honda-brv",
@@ -1547,6 +1592,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1623,7 +1672,8 @@
    ],
    "credit": "Photo: オーバードライブ83, <a href=\"https://commons.wikimedia.org/wiki/File:2022_Honda_BR-V_Prestige_with_Honda_Sensing_1.5_DG3_(20220429).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "perodua-aruz",
@@ -1683,6 +1733,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1754,7 +1808,8 @@
    ],
    "credit": "Photo: Bindydad123, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Aruz_AV_in_Penang,_Malaysia_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "city-7th-gen",
@@ -1814,6 +1869,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -1895,7 +1954,8 @@
    ],
    "credit": "Photo: Chanokchon, <a href=\"https://commons.wikimedia.org/wiki/File:2026_Honda_City_e-HEV_RS_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "honda-wr-v-1-5l",
@@ -1972,6 +2032,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -2047,7 +2111,8 @@
    ],
    "credit": "Photo: Tokumeigakarinoaoshima, <a href=\"https://commons.wikimedia.org/wiki/File:Honda_WR-V_Z%2B_(5BA-DG5).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "perodua-ativa",
@@ -2107,6 +2172,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -2188,7 +2257,8 @@
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Perodua_Ativa_AV_front_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "vios-4th-gen",
@@ -2248,6 +2318,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -2324,7 +2398,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Vios_1.5_VVT-i_G_(IV)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "perodua-alza-2nd-gen",
@@ -2392,6 +2467,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -2468,7 +2547,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Alza_1.5_VVT-i_AV_(II)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "nissan-almera",
@@ -2529,6 +2609,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -2568,7 +2652,8 @@
    ],
    "credit": "Photo: AIMHO&#x27;S REBELLION 8490s, <a href=\"https://commons.wikimedia.org/wiki/File:2021_Nissan_Almera_1.0_Turbo_white_front_view_in_Brunei.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "proton-x50",
@@ -2628,6 +2713,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -2704,7 +2793,8 @@
    ],
    "credit": "Photo: Liauzh, <a href=\"https://commons.wikimedia.org/wiki/File:2025_Proton_X50_facelift.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "proton-s70",
@@ -2772,6 +2862,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -2848,7 +2942,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Proton_S70_1.5_T_Flagship_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "honda-civic-fe",
@@ -2930,6 +3025,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -3010,7 +3109,8 @@
    ],
    "credit": "Photo: Elise240SX, <a href=\"https://commons.wikimedia.org/wiki/File:2022_Honda_Civic_Touring_in_Lunar_Silver_Metallic,_Front_Left,_05-10-2022.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "mitsubishi-xpander",
@@ -3071,6 +3171,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -3110,7 +3214,8 @@
    ],
    "credit": "Photo: オーバードライブ83, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Mitsubishi_Xpander_Ultimate_1.5_NC1W_(20190623).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "omoda-5",
@@ -3193,6 +3298,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -3273,7 +3382,8 @@
    ],
    "credit": "Photo: Autosdeprimera, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Omoda_C5_front_view.png\" target=\"_blank\" rel=\"noopener\">CC BY 3.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "honda-civic-fc",
@@ -3333,6 +3443,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -3409,7 +3523,8 @@
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Honda_Civic_SR_VTEC_1.0_Front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "honda-hrv",
@@ -3453,6 +3568,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -3534,7 +3653,8 @@
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Honda_HR-V_Advance_i-MMD_CVT_1.5.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "innova-crysta",
@@ -3594,6 +3714,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -3670,7 +3794,8 @@
    ],
    "credit": "Photo: Premnath Kudva, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Innova_Crysta_2.4_Z_front_right.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "nissan-teana",
@@ -3731,6 +3856,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -3770,7 +3899,8 @@
    ],
    "credit": "Photo: Dinkun Chen, <a href=\"https://commons.wikimedia.org/wiki/File:NISSAN_TEANA_L33_China_(32).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "honda-accord-9th-edition",
@@ -3830,6 +3960,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -3906,7 +4040,8 @@
    ],
    "credit": "Photo: EurovisionNim, <a href=\"https://commons.wikimedia.org/wiki/File:2014_Honda_Accord_2.4_i-VTEC_sedan_(2016-01-07)_01.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "jaecoo-j7-1-6t-gdi-awd",
@@ -3966,6 +4101,10 @@
     "Stability control"
    ],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -4047,7 +4186,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Jaecoo_J7_1.6T_4WD_%E2%80%93_f_21032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "nissan-serena",
@@ -4108,6 +4248,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -4147,7 +4291,8 @@
    ],
    "credit": "Photo: User3204, <a href=\"https://commons.wikimedia.org/wiki/File:2016_Nissan_Serena_Highway_Star_VIP_(front).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "toyota-alphard-sc",
@@ -4211,6 +4356,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -4282,7 +4431,8 @@
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Toyota_Alphard_3.5_V6_in_black,_front_right.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "toyota-corolla-cross",
@@ -4363,6 +4513,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -4438,7 +4592,8 @@
    ],
    "credit": "Photo: Mr.choppers, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Toyota_Corolla_Cross_XLE_4WD_in_Wind_Chill_Pearl,_front_left.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "toyota-voxy-r80",
@@ -4519,6 +4674,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -4594,7 +4753,8 @@
    ],
    "credit": "Photo: User3204, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Toyota_Voxy_ZS_Kirameki_(front).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "proton-x70",
@@ -4655,6 +4815,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -4694,7 +4858,8 @@
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Proton_X70_Executive_front_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "mercedes-benz-a200",
@@ -4776,6 +4941,10 @@
    ],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -4851,7 +5020,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Mercedes-Benz_A_200_Limousine_Progressive_(V_177,_Facelift)_%E2%80%93_f_10032024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "toyota-camry",
@@ -4911,6 +5081,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -4987,7 +5161,8 @@
    ],
    "credit": "Photo: EurovisionNim, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Toyota_Camry_(ASV70R)_Ascent_sedan_(2018-08-27)_01.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "toyota-hilux",
@@ -5048,6 +5223,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5087,7 +5266,8 @@
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2016_Toyota_HiLux_Invincible_D-4D_4WD_2.4_Front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "honda-crv",
@@ -5131,6 +5311,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -5207,7 +5391,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Honda_CR-V_e-HEV_Elegance_AWD_(VI)_%E2%80%93_f_14072024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "ford-ranger",
@@ -5268,6 +5453,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5307,7 +5496,8 @@
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Ford_Ranger_2.0_EcoBlue_4WD_Wildtrak_X_(IV)_%E2%80%93_f_12102024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "mitsubishi-triton",
@@ -5368,6 +5558,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5407,7 +5601,8 @@
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:Mitsubishi_Triton_2.4_Athlete_4WD_White_Diamond_-_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "maxus-g10",
@@ -5452,6 +5647,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5491,7 +5690,8 @@
    ],
    "credit": "Photo: Navigator84, <a href=\"https://commons.wikimedia.org/wiki/File:Maxus_G10_001_China_2015-04-13.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "starex-plus",
@@ -5551,6 +5751,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -5612,7 +5816,8 @@
    ],
    "credit": "Photo: Ki hoon, <a href=\"https://commons.wikimedia.org/wiki/File:Hyundai_The_New_Grand_Starex_Urban_Front_Side.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "hyundai-staria",
@@ -5681,6 +5886,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5746,7 +5955,8 @@
    ],
    "credit": "Photo: Alexander Migl, <a href=\"https://commons.wikimedia.org/wiki/File:Hyundai_Staria_1X7A0321.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "kia-carnival",
@@ -5806,6 +6016,10 @@
    ],
    "features": [],
    "policies": [
+    {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
     {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
@@ -5882,7 +6096,8 @@
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:Kia_Carnival_KA4_PE_1.6T_EX_HEV_Snowflake_White_Pearl.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "mercedes-benz-c200",
@@ -5943,6 +6158,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -5982,7 +6201,8 @@
    ],
    "credit": "Photo: M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Mercedes-Benz_C_200_Avantgarde_(W_205)_%E2%80%93_Frontansicht,_26._April_2014,_D%C3%BCsseldorf.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 100
+   "deposit": 100,
+   "partner": true
   },
   {
    "id": "vellfire-anh30",
@@ -6043,6 +6263,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -6082,7 +6306,8 @@
    ],
    "credit": "Photo: Matti Blume, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Vellfire,_Johor_Bahru_(P1110137).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 200
+   "deposit": 200,
+   "partner": true
   },
   {
    "id": "ford-mustang",
@@ -6143,6 +6368,10 @@
    "features": [],
    "policies": [
     {
+     "k": "Availability",
+     "v": "Partner car: we confirm the exact car and dates on WhatsApp before you pay the deposit."
+    },
+    {
      "k": "Documents",
      "v": "Driving licence plus IC (Malaysians) or passport (visitors). Singapore licences accepted for self-drive."
     },
@@ -6182,7 +6411,8 @@
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2019_Ford_Mustang_GT_5.0_facelift.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
    "source": "drivor",
-   "deposit": 500
+   "deposit": 500,
+   "partner": true
   }
  ],
  "routes": [
@@ -6438,6 +6668,16 @@
   "depositPct": 50,
   "bookingsUrl": "https://script.google.com/macros/s/AKfycby0RHenFM3VKrsmq62MMRUONR7QeOwl7chrR6GQj9SU1plcCf73ROeDu8gDYe7M3kpnOg/exec",
   "gaId": "",
-  "sgdRate": 3.3
+  "sgdRate": 3.3,
+  "peaks": [
+   {
+    "from": "2026-11-20",
+    "to": "2027-01-03",
+    "pct": 15,
+    "label": "Year-end school holidays"
+   }
+  ],
+  "ssm": "IP0615901-D",
+  "legalName": "EZEE WEBNET RENTAL & TRADING"
  }
 }
