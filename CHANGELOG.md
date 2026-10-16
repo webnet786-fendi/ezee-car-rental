@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Monthly rule (17 Oct 2026)**: from 30 days every car costs 40% of its 1-day rate per day (a `30+` tier on all 46 cars; the `monthly` service price on Vellfire and Bezza is set to 30 × that). The falling-tier cap now runs on every car, not only the surveyed ones (Honda BR-V 7-day rate fixed). Four 22–29 day fixed totals (S70, Civic FC, HR-V, Accord) were lifted to the monthly per-day × 29 so 29 days is never cheaper than 30.
 - **Prices set to the Johor Bahru average (17 Oct 2026)**: the 25 models in the JB rate survey now start at the midpoint of the lowest and highest published JB rate, with the owner's own figures for Persona 170, Alza (new) 250, Civic FE 450, Alphard 549 and Staria 550; Bezza 140 / 125 (2–6 d) / 110 (7+ d); Vellfire unchanged at 549 / 499 / 450. Every longer tier is capped so a rental never costs more per day than a shorter one (the imported 4–6 and 7–9 day tiers used to rise above the 1-day rate). Headline, page title, description and schema price range now say "from RM110 a day" (lowest 1-day car is the Axia 2nd Gen).
 - **Fleet rail auto-scrolls** right to left at about 30 px a second and loops without a jump (the cards are rendered twice). It pauses while the visitor touches, hovers, scrolls or focuses the rail or opens a car, resumes 4 s after they let go, and stays off when the system asks for reduced motion.
 - Google Analytics switched on: Measurement ID G-KND9JYYGL4 (stream "EzEe Car Rental JB", https://ezee.my).

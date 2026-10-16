@@ -10,7 +10,7 @@
    "photo": "img/car/front.jpg",
    "prices": {
     "selfdrive": 549,
-    "monthly": null,
+    "monthly": 6600,
     "sgjb": 140,
     "changi": 160,
     "senai": 150,
@@ -130,8 +130,13 @@
     },
     {
      "from": 7,
-     "to": null,
+     "to": 29,
      "perDay": 450
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 220
     }
    ],
    "deposit": 500
@@ -147,7 +152,7 @@
    "prices": {
     "selfdrive": 140,
     "weekly": null,
-    "monthly": null,
+    "monthly": 1680,
     "other": null
    },
    "inclTitle": "Included with the Bezza",
@@ -244,8 +249,13 @@
     },
     {
      "from": 7,
-     "to": null,
+     "to": 29,
      "perDay": 110
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 56
     }
    ],
    "deposit": 100
@@ -360,13 +370,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 1800
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 57
+     "from": 30,
+     "to": null,
+     "perDay": 50
     }
    ],
    "hourly": [
@@ -490,7 +500,7 @@
     {
      "from": 14,
      "to": 16,
-     "perDay": 112
+     "perDay": 110
     },
     {
      "from": 17,
@@ -499,18 +509,18 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 1860
-    },
-    {
-     "from": 31,
-     "to": 62,
-     "perDay": 60
     },
     {
      "from": 7,
      "to": 13,
-     "perDay": 120
+     "perDay": 60
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 44
     }
    ],
    "hourly": [
@@ -629,13 +639,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 1850
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 60
+     "from": 30,
+     "to": null,
+     "perDay": 44
     }
    ],
    "hourly": [
@@ -779,17 +789,17 @@
     {
      "from": 17,
      "to": 21,
-     "total": 1390
+     "total": 1190
     },
     {
      "from": 22,
-     "to": 30,
-     "total": 1750
+     "to": 29,
+     "total": 1540.0
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 55
+     "from": 30,
+     "to": null,
+     "perDay": 44
     }
    ],
    "hourly": [
@@ -1070,13 +1080,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 2500
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 85
+     "from": 30,
+     "to": null,
+     "perDay": 62
     }
    ],
    "hourly": [
@@ -1216,13 +1226,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 2400
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 80
+     "from": 30,
+     "to": null,
+     "perDay": 68
     }
    ],
    "hourly": [
@@ -1362,13 +1372,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 1960
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 65
+     "from": 30,
+     "to": null,
+     "perDay": 60
     }
    ],
    "hourly": [
@@ -1508,13 +1518,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 2300
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 75
+     "from": 30,
+     "to": null,
+     "perDay": 60
     }
    ],
    "hourly": [
@@ -1630,7 +1640,7 @@
     {
      "from": 7,
      "to": 9,
-     "perDay": 230
+     "perDay": 210
     },
     {
      "from": 10,
@@ -1649,13 +1659,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3100
     },
     {
-     "from": 32,
-     "to": 60,
-     "perDay": 110
+     "from": 30,
+     "to": null,
+     "perDay": 84
     }
    ],
    "hourly": [
@@ -1790,8 +1800,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3450
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 78
     }
    ],
    "hourly": [
@@ -1931,13 +1946,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3300
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 106
+     "from": 30,
+     "to": null,
+     "perDay": 102
     }
    ],
    "hourly": [
@@ -2069,7 +2084,7 @@
     {
      "from": 4,
      "to": 6,
-     "perDay": 280
+     "perDay": 250
     },
     {
      "from": 6,
@@ -2088,13 +2103,13 @@
     },
     {
      "from": 21,
-     "to": 30,
-     "total": 4500
+     "to": 29,
+     "total": 4200
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 150
+     "from": 30,
+     "to": null,
+     "perDay": 100
     }
    ],
    "hourly": [
@@ -2234,13 +2249,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3300
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 110
+     "from": 30,
+     "to": null,
+     "perDay": 95
     }
    ],
    "hourly": [
@@ -2375,13 +2390,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3200
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 105
+     "from": 30,
+     "to": null,
+     "perDay": 106
     }
    ],
    "hourly": [
@@ -2524,13 +2539,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 3850
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 120
+     "from": 30,
+     "to": null,
+     "perDay": 100
     }
    ],
    "hourly": [
@@ -2637,7 +2652,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 255
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 102
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -2775,8 +2801,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 4600
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 130
     }
    ],
    "hourly": [
@@ -2924,8 +2955,13 @@
     },
     {
      "from": 22,
-     "to": 30,
-     "total": 3800
+     "to": 29,
+     "total": 3828
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 132
     }
    ],
    "hourly": [
@@ -3086,13 +3122,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 5400
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 175
+     "from": 30,
+     "to": null,
+     "perDay": 180
     }
    ],
    "hourly": [
@@ -3199,7 +3235,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 365
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 146
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -3359,13 +3406,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 4900
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 160
+     "from": 30,
+     "to": null,
+     "perDay": 152
     }
    ],
    "hourly": [
@@ -3505,8 +3552,13 @@
     },
     {
      "from": 22,
-     "to": 30,
-     "total": 4500
+     "to": 29,
+     "total": 4640
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 160
     }
    ],
    "hourly": [
@@ -3630,13 +3682,13 @@
     },
     {
      "from": 22,
-     "to": 30,
-     "total": 4500
+     "to": 29,
+     "total": 4640
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 150
+     "from": 30,
+     "to": null,
+     "perDay": 160
     }
    ],
    "hourly": [
@@ -3771,13 +3823,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 4800
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 155
+     "from": 30,
+     "to": null,
+     "perDay": 158
     }
    ],
    "hourly": [
@@ -3884,7 +3936,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 400
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 160
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -4022,8 +4085,13 @@
     },
     {
      "from": 22,
-     "to": 30,
-     "total": 4980
+     "to": 29,
+     "total": 5220
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 180
     }
    ],
    "hourly": [
@@ -4163,13 +4231,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 5800
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 190
+     "from": 30,
+     "to": null,
+     "perDay": 180
     }
    ],
    "hourly": [
@@ -4276,7 +4344,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 440
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 176
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -4408,13 +4487,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 7500
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 250
+     "from": 30,
+     "to": null,
+     "perDay": 220
     }
    ],
    "hourly": [
@@ -4569,13 +4648,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 5350
     },
     {
-     "from": 31,
-     "to": 62,
-     "perDay": 175
+     "from": 30,
+     "to": null,
+     "perDay": 180
     }
    ],
    "hourly": [
@@ -4730,13 +4809,13 @@
     },
     {
      "from": 21,
-     "to": 30,
+     "to": 29,
      "total": 6200
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 190
+     "from": 30,
+     "to": null,
+     "perDay": 176
     }
    ],
    "hourly": [
@@ -4843,7 +4922,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 440
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 176
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -4997,13 +5087,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 7200
     },
     {
-     "from": 31,
-     "to": 60,
-     "perDay": 240
+     "from": 30,
+     "to": null,
+     "perDay": 200
     }
    ],
    "hourly": [
@@ -5143,8 +5233,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 6000
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 200
     }
    ],
    "hourly": [
@@ -5251,7 +5346,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 520
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 208
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -5373,8 +5479,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 6800
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 212
     }
    ],
    "hourly": [
@@ -5481,7 +5592,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 540
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 216
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -5586,7 +5708,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 540
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 216
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -5675,7 +5808,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 550
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 220
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -5798,8 +5942,13 @@
     },
     {
      "from": 14,
-     "to": 30,
+     "to": 29,
      "perDay": 450
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 180
     }
    ],
    "hourly": [
@@ -5937,8 +6086,13 @@
     },
     {
      "from": 15,
-     "to": 30,
+     "to": 29,
      "perDay": 500
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 220
     }
    ],
    "hourly": [
@@ -6078,8 +6232,13 @@
     },
     {
      "from": 22,
-     "to": 30,
+     "to": 29,
      "total": 8100
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 260
     }
    ],
    "hourly": [
@@ -6186,7 +6345,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 650
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 260
+    }
+   ],
    "hourly": [
     {
      "from": 1,
@@ -6396,7 +6566,18 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
+   "tiers": [
+    {
+     "from": 1,
+     "to": 29,
+     "perDay": 1250
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 500
+    }
+   ],
    "hourly": [
     {
      "from": 1,
