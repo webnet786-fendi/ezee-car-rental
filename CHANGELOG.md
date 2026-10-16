@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Vehicle overlay: a yellow "Back" button sits on the bottom edge of the main photo and sticks to the top of the screen while the overlay scrolls (closes the overlay, like the ×). The photo-credit line moved from under the photo to the very bottom of the overlay (Creative Commons attribution is still required for the Wikimedia photos).
 - Floating scroll-down cue ("See more car" + bouncing chevron, pastel-yellow fill with a yellow border and dark text in the WhatsApp pill's font; the WhatsApp pill itself now has a yellow border): a bar that fills the width beside the WhatsApp pill at the same height, measured from the pill by script: fixed at the bottom of the screen (bottom-left on phones, clear of the WhatsApp pill), fades out while the fleet section is on screen or a car overlay is open, comes back with the chevron pointing up once the visitor has scrolled past the car list, taps scroll to the fleet either way; still under reduced motion.
 - Every car is now "Singapore entry OK" (`singapore: true`; the Malaysia-only policy line removed from the imported cars). Vellfire and Bezza carry the same 200 km per day mileage limit (excess RM1.00 / RM0.50 per km) instead of unlimited mileage.
 - Mileage on the 46 imported cars: "200 km mileage limit per day" (includes line) and "200 km per day. Excess mileage RM0.50 / RM1.00 per km." (policy), replacing the 400 km / unlimited-from-7-days wording. The VEP line now shows on every car.
