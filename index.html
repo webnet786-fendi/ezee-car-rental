@@ -133,6 +133,9 @@
   .quote h2{font-size:22px;margin-bottom:4px}
   .quote .qsub{font-size:14px;color:var(--muted);margin:0 0 20px}
   .field{display:grid;gap:6px;margin-bottom:14px}
+  #q-special{background:#dff5e3;color:#1d1a12;border-color:#25d366}
+  #q-special::placeholder{color:#4e7a5a}
+  #q-special:focus{outline:2px solid #25d366;outline-offset:1px}
   .field label{
     font-size:11.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
   }
@@ -362,6 +365,7 @@
   .sd-chev{width:10px;height:10px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);animation:sdchev 1.4s ease-in-out infinite;margin:-5px 2px 0 0}
   @keyframes sdchev{0%,100%{transform:translateY(-2px) rotate(45deg);opacity:.5}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
   .scrolldown.up .sd-chev{animation-name:sdchevup;margin:5px 2px 0 0}
+  .scrolldown .sd-req{display:none}.scrolldown.req .sd-req{display:inline}.scrolldown.req .sd-txt{display:none}
   @keyframes sdchevup{0%,100%{transform:translateY(2px) rotate(-135deg);opacity:.5}50%{transform:translateY(-4px) rotate(-135deg);opacity:1}}
   @media (max-width:640px){.scrolldown{max-width:none}}
   .btn-gold{background:var(--gold);color:#14110b}
@@ -596,6 +600,10 @@
         <p class="qsub" data-i18n="q.sub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
 
         <input type="text" id="q-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0">
+        <div class="field" id="f-special">
+          <label for="q-special" data-i18n="q.special">Special request</label>
+          <input type="text" id="q-special" maxlength="160" placeholder="e.g. child seat, specific model, pickup at Senai Airport" data-i18n-ph="q.specialph" autocomplete="off">
+        </div>
         <div class="field" id="f-car" hidden>
           <label for="q-car" data-i18n="q.car">Choose your car please</label>
           <select id="q-car"></select>
@@ -643,7 +651,7 @@
           </div>
           <div class="note" id="q-note">Fuel, tolls, VEP &amp; checkpoint fees included</div>
         </div>
-        <a class="qbtn" id="q-send" href="https://wa.me/60127119814" target="_blank" rel="noopener">Click to negotiate on WhatsApp?</a>
+        <a class="qbtn" id="q-send" href="https://wa.me/60127119814" target="_blank" rel="noopener">Submit request thru WhatsApp</a>
         <p class="qfine" data-i18n="q.fine">No account, no card. 50% deposit by PayNow confirms your slot. Free cancellation up to 48 h before.</p>
       </form>
     </div>
@@ -869,7 +877,7 @@
   </div>
 </div>
 
-<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="See more cars"><span class="sd-txt" data-i18n="hero.scroll">See more car</span><span class="sd-chev"></span></a>
+<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="See more cars"><span class="sd-txt" data-i18n="hero.scroll">See more car</span><span class="sd-req" data-i18n="hero.special">Special request</span><span class="sd-chev"></span></a>
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
 <script src="i18n.js"></script>
@@ -883,9 +891,9 @@
   (function(){try{var cue=document.getElementById('scrolldown'),fleet=document.getElementById('fleet'),mm=document.getElementById('min-modal'),vm=document.getElementById('vmodal');if(!cue||!fleet)return;
     var fab=document.querySelector('a.fab');
     function fit(){try{if(!fab)return;var fr=fab.getBoundingClientRect();if(!fr.height)return;cue.style.height=fr.height+'px';cue.style.bottom=(window.innerHeight-fr.bottom)+'px';cue.style.right=(window.innerWidth-fr.left+10)+'px'}catch(e){}}
-    function tick(){try{fit();var r=fleet.getBoundingClientRect(),h=window.innerHeight;var above=r.top>=h*0.55,below=r.bottom<=h*0.35;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('up',below);cue.classList.toggle('off',!!(popup||!(above||below)))}catch(e){}}
+    function tick(){try{fit();var r=fleet.getBoundingClientRect(),h=window.innerHeight;var above=r.top>=h*0.55,below=r.bottom<=h*0.35,inFleet=!(above||below);var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('req',inFleet);cue.classList.toggle('up',below||inFleet);cue.classList.toggle('off',!!popup)}catch(e){}}
     window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);setInterval(tick,700);tick();
-    cue.addEventListener('click',function(e){e.preventDefault();fleet.scrollIntoView({behavior:'smooth',block:'start'})});
+    cue.addEventListener('click',function(e){e.preventDefault();if(cue.classList.contains('req')){var q=document.getElementById('quote'),sp=document.getElementById('q-special');if(q)q.scrollIntoView({behavior:'smooth',block:'start'});if(sp)setTimeout(function(){try{sp.focus({preventScroll:true})}catch(x){}},600)}else fleet.scrollIntoView({behavior:'smooth',block:'start'})});
   }catch(e){}})();
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
   var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
@@ -999,6 +1007,7 @@
     el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();try{el.showPicker()}catch(x){}}});
   }
   pickerOnClick(whenIn);
+  var special=$('q-special');special.addEventListener('input',update);
   whenIn.addEventListener('input',function(){splitWhen(whenIn.value);update()});whenIn.addEventListener('change',function(){splitWhen(whenIn.value);update()});
 
   function current(){return ROUTES.filter(function(r){return r.id===route.value})[0]}
@@ -1043,6 +1052,7 @@
     }else{ where=r.label }
     if(multi)lines.push('• '+currentCar().name);
     lines.push('• '+where);
+    if(special.value.trim())lines.push('• Special request: '+special.value.trim());
     if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')); lines.push('• Deliver car to: '+(deliver.value.trim()||'to confirm')) }
     else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
@@ -1096,7 +1106,7 @@
     var needCar=!carChosen();
     carSel.classList.toggle('blink',needCar);
     send.classList.toggle('inert',needTime||needCar);
-    send.textContent=needCar?t('j.needcar',null,'Choose your car first'):(needTime?t('j.needtime',null,'Pick a start date & time first'):(held?t('j.heldbtn',null,'Ask about these dates on WhatsApp'):t('q.send',null,'Click to negotiate on WhatsApp?')));
+    send.textContent=needCar?t('j.needcar',null,'In Progress'):(needTime?t('j.needtime',null,'Pick a start date & time first'):(held?t('j.heldbtn',null,'Ask about these dates on WhatsApp'):t('q.send',null,'Submit request thru WhatsApp')));
     whenIn.classList.toggle('held',!!held&&!needTime);
     if(needCar){note.textContent=t('j.needcarnote',null,'Please choose your car first.');amt.innerHTML='&mdash;'}
     else if(needTime)note.textContent=t('j.needtimenote',null,'Choose your start date and time. ')+noteText;
@@ -1142,7 +1152,8 @@
   sWhere.addEventListener('mousedown',function(e){if(current().type==='selfdrive'||current().type==='monthly'){if(!justClosed&&modal.hidden){e.preventDefault();popupTarget=sWhere;openModal()}}});
   sWhere.addEventListener('focus',function(){if(current().type==='selfdrive'||current().type==='monthly'){if(!justClosed&&modal.hidden){sWhere.blur();popupTarget=sWhere;openModal()}}});
   var quoteBox=$('quote');
-  function toggleBar(){var rct=quoteBox.getBoundingClientRect();sbar.classList.toggle('on',rct.bottom<0)}
+  var SBAR_ENABLED=false; /* compact sticky quote bar switched off on 17 Oct 2026 (user: popup on top while browsing Our cars); set true to bring it back */
+  function toggleBar(){var rct=quoteBox.getBoundingClientRect();sbar.classList.toggle('on',SBAR_ENABLED&&rct.bottom<0)}
   window.addEventListener('scroll',toggleBar,{passive:true});window.addEventListener('resize',toggleBar);toggleBar();
   refreshDir();update();pushToBar();
   /* ---- booking log: every WhatsApp tap is saved as "Waiting Confirmation" in the ledger (Apps Script → Google Sheet).
