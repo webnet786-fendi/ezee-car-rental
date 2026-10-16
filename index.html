@@ -355,16 +355,13 @@
   .fab:hover{transform:scale(1.04);background:#2db96c}
   @media (max-width:700px){ .fab{right:14px;bottom:14px;padding:11px 16px 11px 12px;font-size:14px} .fab svg{width:24px;height:24px} }
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-  /* animated scroll-down cue under the hero photo (mouse + wheel + chevron); reduced-motion kills the animation globally */
-  .scrolldown{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:49;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 14px 8px;max-width:min(78vw,320px);background:rgba(20,17,11,.86);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(6px);color:var(--gold-soft);text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;transition:opacity .35s,transform .35s}
-  .scrolldown:hover{color:var(--gold)}
+  /* floating scroll-down cue: short label + bouncing chevron, WhatsApp green */
+  .scrolldown{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:49;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 14px;background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.55);border-radius:999px;backdrop-filter:blur(6px);color:#25d366;text-decoration:none;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:opacity .35s,transform .35s}
+  .scrolldown:hover{background:rgba(37,211,102,.26);color:#5ee68d}
   .scrolldown.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
-  @media (max-width:640px){.scrolldown{left:14px;transform:none;bottom:14px;padding:8px 12px 6px;font-size:10px;max-width:calc(100vw - 190px)}.scrolldown.off{transform:translateY(24px)}}
-  .sd-mouse{width:24px;height:38px;border:2px solid var(--gold);border-radius:14px;position:relative;box-sizing:border-box}
-  .sd-wheel{position:absolute;left:50%;top:6px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold);animation:sdwheel 1.6s ease-in-out infinite}
-  .sd-chev{width:12px;height:12px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);animation:sdchev 1.6s ease-in-out infinite;margin-top:-4px}
-  @keyframes sdwheel{0%{opacity:1;transform:translateY(0)}60%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(12px)}}
-  @keyframes sdchev{0%,100%{transform:translateY(0) rotate(45deg);opacity:.45}50%{transform:translateY(6px) rotate(45deg);opacity:1}}
+  .sd-chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);animation:sdchev 1.4s ease-in-out infinite;margin:-4px 2px 0 0}
+  @keyframes sdchev{0%,100%{transform:translateY(-2px) rotate(45deg);opacity:.5}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
+  @media (max-width:640px){.scrolldown{left:14px;transform:none;bottom:18px}.scrolldown.off{transform:translateY(24px)}}
   .btn-gold{background:var(--gold);color:#14110b}
   .btn-gold:hover{background:var(--gold-soft)}
   .approx{display:block;font-size:11px;color:var(--faint);font-weight:400;letter-spacing:0}
@@ -865,7 +862,7 @@
   </div>
 </div>
 
-<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="Scroll down to see all cars, photos and prices"><span class="sd-mouse"><span class="sd-wheel"></span></span><span class="sd-txt" data-i18n="hero.scroll">Scroll to see all cars, photos &amp; prices</span><span class="sd-chev"></span></a>
+<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="See more cars"><span class="sd-txt" data-i18n="hero.scroll">See more car</span><span class="sd-chev"></span></a>
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
 <script src="i18n.js"></script>

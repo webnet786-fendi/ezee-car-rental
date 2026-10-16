@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Floating animated scroll-down cue (mouse, moving wheel, bouncing chevron, "Scroll to see all cars, photos & prices"): fixed at the bottom of the screen (bottom-left on phones, clear of the WhatsApp pill), fades out once the fleet section is reached or a car overlay is open, taps scroll to the fleet; still under reduced motion.
+- Floating scroll-down cue ("See more car" + bouncing chevron in WhatsApp green, compact pill): fixed at the bottom of the screen (bottom-left on phones, clear of the WhatsApp pill), fades out once the fleet section is reached or a car overlay is open, taps scroll to the fleet; still under reduced motion.
 - Every car is now "Singapore entry OK" (`singapore: true`; the Malaysia-only policy line removed from the imported cars). Vellfire and Bezza carry the same 200 km per day mileage limit (excess RM1.00 / RM0.50 per km) instead of unlimited mileage.
 - Mileage on the 46 imported cars: "200 km mileage limit per day" (includes line) and "200 km per day. Excess mileage RM0.50 / RM1.00 per km." (policy), replacing the 400 km / unlimited-from-7-days wording. The VEP line now shows on every car.
 - **VEP line**: `settings.vep` {rm:120, sgd:35} (admin → Bookings) adds "VEP, entry to Singapore: RM120 / S$35, additional per day" under the holiday row in the vehicle overlay and under the minimum-rental line on the rate card, on cars allowed into Singapore.
