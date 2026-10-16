@@ -356,8 +356,10 @@
   @media (max-width:700px){ .fab{right:14px;bottom:14px;padding:11px 16px 11px 12px;font-size:14px} .fab svg{width:24px;height:24px} }
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
   /* animated scroll-down cue under the hero photo (mouse + wheel + chevron); reduced-motion kills the animation globally */
-  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:7px;margin:24px auto 0;width:max-content;max-width:100%;color:var(--gold-soft);text-decoration:none;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center}
+  .scrolldown{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:49;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 14px 8px;max-width:min(78vw,320px);background:rgba(20,17,11,.86);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(6px);color:var(--gold-soft);text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;transition:opacity .35s,transform .35s}
   .scrolldown:hover{color:var(--gold)}
+  .scrolldown.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+  @media (max-width:640px){.scrolldown{left:14px;transform:none;bottom:14px;padding:8px 12px 6px;font-size:10px;max-width:calc(100vw - 190px)}.scrolldown.off{transform:translateY(24px)}}
   .sd-mouse{width:24px;height:38px;border:2px solid var(--gold);border-radius:14px;position:relative;box-sizing:border-box}
   .sd-wheel{position:absolute;left:50%;top:6px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold);animation:sdwheel 1.6s ease-in-out infinite}
   .sd-chev{width:12px;height:12px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);animation:sdchev 1.6s ease-in-out infinite;margin-top:-4px}
@@ -583,7 +585,6 @@
         </ul>
         <div class="hero-cta"><a class="btn btn-gold" href="#fleet" data-i18n="hero.cta1">Self-drive cars</a><a class="btn btn-ghost" href="#car-vellfire" data-i18n="hero.cta2">Chauffeured Vellfire</a></div>
         <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo" data-i18n="promo">Our Flagship Car Promo This Month<a href="#quote">Toyota Vellfire ZG &middot; Book now!</a></figcaption></figure>
-        <a class="scrolldown" href="#fleet" aria-label="Scroll down to see all cars, photos and prices"><span class="sd-mouse"><span class="sd-wheel"></span></span><span class="sd-txt" data-i18n="hero.scroll">Scroll to see all cars, photos &amp; prices</span><span class="sd-chev"></span></a>
       </div>
 
       <form class="quote" id="quote" onsubmit="return false">
@@ -864,6 +865,7 @@
   </div>
 </div>
 
+<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="Scroll down to see all cars, photos and prices"><span class="sd-mouse"><span class="sd-wheel"></span></span><span class="sd-txt" data-i18n="hero.scroll">Scroll to see all cars, photos &amp; prices</span><span class="sd-chev"></span></a>
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
 <script src="i18n.js"></script>
@@ -873,6 +875,12 @@
   var $=function(id){return document.getElementById(id)};
   var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where'),deliver=$('q-deliver'),fDeliver=$('f-deliver'),lDate=$('l-date'),whenIn=$('q-when');
   function currentZone(){return zoneFor(zone.value)}
+  /* floating scroll cue: visible until the fleet section comes into view */
+  (function(){var cue=$('scrolldown'),fleet=document.getElementById('fleet');if(!cue||!fleet)return;
+    function tick(){var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;cue.classList.toggle('off',reached||!modal.hidden)}
+    window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);tick();
+    cue.addEventListener('click',function(e){e.preventDefault();fleet.scrollIntoView({behavior:'smooth',block:'start'})});
+  })();
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
   var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
   function openModal(){modal.hidden=false;document.body.style.overflow='hidden';modalOk.focus()}
