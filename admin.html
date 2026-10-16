@@ -161,6 +161,7 @@
         <p class="hint" id="holidaysCheck"></p>
         <label for="peakMin">Minimum rental days when the rental starts on, or runs into, a public holiday or peak day</label>
         <input type="number" id="peakMin" min="1" max="14" style="width:90px">
+        <label for="vepRm">VEP, entry to Singapore, per day: RM <input type="number" id="vepRm" min="0" style="width:90px"> / S$ <input type="number" id="vepSgd" min="0" style="width:90px"> (empty RM = hide)</label>
       </div>
       <p class="eyebrow" style="margin-top:22px">Website visitors</p>
       <p style="color:var(--muted);margin:0 0 14px">Google Analytics counts who visits ezee.my and which taps on the WhatsApp button follow. Create the property at <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a> (web stream for https://ezee.my), then paste its Measurement ID here.</p>
@@ -261,7 +262,7 @@
     if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
   })});
 
-  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck();$('peaks').value=peaksText();$('holidays').value=holidaysText();$('peakMin').value=fleet.settings.peakMinDays||3}
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck();$('peaks').value=peaksText();$('holidays').value=holidaysText();$('peakMin').value=fleet.settings.peakMinDays||3;$('vepRm').value=(fleet.settings.vep||{}).rm||'';$('vepSgd').value=(fleet.settings.vep||{}).sgd||''}
   $('bookingsUrl').addEventListener('input',function(){fleet.settings.bookingsUrl=$('bookingsUrl').value.trim();markDirty()});
   function peaksText(){return (fleet.settings.peaks||[]).map(function(p){return p.from+' to '+p.to+' +'+p.pct+'%'+(p.label?' '+p.label:'')}).join('\n')}
   function parsePeaks(txt){var out=[],bad=[];txt.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var m=l.match(/^(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})\s+\+?(\d+(?:\.\d+)?)%?\s*(.*)$/);if(!m){bad.push(l);return}out.push({from:m[1],to:m[2],pct:Number(m[3]),label:m[4]||''})});return {peaks:out,bad:bad}}
@@ -269,6 +270,7 @@
   function holidaysText(){return (fleet.settings.holidays||[]).map(function(h){return typeof h==='string'?h:h.date+(h.label?' '+h.label:'')}).join('\n')}
   function parseHolidays(txt){var out=[],bad=[];txt.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var m=l.match(/^(\d{4}-\d{2}-\d{2})\s*(.*)$/);if(!m){bad.push(l);return}out.push({date:m[1],label:m[2]||''})});return {holidays:out,bad:bad}}
   $('holidays').addEventListener('input',function(){var r=parseHolidays($('holidays').value);fleet.settings.holidays=r.holidays;$('holidaysCheck').textContent=r.bad.length?'Not understood: '+r.bad.join(' | '):(r.holidays.length+' holiday date(s).');markDirty()});
+  ['vepRm','vepSgd'].forEach(function(id){$(id).addEventListener('input',function(){fleet.settings.vep={rm:Number($('vepRm').value)||0,sgd:Number($('vepSgd').value)||0};markDirty()})});
   $('peakMin').addEventListener('input',function(){fleet.settings.peakMinDays=Math.max(1,parseInt($('peakMin').value,10)||1);markDirty()});
   function gaCheck(){var v=$('gaId').value.trim(),o=$('gaCheck');o.textContent=!v?'':(/^G-[A-Z0-9]{6,}$/.test(v)?'Looks right.':'A Measurement ID looks like G-ABC123XYZ (capital letters and digits).')}
   $('gaId').addEventListener('input',function(){var v=$('gaId').value.trim().toUpperCase();fleet.settings.gaId=v;gaCheck();markDirty()});

@@ -308,6 +308,7 @@
       if(g.name==='Chauffeured transfers')html+='<tr><td>'+t('rc.night',null,'Night surcharge, 11 pm – 7 am pickup')+'</td><td class="num">+S$30</td></tr>';
       html+='</tbody></table>';
       if(g.name==='Hot item')html+='<p class="minrent">'+t('rc.minrent',null,'Minimum rental by destination: ')+ZONES.slice().reverse().map(function(z){return '<b>'+td(z.label)+'</b> '+daysT(z.min)}).join(' · ')+(Number(SETTINGS.peakMinDays)>1?' · <b>'+t('rc.holmin',null,'Public holidays &amp; peak season')+'</b> '+daysT(Number(SETTINGS.peakMinDays)):'')+'.</p>';
+      if(g.name==='Hot item'&&car.singapore!==false&&SETTINGS.vep&&SETTINGS.vep.rm)html+='<p class="minrent">'+t('v.vep',null,'VEP, entry to Singapore')+': <b>RM'+SETTINGS.vep.rm+(SETTINGS.vep.sgd?' / S$'+SETTINGS.vep.sgd:'')+'</b> '+t('v.vepnote',null,'additional, per day in Singapore')+'.</p>';
       html+='</section>';
     });
     document.getElementById('rc-sections').innerHTML=html;

@@ -5651,6 +5651,10 @@
     "date": "2027-02-07",
     "label": "Chinese New Year"
    }
-  ]
+  ],
+  "vep": {
+   "rm": 120,
+   "sgd": 35
+  }
  }
 }
