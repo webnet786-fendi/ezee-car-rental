@@ -10,7 +10,7 @@
    "photo": "img/car/front.jpg",
    "prices": {
     "selfdrive": 549,
-    "monthly": 6600,
+    "monthly": 8250,
     "sgjb": 140,
     "changi": 160,
     "senai": 150,
@@ -120,23 +120,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 2,
-     "perDay": 549
-    },
-    {
-     "from": 3,
      "to": 6,
-     "perDay": 499
+     "perDay": 549
     },
     {
      "from": 7,
      "to": 29,
-     "perDay": 450
+     "perDay": 439
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 220
+     "perDay": 275
     }
    ],
    "deposit": 500
@@ -152,7 +147,7 @@
    "prices": {
     "selfdrive": 140,
     "weekly": null,
-    "monthly": 1680,
+    "monthly": 2100,
     "other": null
    },
    "inclTitle": "Included with the Bezza",
@@ -239,23 +234,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 1,
-     "perDay": 140
-    },
-    {
-     "from": 2,
      "to": 6,
-     "perDay": 125
+     "perDay": 140
     },
     {
      "from": 7,
      "to": 29,
-     "perDay": 110
+     "perDay": 112
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 56
+     "perDay": 70
     }
    ],
    "deposit": 100
@@ -350,45 +340,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 7,
+     "to": 6,
      "perDay": 125
     },
     {
-     "from": 8,
-     "to": 13,
-     "perDay": 95
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 90
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1530
-    },
-    {
-     "from": 22,
+     "from": 7,
      "to": 29,
-     "total": 1800
+     "perDay": 100
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 50
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 15
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 110
+     "perDay": 63
     }
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Perodua_Axia_base_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -405,7 +368,7 @@
    "meta": "4 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-axia-2nd-gen.jpg",
    "prices": {
-    "selfdrive": 110,
+    "selfdrive": 125,
     "other": null
    },
    "inclTitle": "Included with the Axia (2nd Gen)",
@@ -494,45 +457,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 7,
-     "perDay": 110
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 110
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1842
-    },
-    {
-     "from": 22,
-     "to": 29,
-     "total": 1860
+     "to": 6,
+     "perDay": 125
     },
     {
      "from": 7,
-     "to": 13,
-     "perDay": 60
+     "to": 29,
+     "perDay": 100
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 44
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 15
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 120
+     "perDay": 63
     }
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Perodua_Axia_1.0_X_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -549,7 +485,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-bezza-1-0-new.jpg",
    "prices": {
-    "selfdrive": 110,
+    "selfdrive": 140,
     "other": null
    },
    "inclTitle": "Included with the Bezza 1.0 (New)",
@@ -615,49 +551,17 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 110
+     "perDay": 140
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 110
-    },
-    {
-     "from": 11,
-     "to": 13,
-     "perDay": 100
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 93
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1500
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 1850
+     "perDay": 112
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 44
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 15
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 140
+     "perDay": 70
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Bezza_1.3_Dual_VVT-i_X_(Facelift)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -763,55 +667,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 110
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 100
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 95
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 85
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 70
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1190
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 1540.0
+     "perDay": 88
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 44
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 15
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 110
+     "perDay": 55
     }
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Perodua_Bezza_X_VVTi_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -909,55 +776,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 120
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 150
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 140
+     "to": 29,
+     "perDay": 96
     },
     {
-     "from": 10,
-     "to": 13,
-     "perDay": 128
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 119
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1954
-    },
-    {
-     "from": 22,
-     "to": 30,
-     "total": 1960
-    },
-    {
-     "from": 31,
-     "to": 62,
-     "perDay": 65
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 20
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 160
+     "from": 30,
+     "to": null,
+     "perDay": 60
     }
    ],
    "credit": "Photo: PAULTAN.ORG, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Bezza_Advance.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -1060,45 +890,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 155
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 150
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 130
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 2210
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 2500
+     "perDay": 124
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 62
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 25
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 200
+     "perDay": 78
     }
    ],
    "credit": "Photo: Bindydad123, <a href=\"https://commons.wikimedia.org/wiki/File:2014_Perodua_Alza_Standard_in_Penang,_Malaysia_(01).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -1196,55 +994,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 170
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 170
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 160
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 145
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 135
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 2200
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 2400
+     "perDay": 136
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 68
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 25
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 190
+     "perDay": 85
     }
    ],
    "credit": "Photo: DRIVEN COMMUNICATIONS SDN BHD, <a href=\"https://commons.wikimedia.org/wiki/File:Proton-Persona-Red.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -1342,55 +1103,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 150
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 150
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 140
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 128
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 118
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 1950
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 1960
+     "perDay": 120
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 60
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 20
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 139
+     "perDay": 75
     }
    ],
    "credit": "Photo: Fyc09913, <a href=\"https://commons.wikimedia.org/wiki/File:Proton_Saga_2019.jpg\" target=\"_blank\" rel=\"noopener\">CC0</a>, via Wikimedia Commons",
@@ -1488,55 +1212,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 150
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 150
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 150
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 140
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 130
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 2210
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 2300
+     "perDay": 120
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 60
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 20
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 129
+     "perDay": 75
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Myvi_1.5_VVT-i_AV_(III,_Facelift)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -1639,45 +1326,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 210
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 200
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 180
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 2900
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3100
+     "perDay": 168
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 84
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 250
+     "perDay": 105
     }
    ],
    "credit": "Photo: オーバードライブ83, <a href=\"https://commons.wikimedia.org/wiki/File:2022_Honda_BR-V_Prestige_with_Honda_Sensing_1.5_DG3_(20220429).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -1780,45 +1435,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 195
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 195
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 195
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 3315
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3450
+     "perDay": 156
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 78
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 250
+     "perDay": 98
     }
    ],
    "credit": "Photo: Bindydad123, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Aruz_AV_in_Penang,_Malaysia_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -1916,55 +1539,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 255
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 240
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 210
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 192
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 180
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 3000
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3300
+     "perDay": 204
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 102
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 250
+     "perDay": 128
     }
    ],
    "credit": "Photo: Chanokchon, <a href=\"https://commons.wikimedia.org/wiki/File:2026_Honda_City_e-HEV_RS_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -2078,50 +1664,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 250
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 250
     },
     {
-     "from": 6,
-     "to": 9,
-     "perDay": 250
-    },
-    {
-     "from": 10,
-     "to": 14,
-     "perDay": 230
-    },
-    {
-     "from": 15,
-     "to": 20,
-     "perDay": 200
-    },
-    {
-     "from": 21,
+     "from": 7,
      "to": 29,
-     "total": 4200
+     "perDay": 200
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 100
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 35
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 330
+     "perDay": 125
     }
    ],
    "credit": "Photo: Tokumeigakarinoaoshima, <a href=\"https://commons.wikimedia.org/wiki/File:Honda_WR-V_Z%2B_(5BA-DG5).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -2219,55 +1773,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 238
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 238
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 215
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 200
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 190
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 3140
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3300
+     "perDay": 190
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 95
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 219
+     "perDay": 119
     }
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Perodua_Ativa_AV_front_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -2370,45 +1887,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 200
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 180
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 170
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 2850
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3200
+     "perDay": 212
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 106
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 250
+     "perDay": 133
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Vios_1.5_VVT-i_G_(IV)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -2519,45 +2004,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 250
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 230
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 220
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 3500
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3850
+     "perDay": 200
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 100
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 30
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 229
+     "perDay": 125
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Perodua_Alza_1.5_VVT-i_AV_(II)_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -2655,25 +2108,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 255
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 204
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 102
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 25
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 239
+     "perDay": 128
     }
    ],
    "credit": "Photo: AIMHO&#x27;S REBELLION 8490s, <a href=\"https://commons.wikimedia.org/wiki/File:2021_Nissan_Almera_1.0_Turbo_white_front_view_in_Brunei.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -2771,55 +2217,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 2,
+     "to": 6,
      "perDay": 325
     },
     {
-     "from": 3,
-     "to": 6,
-     "perDay": 300
-    },
-    {
      "from": 7,
-     "to": 10,
-     "perDay": 270
-    },
-    {
-     "from": 11,
-     "to": 14,
-     "perDay": 248
-    },
-    {
-     "from": 15,
-     "to": 18,
-     "perDay": 235
-    },
-    {
-     "from": 19,
-     "to": 21,
-     "total": 4400
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 4600
+     "perDay": 260
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 130
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 38
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "perHour": 350
+     "perDay": 163
     }
    ],
    "credit": "Photo: Liauzh, <a href=\"https://commons.wikimedia.org/wiki/File:2025_Proton_X50_facelift.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -2925,55 +2334,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 330
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 310
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 265
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 245
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 230
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 3750
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 3828
+     "perDay": 264
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 132
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 32
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 330
+     "perDay": 165
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Proton_S70_1.5_T_Flagship_%E2%80%93_f_13032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -3092,55 +2464,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 450
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 430
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 380
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 350
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 330
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 5200
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 5400
+     "perDay": 360
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 180
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 48
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 450
+     "perDay": 225
     }
    ],
    "credit": "Photo: Elise240SX, <a href=\"https://commons.wikimedia.org/wiki/File:2022_Honda_Civic_Touring_in_Lunar_Silver_Metallic,_Front_Left,_05-10-2022.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -3238,25 +2573,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 365
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 292
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 146
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 35
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 349
+     "perDay": 183
     }
    ],
    "credit": "Photo: オーバードライブ83, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Mitsubishi_Xpander_Ultimate_1.5_NC1W_(20190623).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -3376,55 +2704,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 380
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 350
-    },
-    {
      "from": 7,
-     "to": 10,
-     "perDay": 300
-    },
-    {
-     "from": 11,
-     "to": 14,
-     "perDay": 275
-    },
-    {
-     "from": 15,
-     "to": 18,
-     "perDay": 257
-    },
-    {
-     "from": 19,
-     "to": 21,
-     "total": 4700
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 4900
+     "perDay": 304
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 152
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 40
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 350
+     "perDay": 190
     }
    ],
    "credit": "Photo: Autosdeprimera, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Omoda_C5_front_view.png\" target=\"_blank\" rel=\"noopener\">CC BY 3.0</a>, via Wikimedia Commons",
@@ -3522,55 +2813,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 400
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 380
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 350
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 300
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 260
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 4300
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 4640
+     "perDay": 320
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 160
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 450
+     "perDay": 200
     }
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Honda_Civic_SR_VTEC_1.0_Front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -3652,55 +2906,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 400
     },
     {
-     "from": 3,
-     "to": 6,
-     "perDay": 370
-    },
-    {
      "from": 7,
-     "to": 10,
-     "perDay": 300
-    },
-    {
-     "from": 11,
-     "to": 14,
-     "perDay": 280
-    },
-    {
-     "from": 15,
-     "to": 18,
-     "perDay": 240
-    },
-    {
-     "from": 19,
-     "to": 21,
-     "perDay": 210
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 4640
+     "perDay": 320
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 160
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 40
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 380
+     "perDay": 200
     }
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Honda_HR-V_Advance_i-MMD_CVT_1.5.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -3803,45 +3020,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 350
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 320
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 300
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 4700
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 4800
+     "perDay": 316
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 158
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 389
+     "perDay": 198
     }
    ],
    "credit": "Photo: Premnath Kudva, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Innova_Crysta_2.4_Z_front_right.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -3939,25 +3124,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 400
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 320
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 160
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 35
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 400
+     "perDay": 200
     }
    ],
    "credit": "Photo: Dinkun Chen, <a href=\"https://commons.wikimedia.org/wiki/File:NISSAN_TEANA_L33_China_(32).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -4055,55 +3233,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 450
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 420
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 360
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 324
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 302
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 4932
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 5220
+     "perDay": 360
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 180
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 40
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 450
+     "perDay": 225
     }
    ],
    "credit": "Photo: EurovisionNim, <a href=\"https://commons.wikimedia.org/wiki/File:2014_Honda_Accord_2.4_i-VTEC_sedan_(2016-01-07)_01.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -4201,55 +3342,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 450
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 450
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 400
-    },
-    {
-     "from": 11,
-     "to": 13,
-     "perDay": 364
-    },
-    {
-     "from": 14,
-     "to": 17,
-     "perDay": 335
-    },
-    {
-     "from": 18,
-     "to": 21,
-     "total": 5500
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 5800
+     "perDay": 360
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 180
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 60
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 500
+     "perDay": 225
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Jaecoo_J7_1.6T_4WD_%E2%80%93_f_21032025.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -4347,25 +3451,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 440
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 352
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 176
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 429
+     "perDay": 220
     }
    ],
    "credit": "Photo: User3204, <a href=\"https://commons.wikimedia.org/wiki/File:2016_Nissan_Serena_Highway_Star_VIP_(front).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -4472,40 +3569,13 @@
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 520
-    },
-    {
-     "from": 11,
-     "to": 13,
-     "perDay": 500
-    },
-    {
-     "from": 14,
-     "to": 21,
-     "total": 7000
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 7500
+     "perDay": 439
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 220
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 85
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 780
+     "perDay": 275
     }
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Toyota_Alphard_3.5_V6_in_black,_front_right.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -4628,45 +3698,13 @@
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 400
-    },
-    {
-     "from": 11,
-     "to": 13,
-     "perDay": 360
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 330
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 5280
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 5350
+     "perDay": 360
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 180
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 490
+     "perDay": 225
     }
    ],
    "credit": "Photo: Mr.choppers, <a href=\"https://commons.wikimedia.org/wiki/File:2023_Toyota_Corolla_Cross_XLE_4WD_in_Wind_Chill_Pearl,_front_left.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0</a>, via Wikimedia Commons",
@@ -4789,45 +3827,13 @@
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 430
-    },
-    {
-     "from": 11,
-     "to": 13,
-     "perDay": 400
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 380
-    },
-    {
-     "from": 17,
-     "to": 20,
-     "total": 6100
-    },
-    {
-     "from": 21,
      "to": 29,
-     "total": 6200
+     "perDay": 352
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 176
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 429
+     "perDay": 220
     }
    ],
    "credit": "Photo: User3204, <a href=\"https://commons.wikimedia.org/wiki/File:2017_Toyota_Voxy_ZS_Kirameki_(front).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -4925,25 +3931,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 440
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 352
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 176
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 389
+     "perDay": 220
     }
    ],
    "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2024_Proton_X70_Executive_front_(1).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -5067,45 +4066,13 @@
     },
     {
      "from": 7,
-     "to": 9,
-     "perDay": 480
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 435
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 404
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 6800
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 7200
+     "perDay": 400
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 200
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 60
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 600
+     "perDay": 250
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Mercedes-Benz_A_200_Limousine_Progressive_(V_177,_Facelift)_%E2%80%93_f_10032024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -5203,55 +4170,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 500
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 480
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 450
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 405
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 377
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 5800
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 6000
+     "perDay": 400
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 200
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 45
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 500
+     "perDay": 250
     }
    ],
    "credit": "Photo: EurovisionNim, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Toyota_Camry_(ASV70R)_Ascent_sedan_(2018-08-27)_01.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -5349,25 +4279,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 520
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 416
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 208
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 520
+     "perDay": 260
     }
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2016_Toyota_HiLux_Invincible_D-4D_4WD_2.4_Front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -5449,55 +4372,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 530
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 500
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 480
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 440
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 410
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 6700
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 6800
+     "perDay": 424
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 212
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 530
+     "perDay": 265
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Honda_CR-V_e-HEV_Elegance_AWD_(VI)_%E2%80%93_f_14072024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -5595,25 +4481,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 540
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 432
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 216
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 540
+     "perDay": 270
     }
    ],
    "credit": "Photo: © M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Ford_Ranger_2.0_EcoBlue_4WD_Wildtrak_X_(IV)_%E2%80%93_f_12102024.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -5711,25 +4590,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 540
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 432
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 216
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 540
+     "perDay": 270
     }
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:Mitsubishi_Triton_2.4_Athlete_4WD_White_Diamond_-_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -5811,25 +4683,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 550
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 440
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 220
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 550
+     "perDay": 275
     }
    ],
    "credit": "Photo: Navigator84, <a href=\"https://commons.wikimedia.org/wiki/File:Maxus_G10_001_China_2015-04-13.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -5927,40 +4792,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 450
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 450
     },
     {
      "from": 7,
-     "to": 13,
-     "perDay": 450
-    },
-    {
-     "from": 14,
      "to": 29,
-     "perDay": 450
+     "perDay": 360
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 180
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 50
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 449
+     "perDay": 225
     }
    ],
    "credit": "Photo: Ki hoon, <a href=\"https://commons.wikimedia.org/wiki/File:Hyundai_The_New_Grand_Starex_Urban_Front_Side.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -6066,45 +4909,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
-     "perDay": 550
-    },
-    {
-     "from": 4,
      "to": 6,
      "perDay": 550
     },
     {
      "from": 7,
-     "to": 10,
-     "perDay": 550
-    },
-    {
-     "from": 11,
-     "to": 14,
-     "perDay": 550
-    },
-    {
-     "from": 15,
      "to": 29,
-     "perDay": 500
+     "perDay": 440
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 220
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 65
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 579
+     "perDay": 275
     }
    ],
    "credit": "Photo: Alexander Migl, <a href=\"https://commons.wikimedia.org/wiki/File:Hyundai_Staria_1X7A0321.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -6202,55 +5018,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 3,
+     "to": 6,
      "perDay": 650
     },
     {
-     "from": 4,
-     "to": 6,
-     "perDay": 630
-    },
-    {
      "from": 7,
-     "to": 9,
-     "perDay": 600
-    },
-    {
-     "from": 10,
-     "to": 13,
-     "perDay": 540
-    },
-    {
-     "from": 14,
-     "to": 16,
-     "perDay": 502
-    },
-    {
-     "from": 17,
-     "to": 21,
-     "total": 8040
-    },
-    {
-     "from": 22,
      "to": 29,
-     "total": 8100
+     "perDay": 520
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 260
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 60
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 650
+     "perDay": 325
     }
    ],
    "credit": "Photo: Ethan Llamas, <a href=\"https://commons.wikimedia.org/wiki/File:Kia_Carnival_KA4_PE_1.6T_EX_HEV_Snowflake_White_Pearl.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -6348,25 +5127,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 650
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 520
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 260
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 60
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 650
+     "perDay": 325
     }
    ],
    "credit": "Photo: M 93, <a href=\"https://commons.wikimedia.org/wiki/File:Mercedes-Benz_C_200_Avantgarde_(W_205)_%E2%80%93_Frontansicht,_26._April_2014,_D%C3%BCsseldorf.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 3.0 de</a>, via Wikimedia Commons",
@@ -6461,17 +5233,21 @@
      "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
-   "tiers": [],
-   "hourly": [
+   "tiers": [
     {
      "from": 1,
-     "to": 5,
-     "perHour": 80
+     "to": 6,
+     "perDay": 800
     },
     {
-     "from": 6,
-     "to": 24,
-     "total": 800
+     "from": 7,
+     "to": 29,
+     "perDay": 640
+    },
+    {
+     "from": 30,
+     "to": null,
+     "perDay": 400
     }
    ],
    "credit": "Photo: Matti Blume, <a href=\"https://commons.wikimedia.org/wiki/File:Toyota_Vellfire,_Johor_Bahru_(P1110137).jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -6569,25 +5345,18 @@
    "tiers": [
     {
      "from": 1,
-     "to": 29,
+     "to": 6,
      "perDay": 1250
+    },
+    {
+     "from": 7,
+     "to": 29,
+     "perDay": 1000
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 500
-    }
-   ],
-   "hourly": [
-    {
-     "from": 1,
-     "to": 5,
-     "perHour": 120
-    },
-    {
-     "from": 6,
-     "to": 24,
-     "total": 1250
+     "perDay": 625
     }
    ],
    "credit": "Photo: Vauxford, <a href=\"https://commons.wikimedia.org/wiki/File:2019_Ford_Mustang_GT_5.0_facelift.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
@@ -6859,6 +5628,29 @@
    }
   ],
   "ssm": "IP0615901-D",
-  "legalName": "EZEE WEBNET RENTAL & TRADING"
+  "legalName": "EZEE WEBNET RENTAL & TRADING",
+  "peakMinDays": 3,
+  "holidays": [
+   {
+    "date": "2026-11-08",
+    "label": "Deepavali"
+   },
+   {
+    "date": "2026-12-25",
+    "label": "Christmas Day"
+   },
+   {
+    "date": "2027-01-01",
+    "label": "New Year’s Day"
+   },
+   {
+    "date": "2027-02-06",
+    "label": "Chinese New Year"
+   },
+   {
+    "date": "2027-02-07",
+    "label": "Chinese New Year"
+   }
+  ]
  }
 }

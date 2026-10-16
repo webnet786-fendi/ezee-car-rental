@@ -238,6 +238,7 @@
     section{margin-top:22px}
     @page{margin:14mm}
   }
+  .ttotal{display:block;font-size:10.5px;font-weight:400;color:#6a614c;line-height:1.3;margin-top:2px}
 </style>
 <style>
   .car-tabs{display:grid;gap:10px;margin:22px 0 0}
@@ -251,6 +252,7 @@
   .minrent{margin-top:14px;font-size:13px;color:var(--muted)}
   .minrent b{color:var(--ink);font-weight:600}
   @media print{ .car-tabs{display:none} }
+  .ttotal{display:block;font-size:10.5px;font-weight:400;color:#6a614c;line-height:1.3;margin-top:2px}
 </style>
 </head>
 <body>
@@ -294,16 +296,18 @@
     var car=cars.filter(function(c){return c.id===sel})[0]||cars[0];sel=car.id;
     tabs.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.car===car.id?'true':'false')});
     document.getElementById('rc-tag').textContent=car.name+' · '+(car.prices.sgjb?t('rc.both',null,'Chauffeured & self-drive'):t('rc.self',null,'Self-drive'))+' · '+(car.singapore===false?t('j.myonly',null,'Malaysia use only'):t('j.sgok',null,'Singapore entry OK'));
-    var groups=[];ROUTES.forEach(function(r){if(!(r.id in car.prices)||r.type==='other')return;var g=groups.filter(function(x){return x.name===r.group})[0];if(!g){g={name:r.group,rows:[]};groups.push(g)}g.rows.push(r)});
+    var groups=[];ROUTES.forEach(function(r){if(!(r.id in car.prices)||r.type==='other')return;if(r.id==='monthly'&&car.tiers&&car.tiers.length)return;var g=groups.filter(function(x){return x.name===r.group})[0];if(!g){g={name:r.group,rows:[]};groups.push(g)}g.rows.push(r)});
     var html='';
     groups.forEach(function(g){
       var title={'Hot item':t('rc.t.hot',{car:car.short},'Self-drive {car}'),'Chauffeured transfers':t('rc.t.transfers',null,'Cross-Border Transfers'),'Charters & events':t('rc.t.charters',null,'Chauffeured Charters')}[g.name]||td(g.name);
       var sub={'Hot item':t('rc.s.hot',null,'Refundable security deposit applies. Minimum rental depends on destination (see below).'),'Chauffeured transfers':t('rc.s.transfers',null,'One-way, door to door. Price is all-in — tolls, checkpoint fees and fuel included. Up to 6 passengers.'),'Charters & events':t('rc.s.charters',null,'Car, professional driver and petrol included. Driver waits with the vehicle throughout.')}[g.name]||'';
       html+='<section><h2>'+title+'</h2><p class="sub">'+sub+'</p><table><thead><tr><th>'+(g.name==='Hot item'?t('rc.th.pkg',null,'Package'):t('rc.th.route',null,'Route'))+'</th><th class="num">'+t('rc.th.rate',null,'Rate')+'</th></tr></thead><tbody>';
-      g.rows.forEach(function(r){html+='<tr'+(g.name==='Hot item'?' class="hotrow"':'')+'><td>'+rowLabelT(r,car)+(r.note?'<span class="note">'+td(r.note)+'</span>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+approxRM(r,car.prices[r.id])+'</td></tr>'});
+      g.rows.forEach(function(r){
+        if(r.id==='selfdrive'&&car.tiers&&car.tiers.length){car.tiers.forEach(function(x){var per=x.perDay!=null?x.perDay:Math.round(x.total/x.from);html+='<tr class="hotrow"><td>'+t('v.selfn',{d:(x.from===1?'1 '+t('v.day1',null,'day'):x.from+' '+t('v.days',null,'days'))},'Self-drive, {d}')+'</td><td class="num">RM'+per+'<small>'+t('j.perday',null,' / day')+'</small>'+(x.from>1?'<small class="ttotal">'+t('v.tiertotal',{amt:(per*x.from).toLocaleString('en-MY'),n:x.from},'RM{amt} for {n} days · Chat for best price!')+'</small>':'')+'</td></tr>'});return}
+        html+='<tr'+(g.name==='Hot item'?' class="hotrow"':'')+'><td>'+rowLabelT(r,car)+(r.note?'<span class="note">'+td(r.note)+'</span>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+approxRM(r,car.prices[r.id])+'</td></tr>'});
       if(g.name==='Chauffeured transfers')html+='<tr><td>'+t('rc.night',null,'Night surcharge, 11 pm – 7 am pickup')+'</td><td class="num">+S$30</td></tr>';
       html+='</tbody></table>';
-      if(g.name==='Hot item')html+='<p class="minrent">'+t('rc.minrent',null,'Minimum rental by destination: ')+ZONES.slice().reverse().map(function(z){return '<b>'+td(z.label)+'</b> '+daysT(z.min)}).join(' · ')+'.</p>';
+      if(g.name==='Hot item')html+='<p class="minrent">'+t('rc.minrent',null,'Minimum rental by destination: ')+ZONES.slice().reverse().map(function(z){return '<b>'+td(z.label)+'</b> '+daysT(z.min)}).join(' · ')+(Number(SETTINGS.peakMinDays)>1?' · <b>'+t('rc.holmin',null,'Public holidays &amp; peak season')+'</b> '+daysT(Number(SETTINGS.peakMinDays)):'')+'.</p>';
       html+='</section>';
     });
     document.getElementById('rc-sections').innerHTML=html;

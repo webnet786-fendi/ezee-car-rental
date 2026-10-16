@@ -156,6 +156,11 @@
         <label for="peaks">Peak windows, one per line: <code>2026-11-20 to 2027-01-03 +15% Year-end school holidays</code></label>
         <textarea id="peaks" style="min-height:80px;font-family:Consolas,monospace;font-size:13px" spellcheck="false"></textarea>
         <p class="hint" id="peaksCheck"></p>
+        <label for="holidays" style="margin-top:12px">Public holidays, one per line: <code>2026-11-08 Deepavali</code></label>
+        <textarea id="holidays" style="min-height:90px;font-family:Consolas,monospace;font-size:13px" spellcheck="false"></textarea>
+        <p class="hint" id="holidaysCheck"></p>
+        <label for="peakMin">Minimum rental days when the rental starts on, or runs into, a public holiday or peak day</label>
+        <input type="number" id="peakMin" min="1" max="14" style="width:90px">
       </div>
       <p class="eyebrow" style="margin-top:22px">Website visitors</p>
       <p style="color:var(--muted);margin:0 0 14px">Google Analytics counts who visits ezee.my and which taps on the WhatsApp button follow. Create the property at <a href="https://analytics.google.com" target="_blank" rel="noopener">analytics.google.com</a> (web stream for https://ezee.my), then paste its Measurement ID here.</p>
@@ -256,11 +261,15 @@
     if(b.dataset.pane==='json')$('raw').value=JSON.stringify(fleet,null,1);
   })});
 
-  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck();$('peaks').value=peaksText()}
+  function renderAll(){renderCarList();renderCarEditor();renderServices();renderZones();$('bookingsUrl').value=fleet.settings.bookingsUrl||'';$('gaId').value=fleet.settings.gaId||'';gaCheck();$('peaks').value=peaksText();$('holidays').value=holidaysText();$('peakMin').value=fleet.settings.peakMinDays||3}
   $('bookingsUrl').addEventListener('input',function(){fleet.settings.bookingsUrl=$('bookingsUrl').value.trim();markDirty()});
   function peaksText(){return (fleet.settings.peaks||[]).map(function(p){return p.from+' to '+p.to+' +'+p.pct+'%'+(p.label?' '+p.label:'')}).join('\n')}
   function parsePeaks(txt){var out=[],bad=[];txt.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var m=l.match(/^(\d{4}-\d{2}-\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})\s+\+?(\d+(?:\.\d+)?)%?\s*(.*)$/);if(!m){bad.push(l);return}out.push({from:m[1],to:m[2],pct:Number(m[3]),label:m[4]||''})});return {peaks:out,bad:bad}}
   $('peaks').addEventListener('input',function(){var r=parsePeaks($('peaks').value);fleet.settings.peaks=r.peaks;$('peaksCheck').textContent=r.bad.length?'Not understood: '+r.bad.join(' | '):(r.peaks.length?r.peaks.length+' window(s).':'No peak pricing.');markDirty()});
+  function holidaysText(){return (fleet.settings.holidays||[]).map(function(h){return typeof h==='string'?h:h.date+(h.label?' '+h.label:'')}).join('\n')}
+  function parseHolidays(txt){var out=[],bad=[];txt.split(/\n/).forEach(function(l){l=l.trim();if(!l)return;var m=l.match(/^(\d{4}-\d{2}-\d{2})\s*(.*)$/);if(!m){bad.push(l);return}out.push({date:m[1],label:m[2]||''})});return {holidays:out,bad:bad}}
+  $('holidays').addEventListener('input',function(){var r=parseHolidays($('holidays').value);fleet.settings.holidays=r.holidays;$('holidaysCheck').textContent=r.bad.length?'Not understood: '+r.bad.join(' | '):(r.holidays.length+' holiday date(s).');markDirty()});
+  $('peakMin').addEventListener('input',function(){fleet.settings.peakMinDays=Math.max(1,parseInt($('peakMin').value,10)||1);markDirty()});
   function gaCheck(){var v=$('gaId').value.trim(),o=$('gaCheck');o.textContent=!v?'':(/^G-[A-Z0-9]{6,}$/.test(v)?'Looks right.':'A Measurement ID looks like G-ABC123XYZ (capital letters and digits).')}
   $('gaId').addEventListener('input',function(){var v=$('gaId').value.trim().toUpperCase();fleet.settings.gaId=v;gaCheck();markDirty()});
   $('testBookings').addEventListener('click',function(){
@@ -312,7 +321,7 @@
       +'<div class="row c2"><div><label>Rate card: every rental includes (one per line)</label><textarea id="f-cardinc">'+esc((c.cardIncludes||[]).join('\n'))+'</textarea></div><div><label>Rate card: terms (one paragraph per line)</label><textarea id="f-terms">'+esc((c.terms||[]).join('\n'))+'</textarea></div></div>'
       +'<p class="eyebrow" style="margin-top:18px">Fleet section &amp; vehicle details (the "Select vehicle" page)</p>'
       +'<div class="row c2"><div><label>Category (tab on the fleet section)</label><input type="text" id="f-cat" list="catlist" value="'+esc(c.category||'')+'" placeholder="MPV / Van"><datalist id="catlist">'+cats+'</datalist></div><div><label>Self-drive day tiers (one per line: 1-6: 550 &middot; 7-13: 520 &middot; 14+: 490)</label><textarea id="f-tiers" placeholder="Leave empty to show the single per-day price">'+esc(tiersStr(c.tiers))+'</textarea></div></div>'
-      +'<div class="row c2"><div><label>Hourly rates (one per line: 1-5: 45 &middot; 6-24: 450 total)</label><textarea id="f-hourly" placeholder="Leave empty to hide hourly rates">'+esc(hourlyStr(c.hourly))+'</textarea></div><div><label>Photo credit (shown under the gallery, HTML links allowed)</label><input type="text" id="f-credit" value="'+esc(c.credit||'')+'"><p class="hint">Required for Wikimedia Commons photos. Leave empty for your own photos.</p></div></div>'
+      +'<div class="row c2"><div><label>Photo credit (shown under the gallery, HTML links allowed)</label><input type="text" id="f-credit" value="'+esc(c.credit||'')+'"><p class="hint">Required for Wikimedia Commons photos. Leave empty for your own photos.</p></div></div>'
       +'<div class="row c2"><div><label>Gallery photos (one path per line, e.g. img/car/front.jpg)</label><textarea id="f-gallery">'+esc((c.gallery||[]).map(function(g){return typeof g==='string'?g:g.src}).join('\n'))+'</textarea><p class="hint">First photo is the big one. Leave empty to use the main photo only.</p></div><div><label>At a glance (one per line: Label: value)</label><textarea id="f-specs">'+esc(kvStr(c.specs))+'</textarea></div></div>'
       +'<div class="row c2"><div><label>Features (one per line)</label><textarea id="f-features">'+esc((c.features||[]).join('\n'))+'</textarea></div><div><label>Good to know (one per line: Title: text)</label><textarea id="f-policies">'+esc(kvStr(c.policies))+'</textarea></div></div>'
       +'<div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap"><span class="hint">ID: <code>'+esc(c.id||'(set from name)')+'</code></span><button class="btn danger small" id="delcar">Delete this car</button></div>';
@@ -330,7 +339,6 @@
     bind('f-terms',function(el){c.terms=lines(el.value)});
     bind('f-cat',function(el){c.category=el.value.trim()});
     bind('f-tiers',function(el){c.tiers=parseTiers(el.value)});
-    bind('f-hourly',function(el){c.hourly=parseHourly(el.value)});
     bind('f-credit',function(el){c.credit=el.value.trim()});
     bind('f-gallery',function(el){c.gallery=lines(el.value)});
     bind('f-specs',function(el){c.specs=parseKV(el.value)});

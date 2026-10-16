@@ -359,6 +359,7 @@
   .btn-gold:hover{background:var(--gold-soft)}
   .approx{display:block;font-size:11px;color:var(--faint);font-weight:400;letter-spacing:0}
   .fdep{display:inline-block;margin-top:6px;font-size:12px;color:var(--muted)}
+  .ttotal{display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;line-height:1.3;margin-top:2px}
   .peakrow td{color:var(--muted)}
   .peakrow td.num{color:var(--gold-soft)}
 
@@ -512,6 +513,7 @@
   .vtable td.num{font-size:18px}
   .vtable td.num small{display:inline;font-family:'Jost',sans-serif;font-size:12.5px;color:var(--muted);margin-left:4px}
   .vtable td small{font-size:12.5px}
+  td.num small.ttotal,.vtable td.num small.ttotal{display:block;white-space:normal;font-family:'Jost',sans-serif;font-size:11px;line-height:1.3;color:var(--muted);margin:3px 0 0 auto;max-width:150px;text-align:right}
   .vlist{list-style:none;padding:0;margin:0}
   .vlist li{display:flex;gap:10px;font-size:14.5px;color:var(--muted);padding:5px 0}
   .vlist li::before{content:"\2713";color:var(--gold);flex:none}
@@ -678,6 +680,7 @@
             <li data-i18n="z.perak"><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
             <li data-i18n="z.east"><span>East Coast, Northern states</span><b>4 days</b></li>
             <li data-i18n="z.perlis"><span>Perlis, Langkawi</span><b>5 days</b></li>
+      <li data-i18n="z.hol"><span>Public holidays &amp; school holidays</span><b>3 days min.</b></li>
           </ol>
         </div>
         <p class="after" data-i18n="r.after">Full terms and a printable version: <a href="rates.html">see the complete rate card</a>.</p>
@@ -779,7 +782,7 @@
     <div style="margin-top:28px">
       <details>
         <summary data-i18n="f1.q">Can I take the self-drive car outside JB, or to Singapore?</summary>
-        <p data-i18n="f1.a">Yes. The minimum rental depends on how far you go: 1 day within JB, 2 days for Singapore, Melaka, Seremban or KL, 3 days for Pahang, 4 days for Perak, Ipoh, Cameron Highlands, the East Coast or the northern states, and 5 days for Perlis or Langkawi. Pick your destination in the price box and the days adjust automatically.</p>
+        <p data-i18n="f1.a">Yes. The minimum rental depends on how far you go: 1 day within JB, 2 days for Singapore, Melaka, Seremban or KL, 3 days for Pahang, 4 days for Perak, Ipoh, Cameron Highlands, the East Coast or the northern states, and 5 days for Perlis or Langkawi. Pick your destination in the price box and the days adjust automatically. During the year-end school holidays and on public holidays the minimum is 3 days for every destination.</p>
       </details>
       <details>
         <summary data-i18n="f2.q">Can you pick up from any address in Singapore?</summary>
@@ -846,6 +849,7 @@
       <li data-i18n="z.perak"><span>Perak, Ipoh, Cameron Highlands</span><b>4 days</b></li>
       <li data-i18n="z.east"><span>East Coast, Northern states</span><b>4 days</b></li>
       <li data-i18n="z.perlis"><span>Perlis, Langkawi</span><b>5 days</b></li>
+      <li data-i18n="z.hol"><span>Public holidays &amp; school holidays</span><b>3 days min.</b></li>
     </ol>
     <button type="button" class="modal-ok" id="min-ok" data-i18n="m.ok">OK, got it</button>
   </div>
@@ -923,7 +927,6 @@
   /* day tiers (car.tiers) and hourly rates (car.hourly) from the admin: "1-6: 450", "17-20: 6100 total" */
   function tierSpan(x){return x.to==null?x.from+'+':(x.from===x.to?String(x.from):x.from+'\u2013'+x.to)}
   function tierPriceHTML(x){return x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perDay+'<small>'+t('j.perday',null,' / day')+'</small>'}
-  function hourPriceHTML(x){return x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perHour+'<small>'+t('j.perhour',null,' / hour')+'</small>'}
   function selfTotal(car,n){
     var ts=car.tiers||[];
     for(var i=0;i<ts.length;i++){var x=ts[i];if(n>=x.from&&(x.to==null||n<=x.to))return x.total!=null?{total:x.total,per:null}:{total:x.perDay*n,per:x.perDay}}
@@ -937,21 +940,17 @@
     var selTab=tabs.querySelector('button[aria-selected="true"]');if(selTab&&manyCars)tabs.scrollLeft=selTab.offsetLeft-tabs.clientWidth/2+selTab.offsetWidth/2;
     ROUTES.forEach(function(r){
       if(!(r.id in car.prices)||r.type==='other')return;
+      if(r.id==='monthly'&&car.tiers&&car.tiers.length)return; /* the 30-day tier row covers it */
       if(r.id==='selfdrive'&&car.tiers&&car.tiers.length){
         car.tiers.forEach(function(x,i){
           var tr2=document.createElement('tr');tr2.className='hot';
-          tr2.innerHTML='<td>'+(i?'':'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>')+t('v.selfdays',{d:tierSpan(x)},'Self-drive, {d} days')+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+tierPriceHTML(x)+'</td>';
+          tr2.innerHTML='<td>'+(i?'':'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>')+t('v.selfn',{d:tierName(x)},'Self-drive, {d}')+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+tierCell(x)+'</td>';
           rows.appendChild(tr2);
         });
         return;
       }
       var tr=document.createElement('tr');if(r.group==='Hot item')tr.className='hot';
       tr.innerHTML='<td>'+(r.group==='Hot item'?'<span class="tag">'+t('j.hot',null,'Hot item')+'</span>':'')+rowLabelT(r,car)+(r.note?' <small>'+td(r.note)+'</small>':'')+'</td><td class="num">'+fmtPriceT(r,car.prices[r.id])+approxRM(r,car.prices[r.id])+'</td>';
-      rows.appendChild(tr);
-    });
-    (car.hourly||[]).forEach(function(x){
-      var tr=document.createElement('tr');
-      tr.innerHTML='<td>'+t('v.hourly',{d:tierSpan(x)},'Hourly, {d} hours')+' <small>'+t('v.hourlynote',null,'ask on WhatsApp')+'</small></td><td class="num">'+hourPriceHTML(x)+'</td>';
       rows.appendChild(tr);
     });
     var ph=$('incl-photo'),phm=$('incl-photo-m');if(car.photo){ph.hidden=false;phm.hidden=false;$('incl-img').src=car.photo;$('incl-img').alt=car.name;$('incl-img-m').src=car.photo;$('incl-img-m').alt=car.name}else{ph.hidden=true;phm.hidden=true}
@@ -1012,7 +1011,8 @@
     var needTime=self&&!(date.value&&time.value);
     whenIn.classList.toggle('missing',needTime);
     var z=currentZone();
-    if(r.type==='selfdrive')fillDays(z?z.min:1);
+    var hm=(r.type==='selfdrive')?holidayMin(date.value):null;var minD=Math.max(z?z.min:1,hm?hm.min:1);
+    if(r.type==='selfdrive')fillDays(minD);
     var lines=[];var noteText='';var where='';lastTotal=null;
     if(r.type==='transfer'){
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
@@ -1049,7 +1049,7 @@
       lbl.textContent=r.type==='selfdrive'?t('j.total',null,'Rental total'):t('q.lbl',null,'All-in fare');
       amt.innerHTML=r.cur+total+(r.type==='selfdrive'?'<small>'+(price!=null?r.cur+price+t('j.perday',null,' / day'):t('v.fixed',null,' fixed'))+'</small>':'');
       if(night){ noteText=t('j.night',null,'Includes S$30 night pickup surcharge (11 pm – 7 am)') }
-      else if(r.type==='selfdrive'){ noteText=(peakAdd?t('j.peak',{label:td(peak.label),pct:peak.pct,d:peak.days,amt:peakAdd},'{label}: +{pct}% on {d} peak day(s), RM{amt} included. '):'')+(z&&z.min>1?t('j.minfor',{n:z.min,z:td(z.label)},'Minimum {n} days for {z}. '):(z?'':t('j.mindep',null,'Minimum days depend on destination. ')))+t('j.refund',null,'Refundable deposit applies') }
+      else if(r.type==='selfdrive'){ noteText=(peakAdd?t('j.peak',{label:td(peak.label),pct:peak.pct,d:peak.days,amt:peakAdd},'{label}: +{pct}% on {d} peak day(s), RM{amt} included. '):'')+(hm?t('j.holmin',{n:hm.min,label:td(hm.label)},'Minimum {n} days over {label}. '):'')+(z&&z.min>1?t('j.minfor',{n:z.min,z:td(z.label)},'Minimum {n} days for {z}. '):(z?'':t('j.mindep',null,'Minimum days depend on destination. ')))+t('j.refund',null,'Refundable deposit applies') }
       else if(r.type==='charter'){ noteText=t('j.charter',null,'Car, driver and fuel included') }
       else { noteText=t('q.note',null,'Fuel, tolls, VEP & checkpoint fees included') }
       lastTotal=total;
@@ -1254,14 +1254,14 @@
   function selfHTML(c){
     var rows='';
     if(c.tiers&&c.tiers.length){
-      c.tiers.forEach(function(x){rows+='<tr><td>'+esc(tierLabel(x))+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+(x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perDay+'<small>'+t('j.perday',null,' / day')+'</small>')+'</td></tr>'});
+      c.tiers.forEach(function(x){rows+='<tr><td>'+esc(tierName(x))+(x.note?' <small>'+td(x.note)+'</small>':'')+'</td><td class="num">'+tierCell(x)+'</td></tr>'});
     }else if(c.prices.selfdrive!=null){
       rows+='<tr><td>'+t('v.perday',null,'Per day')+' <small>'+t('v.mindays',null,'minimum days depend on destination')+'</small></td><td class="num">RM'+c.prices.selfdrive+'</td></tr>';
     }
-    (c.hourly||[]).forEach(function(x){rows+='<tr><td>'+t('v.hourly',{d:(x.to==null?x.from+'+':x.from+'\u2013'+x.to)},'Hourly, {d} hours')+' <small>'+t('v.hourlynote',null,'ask on WhatsApp')+'</small></td><td class="num">'+(x.total!=null?'RM'+x.total+'<small>'+t('v.fixed',null,' fixed')+'</small>':'RM'+x.perHour+'<small>'+t('j.perhour',null,' / hour')+'</small>')+'</td></tr>'});
     if(c.prices.weekly!=null)rows+='<tr><td>'+t('v.week',null,'7 days')+' <small>'+t('v.weeknote',null,'one week, one price')+'</small></td><td class="num">RM'+c.prices.weekly+'</td></tr>';
     (SETTINGS.peaks||[]).forEach(function(p){if(c.prices.selfdrive!=null)rows+='<tr class="peakrow"><td>'+t('v.peak',{label:td(p.label||'Peak season'),range:peakRange(p)},'{label}, {range}')+' <small>'+t('v.peaknote',null,'self-drive only, added per peak day')+'</small></td><td class="num">+'+p.pct+'%</td></tr>'});
-    if('monthly' in c.prices)rows+='<tr><td>'+t('v.month',null,'Monthly')+' <small>'+t('v.monthnote',null,'long-term rate, tell us how many months')+'</small></td><td class="num">'+(c.prices.monthly==null?t('j.letstalk',null,'Let’s talk'):'RM'+c.prices.monthly)+'</td></tr>';
+    if(c.prices.selfdrive!=null&&Number(SETTINGS.peakMinDays)>1)rows+='<tr class="peakrow"><td>'+t('v.holmin',null,'Public holidays &amp; peak season')+' <small>'+t('v.holminnote',null,'minimum rental, any destination')+'</small></td><td class="num">'+Number(SETTINGS.peakMinDays)+' '+t('v.days',null,'days')+'</td></tr>';
+    if('monthly' in c.prices&&!(c.tiers&&c.tiers.length))rows+='<tr><td>'+t('v.month',null,'Monthly')+' <small>'+t('v.monthnote',null,'long-term rate, tell us how many months')+'</small></td><td class="num">'+(c.prices.monthly==null?t('j.letstalk',null,'Let’s talk'):'RM'+c.prices.monthly)+'</td></tr>';
     return rows;
   }
   function chaufHTML(c){

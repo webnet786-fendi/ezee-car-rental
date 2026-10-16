@@ -17,6 +17,23 @@ function peakDays(start,n){
   return best;
 }
 function peakRange(p){function f(x){var d=new Date(x+'T00:00:00');return isNaN(d)?x:d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}return f(p.from)+' \u2013 '+f(p.to)}
+/* Public holidays and peak windows (settings.holidays [{date,label}], settings.peaks, settings.peakMinDays, default 3).
+   holidayMin(start) returns {min,label} when any of the first `min` rental days is a peak day or a public holiday. */
+/* Self-drive tier rows: "1 day" / "7 days" / "30 days", per-day price, small total + chat line for 7 and 30 days. */
+function tierName(x){return x.from===1?'1 '+t('v.day1',null,'day'):x.from+' '+t('v.days',null,'days')}
+function tierCell(x){var per=x.perDay!=null?x.perDay:Math.round(x.total/x.from);return 'RM'+per+'<small>'+t('j.perday',null,' / day')+'</small>'+(x.from>1?'<small class="ttotal">'+t('v.tiertotal',{amt:(per*x.from).toLocaleString('en-MY'),n:x.from},'RM{amt} for {n} days · Chat for best price!')+'</small>':'')}
+function holidayMin(start){
+  var min=Number(SETTINGS.peakMinDays||0);if(!min||min<2||!start)return null;
+  var d0=new Date(String(start).slice(0,10)+'T00:00:00');if(isNaN(d0))return null;
+  var hol={};(SETTINGS.holidays||[]).forEach(function(h){var k=typeof h==='string'?h:h.date;if(k)hol[k]=(typeof h==='string'?'':h.label)||'Public holiday'});
+  for(var i=0;i<min;i++){
+    var t=new Date(d0.getTime()+i*864e5),k=t.getFullYear()+'-'+('0'+(t.getMonth()+1)).slice(-2)+'-'+('0'+t.getDate()).slice(-2);
+    if(hol[k])return {min:min,label:hol[k]};
+    var pk=(SETTINGS.peaks||[]).filter(function(p){return k>=p.from&&k<=p.to})[0];
+    if(pk)return {min:min,label:pk.label||'Peak season'};
+  }
+  return null;
+}
 function approxRM(r,p){var k=Number(SETTINGS.sgdRate||0);if(!k||p==null||p===''||r.cur!=='S$')return '';return '<small class="approx">\u2248 RM'+Math.round(p*k/10)*10+'</small>'}
 function zoneFor(text){
   var t=' '+String(text||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ')+' ';
