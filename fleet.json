@@ -145,7 +145,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/car/bezza.jpg",
    "prices": {
-    "selfdrive": 115,
+    "selfdrive": 140,
     "weekly": null,
     "monthly": null,
     "other": null
@@ -235,17 +235,17 @@
     {
      "from": 1,
      "to": 1,
-     "perDay": 115
+     "perDay": 140
     },
     {
      "from": 2,
      "to": 6,
-     "perDay": 100
+     "perDay": 125
     },
     {
      "from": 7,
      "to": null,
-     "perDay": 90
+     "perDay": 110
     }
    ],
    "deposit": 100
@@ -259,7 +259,7 @@
    "meta": "4 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-axia.jpg",
    "prices": {
-    "selfdrive": 100,
+    "selfdrive": 125,
     "other": null
    },
    "inclTitle": "Included with the Axia",
@@ -341,7 +341,7 @@
     {
      "from": 1,
      "to": 7,
-     "perDay": 100
+     "perDay": 125
     },
     {
      "from": 8,
@@ -356,7 +356,7 @@
     {
      "from": 17,
      "to": 21,
-     "total": 1650
+     "total": 1530
     },
     {
      "from": 22,
@@ -964,7 +964,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/alza-1st-gen.jpg",
    "prices": {
-    "selfdrive": 150,
+    "selfdrive": 155,
     "other": null
    },
    "inclTitle": "Included with the Alza (1st Gen)",
@@ -1046,12 +1046,12 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 150
+     "perDay": 155
     },
     {
      "from": 7,
      "to": 9,
-     "perDay": 160
+     "perDay": 155
     },
     {
      "from": 10,
@@ -1066,7 +1066,7 @@
     {
      "from": 17,
      "to": 21,
-     "total": 2300
+     "total": 2210
     },
     {
      "from": 22,
@@ -1105,7 +1105,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/proton-persona.jpg",
    "prices": {
-    "selfdrive": 150,
+    "selfdrive": 170,
     "other": null
    },
    "inclTitle": "Included with the Persona",
@@ -1187,12 +1187,12 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 150
+     "perDay": 170
     },
     {
      "from": 4,
      "to": 6,
-     "perDay": 180
+     "perDay": 170
     },
     {
      "from": 7,
@@ -1251,7 +1251,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/proton-saga.jpg",
    "prices": {
-    "selfdrive": 139,
+    "selfdrive": 150,
     "other": null
    },
    "inclTitle": "Included with the Saga",
@@ -1333,7 +1333,7 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 139
+     "perDay": 150
     },
     {
      "from": 4,
@@ -1397,7 +1397,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/myvi-3rd-gen.jpg",
    "prices": {
-    "selfdrive": 129,
+    "selfdrive": 150,
     "other": null
    },
    "inclTitle": "Included with the Myvi (3rd Gen)",
@@ -1479,12 +1479,12 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 129
+     "perDay": 150
     },
     {
      "from": 4,
      "to": 6,
-     "perDay": 160
+     "perDay": 150
     },
     {
      "from": 7,
@@ -1504,7 +1504,7 @@
     {
      "from": 17,
      "to": 21,
-     "total": 2244
+     "total": 2210
     },
     {
      "from": 22,
@@ -1684,7 +1684,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-aruz.jpg",
    "prices": {
-    "selfdrive": 220,
+    "selfdrive": 195,
     "other": null
    },
    "inclTitle": "Included with the Aruz",
@@ -1766,27 +1766,27 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 220
+     "perDay": 195
     },
     {
      "from": 7,
      "to": 9,
-     "perDay": 240
+     "perDay": 195
     },
     {
      "from": 10,
      "to": 13,
-     "perDay": 215
+     "perDay": 195
     },
     {
      "from": 14,
      "to": 16,
-     "perDay": 205
+     "perDay": 195
     },
     {
      "from": 17,
      "to": 21,
-     "total": 3380
+     "total": 3315
     },
     {
      "from": 22,
@@ -1820,7 +1820,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/city-7th-gen.jpg",
    "prices": {
-    "selfdrive": 250,
+    "selfdrive": 255,
     "other": null
    },
    "inclTitle": "Included with the City (7th Gen)",
@@ -1902,7 +1902,7 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 250
+     "perDay": 255
     },
     {
      "from": 4,
@@ -2123,7 +2123,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-ativa.jpg",
    "prices": {
-    "selfdrive": 219,
+    "selfdrive": 238,
     "other": null
    },
    "inclTitle": "Included with the Ativa 1.0 Turbo",
@@ -2205,12 +2205,12 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 219
+     "perDay": 238
     },
     {
      "from": 4,
      "to": 6,
-     "perDay": 240
+     "perDay": 238
     },
     {
      "from": 7,
@@ -2269,7 +2269,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/vios-4th-gen.jpg",
    "prices": {
-    "selfdrive": 250,
+    "selfdrive": 265,
     "other": null
    },
    "inclTitle": "Included with the Vios (4th Gen)",
@@ -2351,7 +2351,7 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 250
+     "perDay": 265
     },
     {
      "from": 7,
@@ -2410,7 +2410,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/perodua-alza-2nd-gen.jpg",
    "prices": {
-    "selfdrive": 229,
+    "selfdrive": 250,
     "other": null
    },
    "inclTitle": "Included with the Alza (2nd Gen)",
@@ -2500,7 +2500,7 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 229
+     "perDay": 250
     },
     {
      "from": 7,
@@ -2559,7 +2559,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/nissan-almera.jpg",
    "prices": {
-    "selfdrive": 239,
+    "selfdrive": 255,
     "other": null
    },
    "inclTitle": "Included with the Almera",
@@ -2664,7 +2664,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/proton-x50.jpg",
    "prices": {
-    "selfdrive": 300,
+    "selfdrive": 325,
     "other": null
    },
    "inclTitle": "Included with the X50",
@@ -2746,7 +2746,7 @@
     {
      "from": 1,
      "to": 2,
-     "perDay": 300
+     "perDay": 325
     },
     {
      "from": 3,
@@ -2954,7 +2954,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/honda-civic-fe.jpg",
    "prices": {
-    "selfdrive": 350,
+    "selfdrive": 450,
     "other": null
    },
    "inclTitle": "Included with the Civic FE",
@@ -3057,7 +3057,7 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 350
+     "perDay": 450
     },
     {
      "from": 4,
@@ -3121,7 +3121,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/mitsubishi-xpander.jpg",
    "prices": {
-    "selfdrive": 349,
+    "selfdrive": 365,
     "other": null
    },
    "inclTitle": "Included with the Xpander",
@@ -3665,7 +3665,7 @@
    "meta": "7 or 8 seats · auto · self-drive only",
    "photo": "img/fleet/innova-crysta.jpg",
    "prices": {
-    "selfdrive": 389,
+    "selfdrive": 395,
     "other": null
    },
    "inclTitle": "Included with the Innova Crysta",
@@ -3747,7 +3747,7 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 389
+     "perDay": 395
     },
     {
      "from": 7,
@@ -4139,7 +4139,7 @@
     {
      "from": 4,
      "to": 6,
-     "perDay": 480
+     "perDay": 450
     },
     {
      "from": 7,
@@ -4198,7 +4198,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/nissan-serena.jpg",
    "prices": {
-    "selfdrive": 429,
+    "selfdrive": 440,
     "other": null
    },
    "inclTitle": "Included with the Serena",
@@ -4303,7 +4303,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/toyota-alphard-sc.jpg",
    "prices": {
-    "selfdrive": 450,
+    "selfdrive": 549,
     "other": null
    },
    "inclTitle": "Included with the Alphard (AH30)",
@@ -4389,7 +4389,7 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 450
+     "perDay": 549
     },
     {
      "from": 7,
@@ -4604,7 +4604,7 @@
    "meta": "7 seats · auto · self-drive only",
    "photo": "img/fleet/toyota-voxy-r80.jpg",
    "prices": {
-    "selfdrive": 429,
+    "selfdrive": 440,
     "other": null
    },
    "inclTitle": "Included with the Voxy 2.0",
@@ -4706,7 +4706,7 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 429
+     "perDay": 440
     },
     {
      "from": 7,
@@ -4765,7 +4765,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/proton-x70.jpg",
    "prices": {
-    "selfdrive": 389,
+    "selfdrive": 440,
     "other": null
    },
    "inclTitle": "Included with the X70",
@@ -5702,7 +5702,7 @@
    "meta": "11 seats · auto · diesel · self-drive only",
    "photo": "img/fleet/starex-plus.jpg",
    "prices": {
-    "selfdrive": 449,
+    "selfdrive": 450,
     "other": null
    },
    "inclTitle": "Included with the Starex Plus",
@@ -5784,22 +5784,22 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 449
+     "perDay": 450
     },
     {
      "from": 4,
      "to": 6,
-     "perDay": 530
+     "perDay": 450
     },
     {
      "from": 7,
      "to": 13,
-     "perDay": 500
+     "perDay": 450
     },
     {
      "from": 14,
      "to": 30,
-     "perDay": 470
+     "perDay": 450
     }
    ],
    "hourly": [
@@ -5828,7 +5828,7 @@
    "meta": "10 seats · auto · diesel · self-drive only",
    "photo": "img/fleet/hyundai-staria.jpg",
    "prices": {
-    "selfdrive": 579,
+    "selfdrive": 550,
     "other": null
    },
    "inclTitle": "Included with the Staria",
@@ -5918,17 +5918,17 @@
     {
      "from": 1,
      "to": 3,
-     "perDay": 579
+     "perDay": 550
     },
     {
      "from": 4,
      "to": 6,
-     "perDay": 630
+     "perDay": 550
     },
     {
      "from": 7,
      "to": 10,
-     "perDay": 600
+     "perDay": 550
     },
     {
      "from": 11,

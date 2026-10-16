@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Prices set to the Johor Bahru average (17 Oct 2026)**: the 25 models in the JB rate survey now start at the midpoint of the lowest and highest published JB rate, with the owner's own figures for Persona 170, Alza (new) 250, Civic FE 450, Alphard 549 and Staria 550; Bezza 140 / 125 (2–6 d) / 110 (7+ d); Vellfire unchanged at 549 / 499 / 450. Every longer tier is capped so a rental never costs more per day than a shorter one (the imported 4–6 and 7–9 day tiers used to rise above the 1-day rate). Headline, page title, description and schema price range now say "from RM110 a day" (lowest 1-day car is the Axia 2nd Gen).
 - **Fleet rail auto-scrolls** right to left at about 30 px a second and loops without a jump (the cards are rendered twice). It pauses while the visitor touches, hovers, scrolls or focuses the rail or opens a car, resumes 4 s after they let go, and stays off when the system asks for reduced motion.
 - Google Analytics switched on: Measurement ID G-KND9JYYGL4 (stream "EzEe Car Rental JB", https://ezee.my).
 - **Peak season pricing**: `settings.peaks` (admin → Bookings → Peak season, one window per line) adds a percentage to every self-drive day inside a window; the price box shows the surcharge in the total, the note and the WhatsApp message, and the car overlay lists the window. Default window: 20 Nov 2026 – 3 Jan 2027, +15% ("Year-end school holidays"). Chauffeured fares unchanged.
