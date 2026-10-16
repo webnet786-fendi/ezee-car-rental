@@ -355,6 +355,14 @@
   .fab:hover{transform:scale(1.04);background:#2db96c}
   @media (max-width:700px){ .fab{right:14px;bottom:14px;padding:11px 16px 11px 12px;font-size:14px} .fab svg{width:24px;height:24px} }
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  /* animated scroll-down cue under the hero photo (mouse + wheel + chevron); reduced-motion kills the animation globally */
+  .scrolldown{display:flex;flex-direction:column;align-items:center;gap:7px;margin:24px auto 0;width:max-content;max-width:100%;color:var(--gold-soft);text-decoration:none;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center}
+  .scrolldown:hover{color:var(--gold)}
+  .sd-mouse{width:24px;height:38px;border:2px solid var(--gold);border-radius:14px;position:relative;box-sizing:border-box}
+  .sd-wheel{position:absolute;left:50%;top:6px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--gold);animation:sdwheel 1.6s ease-in-out infinite}
+  .sd-chev{width:12px;height:12px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);animation:sdchev 1.6s ease-in-out infinite;margin-top:-4px}
+  @keyframes sdwheel{0%{opacity:1;transform:translateY(0)}60%{opacity:0;transform:translateY(12px)}100%{opacity:0;transform:translateY(12px)}}
+  @keyframes sdchev{0%,100%{transform:translateY(0) rotate(45deg);opacity:.45}50%{transform:translateY(6px) rotate(45deg);opacity:1}}
   .btn-gold{background:var(--gold);color:#14110b}
   .btn-gold:hover{background:var(--gold-soft)}
   .approx{display:block;font-size:11px;color:var(--faint);font-weight:400;letter-spacing:0}
@@ -575,6 +583,7 @@
         </ul>
         <div class="hero-cta"><a class="btn btn-gold" href="#fleet" data-i18n="hero.cta1">Self-drive cars</a><a class="btn btn-ghost" href="#car-vellfire" data-i18n="hero.cta2">Chauffeured Vellfire</a></div>
         <figure class="hero-photo"><img src="img/car/hero.jpg" alt="EzEe's Toyota Vellfire ZG in daylight" width="720" height="500"><figcaption class="promo" data-i18n="promo">Our Flagship Car Promo This Month<a href="#quote">Toyota Vellfire ZG &middot; Book now!</a></figcaption></figure>
+        <a class="scrolldown" href="#fleet" aria-label="Scroll down to see all cars, photos and prices"><span class="sd-mouse"><span class="sd-wheel"></span></span><span class="sd-txt" data-i18n="hero.scroll">Scroll to see all cars, photos &amp; prices</span><span class="sd-chev"></span></a>
       </div>
 
       <form class="quote" id="quote" onsubmit="return false">
