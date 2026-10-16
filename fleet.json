@@ -266,7 +266,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -276,7 +276,7 @@
     "Perodua Axia, 4 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -330,7 +330,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -375,7 +375,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -385,7 +385,7 @@
     "Perodua Axia (2nd Gen), 4 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -447,7 +447,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -492,7 +492,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -502,7 +502,7 @@
     "Perodua Bezza 1.0 (New), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -540,7 +540,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -585,7 +585,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -595,7 +595,7 @@
     "Perodua Bezza 1.0 (2016), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -657,7 +657,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -702,7 +702,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -712,7 +712,7 @@
     "Perodua Bezza 1.3, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -766,7 +766,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -811,7 +811,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -821,7 +821,7 @@
     "Perodua Alza (1st Gen), 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -875,7 +875,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -920,7 +920,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -930,7 +930,7 @@
     "Proton Persona, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -984,7 +984,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1029,7 +1029,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1039,7 +1039,7 @@
     "Proton Saga, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1093,7 +1093,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1138,7 +1138,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1148,7 +1148,7 @@
     "Perodua Myvi (3rd Gen), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1202,7 +1202,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1247,7 +1247,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1257,7 +1257,7 @@
     "Honda BRV, 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1311,7 +1311,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1356,7 +1356,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1366,7 +1366,7 @@
     "Perodua Aruz, 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1420,7 +1420,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1465,7 +1465,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1475,7 +1475,7 @@
     "Honda City (7th Gen), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1529,7 +1529,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1574,7 +1574,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1584,7 +1584,7 @@
     "Honda WR-V 1.5, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1654,7 +1654,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1699,7 +1699,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1709,7 +1709,7 @@
     "Perodua Ativa 1.0 Turbo, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1763,7 +1763,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1808,7 +1808,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1818,7 +1818,7 @@
     "Toyota Vios (4th Gen), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1872,7 +1872,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -1917,7 +1917,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -1927,7 +1927,7 @@
     "Perodua Alza (2nd Gen), 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -1989,7 +1989,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2034,7 +2034,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2044,7 +2044,7 @@
     "Nissan Almera, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2098,7 +2098,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2143,7 +2143,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2153,7 +2153,7 @@
     "Proton X50, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2207,7 +2207,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2252,7 +2252,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2262,7 +2262,7 @@
     "Proton S70, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2324,7 +2324,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2369,7 +2369,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2379,7 +2379,7 @@
     "Honda Civic FE, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2454,7 +2454,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2499,7 +2499,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2509,7 +2509,7 @@
     "Mitsubishi Xpander, 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2563,7 +2563,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2608,7 +2608,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2618,7 +2618,7 @@
     "Omoda 5 1.5T, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2694,7 +2694,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2739,7 +2739,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2749,7 +2749,7 @@
     "Honda Civic FC, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2803,7 +2803,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2848,7 +2848,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2858,7 +2858,7 @@
     "Honda HR-V, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -2896,7 +2896,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -2941,7 +2941,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -2951,7 +2951,7 @@
     "Toyota Innova Crysta, 7 or 8 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3005,7 +3005,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3050,7 +3050,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3060,7 +3060,7 @@
     "Nissan Teana, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3114,7 +3114,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3159,7 +3159,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3169,7 +3169,7 @@
     "Honda Accord (9th Edition), 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3223,7 +3223,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3268,7 +3268,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3278,7 +3278,7 @@
     "Jaecoo J7 1.6T AWD, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3332,7 +3332,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3377,7 +3377,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3387,7 +3387,7 @@
     "Nissan Serena, 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3441,7 +3441,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3486,7 +3486,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3496,7 +3496,7 @@
     "Toyota Alphard (AH30), 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3554,7 +3554,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3599,7 +3599,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3609,7 +3609,7 @@
     "Toyota Corolla Cross, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3683,7 +3683,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3728,7 +3728,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3738,7 +3738,7 @@
     "Toyota Voxy 2.0, 7 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3812,7 +3812,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3857,7 +3857,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3867,7 +3867,7 @@
     "Proton X70, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -3921,7 +3921,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -3966,7 +3966,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -3976,7 +3976,7 @@
     "Mercedes-Benz A200, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4051,7 +4051,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4096,7 +4096,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4106,7 +4106,7 @@
     "Toyota Camry, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4160,7 +4160,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4205,7 +4205,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4215,7 +4215,7 @@
     "Toyota Hilux, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4269,7 +4269,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4314,7 +4314,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4324,7 +4324,7 @@
     "Honda CR-V, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4362,7 +4362,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4407,7 +4407,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4417,7 +4417,7 @@
     "Ford Ranger, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4471,7 +4471,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4516,7 +4516,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4526,7 +4526,7 @@
     "Mitsubishi Triton, 5 seats, manual",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4580,7 +4580,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4625,7 +4625,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4635,7 +4635,7 @@
     "Maxus G10, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4673,7 +4673,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4718,7 +4718,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4728,7 +4728,7 @@
     "Hyundai Starex Plus, 11 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4782,7 +4782,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4827,7 +4827,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4837,7 +4837,7 @@
     "Hyundai Staria, 10 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -4899,7 +4899,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -4944,7 +4944,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -4954,7 +4954,7 @@
     "Kia Carnival, 7 or 11 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -5008,7 +5008,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -5053,7 +5053,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -5063,7 +5063,7 @@
     "Mercedes-Benz C200, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -5117,7 +5117,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -5162,7 +5162,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM0.50 per km",
@@ -5172,7 +5172,7 @@
     "Toyota Vellfire (AH30), 7 or 8 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -5226,7 +5226,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM0.50 per km."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     },
     {
      "k": "Singapore",
@@ -5271,7 +5271,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Excess mileage: RM1.00 per km",
@@ -5281,7 +5281,7 @@
     "Ford Mustang, 4 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "400 km per day, unlimited mileage from 7 days"
+    "200 km mileage limit per day"
    ],
    "terms": [],
    "singapore": false,
@@ -5335,7 +5335,7 @@
     },
     {
      "k": "Mileage",
-     "v": "400 km per day on rentals under 7 days, unlimited from 7 days. Excess mileage RM1.00 per km."
+     "v": "200 km per day. Excess mileage RM1.00 per km."
     },
     {
      "k": "Singapore",
