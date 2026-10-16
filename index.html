@@ -445,6 +445,7 @@
   .fwrap{position:relative}
   .frail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px;-webkit-overflow-scrolling:touch}
   .frail::-webkit-scrollbar{display:none}
+  .frail.auto{scroll-snap-type:none}
   .fcard{flex:0 0 min(340px,82vw);scroll-snap-align:start;background:var(--ground);border:1px solid var(--line);display:flex;flex-direction:column;position:relative;transition:border-color .15s}
   .fcard:hover{border-color:var(--gold)}
   .fcard::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold);opacity:0;transition:opacity .15s;z-index:1}
@@ -1191,25 +1192,58 @@
       pills.appendChild(b);
     });
   }
+  function makeCard(c,clone){
+    var a=document.createElement('article');a.className='fcard'+(clone?' clone':'');
+    a.innerHTML='<figure>'+(c.photo?'<img src="'+esc(c.photo)+'" alt="'+esc(c.name)+'" loading="lazy">':'<div class="noimg">'+t('fl.nophoto',null,'Photo coming')+'</div>')+'</figure>'
+      +'<div class="fbody"><div class="fchips">'+chips(c)+'</div><h3>'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p>'
+      +'<div class="ffrom">'+fromHTML(c,false)+'</div>'+depHTML(c)
+      +'<button type="button" class="fsel">'+t('fl.select',null,'Select vehicle')+'</button></div>';
+    if(clone){a.setAttribute('aria-hidden','true');a.querySelector('.fsel').tabIndex=-1}
+    a.querySelector('.fsel').addEventListener('click',function(){openCar(c.id)});
+    a.querySelector('figure').addEventListener('click',function(){openCar(c.id)});
+    return a;
+  }
   function renderCards(){
-    rail.innerHTML='';
-    activeCars().filter(function(c){return !cat||(c.category||'Other')===cat}).forEach(function(c){
-      var a=document.createElement('article');a.className='fcard';
-      a.innerHTML='<figure>'+(c.photo?'<img src="'+esc(c.photo)+'" alt="'+esc(c.name)+'" loading="lazy">':'<div class="noimg">'+t('fl.nophoto',null,'Photo coming')+'</div>')+'</figure>'
-        +'<div class="fbody"><div class="fchips">'+chips(c)+'</div><h3>'+esc(c.name)+'</h3><p class="fmeta">'+td(c.meta||'')+'</p>'
-        +'<div class="ffrom">'+fromHTML(c,false)+'</div>'+depHTML(c)
-        +'<button type="button" class="fsel">'+t('fl.select',null,'Select vehicle')+'</button></div>';
-      a.querySelector('.fsel').addEventListener('click',function(){openCar(c.id)});
-      a.querySelector('figure').addEventListener('click',function(){openCar(c.id)});
-      rail.appendChild(a);
-    });
+    rail.innerHTML='';rail.classList.remove('auto');rail.scrollLeft=0;
+    var list=activeCars().filter(function(c){return !cat||(c.category||'Other')===cat});
+    list.forEach(function(c){rail.appendChild(makeCard(c,false))});
     arrows();
+    /* second copy of the cards so the auto-scroll can loop without a visible jump */
+    if(auto.on&&list.length>1&&rail.scrollWidth>rail.clientWidth+4){
+      list.forEach(function(c){rail.appendChild(makeCard(c,true))});
+      rail.classList.add('auto');
+    }
   }
   function arrows(){var over=rail.scrollWidth>rail.clientWidth+4;prev.hidden=!over;next.hidden=!over}
   function step(){var c=rail.querySelector('.fcard');return c?c.getBoundingClientRect().width+18:320}
-  prev.addEventListener('click',function(){rail.scrollBy({left:-step(),behavior:'smooth'})});
-  next.addEventListener('click',function(){rail.scrollBy({left:step(),behavior:'smooth'})});
+  prev.addEventListener('click',function(){hold();rail.scrollBy({left:-step(),behavior:'smooth'})});
+  next.addEventListener('click',function(){hold();rail.scrollBy({left:step(),behavior:'smooth'})});
   window.addEventListener('resize',arrows);
+
+  /* ---- auto-scroll: cards drift right to left, pause while the visitor touches, hovers or uses the rail ---- */
+  var auto={on:!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches),paused:false,last:0,acc:0,timer:0};
+  var SPEED=30; /* px per second */
+  function loopWidth(){var f=rail.querySelector('.fcard'),c=rail.querySelector('.fcard.clone');return f&&c?c.offsetLeft-f.offsetLeft:0}
+  function hold(){auto.paused=true;clearTimeout(auto.timer);auto.timer=setTimeout(function(){auto.paused=false;auto.last=0},4000)}
+  function tick(ts){
+    if(auto.on&&!auto.paused&&!document.hidden&&modal.hidden&&rail.classList.contains('auto')){
+      var dt=auto.last?Math.min(ts-auto.last,100):0;
+      auto.acc+=SPEED*dt/1000;
+      var px=Math.floor(auto.acc);
+      if(px>=1){
+        auto.acc-=px;
+        var w=loopWidth();
+        if(w>0){var x=rail.scrollLeft+px;if(x>=w)x-=w;rail.scrollLeft=x}
+      }
+    }else{auto.acc=0}
+    auto.last=ts;
+    requestAnimationFrame(tick);
+  }
+  if(auto.on){
+    ['pointerdown','touchstart','mouseenter','focusin','wheel'].forEach(function(ev){rail.addEventListener(ev,function(){auto.paused=true;clearTimeout(auto.timer)},{passive:true})});
+    ['pointerup','pointercancel','touchend','touchcancel','mouseleave','focusout'].forEach(function(ev){rail.addEventListener(ev,hold,{passive:true})});
+    requestAnimationFrame(tick);
+  }
 
   /* ---- vehicle detail ---- */
   function tierLabel(x){
