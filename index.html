@@ -361,6 +361,8 @@
   .scrolldown.off{opacity:0;transform:translateY(24px);pointer-events:none}
   .sd-chev{width:10px;height:10px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);animation:sdchev 1.4s ease-in-out infinite;margin:-5px 2px 0 0}
   @keyframes sdchev{0%,100%{transform:translateY(-2px) rotate(45deg);opacity:.5}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
+  .scrolldown.up .sd-chev{animation-name:sdchevup;margin:5px 2px 0 0}
+  @keyframes sdchevup{0%,100%{transform:translateY(2px) rotate(-135deg);opacity:.5}50%{transform:translateY(-4px) rotate(-135deg);opacity:1}}
   @media (max-width:640px){.scrolldown{max-width:none}}
   .btn-gold{background:var(--gold);color:#14110b}
   .btn-gold:hover{background:var(--gold-soft)}
@@ -876,7 +878,7 @@
   (function(){try{var cue=document.getElementById('scrolldown'),fleet=document.getElementById('fleet'),mm=document.getElementById('min-modal'),vm=document.getElementById('vmodal');if(!cue||!fleet)return;
     var fab=document.querySelector('a.fab');
     function fit(){try{if(!fab)return;var fr=fab.getBoundingClientRect();if(!fr.height)return;cue.style.height=fr.height+'px';cue.style.bottom=(window.innerHeight-fr.bottom)+'px';cue.style.right=(window.innerWidth-fr.left+10)+'px'}catch(e){}}
-    function tick(){try{fit();var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('off',!!(reached||popup))}catch(e){}}
+    function tick(){try{fit();var r=fleet.getBoundingClientRect(),h=window.innerHeight;var above=r.top>=h*0.55,below=r.bottom<=h*0.35;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('up',below);cue.classList.toggle('off',!!(popup||!(above||below)))}catch(e){}}
     window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);setInterval(tick,700);tick();
     cue.addEventListener('click',function(e){e.preventDefault();fleet.scrollIntoView({behavior:'smooth',block:'start'})});
   }catch(e){}})();
