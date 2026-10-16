@@ -875,12 +875,12 @@
   var $=function(id){return document.getElementById(id)};
   var zone=$('q-zone'),whereIn=$('q-where'),fZone=$('f-zone'),fWhere=$('f-where'),deliver=$('q-deliver'),fDeliver=$('f-deliver'),lDate=$('l-date'),whenIn=$('q-when');
   function currentZone(){return zoneFor(zone.value)}
-  /* floating scroll cue: visible until the fleet section comes into view */
-  (function(){var cue=$('scrolldown'),fleet=document.getElementById('fleet');if(!cue||!fleet)return;
-    function tick(){var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;cue.classList.toggle('off',reached||!modal.hidden)}
-    window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);tick();
+  /* floating scroll cue: visible until the fleet section comes into view (self-contained: must never break the price box) */
+  (function(){try{var cue=document.getElementById('scrolldown'),fleet=document.getElementById('fleet'),mm=document.getElementById('min-modal'),vm=document.getElementById('vmodal');if(!cue||!fleet)return;
+    function tick(){try{var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('off',!!(reached||popup))}catch(e){}}
+    window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);setInterval(tick,700);tick();
     cue.addEventListener('click',function(e){e.preventDefault();fleet.scrollIntoView({behavior:'smooth',block:'start'})});
-  })();
+  }catch(e){}})();
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
   var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
   function openModal(){modal.hidden=false;document.body.style.overflow='hidden';modalOk.focus()}
