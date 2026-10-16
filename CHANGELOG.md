@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Every car is now "Singapore entry OK" (`singapore: true`; the Malaysia-only policy line removed from the imported cars). Vellfire and Bezza carry the same 200 km per day mileage limit (excess RM1.00 / RM0.50 per km) instead of unlimited mileage.
 - Mileage on the 46 imported cars: "200 km mileage limit per day" (includes line) and "200 km per day. Excess mileage RM0.50 / RM1.00 per km." (policy), replacing the 400 km / unlimited-from-7-days wording. The VEP line now shows on every car.
 - **VEP line**: `settings.vep` {rm:120, sgd:35} (admin → Bookings) adds "VEP, entry to Singapore: RM120 / S$35, additional per day" under the holiday row in the vehicle overlay and under the minimum-rental line on the rate card, on cars allowed into Singapore.
 - **Three-tier self-drive pricing (17 Oct 2026)**: every car now has exactly three rates, 1 day, 7 days (80% of the day rate per day) and 30 days (50%), shown as a per-day price with a small "RM total for n days · Chat for best price!" line under the 7 and 30 day rows in the price box, the vehicle overlay and the rate card. Axia 2nd Gen 125 and Bezza 1.0 (New) 140 to match the owner's Axia and Bezza; Vellfire 549 / 439 / 275 (the 3–6 day step is gone), Bezza 140 / 112 / 70. Hourly rates removed from every car and from admin.

@@ -28,7 +28,8 @@
     "VEP and checkpoint charges",
     "Airport meet &amp; greet with flight tracking",
     "60 min waiting at Changi, 15 min elsewhere",
-    "Bottled water, Wi-Fi, child seat on request"
+    "Bottled water, Wi-Fi, child seat on request",
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Night pickup 11 pm &ndash; 7 am: <b>+S$30</b>",
@@ -40,7 +41,8 @@
     "English / Malay / Mandarin-speaking driver",
     "Bottled water & on-board Wi-Fi",
     "Child seat on request, free",
-    "All tolls, VEP & checkpoint fees"
+    "All tolls, VEP & checkpoint fees",
+    "200 km mileage limit per day"
    ],
    "terms": [
     "Luggage: comfortably 4 passengers + 4 large cases, or 6 passengers with cabin bags. Waiting time beyond 15 minutes (60 minutes at Changi) is charged at S$20 per 30 minutes. Charter hours are counted from pickup to drop-off."
@@ -115,6 +117,10 @@
     {
      "k": "Singapore",
      "v": "Singapore entry OK, VEP registered. Self-drive into Singapore has a 2-day minimum."
+    },
+    {
+     "k": "Mileage",
+     "v": "200 km per day. Excess mileage RM1.00 per km."
     }
    ],
    "tiers": [
@@ -154,7 +160,7 @@
    "includes": [
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "Unlimited mileage within Malaysia"
+    "200 km mileage limit per day"
    ],
    "extras": [
     "Late return: RM20 per hour",
@@ -164,10 +170,10 @@
     "Perodua Bezza 1.3 AV 2023, 5 seats, automatic",
     "Comprehensive insurance",
     "Full tank on handover, return full",
-    "Unlimited mileage within Malaysia"
+    "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/car/bezza.jpg"
@@ -224,11 +230,7 @@
     },
     {
      "k": "Mileage",
-     "v": "Unlimited within Malaysia."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
+     "v": "200 km per day. Excess mileage RM0.50 per km."
     }
    ],
    "tiers": [
@@ -279,7 +281,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Compact",
    "gallery": [
     "img/fleet/perodua-axia.jpg"
@@ -331,10 +333,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -388,7 +386,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Compact",
    "gallery": [
     "img/fleet/perodua-axia-2nd-gen.jpg"
@@ -448,10 +446,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -505,7 +499,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/perodua-bezza-1-0-new.jpg"
@@ -541,10 +535,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -598,7 +588,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/perodua-bezza-1-0.jpg"
@@ -658,10 +648,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -715,7 +701,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/perodua-bezza.jpg"
@@ -767,10 +753,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -824,7 +806,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/alza-1st-gen.jpg"
@@ -876,10 +858,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -933,7 +911,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/proton-persona.jpg"
@@ -985,10 +963,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1042,7 +1016,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/proton-saga.jpg"
@@ -1094,10 +1068,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1151,7 +1121,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Compact",
    "gallery": [
     "img/fleet/myvi-3rd-gen.jpg"
@@ -1203,10 +1173,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1260,7 +1226,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/honda-brv.jpg"
@@ -1312,10 +1278,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1369,7 +1331,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/perodua-aruz.jpg"
@@ -1421,10 +1383,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1478,7 +1436,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/city-7th-gen.jpg"
@@ -1530,10 +1488,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1587,7 +1541,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/honda-wr-v-1-5l.jpg"
@@ -1655,10 +1609,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1712,7 +1662,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/perodua-ativa.jpg"
@@ -1764,10 +1714,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1821,7 +1767,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/vios-4th-gen.jpg"
@@ -1873,10 +1819,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -1930,7 +1872,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/perodua-alza-2nd-gen.jpg"
@@ -1990,10 +1932,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2047,7 +1985,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/nissan-almera.jpg"
@@ -2099,10 +2037,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2156,7 +2090,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/proton-x50.jpg"
@@ -2208,10 +2142,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2265,7 +2195,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/proton-s70.jpg"
@@ -2325,10 +2255,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2382,7 +2308,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/honda-civic-fe.jpg"
@@ -2455,10 +2381,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2512,7 +2434,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/mitsubishi-xpander.jpg"
@@ -2564,10 +2486,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2621,7 +2539,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/omoda-5.jpg"
@@ -2695,10 +2613,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2752,7 +2666,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/honda-civic-fc.jpg"
@@ -2804,10 +2718,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2861,7 +2771,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/honda-hrv.jpg"
@@ -2897,10 +2807,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -2954,7 +2860,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/innova-crysta.jpg"
@@ -3006,10 +2912,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3063,7 +2965,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/nissan-teana.jpg"
@@ -3115,10 +3017,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3172,7 +3070,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/honda-accord-9th-edition.jpg"
@@ -3224,10 +3122,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3281,7 +3175,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/jaecoo-j7-1-6t-gdi-awd.jpg"
@@ -3333,10 +3227,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3390,7 +3280,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/nissan-serena.jpg"
@@ -3442,10 +3332,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3499,7 +3385,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/toyota-alphard-sc.jpg"
@@ -3555,10 +3441,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3612,7 +3494,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/toyota-corolla-cross.jpg"
@@ -3684,10 +3566,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3741,7 +3619,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/toyota-voxy-r80.jpg"
@@ -3813,10 +3691,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3870,7 +3744,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/proton-x70.jpg"
@@ -3922,10 +3796,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -3979,7 +3849,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/mercedes-benz-a200.jpg"
@@ -4052,10 +3922,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4109,7 +3975,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/toyota-camry.jpg"
@@ -4161,10 +4027,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4218,7 +4080,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Pickup",
    "gallery": [
     "img/fleet/toyota-hilux.jpg"
@@ -4270,10 +4132,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4327,7 +4185,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "SUV",
    "gallery": [
     "img/fleet/honda-crv.jpg"
@@ -4363,10 +4221,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4420,7 +4274,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Pickup",
    "gallery": [
     "img/fleet/ford-ranger.jpg"
@@ -4472,10 +4326,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4529,7 +4379,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Pickup",
    "gallery": [
     "img/fleet/mitsubishi-triton.jpg"
@@ -4581,10 +4431,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4638,7 +4484,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/maxus-g10.jpg"
@@ -4674,10 +4520,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4731,7 +4573,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/starex-plus.jpg"
@@ -4783,10 +4625,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4840,7 +4678,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/hyundai-staria.jpg"
@@ -4900,10 +4738,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -4957,7 +4791,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/kia-carnival.jpg"
@@ -5009,10 +4843,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -5066,7 +4896,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Sedan",
    "gallery": [
     "img/fleet/mercedes-benz-c200.jpg"
@@ -5118,10 +4948,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -5175,7 +5001,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "MPV / Van",
    "gallery": [
     "img/fleet/vellfire-anh30.jpg"
@@ -5227,10 +5053,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM0.50 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
@@ -5284,7 +5106,7 @@
     "200 km mileage limit per day"
    ],
    "terms": [],
-   "singapore": false,
+   "singapore": true,
    "category": "Premium",
    "gallery": [
     "img/fleet/ford-mustang.jpg"
@@ -5336,10 +5158,6 @@
     {
      "k": "Mileage",
      "v": "200 km per day. Excess mileage RM1.00 per km."
-    },
-    {
-     "k": "Singapore",
-     "v": "Malaysia use only. This car cannot enter Singapore."
     }
    ],
    "tiers": [
