@@ -355,13 +355,13 @@
   .fab:hover{transform:scale(1.04);background:#2db96c}
   @media (max-width:700px){ .fab{right:14px;bottom:14px;padding:11px 16px 11px 12px;font-size:14px} .fab svg{width:24px;height:24px} }
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-  /* floating scroll-down cue: short label + bouncing chevron, WhatsApp green */
-  .scrolldown{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:49;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 14px;background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.55);border-radius:999px;backdrop-filter:blur(6px);color:#25d366;text-decoration:none;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:opacity .35s,transform .35s}
-  .scrolldown:hover{background:rgba(37,211,102,.26);color:#5ee68d}
-  .scrolldown.off{opacity:0;transform:translate(-50%,24px);pointer-events:none}
-  .sd-chev{width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);animation:sdchev 1.4s ease-in-out infinite;margin:-4px 2px 0 0}
+  /* floating scroll-down cue: full-width bar beside the WhatsApp pill, same height (set from the pill by script), WhatsApp green */
+  .scrolldown{position:fixed;left:18px;bottom:18px;z-index:49;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;height:46px;padding:0 16px;max-width:420px;border-radius:999px;background:rgba(37,211,102,.2);border:1.5px solid rgba(37,211,102,.75);backdrop-filter:blur(6px);color:#2ee06f;text-decoration:none;font-size:15px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.55);transition:opacity .35s,transform .35s}
+  .scrolldown:hover{background:rgba(37,211,102,.3)}
+  .scrolldown.off{opacity:0;transform:translateY(24px);pointer-events:none}
+  .sd-chev{width:10px;height:10px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg);animation:sdchev 1.4s ease-in-out infinite;margin:-5px 2px 0 0}
   @keyframes sdchev{0%,100%{transform:translateY(-2px) rotate(45deg);opacity:.5}50%{transform:translateY(4px) rotate(45deg);opacity:1}}
-  @media (max-width:640px){.scrolldown{left:14px;transform:none;bottom:18px}.scrolldown.off{transform:translateY(24px)}}
+  @media (max-width:640px){.scrolldown{max-width:none}}
   .btn-gold{background:var(--gold);color:#14110b}
   .btn-gold:hover{background:var(--gold-soft)}
   .approx{display:block;font-size:11px;color:var(--faint);font-weight:400;letter-spacing:0}
@@ -874,7 +874,9 @@
   function currentZone(){return zoneFor(zone.value)}
   /* floating scroll cue: visible until the fleet section comes into view (self-contained: must never break the price box) */
   (function(){try{var cue=document.getElementById('scrolldown'),fleet=document.getElementById('fleet'),mm=document.getElementById('min-modal'),vm=document.getElementById('vmodal');if(!cue||!fleet)return;
-    function tick(){try{var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('off',!!(reached||popup))}catch(e){}}
+    var fab=document.querySelector('a.fab');
+    function fit(){try{if(!fab)return;var fr=fab.getBoundingClientRect();if(!fr.height)return;cue.style.height=fr.height+'px';cue.style.bottom=(window.innerHeight-fr.bottom)+'px';cue.style.right=(window.innerWidth-fr.left+10)+'px'}catch(e){}}
+    function tick(){try{fit();var r=fleet.getBoundingClientRect();var reached=r.top<window.innerHeight*0.55;var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('off',!!(reached||popup))}catch(e){}}
     window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);setInterval(tick,700);tick();
     cue.addEventListener('click',function(e){e.preventDefault();fleet.scrollIntoView({behavior:'smooth',block:'start'})});
   }catch(e){}})();
