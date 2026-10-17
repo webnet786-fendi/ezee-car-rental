@@ -1259,7 +1259,7 @@
 
   /* ---- auto-scroll: cards drift right to left, pause while the visitor touches, hovers or uses the rail ---- */
   var auto={on:!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches),paused:false,last:0,acc:0,timer:0};
-  var SPEED=30; /* px per second */
+  var SPEED=45; /* px per second (30 until 17 Oct 2026; owner asked for a bit faster) */
   function loopWidth(){var f=rail.querySelector('.fcard'),c=rail.querySelector('.fcard.clone');return f&&c?c.offsetLeft-f.offsetLeft:0}
   function hold(){auto.paused=true;clearTimeout(auto.timer);auto.timer=setTimeout(function(){auto.paused=false;auto.last=0},4000)}
   function tick(ts){

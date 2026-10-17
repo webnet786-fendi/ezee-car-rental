@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fleet rail auto-scroll speed 45 px/s (was 30).
 - Nissan Almera: RM155 / 124 / 78 (was 255).
 - Price box: last option in "Choose your car please" is "Request other transport: motor / van / bus"; picking it reveals an orange text box (placeholder "motor / van / bus"), hides the route field, prices "On request" and sends "Other transport: …" in the WhatsApp message and the booking log; the inert send button now says "In Progress" until a car is chosen, and the ready button says "Submit request thru WhatsApp". The floating bar turns orange and reads "Request Other Transport" while the fleet section is on screen; tapping it selects that option in the price box and focuses the text box. The compact sticky quote bar is switched off (`SBAR_ENABLED=false`).
 - Vehicle overlay: a yellow "Back" button sits on the bottom edge of the main photo and sticks to the top of the screen while the overlay scrolls (closes the overlay, like the ×). The photo-credit line moved from under the photo to the very bottom of the overlay (Creative Commons attribution is still required for the Wikimedia photos).
