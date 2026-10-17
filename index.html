@@ -133,9 +133,12 @@
   .quote h2{font-size:22px;margin-bottom:4px}
   .quote .qsub{font-size:14px;color:var(--muted);margin:0 0 20px}
   .field{display:grid;gap:6px;margin-bottom:14px}
-  #q-special{background:#dff5e3;color:#1d1a12;border-color:#25d366}
-  #q-special::placeholder{color:#4e7a5a}
-  #q-special:focus{outline:2px solid #25d366;outline-offset:1px}
+  #q-special{background:#ffd9b3;color:#1d1a12;border-color:#ff8c00;margin-top:6px}
+  #q-special[hidden]{display:none}
+  #q-special::placeholder{color:#9a5b00}
+  #q-special:focus{outline:2px solid #ff8c00;outline-offset:1px}
+  .scrolldown.req{background:#ffb866;border-color:#ff8c00}
+  .scrolldown.req:hover{background:#ffa64d}
   .field label{
     font-size:11.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
   }
@@ -600,13 +603,10 @@
         <p class="qsub" data-i18n="q.sub">Pick a route and we&rsquo;ll show the all-in fare. One tap sends it to WhatsApp.</p>
 
         <input type="text" id="q-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;opacity:0">
-        <div class="field" id="f-special">
-          <label for="q-special" data-i18n="q.special">Special request</label>
-          <input type="text" id="q-special" maxlength="160" placeholder="e.g. child seat, specific model, pickup at Senai Airport" data-i18n-ph="q.specialph" autocomplete="off">
-        </div>
         <div class="field" id="f-car" hidden>
           <label for="q-car" data-i18n="q.car">Choose your car please</label>
           <select id="q-car"></select>
+          <input type="text" id="q-special" maxlength="120" placeholder="motor / van / bus" data-i18n-ph="q.specialph" autocomplete="off" hidden>
         </div>
         <div class="field">
           <label for="q-route" data-i18n="q.route">Route or service</label>
@@ -877,7 +877,7 @@
   </div>
 </div>
 
-<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="See more cars"><span class="sd-txt" data-i18n="hero.scroll">See more car</span><span class="sd-req" data-i18n="hero.special">Special request</span><span class="sd-chev"></span></a>
+<a class="scrolldown" id="scrolldown" href="#fleet" aria-label="See more cars"><span class="sd-txt" data-i18n="hero.scroll">See more car</span><span class="sd-req" data-i18n="hero.special">Request Other Transport</span><span class="sd-chev"></span></a>
 <script src="fleet-data.js"></script>
 <script src="fleet-helpers.js"></script>
 <script src="i18n.js"></script>
@@ -893,7 +893,7 @@
     function fit(){try{if(!fab)return;var fr=fab.getBoundingClientRect();if(!fr.height)return;cue.style.height=fr.height+'px';cue.style.bottom=(window.innerHeight-fr.bottom)+'px';cue.style.right=(window.innerWidth-fr.left+10)+'px'}catch(e){}}
     function tick(){try{fit();var r=fleet.getBoundingClientRect(),h=window.innerHeight;var above=r.top>=h*0.55,below=r.bottom<=h*0.35,inFleet=!(above||below);var popup=(mm&&!mm.hidden)||(vm&&!vm.hidden);cue.classList.toggle('req',inFleet);cue.classList.toggle('up',below||inFleet);cue.classList.toggle('off',!!popup)}catch(e){}}
     window.addEventListener('scroll',tick,{passive:true});window.addEventListener('resize',tick);setInterval(tick,700);tick();
-    cue.addEventListener('click',function(e){e.preventDefault();if(cue.classList.contains('req')){var q=document.getElementById('quote'),sp=document.getElementById('q-special');if(q)q.scrollIntoView({behavior:'smooth',block:'start'});if(sp)setTimeout(function(){try{sp.focus({preventScroll:true})}catch(x){}},600)}else fleet.scrollIntoView({behavior:'smooth',block:'start'})});
+    cue.addEventListener('click',function(e){e.preventDefault();if(cue.classList.contains('req')){var q=document.getElementById('quote'),sp=document.getElementById('q-special');try{if(window.selectCar)window.selectCar('__other')}catch(x){}if(q)q.scrollIntoView({behavior:'smooth',block:'start'});if(sp)setTimeout(function(){try{sp.focus({preventScroll:true})}catch(x){}},600)}else fleet.scrollIntoView({behavior:'smooth',block:'start'})});
   }catch(e){}})();
   /* minimum-days popup, shown every time the self-drive destination box is clicked or focused */
   var modal=$('min-modal'),modalOk=$('min-ok'),justClosed=false,popupTarget=null;
@@ -907,6 +907,9 @@
   var carSel=$('q-car'),fCar=$('f-car'),multi=activeCars().length>1;
   var ph=document.createElement('option');ph.value='';ph.textContent=t('j.choosecar',null,'Choose your car…');ph.disabled=true;ph.selected=true;carSel.appendChild(ph);
   activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabelT(c);carSel.appendChild(o)});
+  /* last option: the visitor types the vehicle they need (motor / van / bus); priced on request */
+  var OTHER='__other';var oo=document.createElement('option');oo.value=OTHER;oo.textContent=t('j.othercar',null,'Request other transport: motor / van / bus');carSel.appendChild(oo);
+  function otherMode(){return multi&&carSel.value===OTHER}
   function carChosen(){return !multi||!!carSel.value}
   fCar.hidden=!multi;
   function currentCar(){return activeCars().filter(function(c){return c.id===carSel.value})[0]||activeCars()[0]}
@@ -1032,6 +1035,8 @@
 
   function update(){
     var r=current();
+    if(otherMode()){r=ROUTES.filter(function(x){return x.type==='other'})[0]||r}
+    special.hidden=!otherMode();var fRoute=route.closest('.field');if(fRoute)fRoute.hidden=otherMode();
     var self=(r.type==='selfdrive'||r.type==='monthly');
     fTime.hidden=(r.type==='other');
     fDays.hidden=(r.type!=='selfdrive');
@@ -1050,9 +1055,7 @@
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
       where=pair[0]+' → '+pair[1];
     }else{ where=r.label }
-    if(multi)lines.push('• '+currentCar().name);
-    lines.push('• '+where);
-    if(special.value.trim())lines.push('• Special request: '+special.value.trim());
+    if(otherMode()){lines.push('• Other transport: '+(special.value.trim()||'to confirm'))}else{if(multi)lines.push('• '+currentCar().name);lines.push('• '+where)}
     if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')); lines.push('• Deliver car to: '+(deliver.value.trim()||'to confirm')) }
     else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
@@ -1103,7 +1106,7 @@
     var msg='Hi EzEe, I’d like to book:\n'+lines.join('\n')+'\nPlease confirm.';
     lastMsg=msg;
     send.href=WA+encodeURIComponent(msg);
-    var needCar=!carChosen();
+    var needCar=!carChosen()||(otherMode()&&!special.value.trim());
     carSel.classList.toggle('blink',needCar);
     send.classList.toggle('inert',needTime||needCar);
     send.textContent=needCar?t('j.needcar',null,'In Progress'):(needTime?t('j.needtime',null,'Pick a start date & time first'):(held?t('j.heldbtn',null,'Ask about these dates on WhatsApp'):t('q.send',null,'Submit request thru WhatsApp')));
@@ -1164,9 +1167,9 @@
     var url=SETTINGS.bookingsUrl;
     var r=current(),self=(r.type==='selfdrive'||r.type==='monthly'),car=currentCar(),ref=newRef();
     a.href=WA+encodeURIComponent(lastMsg+'\nRef: '+ref);
-    if(typeof track==='function')track('whatsapp_tap',{service:r.id,car:car.short||car.name,source:FROM||'website',price:lastTotal==null?'':String(lastTotal)});
+    if(typeof track==='function')track('whatsapp_tap',{service:r.id,car:otherMode()?'other':(car.short||car.name),source:FROM||'website',price:lastTotal==null?'':String(lastTotal)});
     if(!url)return;
-    var payload={action:'create',ref:ref,source:FROM?'web:'+FROM:'website',car:car.name,service:r.id,
+    var payload={action:'create',ref:ref,source:FROM?'web:'+FROM:'website',car:otherMode()?'Other transport: '+special.value.trim():car.name,service:r.id,
       route:r.type==='transfer'?(dir.value==='1'?r.b+' → '+r.a:r.a+' → '+r.b):r.label,
       destination:self?zone.value.trim():'',deliverTo:self?deliver.value.trim():'',dropoff:self?'':whereIn.value.trim(),
       start:date.value,time:time.value,days:r.type==='selfdrive'?days.value:'',pax:self?'':pax.value,
@@ -1177,7 +1180,7 @@
   sGo.addEventListener('click',function(){logBooking(sGo)});
   /* language switch: relabel everything the script generated */
   document.addEventListener('langchange',function(){
-    var o0=carSel.querySelector('option[value=""]');if(o0)o0.textContent=t('j.choosecar',null,'Choose your car…');
+    var o0=carSel.querySelector('option[value=""]');if(o0)o0.textContent=t('j.choosecar',null,'Choose your car…');var oo2=carSel.querySelector('option[value="__other"]');if(oo2)oo2.textContent=t('j.othercar',null,'Request other transport: motor / van / bus');
     carSel.querySelectorAll('option').forEach(function(o){if(!o.value)return;var c=CARS.filter(function(x){return x.id===o.value})[0];if(c)o.textContent=carLabelT(c)});
     var s0=sCar.querySelector('option[value=""]');if(s0)s0.textContent=t('j.choose',null,'Choose…');
     tabs.querySelectorAll('button').forEach(function(b){var c=CARS.filter(function(x){return x.id===b.dataset.car})[0];if(c)b.innerHTML=tabHTML(c)});
