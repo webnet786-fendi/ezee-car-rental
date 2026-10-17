@@ -906,10 +906,10 @@
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal()});
   var carSel=$('q-car'),fCar=$('f-car'),multi=activeCars().length>1;
   var ph=document.createElement('option');ph.value='';ph.textContent=t('j.choosecar',null,'Choose your car…');ph.disabled=true;ph.selected=true;carSel.appendChild(ph);
-  activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabelT(c);carSel.appendChild(o)});
-  /* last option: the visitor types the vehicle they need (motor / van / bus); priced on request */
+  /* first option: the visitor types the vehicle they need (motor / van / bus); priced on request, all other fields stay */
   var OTHER='__other';var oo=document.createElement('option');oo.value=OTHER;oo.textContent=t('j.othercar',null,'Request other transport: motor / van / bus');carSel.appendChild(oo);
   function otherMode(){return multi&&carSel.value===OTHER}
+  activeCars().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=carLabelT(c);carSel.appendChild(o)});
   function carChosen(){return !multi||!!carSel.value}
   fCar.hidden=!multi;
   function currentCar(){return activeCars().filter(function(c){return c.id===carSel.value})[0]||activeCars()[0]}
@@ -1035,8 +1035,7 @@
 
   function update(){
     var r=current();
-    if(otherMode()){r=ROUTES.filter(function(x){return x.type==='other'})[0]||r}
-    special.hidden=!otherMode();var fRoute=route.closest('.field');if(fRoute)fRoute.hidden=otherMode();
+    special.hidden=!otherMode();
     var self=(r.type==='selfdrive'||r.type==='monthly');
     fTime.hidden=(r.type==='other');
     fDays.hidden=(r.type!=='selfdrive');
@@ -1055,7 +1054,8 @@
       var pair=dir.value==='1'?[r.b,r.a]:[r.a,r.b];
       where=pair[0]+' → '+pair[1];
     }else{ where=r.label }
-    if(otherMode()){lines.push('• Other transport: '+(special.value.trim()||'to confirm'))}else{if(multi)lines.push('• '+currentCar().name);lines.push('• '+where)}
+    if(otherMode())lines.push('• Other transport: '+(special.value.trim()||'to confirm'));else if(multi)lines.push('• '+currentCar().name);
+    lines.push('• '+where);
     if(self){ lines.push('• Driving to: '+(zone.value.trim()||'to confirm')+(z?' ('+z.label+', min '+z.min+' day'+(z.min>1?'s':'')+')':'')); lines.push('• Deliver car to: '+(deliver.value.trim()||'to confirm')) }
     else if(whereIn.value.trim()){ lines.push('• Drop-off: '+whereIn.value.trim()) }
     var when=fmtDate(date.value)||'date to confirm';
@@ -1065,7 +1065,7 @@
     lines.push('• '+when);
     if(!self){ lines.push('• '+pax.value+' passenger'+(pax.value>1?'s':'')) }
 
-    if(r.type==='other'){
+    if(r.type==='other'||otherMode()){
       lbl.textContent=t('j.yourprice',null,'Your price');
       amt.innerHTML=t('j.onreq',null,'On request');
       noteText=t('j.tellus',null,'Tell us the trip and we quote within minutes');
@@ -1092,7 +1092,7 @@
       if(peakAdd)lines.push('• Peak season ('+peak.label+'): +RM'+peakAdd);
       lines.push('Your site shows '+r.cur+total+' all-in.');
     }
-    var held=(r.type!=='other'&&r.type!=='monthly')?heldRange(currentCar(),date.value,r):null;
+    var held=(r.type!=='other'&&r.type!=='monthly'&&!otherMode())?heldRange(currentCar(),date.value,r):null;
     if(held){
       lbl.textContent=t('j.heldlbl',null,'Availability');
       amt.innerHTML=t('j.onreq',null,'On request');
@@ -1236,8 +1236,9 @@
       +'<div class="ffrom">'+fromHTML(c,false)+'</div>'+depHTML(c)
       +'<button type="button" class="fsel">'+t('fl.select',null,'Select vehicle')+'</button></div>';
     if(clone){a.setAttribute('aria-hidden','true');a.querySelector('.fsel').tabIndex=-1}
-    a.querySelector('.fsel').addEventListener('click',function(){openCar(c.id)});
-    a.querySelector('figure').addEventListener('click',function(){openCar(c.id)});
+    function open(){try{clearTimeout(auto.timer);auto.paused=false;auto.last=0}catch(e){}openCar(c.id)} /* no resume delay after a tap: the overlay itself pauses the rail while open */
+    a.querySelector('.fsel').addEventListener('click',open);
+    a.querySelector('figure').addEventListener('click',open);
     return a;
   }
   function renderCards(){
@@ -1261,7 +1262,7 @@
   var auto={on:!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches),paused:false,last:0,acc:0,timer:0};
   var SPEED=45; /* px per second (30 until 17 Oct 2026; owner asked for a bit faster) */
   function loopWidth(){var f=rail.querySelector('.fcard'),c=rail.querySelector('.fcard.clone');return f&&c?c.offsetLeft-f.offsetLeft:0}
-  function hold(){auto.paused=true;clearTimeout(auto.timer);auto.timer=setTimeout(function(){auto.paused=false;auto.last=0},4000)}
+  function hold(){auto.paused=true;clearTimeout(auto.timer);auto.timer=setTimeout(function(){auto.paused=false;auto.last=0},1200)}
   function tick(ts){
     if(auto.on&&!auto.paused&&!document.hidden&&modal.hidden&&rail.classList.contains('auto')){
       var dt=auto.last?Math.min(ts-auto.last,100):0;
