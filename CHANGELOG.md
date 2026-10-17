@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Vehicle overlay: the sticky bar on the photo now holds three buttons, "Ask on WhatsApp" (left, green), "Back" (centre, yellow) and "Book this car" (right, blinking orange/white); the bottom strip keeps only the note. The floating WhatsApp pill hides while the completed price-box form's "Submit request thru WhatsApp" button is on screen.
 - Fleet rail auto-scroll speed 45 px/s (was 30); no resume delay after tapping a car (the overlay pauses it while open); 1.2 s hold after a swipe (was 4 s).
 - Nissan Almera: RM155 / 124 / 78 (was 255).
 - Price box: first option in "Choose your car please" is "Request other transport: motor / van / bus"; picking it reveals an orange text box (placeholder "motor / van / bus"), keeps route, destination, date and days, prices "On request" and sends "Other transport: …" in the WhatsApp message and the booking log; the inert send button now says "In Progress" until a car is chosen, and the ready button says "Submit request thru WhatsApp". The floating bar turns orange and reads "Request Other Transport" while the fleet section is on screen; tapping it selects that option in the price box and focuses the text box. The compact sticky quote bar is switched off (`SBAR_ENABLED=false`).
