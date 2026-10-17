@@ -1965,7 +1965,7 @@
    "meta": "5 seats · auto · self-drive only",
    "photo": "img/fleet/nissan-almera.jpg",
    "prices": {
-    "selfdrive": 255,
+    "selfdrive": 155,
     "other": null
    },
    "inclTitle": "Included with the Almera",
@@ -2043,17 +2043,17 @@
     {
      "from": 1,
      "to": 6,
-     "perDay": 255
+     "perDay": 155
     },
     {
      "from": 7,
      "to": 29,
-     "perDay": 204
+     "perDay": 124
     },
     {
      "from": 30,
      "to": null,
-     "perDay": 128
+     "perDay": 78
     }
    ],
    "credit": "Photo: AIMHO&#x27;S REBELLION 8490s, <a href=\"https://commons.wikimedia.org/wiki/File:2021_Nissan_Almera_1.0_Turbo_white_front_view_in_Brunei.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
