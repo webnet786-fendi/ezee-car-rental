@@ -119,6 +119,58 @@ table.g td.v::before{content:": "}
 .docs .cap{text-align:center;font-size:7.5pt;color:#333;margin:-2mm 0 3mm}
 .empty-doc{font-size:8pt;color:#777;text-align:center;padding:6mm;border:1px dashed #bbb;width:104mm;margin:0 auto 4mm}
 .preview-scale{transform-origin:top center}
+
+/* ---------- Invoice + bill (printed instead of the agreement when "Invois + Bil" is pressed) ---------- */
+#invPrint{display:none}
+.inv{width:190mm;min-height:270mm;background:#fff;color:#1d232b;font:10pt/1.45 "IBM Plex Sans",Arial,sans-serif;display:flex;flex-direction:column}
+.inv header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #ffd21f;padding-bottom:3mm}
+.inv header img{height:17mm;width:auto}
+.inv .co{text-align:right;font-size:8.5pt;color:#4a5562;line-height:1.4}
+.inv .co b{display:block;color:#1d232b;font-size:10pt}
+.inv .title{display:flex;justify-content:space-between;align-items:flex-end;margin:5mm 0 4mm}
+.inv h1{font-size:21pt;letter-spacing:.06em;margin:0}
+.inv .ids{display:grid;grid-template-columns:auto auto;gap:.5mm 4mm;font-size:9pt;text-align:right}
+.inv .ids span:nth-child(odd){color:#6b7684}
+.inv .parties{display:grid;grid-template-columns:1.15fr 1fr;gap:4mm;margin-bottom:5mm}
+.inv .party{border-radius:2mm;padding:3mm 4mm}
+.inv .billto{border:2px solid #1d232b;background:#fffbe6}
+.inv .payto{border:2px solid #11913f;background:#f0faf3}
+.inv .party h2{margin:0;font-size:9pt;letter-spacing:.1em;text-transform:uppercase}
+.inv .payto h2{color:#11713a}
+.inv .party .sub{font-size:7.5pt;color:#6b7684;margin-bottom:2mm}
+.inv .payee{font-size:11.5pt;font-weight:700}
+.inv .kv{display:grid;grid-template-columns:auto 1fr;gap:1mm 3mm}
+.inv .kv>span:nth-child(odd){color:#6b7684;font-size:8.5pt}
+.inv .kv .nm{font-size:11.5pt;font-weight:700}
+.inv table{width:100%;border-collapse:collapse}
+.inv th{text-align:left;font-size:7.5pt;text-transform:uppercase;letter-spacing:.06em;color:#6b7684;border-bottom:1px solid #d7dbe0;padding:2mm 1.5mm}
+.inv td{padding:2mm 1.5mm;border-bottom:1px solid #eceef1;vertical-align:top}
+.inv td.n,.inv th.n{text-align:right;white-space:nowrap}
+.inv td small{color:#6b7684;font-size:8pt}
+.inv .bottom{display:grid;grid-template-columns:1fr 78mm;gap:5mm;margin-top:3mm}
+.inv .tot div{display:flex;justify-content:space-between;padding:1.5mm 2mm}
+.inv .tot .g{font-weight:700;border-top:2px solid #1d232b;font-size:11pt}
+.inv .tot .less{color:#4a5562}
+.inv .tot .rec{background:#e9f7ee;color:#11713a;font-weight:700;border-radius:1mm}
+.inv .tot .due{background:#1d232b;color:#ffd21f;font-weight:700;border-radius:1.5mm;font-size:11pt}
+.inv .terms{font-size:8.5pt;color:#4a5562}
+.inv .terms h3{font-size:7.5pt;text-transform:uppercase;letter-spacing:.08em;color:#6b7684;margin:0 0 1mm}
+.inv .terms ul{margin:0;padding-left:4.5mm}
+.inv .paynote{margin-top:5mm;padding:3mm 4mm;border-left:4px solid #11913f;background:#f6f7f9;font-size:9pt}
+.inv .stamp{display:inline-block;transform:rotate(-8deg);border:3px solid #11913f;color:#11913f;font-weight:800;font-size:15pt;letter-spacing:.1em;padding:1mm 4mm;border-radius:1.5mm;margin-top:2mm}
+.inv .stamp.part{border-color:#c77700;color:#c77700}
+.inv .stamp.unpaid{border-color:#a93f3a;color:#a93f3a}
+.inv .sign{display:flex;justify-content:space-between;margin-top:12mm;font-size:8.5pt;color:#6b7684}
+.inv .sign div{width:44%;border-top:1px solid #9aa3ad;padding-top:1.5mm}
+.inv footer{text-align:center;font-size:8pt;color:#8a94a0;margin-top:auto;padding-top:6mm}
+.inv *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.invbtns{display:flex;gap:8px;flex-wrap:wrap}
+@media print{
+  body.inv-mode .app,body.inv-mode .mobile-toggle,body.inv-mode .toast{display:none !important}
+  body.inv-mode #invPrint{display:block}
+  body.inv-mode .inv{page-break-after:always;break-after:page;height:281mm;overflow:hidden}
+  body.inv-mode .inv:last-child{page-break-after:auto;break-after:auto}
+}
 @media print{
   @page{size:A4 portrait;margin:8mm 10mm 7mm}
   html,body{background:#fff;width:190mm;margin:0;padding:0}
@@ -207,6 +259,22 @@ table.g td.v::before{content:": "}
     </div>
   </details>
 
+  <details class="sec" open>
+    <summary>Invois &amp; Bil <span class="st">Invoice · Bill</span></summary>
+    <div class="body">
+      <div class="full hint">Invois (muka 1) dan bil / resit (muka 2) diambil dari borang di atas: penyewa, kenderaan, tarikh, sewa, deposit. Tiada nombor akaun bank dicetak.</div>
+      <div><label for="i_date">Tarikh invois</label><input id="i_date" data-k="inv.date" type="date"></div>
+      <div><label for="i_due">Bayaran perlu dijelaskan <i>· Payment due</i></label><input id="i_due" data-k="inv.due" placeholder="ON HANDOVER"></div>
+      <div><label for="i_pdays">Hari peak <i>· Peak days</i></label><input id="i_pdays" data-k="inv.pdays" type="number" min="0" step="1" placeholder="0"><div class="hint">20 Nov – 3 Jan = +15%</div></div>
+      <div><label for="i_prate">Caj peak sehari (RM)</label><input id="i_prate" data-k="inv.prate" type="number" min="0" step="0.01"><div class="hint" id="i_prateHint">Kosong = 15% sewa sehari</div></div>
+      <div><label for="i_recv">Jumlah diterima (RM) <i>· bil</i></label><input id="i_recv" data-k="inv.recv" type="number" min="0" step="0.01"><div class="hint">Kosong = bayar penuh (baki)</div></div>
+      <div><label for="i_rdate">Tarikh terima</label><input id="i_rdate" data-k="inv.rdate" type="date"></div>
+      <div class="full"><label for="i_method">Cara bayaran <i>· Payment method</i></label><input id="i_method" data-k="inv.method" placeholder="CASH / TRANSFER / DUITNOW"></div>
+      <div class="full calc" id="invCalc"></div>
+      <div class="full invbtns"><button class="btn primary" id="btnInv2" type="button">Cetak Invois + Bil (PDF)</button></div>
+    </div>
+  </details>
+
   <details class="sec">
     <summary>Aksesori &amp; Kerosakan <span class="st">Checklist</span></summary>
     <div class="body">
@@ -261,6 +329,7 @@ table.g td.v::before{content:": "}
 </div>
 </div>
 
+<div id="invPrint"></div>
 <div class="mobile-toggle"><button id="tabForm" class="on">Borang</button><button id="tabPrev">Pratonton</button></div>
 <div class="toast" id="toast"></div>
 
@@ -303,6 +372,7 @@ function blank(){
     sig:{R:"",O:""},
     s:{date:todayISO(),place:"KULAI"},
     sameLoc:true,
+    inv:{date:todayISO(),due:"ON HANDOVER",pdays:"",prate:"",recv:"",rdate:todayISO(),method:""},
   };
 }
 let S = blank();
@@ -310,7 +380,7 @@ let B = {...DEFAULT_BIZ};
 const LS_S="ezee-agreement-draft-v2", LS_B="ezee-agreement-biz-v2";
 function load(){
   try{ const b=JSON.parse(localStorage.getItem(LS_B)||"null"); if(b) B={...DEFAULT_BIZ,...b}; }catch(e){}
-  try{ const s=JSON.parse(localStorage.getItem(LS_S)||"null"); if(s) S={...blank(),...s}; }catch(e){}
+  try{ const s=JSON.parse(localStorage.getItem(LS_S)||"null"); if(s){ S={...blank(),...s}; S.inv={...blank().inv,...(s.inv||{})}; } }catch(e){}
   prefill();
 }
 // ---------- prefill from the bookings ledger (agreement.html?ref=&name=&phone=&car=&start=&time=&days=&rate=&dest=&loc=&deposit=) ----------
@@ -385,7 +455,8 @@ function bindInputs(){
   $$("[data-sig]").forEach(b=>b.addEventListener("click",()=>{ clearSig(b.dataset.sig); }));
   // buttons
   $("#btnNew").addEventListener("click",()=>{ if(!confirm("Kosongkan borang? Butiran syarikat dan senarai kenderaan dikekalkan.")) return; S=blank(); try{localStorage.removeItem(LS_S);}catch(e){} location.reload(); });
-  $("#btnPrint").addEventListener("click",()=>{ const t=document.title; document.title=`Perjanjian_${(S.v.plate||"KERETA").replace(/\s+/g,"")}_${S.a.date||todayISO()}_${(S.r.name||"PENYEWA").replace(/[^A-Za-z0-9]+/g,"_").slice(0,30)}`; $("#app").classList.add("show-preview"); setTimeout(()=>{ fitPages(); window.print(); document.title=t; },150); });
+  $("#btnPrint").addEventListener("click",()=>{ document.body.classList.remove("inv-mode"); const t=document.title; document.title=`Perjanjian_${(S.v.plate||"KERETA").replace(/\s+/g,"")}_${S.a.date||todayISO()}_${(S.r.name||"PENYEWA").replace(/[^A-Za-z0-9]+/g,"_").slice(0,30)}`; $("#app").classList.add("show-preview"); setTimeout(()=>{ fitPages(); window.print(); document.title=t; },150); });
+  $("#btnInv2").addEventListener("click",printInv);
   $("#tabForm").addEventListener("click",()=>{ $("#app").classList.remove("show-preview"); $("#tabForm").classList.add("on"); $("#tabPrev").classList.remove("on"); });
   $("#tabPrev").addEventListener("click",()=>{ $("#app").classList.add("show-preview"); $("#tabPrev").classList.add("on"); $("#tabForm").classList.remove("on"); fitPreview(); });
 }
@@ -536,6 +607,80 @@ function render(){
   <div class="docs"><h4>IDENTITY CARD, LICENSE &amp; PROOF OF ADDRESS</h4>${doc("ic","Kad pengenalan / pasport")}${doc("lic","Lesen memandu")}${doc("util","Bil utiliti / bukti alamat")}</div>` + foot() + '</div>';
 
   const c=$("#calc"); c.innerHTML=`<span>${t.days} hari &times; ${rm(t.rate)}</span><span>${rm(t.rental)}</span><span>Penghantaran + perlindungan + cukai</span><span>${rm(t.delivery+t.prot+t.gst)}</span><span>Sekuriti deposit</span><span>${rm(t.sec)}</span><span><b>Jumlah</b></span><span><b>${rm(t.total)}</b></span><span>Tempahan awal (ditolak)</span><span>&minus;${rm(t.booking)}</span><span><b>Baki semasa serahan</b></span><span><b>${rm(t.balance)}</b></span>`;
+  renderInv();
+}
+
+// ---------- invoice + bill ----------
+function money(n){ return (+n||0).toLocaleString("en-MY",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function enDate(iso){ if(!iso) return ""; const d=new Date(iso+"T00:00:00"); return isNaN(d)?esc(iso):d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}); }
+function invTotals(){
+  const t=totals(), I=S.inv;
+  const pdays=+I.pdays||0, prate=(I.prate===""||I.prate==null)?Math.round(t.rate*15)/100:(+I.prate||0);
+  const peak=Math.round(pdays*prate*100)/100;
+  const total=t.total+peak, balance=Math.max(total-t.booking,0);
+  const recv=(I.recv===""||I.recv==null)?balance:Math.min(+I.recv||0,balance);
+  return {...t,pdays,prate,peak,total,balance,recv,left:Math.round((balance-recv)*100)/100};
+}
+function invNo(pre){ const d=(S.a.date||todayISO()).slice(2).replace(/-/g,""); return pre+"-"+(S.v.plate||"CAR").replace(/\s+/g,"").toUpperCase()+"-"+d; }
+function invLines(t,short){
+  const rows=[]; const retLoc=S.sameLoc?S.a.loc:S.p.loc;
+  const when=`${enDate(S.a.date)}, ${fmtTime(S.a.time)} &rarr; ${enDate(S.p.date)}, ${fmtTime(S.p.time)}${S.n.dest?` &middot; destination ${esc(S.n.dest)}`:""}`;
+  const where=S.a.loc?`<br>Pickup${retLoc&&retLoc!==S.a.loc?"":" &amp; return"}: ${esc(S.a.loc)}${retLoc&&retLoc!==S.a.loc?`<br>Return: ${esc(retLoc)}`:""}`:"";
+  rows.push([`<b>${up(S.v.model)}${S.v.plate?` (${up(S.v.plate)})`:""} &middot; self-drive rental</b><br><small>${when}${short?"":where}</small>`, `${t.days} days`, money(t.rate), money(t.rental)]);
+  if(t.peak>0) rows.push([`Peak period surcharge<br><small>Year-end school holidays (+15% of the daily rate)</small>`, `${t.pdays} days`, money(t.prate), money(t.peak)]);
+  if(t.delivery>0) rows.push(["Delivery &amp; collection","1",money(t.delivery),money(t.delivery)]);
+  if(t.prot>0) rows.push(["Damage waiver (perlindungan imbuhan)","1",money(t.prot),money(t.prot)]);
+  if(t.gst>0) rows.push(["Tax","1",money(t.gst),money(t.gst)]);
+  if(t.sec>0) rows.push([`Security deposit (refundable)<br><small>Returned within 10&ndash;14 working days after return, if the car is in good condition with no summons</small>`,"1",money(t.sec),money(t.sec)]);
+  return `<table><thead><tr><th>Description</th><th class="n">Qty</th><th class="n">Rate (RM)</th><th class="n">Amount (RM)</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td class="n">${r[2]}</td><td class="n">${r[3]}</td></tr>`).join("")}</tbody></table>`;
+}
+function invParty(kind){
+  if(kind==="cust"){
+    const city=[S.r.pos,S.r.bandar].filter(Boolean).join(" ");
+    const addr=[S.r.addr,[city,S.r.negeri,S.r.negara].filter(Boolean).join(", ")].filter(Boolean).map(esc).join("<br>");
+    return `<div class="kv"><span>Name</span><span class="nm">${up(S.r.name)||"&nbsp;"}</span>${S.r.ic?`<span>IC / passport</span><span>${esc(S.r.ic)}</span>`:""}${S.r.phone?`<span>Phone</span><span>${esc(S.r.phone)}</span>`:""}${addr?`<span>Address</span><span>${addr}</span>`:""}</div>`;
+  }
+  return `<div class="payee">${esc(B.name)}</div>${B.owner?`<div>Owner: <b>${esc(B.owner)}</b></div>`:""}${B.reg?`<div style="font-size:8.5pt;color:#4a5562">SSM ${esc(B.reg)}</div>`:""}<div style="margin-top:2mm;font-size:9pt">${B.addr.split("\n").map(esc).join("<br>")}${B.phone?`<br>Tel / WhatsApp ${esc(B.phone)}`:""}</div>`;
+}
+function invHead(){ return `<header><img src="${EZEE_LOGO}" alt="EzEe Car Rental"><div class="co"><b>${esc(B.name)}</b>${B.reg?`SSM ${esc(B.reg)}<br>`:""}${B.addr.split("\n").map(esc).join("<br>")}<br>${esc(B.phone)} &middot; ezee.my</div></header>`; }
+function renderInv(){
+  const t=invTotals(), I=S.inv, inv=invNo("INV"), bil=invNo("BIL");
+  const agr=`${up(S.v.plate)}${S.s.date?` &middot; ${enDate(S.s.date)}`:""}`;
+  const terms=[];
+  if(!(t.delivery>0)&&!(t.prot>0)&&!(t.gst>0)) terms.push("Delivery &amp; collection, damage waiver and tax: none charged.");
+  if(S.p.late) terms.push(`Late return ${esc(S.p.late)}. Return with the same fuel level.`);
+  terms.push("Summons, tolls and fuel are the hirer's responsibility.");
+  terms.push(`Full terms as in rental agreement ${agr}.`);
+  const p1=`<div class="inv">${invHead()}
+    <div class="title"><h1>INVOICE</h1><div class="ids"><span>Invoice no.</span><b>${inv}</b><span>Rental agreement</span><span>${agr}</span><span>Invoice date</span><span>${enDate(I.date)}</span><span>Payment due</span><span>${esc(I.due)}</span></div></div>
+    <div class="parties"><div class="party billto"><h2>Bill to (customer)</h2><div class="sub">This invoice is issued to the person below, who pays it.</div>${invParty("cust")}</div>
+      <div class="party payto"><h2>Pay to (EzEe)</h2><div class="sub">Make payment to this business only.</div>${invParty("biz")}</div></div>
+    ${invLines(t,false)}
+    <div class="bottom"><div class="terms"><h3>Terms</h3><ul>${terms.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      <div class="tot"><div class="g"><span>Total</span><span>RM ${money(t.total)}</span></div><div class="less"><span>Less: booking deposit paid</span><span>RM ${money(t.booking)}</span></div><div class="due"><span>Balance due</span><span>RM ${money(t.balance)}</span></div></div></div>
+    <div class="paynote">Please pay <b>${esc(B.name)}</b>${B.owner?` (${esc(B.owner)})`:""} and quote <b>${up(S.v.plate)||inv}</b> as the reference. An official receipt will be issued once payment is received.</div>
+    <footer>Thank you for choosing EzEe Car Rental &middot; https://ezee.my</footer></div>`;
+  const st=t.left<=0?["PAID",""]:(t.recv>0?["PART PAID","part"]:["UNPAID","unpaid"]);
+  const p2=`<div class="inv">${invHead()}
+    <div class="title"><div><h1>BILL / RECEIPT</h1><span class="stamp ${st[1]}">${st[0]}</span></div><div class="ids"><span>Bill no.</span><b>${bil}</b><span>For invoice</span><span>${inv}</span><span>Date received</span><span>${enDate(I.rdate)}</span><span>Payment method</span><span>${esc(I.method)||"&nbsp;"}</span></div></div>
+    <div class="parties"><div class="party billto"><h2>Received from (customer)</h2><div class="sub">Payment was made by the person below.</div>${invParty("cust")}</div>
+      <div class="party payto"><h2>Received by (EzEe)</h2><div class="sub">Payment received by this business.</div>${invParty("biz")}</div></div>
+    ${invLines(t,true)}
+    <div class="bottom"><div class="terms"><h3>Notes</h3><ul><li>This bill confirms payment received for invoice ${inv}.</li>${t.sec>0?`<li>The security deposit is refundable as stated in rental agreement ${up(S.v.plate)}.</li>`:""}</ul></div>
+      <div class="tot"><div class="g"><span>Total</span><span>RM ${money(t.total)}</span></div><div class="less"><span>Less: booking deposit paid</span><span>RM ${money(t.booking)}</span></div><div class="rec"><span>Amount received</span><span>RM ${money(t.recv)}</span></div><div class="due"><span>Balance outstanding</span><span>RM ${money(t.left)}</span></div></div></div>
+    <div class="sign"><div>Received by &middot; ${esc(B.name)}</div><div>Customer</div></div>
+    <footer>Thank you for choosing EzEe Car Rental &middot; https://ezee.my</footer></div>`;
+  $("#invPrint").innerHTML=p1+p2;
+  const h=$("#i_prateHint"); if(h) h.textContent=(S.inv.prate===""||S.inv.prate==null)?`Kosong = 15% sewa sehari (RM${money(t.prate)})`:"Caj peak ditetapkan sendiri";
+  const c=$("#invCalc"); if(c) c.innerHTML=`<span>Sewa ${t.days} hari</span><span>RM ${money(t.rental)}</span>${t.peak>0?`<span>Peak ${t.pdays} hari &times; RM${money(t.prate)}</span><span>RM ${money(t.peak)}</span>`:""}<span>Lain-lain + sekuriti deposit</span><span>RM ${money(t.delivery+t.prot+t.gst+t.sec)}</span><span><b>Jumlah invois</b></span><span><b>RM ${money(t.total)}</b></span><span>Tempahan awal (ditolak)</span><span>&minus;RM ${money(t.booking)}</span><span><b>Baki</b></span><span><b>RM ${money(t.balance)}</b></span><span>Bil: diterima</span><span>RM ${money(t.recv)}</span><span>Bil: belum bayar</span><span>RM ${money(t.left)}</span>`;
+}
+function printInv(){
+  renderInv();
+  const t=document.title; document.title=`Invois_Bil_${(S.v.plate||"KERETA").replace(/\s+/g,"")}_${S.a.date||todayISO()}_${(S.r.name||"PENYEWA").replace(/[^A-Za-z0-9]+/g,"_").slice(0,30)}`;
+  document.body.classList.add("inv-mode");
+  const done=()=>{ document.body.classList.remove("inv-mode"); document.title=t; window.removeEventListener("afterprint",done); };
+  window.addEventListener("afterprint",done);
+  setTimeout(()=>{ window.print(); },100);
 }
 
 function fitPreview(){ const pane=$("#previewPane"); const w=pane.clientWidth-32; const pageW=210*3.7795; const sc=Math.min(1,w/pageW); const el=$("#previewScale"); el.style.transform=`scale(${sc})`; el.style.width=pageW+"px"; el.style.margin="0 auto"; el.style.height=(el.scrollHeight*sc)+"px"; }

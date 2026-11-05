@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Rental agreement form (agreement.html): new "Invois & Bil" section under Pengiraan. "Cetak Invois + Bil (PDF)" prints 2 pages from the agreement data: an invoice (Bill to = renter, Pay to = company name, owner, SSM and address; no bank account) and a bill/receipt with a PAID / PART PAID / UNPAID stamp. Editable: invoice date, payment due, peak days and peak rate per day (blank = 15% of the day rate), amount received, date received, payment method. The agreement print itself is unchanged.
+
 - Vehicle overlay: the sticky bar on the photo now holds three buttons, "Ask on WhatsApp" (left, green), "Back" (centre, yellow) and "Book this car" (right, blinking orange/white); the bottom strip keeps only the note. The floating WhatsApp pill hides while the completed price-box form's "Submit request thru WhatsApp" button is on screen.
 - Fleet rail auto-scroll speed 45 px/s (was 30); no resume delay after tapping a car (the overlay pauses it while open); 1.2 s hold after a swipe (was 4 s).
 - Nissan Almera: RM155 / 124 / 78 (was 255).
