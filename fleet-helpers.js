@@ -59,3 +59,14 @@ function mentionsSingapore(text){
   document.head.appendChild(s);
 })();
 function track(name,params){try{if(window.gtag&&SETTINGS.gaId)gtag('event',name,params||{})}catch(e){}}
+/* Every WhatsApp link counts as a whatsapp_tap: one listener on the document, so links built later (car overlay) are covered.
+   The price box's own send buttons (#q-send, #s-go) report themselves with car and price, so they are skipped here. */
+(function(){try{
+  document.addEventListener('click',function(e){try{
+    var a=e.target&&e.target.closest?e.target.closest('a[href*="wa.me"]'):null;
+    if(!a||a.id==='q-send'||a.id==='s-go')return;
+    var from='';try{from=sessionStorage.getItem('ezee-from')||''}catch(x){}
+    if(!from){var m=location.search.match(/[?&](?:from|utm_source)=([^&]+)/);if(m)from=decodeURIComponent(m[1]).slice(0,14)}
+    track('whatsapp_tap',{service:String(a.className||'').split(' ')[0]||'link',car:'',source:from||'website',price:''});
+  }catch(x){}},true);
+}catch(e){}})();

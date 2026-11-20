@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Tracking fix (20 Nov 2026): every WhatsApp link now sends the `whatsapp_tap` event (floating pill, header link, transfer button, car overlay, rate card) through one listener in fleet-helpers.js. The floating pill's old inline handler read a variable it could not see, so its taps were never counted and Google Ads showed no conversions. The price box's own send button is unchanged.
+
 - Rental agreement form (agreement.html): new "Invois & Bil" section under Pengiraan. "Cetak Invois + Bil (PDF)" prints 2 pages from the agreement data: an invoice (Bill to = renter, Pay to = company name, owner, SSM and address; no bank account) and a bill/receipt with a PAID / PART PAID / UNPAID stamp. Editable: invoice date, payment due, peak days and peak rate per day (blank = 15% of the day rate), amount received, date received, payment method. The agreement print itself is unchanged.
 
 - Vehicle overlay: the sticky bar on the photo now holds three buttons, "Ask on WhatsApp" (left, green), "Back" (centre, yellow) and "Book this car" (right, blinking orange/white); the bottom strip keeps only the note. The floating WhatsApp pill hides while the completed price-box form's "Submit request thru WhatsApp" button is on screen.
