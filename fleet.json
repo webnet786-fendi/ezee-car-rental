@@ -284,7 +284,12 @@
    "singapore": true,
    "category": "Compact",
    "gallery": [
-    "img/fleet/perodua-axia.jpg"
+    "img/fleet/perodua-axia-front.jpg",
+    "img/fleet/perodua-axia-front-2.jpg",
+    "img/fleet/perodua-axia-rear.jpg",
+    "img/fleet/perodua-axia-boot.jpg",
+    "img/fleet/perodua-axia-cockpit.jpg",
+    "img/fleet/perodua-axia-rear-seats.jpg"
    ],
    "specs": [
     {
@@ -352,7 +357,7 @@
      "perDay": 63
     }
    ],
-   "credit": "Photo: LuvsMG481, <a href=\"https://commons.wikimedia.org/wiki/File:2018_Perodua_Axia_base_front.jpg\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>, via Wikimedia Commons",
+   "credit": "",
    "source": "drivor",
    "deposit": 100,
    "partner": true
