@@ -5447,7 +5447,7 @@
   ],
   "ssm": "IP0615901-D",
   "legalName": "EZEE WEBNET RENTAL & TRADING",
-  "peakMinDays": 3,
+  "peakMinDays": 1,
   "holidays": [
    {
     "date": "2026-11-08",

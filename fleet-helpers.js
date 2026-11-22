@@ -34,6 +34,12 @@ function holidayMin(start){
   }
   return null;
 }
+/* The fixed "Public holidays & school holidays: 3 days min." lines only apply while settings.peakMinDays is 2 or more. */
+(function(){try{
+  if(Number(SETTINGS.peakMinDays||0)>=2)return;
+  var hide=function(){try{[].forEach.call(document.querySelectorAll('li[data-i18n="z.hol"]'),function(li){li.style.display='none'})}catch(e){}};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hide);else hide();
+}catch(e){}})();
 function approxRM(r,p){var k=Number(SETTINGS.sgdRate||0);if(!k||p==null||p===''||r.cur!=='S$')return '';return '<small class="approx">\u2248 RM'+Math.round(p*k/10)*10+'</small>'}
 function zoneFor(text){
   var t=' '+String(text||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ')+' ';

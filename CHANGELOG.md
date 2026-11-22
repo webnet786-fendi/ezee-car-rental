@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Peak minimum rental lowered from 3 days to 1 (22 Nov 2026): `settings.peakMinDays` = 1, the +15% peak rate stays. The fixed "Public holidays & school holidays: 3 days min." lines hide themselves while the setting is below 2, and the FAQ sentence about the 3-day minimum is removed (EN/BM/ZH).
+
 - Tracking fix (20 Nov 2026): every WhatsApp link now sends the `whatsapp_tap` event (floating pill, header link, transfer button, car overlay, rate card) through one listener in fleet-helpers.js. The floating pill's old inline handler read a variable it could not see, so its taps were never counted and Google Ads showed no conversions. The price box's own send button is unchanged.
 
 - Rental agreement form (agreement.html): new "Invois & Bil" section under Pengiraan. "Cetak Invois + Bil (PDF)" prints 2 pages from the agreement data: an invoice (Bill to = renter, Pay to = company name, owner, SSM and address; no bank account) and a bill/receipt with a PAID / PART PAID / UNPAID stamp. Editable: invoice date, payment due, peak days and peak rate per day (blank = 15% of the day rate), amount received, date received, payment method. The agreement print itself is unchanged.
